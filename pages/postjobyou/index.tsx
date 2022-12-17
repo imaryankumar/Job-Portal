@@ -50,7 +50,7 @@ const index = () => {
               .slice(pagination.start, pagination.end)
               .map((item: cardTypes, key) => {
                 return (
-                  <div className={style.postjoballcards}>
+                  <div className={style.postjoballcards} key={key}>
                     <div className={style.postjobmycard_heading} key={key}>
                       <h1>{item.title}</h1>
                     </div>

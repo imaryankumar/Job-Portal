@@ -21,7 +21,7 @@ const index = () => {
             </p>
           </div>
           <div className={style.forgot_field}>
-            <div onClick={() => onReset()}>
+            <form onClick={() => onReset()}>
               <Fields
                 type="email"
                 content="Email address"
@@ -33,7 +33,7 @@ const index = () => {
               <div className={style.forgot_btn}>
                 <button className={style.forgot_btns}>Submit</button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

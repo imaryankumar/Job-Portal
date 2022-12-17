@@ -102,7 +102,7 @@ const index = () => {
               </button>
             </div>
             <div className={style.signup_fields}>
-              <div>
+              <form>
                 <Fields
                   type="text"
                   content="Full Name*"
@@ -174,7 +174,7 @@ const index = () => {
                     Signup
                   </button>
                 </div>
-              </div>
+              </form>
               <div className={style.signup_check}>
                 <h2>
                   Have an account?{" "}
