@@ -1,0 +1,33 @@
+.field_content {
+  width: 100%;
+  height: 95px;
+}
+.field_h2 {
+  font: normal normal normal 14px/16px Helvetica Neue;
+  letter-spacing: 0px;
+  color: #303f60;
+  opacity: 1;
+  padding: 0.5rem 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.field_input {
+  color: black;
+  width: 100%;
+  height: 46px;
+  outline-color: #43afff;
+  background: #e8e8e833 0% 0% no-repeat padding-box;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-left: 16px;
+}
+.forget_password {
+  color: #43afff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.input_Fields {
+  border: 1px solid red;
+}
