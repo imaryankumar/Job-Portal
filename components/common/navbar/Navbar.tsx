@@ -23,7 +23,7 @@ function Navbar() {
           <div className="flex justify-between items-center w-full ">
             <Link href={"/"}>
               <div className={style.logo}>
-                <h2>
+                <h2 className={style.logo_h2span}>
                   My<span className={style.span}>Jobs</span>
                 </h2>
               </div>{" "}

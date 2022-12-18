@@ -22,6 +22,7 @@ const index = () => {
       email: mail,
       password: pass,
     };
+
     const d = await fetch(
       "https://jobs-api.squareboat.info/api/v1/auth/login",
       {
@@ -51,7 +52,7 @@ const index = () => {
               <h2 className={style.login_h2}>Login </h2>
             </div>
 
-            <div className={style.login_form}>
+            <form onSubmit={() => onsubmit()} className={style.login_form}>
               <Fields
                 type="email"
                 error={data?.success === false ? true : false}
@@ -79,11 +80,11 @@ const index = () => {
                 ""
               )}
               <div className={style.login_btns}>
-                <button className={style.login_btn} onClick={onsubmit}>
+                <button className={style.login_btn} type="submit">
                   Login
                 </button>
               </div>
-            </div>
+            </form>
 
             <div className={style.login_check}>
               <h2>

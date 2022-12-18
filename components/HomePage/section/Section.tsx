@@ -5,25 +5,27 @@ const section = () => {
   return (
     <div className={style.section}>
       <div className={style.section_txts}>
-        <div className={style.section_h2}>
-          <h2>Why Us</h2>
-        </div>
-        <div className={style.section_cards}>
-          <Cards
-            name="Get More"
-            para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel eaque, a cupiditate?"
-            paraspam="Visibility"
-          />
-          <Cards
-            name="Organize Your"
-            para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel "
-            paraspam="Candidates"
-          />
-          <Cards
-            name="Verify Their"
-            para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel eaque"
-            paraspam="Abilities"
-          />
+        <div className={style.section_head_txts}>
+          <div className={style.section_h2}>
+            <h2>Why Us</h2>
+          </div>
+          <div className={style.section_cards}>
+            <Cards
+              name="Get More"
+              para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel eaque, a cupiditate?"
+              paraspam="Visibility"
+            />
+            <Cards
+              name="Organize Your"
+              para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel "
+              paraspam="Candidates"
+            />
+            <Cards
+              name="Verify Their"
+              para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel eaque"
+              paraspam="Abilities"
+            />
+          </div>
         </div>
       </div>
       <div className={style.section_content}>
