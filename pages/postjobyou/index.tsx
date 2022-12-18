@@ -9,12 +9,9 @@ interface cardTypes {
 }
 const index = () => {
   const [count, setCount] = useState(1);
-  const increment = () => {
-    count == 1 ? setCount(count + 1) : setCount(count);
-  };
-  const decrement = () => {
-    count == 1 ? setCount(1) : setCount(count - 1);
-  };
+  const [showPerPage] = useState(12);
+  const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
+
   const { user } = useContext(authcontext);
 
   useEffect(() => {
@@ -30,8 +27,16 @@ const index = () => {
       });
     });
   }, []);
-  const [showPerPage, setShowPerPage] = useState(12);
-  const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
+  const totalJobs = myData.length;
+  const totalPage = Math.ceil(totalJobs / showPerPage);
+  // console.log({ totalPage });
+  const increment = () => {
+    count < totalPage && setCount(count + 1);
+  };
+  const decrement = () => {
+    count == 1 ? setCount(1) : setCount(count - 1);
+  };
+
   return (
     <>
       <div className={style.postedjobyou_header}>
