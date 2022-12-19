@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .logo {
   color: white;
   cursor: pointer;
@@ -84,4 +85,9 @@
   font: normal normal normal 14px/16px Helvetica Neue;
   border-radius: 5px;
   cursor: pointer;
+}
+@media (max-width: 330px) {
+  .navbar_header {
+    margin: 0 5px;
+  }
 }

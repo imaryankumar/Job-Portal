@@ -17,7 +17,7 @@ function Navbar() {
     setLogout();
   };
   return (
-    <div className="container-lg mx-20">
+    <div className={`container-lg mx-20 ${style.navbar_header}`}>
       <div className={style.wrapper}>
         <nav className="bg-[#303F60] py-2 ">
           <div className="flex justify-between items-center w-full ">

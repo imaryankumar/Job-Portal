@@ -12,10 +12,8 @@
 .header_txt {
   color: #ffffff;
   font-size: 1rem;
-  /* left: 15rem; */
   margin-left: 100px;
-  text-align: start;
-  /* position: absolute; */
+  width: 100%;
 }
 .header_h1 {
   font-size: 3rem;
@@ -35,9 +33,7 @@
   color: #43afff;
   font-weight: bold;
 }
-.header_imgs {
-  margin-top: 9rem;
-}
+
 .header_img {
   width: 600px;
   height: 350px;
@@ -47,38 +43,68 @@
   bottom: -4rem;
   right: 10rem;
 }
+
 /* media quries */
-@media (max-width: 738px) {
+@media (max-width: 330px) {
   .header {
-    /* background-color: red; */
+    height: 35vh;
     width: 100%;
-    height: 25vh;
-    position: relative;
+    padding: 0rem 2rem;
   }
   .header_txt {
-    color: #ffffff;
-    font-size: 1rem;
     margin: auto;
-    text-align: start;
+    width: 100%;
+    margin-bottom: 4rem;
   }
   .header_h1 {
     font-size: 2rem;
-    line-height: 1.5;
-    /* display: flex; */
+    line-height: 1.3;
+    height: 7rem;
+    text-align: center;
+    letter-spacing: 3px;
   }
-  .header_imgs {
-    margin-top: 0rem;
-    margin: auto;
-  }
+
   .header_img {
-    width: 300px;
-    object-fit: contain;
-    /* aspect-ratio: 16/9; */
-    border-radius: 5%;
-    box-shadow: 0px 30px 36px #557da526;
-    position: absolute;
-    bottom: -12rem;
-    right: 4rem;
-    /* transform: translate(50%, 50%); */
+    width: 280px;
+    height: 200px;
+    border-radius: 4%;
+    left: 25px;
+    bottom: -10rem;
+  }
+  .header_btns {
+    border: 1px solid #43afff;
+    background-color: #43afff;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-left: 3.5rem;
+    margin-top: -6rem;
+  }
+}
+@media (max-width: 320px) {
+  .header_img {
+    width: 280px;
+    height: 200px;
+    border-radius: 4%;
+    left: 20px;
+    bottom: -10rem;
+  }
+}
+@media (max-width: 310px) {
+  .header_img {
+    width: 280px;
+    height: 200px;
+    border-radius: 4%;
+    left: 20px;
+    bottom: -10rem;
+  }
+}
+@media (min-width: 288px) and (max-width: 310px) {
+  .header_img {
+    width: 260px;
+    height: 180px;
+    border-radius: 4%;
+    left: 20px;
+    bottom: -10rem;
   }
 }
