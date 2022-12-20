@@ -13,7 +13,7 @@ const header = () => {
         </h1>
         <button
           className={style.header_btns}
-          onClick={() => router.push("/jobpost")}
+          onClick={() => router.push("/postjobyou")}
         >
           Get Started
         </button>

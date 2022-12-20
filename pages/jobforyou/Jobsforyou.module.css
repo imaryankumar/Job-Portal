@@ -169,8 +169,8 @@
 }
 
 .modalWrapper {
-  height: 100vh;
-  width: 100vw;
+  height: 10vh;
+  width: 10vw;
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
   top: 0;
@@ -180,47 +180,20 @@
 }
 .modal {
   background: #fff;
-  width: 48%;
-  height: 80%;
-  /* width: 694px;
-  height: 731px; */
+  width: 60%;
   margin: auto;
+  height: 70%;
   position: relative;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 2rem;
 }
 
 .close {
-  /* width: 20px;
-  height: 20px; */
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  color: black;
-  font-size: larger;
-  font-weight: bolder;
-  /* position: absolute; */
-}
-.wrapmodle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 0;
-  font-size: 19px;
-  color: #303f60;
-}
-.modal_h3 {
-  color: #303f60;
-  font-size: 15px;
-  padding: 0.5rem 0;
-  font-size: 15px;
-}
-.modal_cards {
-  background-color: #557da526;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  color: red;
+  position: absolute;
+  right: 0;
+  margin: 20px;
 }
 
 @media (max-width: 330px) {

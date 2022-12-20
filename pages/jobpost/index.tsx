@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
 import Description from "../../components/description/Description";
@@ -13,24 +14,29 @@ const index = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [data, setData] = useState<dataType | undefined>(undefined);
+  const router = useRouter();
 
-  const JustClick = async () => {
+  const JustonClick = async (e: any) => {
+    e.preventDefault();
     const body = {
       title: title,
       description: description,
       location: location,
     };
+    // console.log(body);
     const d = await fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
       },
       body: JSON.stringify(body),
     });
     const finalRes = await d.json();
-    console.log({ finalRes });
+    // console.log({ finalRes });
     setData(finalRes);
+    router.push("/postjobyou");
   };
 
   return (
@@ -48,7 +54,10 @@ const index = () => {
               <h2 className={style.jobpost_h2}>Post a Job </h2>
             </div>
 
-            <form className={style.jobpost_form}>
+            <form
+              className={style.jobpost_form}
+              onSubmit={(e) => JustonClick(e)}
+            >
               <Fields
                 type="text"
                 error={data?.success === false ? true : false}
@@ -81,12 +90,7 @@ const index = () => {
                 ""
               )}
               <div className={style.jobpost_btns}>
-                <button
-                  className={style.jobpost_btn}
-                  onClick={() => JustClick()}
-                >
-                  Post
-                </button>
+                <button className={style.jobpost_btn}>Post</button>
               </div>
             </form>
           </div>

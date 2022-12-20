@@ -7,8 +7,8 @@ interface cardTypes {
   location?: string;
   title?: string;
   description?: string;
-  id?: string;
 }
+
 const index = () => {
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(12);
@@ -26,7 +26,7 @@ const index = () => {
 
   const [myData, setMyData] = useState([]);
   useEffect(() => {
-    fetch("https://jobs-api.squareboat.info/api/v1/recruiters/jobs", {
+    fetch("https://jobs-api.squareboat.info/api/v1//candidates/jobs", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -36,7 +36,7 @@ const index = () => {
     }).then((res) => {
       res.json().then((resp) => {
         setMyData(resp.data?.data);
-        // console.log(resp.data);
+        console.log(resp.data);
       });
     });
   }, []);
@@ -52,7 +52,6 @@ const index = () => {
   const postClick = () => {
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
   };
-
   return (
     <>
       <div className={style.postedjobyou_header}>
@@ -63,14 +62,13 @@ const index = () => {
           <span>Home</span>
         </div>
         <div className={style.postedjobyou_para}>
-          <h1>Jobs posted by you</h1>
+          <h1>Jobs for you</h1>
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
             {myData
               ?.slice(pagination.start, pagination.end)
               .map((item: cardTypes, key) => {
-                //  console.log("id", item.id);
                 return (
                   <div className={style.postjoballcards} key={key}>
                     <div className={style.postjobmycard_heading} key={key}>
@@ -95,8 +93,23 @@ const index = () => {
                           className={`${style.postjobmycard_btn} ${style.open}`}
                           onClick={() => postClick()}
                         >
-                          View applications
+                          Apply
                         </button>
+                        {isOpen && (
+                          <>
+                            <div className={style.modalWrapper}>
+                              <div className={style.modal}>
+                                <button
+                                  onClick={postClick}
+                                  className={style.close}
+                                >
+                                  X
+                                </button>
+                                <h3>This is my modal</h3>
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -112,23 +125,6 @@ const index = () => {
           <img src="iconsimgs/right.png" alt="" onClick={() => increment()} />
         </div>
       </div>
-      {isOpen && (
-        <>
-          <div className={style.modalWrapper}>
-            <div className={style.modal}>
-              <div className={style.wrapmodle}>
-                <h2>Applicants for this job</h2>
-                <button onClick={postClick} className={style.close}>
-                  X
-                </button>
-              </div>
-              <hr />
-              <h3 className={style.modal_h3}>Total 35 applications</h3>
-              <div className={style.modal_cards}></div>
-            </div>
-          </div>
-        </>
-      )}
     </>
   );
 };

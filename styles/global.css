@@ -13,3 +13,7 @@
 .inputError {
   border: 1px solid red;
 }
+
+.d-none {
+  display: none !important;
+}

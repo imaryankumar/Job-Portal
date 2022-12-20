@@ -31,8 +31,7 @@ function Navbar() {
             <Link href="/login">
               <button
                 type="button"
-                className={style.navbtns}
-                style={isHidden ? { display: "none" } : {}}
+                className={`${style.navbtns} ${isHidden ? "d-none" : ""}`}
               >
                 Login/Signup
               </button>
@@ -42,10 +41,12 @@ function Navbar() {
         <div>
           {isLoggedIN && router.asPath == "/postjobyou" ? (
             <div className={style.nav_pout}>
-              <h3 className={style.nav_ph3}>Post a Job</h3>
+              <Link href="/jobpost">
+                <h3 className={style.nav_ph3}>Post a Job</h3>
+              </Link>
 
               <span className={style.nav_span}>
-                R{" "}
+                {user?.userRole === 0 ? "R" : "C"}
                 <img
                   src="iconsimgs/arrow-down.png"
                   alt=""

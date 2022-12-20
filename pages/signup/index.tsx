@@ -46,7 +46,7 @@ const index = () => {
       name: name,
       skills: skill,
     };
-    console.log("🚀 ~ file: index.tsx:50 ~ Justclick ~ body", body);
+    // console.log("🚀 ~ file: index.tsx:50 ~ Justclick ~ body", body);
     const res = await fetch(
       "https://jobs-api.squareboat.info/api/v1/auth/register",
       {
@@ -130,7 +130,7 @@ const index = () => {
                 />
                 {data?.success === false ? (
                   <p className={style.signup_errorpara}>
-                    Invalid email address
+                    The field is mandatory.
                   </p>
                 ) : (
                   ""
