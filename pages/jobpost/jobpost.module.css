@@ -97,3 +97,5 @@
   height: 15px;
   font: normal normal medium 12px/15px Helvetica Neue;
 }
+@media (max-width: 330px) {
+}

@@ -48,7 +48,7 @@ const index = () => {
               <h2 className={style.jobpost_h2}>Post a Job </h2>
             </div>
 
-            <div className={style.jobpost_form}>
+            <form className={style.jobpost_form}>
               <Fields
                 type="text"
                 error={data?.success === false ? true : false}
@@ -88,7 +88,7 @@ const index = () => {
                   Post
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

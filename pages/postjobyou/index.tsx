@@ -36,6 +36,9 @@ const index = () => {
   const decrement = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
+  const postClick = () => {
+    alert("hello ");
+  };
 
   return (
     <>
@@ -74,7 +77,10 @@ const index = () => {
                         </h3>
                       </div>
                       <div>
-                        <button className={style.postjobmycard_btn}>
+                        <button
+                          className={style.postjobmycard_btn}
+                          onClick={() => postClick()}
+                        >
                           View applications
                         </button>
                       </div>

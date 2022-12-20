@@ -9,15 +9,17 @@ import { authcontext } from "../../components/contextapi/ContextAPI";
 interface dataType {
   success?: boolean;
   code: number;
-  errors?: any[];
+  errors?: any;
 }
 const index = () => {
   const myData = useContext(authcontext);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
+  const [error, setError] = useState(false);
   const [data, setData] = useState<dataType | undefined>(undefined);
 
-  const onsubmit = async () => {
+  const justsubmit = async (e: any) => {
+    e.preventDefault();
     const body = {
       email: mail,
       password: pass,
@@ -35,11 +37,18 @@ const index = () => {
       }
     );
     const finalRes = await d.json();
-    console.log({ finalRes });
-    setData(finalRes);
-    finalRes.success && toast.success("Logged in");
-    finalRes.errors && toast.error("Login Failed");
-    // myData.setLoggin(finalRes.data);
+    if (finalRes.success) {
+      toast.success("Logged in");
+      setData(finalRes);
+      setTimeout(() => {
+        myData.setLoggin(finalRes.data);
+      }, 1000);
+
+      console.log(finalRes);
+    } else {
+      setError(true);
+      toast.error("Login Failed");
+    }
   };
 
   return (
@@ -52,27 +61,27 @@ const index = () => {
               <h2 className={style.login_h2}>Login </h2>
             </div>
 
-            <form onSubmit={() => onsubmit()} className={style.login_form}>
+            <form onSubmit={(e) => justsubmit(e)} className={style.login_form}>
               <Fields
                 type="email"
-                error={data?.success === false ? true : false}
+                error={error}
                 content="Email address"
                 placeholder="Enter your email"
                 value={mail}
                 onchange={setMail}
                 pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
               />
-              {data?.success === true ? "" : ""}
+              {error ? "" : ""}
               <Fields
                 type="password"
-                error={data?.success === false ? true : false}
+                error={error}
                 content="Password"
                 placeholder="Enter your password"
                 password="Forgot your password?"
                 value={pass}
                 onchange={setPass}
               />
-              {data?.success === false ? (
+              {error ? (
                 <p className={style.login_errorpara}>
                   Incorrect email address or password.
                 </p>

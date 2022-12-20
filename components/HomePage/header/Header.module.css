@@ -90,16 +90,7 @@
     bottom: -10rem;
   }
 }
-@media (max-width: 310px) {
-  .header_img {
-    width: 280px;
-    height: 200px;
-    border-radius: 4%;
-    left: 20px;
-    bottom: -10rem;
-  }
-}
-@media (min-width: 288px) and (max-width: 310px) {
+@media (min-width: 288px) and (max-width: 425px) {
   .header_img {
     width: 260px;
     height: 180px;

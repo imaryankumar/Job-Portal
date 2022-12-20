@@ -76,3 +76,8 @@
   opacity: 0.5;
   background: transparent 0% 0% no-repeat padding-box;
 }
+@media (max-width: 330px) {
+  .postedjob_header {
+    padding: 0 2rem;
+  }
+}

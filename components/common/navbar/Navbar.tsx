@@ -17,25 +17,26 @@ function Navbar() {
     setLogout();
   };
   return (
-    <div className={`container-lg mx-20 ${style.navbar_header}`}>
+    <div className="container-lg mx-20">
       <div className={style.wrapper}>
         <nav className="bg-[#303F60] py-2 ">
           <div className="flex justify-between items-center w-full ">
             <Link href={"/"}>
               <div className={style.logo}>
-                <h2 className={style.logo_h2span}>
+                <h2>
                   My<span className={style.span}>Jobs</span>
                 </h2>
               </div>{" "}
             </Link>
-            <button
-              type="button"
-              className={style.navbtns}
-              style={isHidden ? { display: "none" } : {}}
-            >
-              <Link href={"/login"}>Login/</Link>
-              <Link href={"/signup"}>Signup</Link>
-            </button>
+            <Link href="/login">
+              <button
+                type="button"
+                className={style.navbtns}
+                style={isHidden ? { display: "none" } : {}}
+              >
+                Login/Signup
+              </button>
+            </Link>
           </div>
         </nav>
         <div>

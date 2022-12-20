@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 const index = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
-  const onReset = () => {
-    router.push("/resetpassword");
-    console.log("hello");
+  const onReset = (e?: any) => {
+    e.preventDefault();
+    console.log("Hello");
   };
   return (
     <>
@@ -21,7 +21,7 @@ const index = () => {
             </p>
           </div>
           <div className={style.forgot_field}>
-            <form onClick={() => onReset()}>
+            <form onSubmit={(e) => onReset(e)}>
               <Fields
                 type="email"
                 content="Email address"
