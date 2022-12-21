@@ -11,7 +11,7 @@ const index = () => {
           <Link href={"/"}>
             <img src="iconsimgs/homeicon.png" alt="" />
           </Link>
-          Home &gt; Post a Job
+          Home &gt; Applied Jobs
         </div>
         <div className={style.jobapply_para}>
           <h1>Jobs applied by you</h1>
@@ -20,10 +20,7 @@ const index = () => {
       <div className={style.jobapply_section}>
         <img src="iconsimgs/write.png" alt="" className={style.jobapply_img} />
         <h2 className={style.jobapply_h2}>Your applied jobs will show here!</h2>
-        <button
-          className={style.jobapply_btn}
-          onClick={() => router.push("jobpost")}
-        >
+        <button className={style.jobapply_btn} onClick={() => router.push("")}>
           See all jobs
         </button>
       </div>

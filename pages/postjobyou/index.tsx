@@ -2,21 +2,28 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
-import { json } from "stream/consumers";
 interface cardTypes {
   location?: string;
   title?: string;
   description?: string;
   id?: string;
+  updatedAt?: any;
+}
+interface jobData {
+  email: string;
+  name: string;
+  skills: string;
+  id: string;
 }
 const index = () => {
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(12);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
   const [isOpen, setIsOpen] = useState(false);
-
+  const [jobData, setJobData] = useState<jobData[]>([]);
   const { user } = useContext(authcontext);
 
+  console.log("posted job you", user);
   useEffect(() => {
     const value = showPerPage * count;
     setPagination({ start: value - showPerPage, end: value });
@@ -49,8 +56,18 @@ const index = () => {
   const decrement = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
-  const postClick = () => {
+  const postClick = async (job_id: string | undefined) => {
+    console.log({ job_id });
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
+    let response = await fetch(
+      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
+      {
+        method: "GET",
+        headers: { Authorization: `${user?.token}` },
+      }
+    );
+    let data = await response.json();
+    setJobData(data?.data);
   };
 
   return (
@@ -93,7 +110,7 @@ const index = () => {
                       <div>
                         <button
                           className={`${style.postjobmycard_btn} ${style.open}`}
-                          onClick={() => postClick()}
+                          onClick={() => postClick(item.id)}
                         >
                           View applications
                         </button>
@@ -118,13 +135,30 @@ const index = () => {
             <div className={style.modal}>
               <div className={style.wrapmodle}>
                 <h2>Applicants for this job</h2>
-                <button onClick={postClick} className={style.close}>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className={style.close}
+                >
                   X
                 </button>
               </div>
               <hr />
-              <h3 className={style.modal_h3}>Total 35 applications</h3>
-              <div className={style.modal_cards}></div>
+              <h3 className={style.modal_h3}>
+                Total {jobData ? jobData.length : 0} applications
+              </h3>
+              <div className={style.modal_cards}>
+                {jobData ? (
+                  jobData?.map((items: cardTypes, k) => {
+                    return (
+                      <div key={k}>
+                        <p>{items.updatedAt}</p>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div>no job available</div>
+                )}
+              </div>
             </div>
           </div>
         </>

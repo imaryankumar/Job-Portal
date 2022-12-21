@@ -2,31 +2,37 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
-import { json } from "stream/consumers";
+
 interface cardTypes {
   location?: string;
   title?: string;
   description?: string;
+  id?: string;
+  updatedAt?: any;
 }
-
+interface jobData {
+  email: string;
+  name: string;
+  skills: string;
+  id: string;
+}
 const index = () => {
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(12);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
   const [isOpen, setIsOpen] = useState(false);
-
+  const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const { user } = useContext(authcontext);
 
+  console.log({ user });
   useEffect(() => {
     const value = showPerPage * count;
     setPagination({ start: value - showPerPage, end: value });
-    const user = localStorage.getItem("user");
-    // console.log("accessToken", JSON.parse(user || "{}").token);
   }, [count]);
 
-  const [myData, setMyData] = useState([]);
   useEffect(() => {
-    fetch("https://jobs-api.squareboat.info/api/v1//candidates/jobs", {
+    // const token = user?.token ? user?.token : "";
+    fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -35,12 +41,13 @@ const index = () => {
       },
     }).then((res) => {
       res.json().then((resp) => {
-        setMyData(resp.data?.data);
-        console.log(resp.data);
+        setCanMyData(resp.data);
+        console.log("mydata", resp.data);
       });
     });
   }, []);
-  const totalJobs = myData?.length;
+
+  const totalJobs = myCanData?.length;
   const totalPage = Math.ceil(totalJobs / showPerPage);
   // console.log({ totalPage });
   const increment = () => {
@@ -52,6 +59,7 @@ const index = () => {
   const postClick = () => {
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
   };
+  console.log({ myCanData });
   return (
     <>
       <div className={style.postedjobyou_header}>
@@ -66,7 +74,7 @@ const index = () => {
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
-            {myData
+            {myCanData
               ?.slice(pagination.start, pagination.end)
               .map((item: cardTypes, key) => {
                 return (
