@@ -1,7 +1,8 @@
 import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
+
 interface cardTypes {
   location?: string;
   title?: string;
@@ -18,39 +19,43 @@ interface jobData {
 }
 const index = () => {
   const [count, setCount] = useState(1);
-  const [showPerPage] = useState(12);
-  const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
   const [isOpen, setIsOpen] = useState(false);
   const [jobData, setJobData] = useState<jobData[]>([]);
+  const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
-
-  console.log("posted job you", user);
-  useEffect(() => {
-    const value = showPerPage * count;
-    setPagination({ start: value - showPerPage, end: value });
-    const user = localStorage.getItem("user");
-    // console.log("accessToken", JSON.parse(user || "{}").token);
-  }, [count]);
-
   const [myData, setMyData] = useState([]);
+  // console.log("posted job you", user);
+  let myArray = useMemo(() => {
+    return Array(totalPage)
+      .fill("")
+      .map((e, index) => index + 1);
+  }, [totalPage]);
+
   useEffect(() => {
-    fetch("https://jobs-api.squareboat.info/api/v1/recruiters/jobs", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
-      },
-    }).then((res) => {
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${count}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+      }
+    ).then((res) => {
       res.json().then((resp) => {
         setMyData(resp.data?.data);
-        // console.log(resp.data);
+        console.log("Data : ", resp.data?.data);
+        setTotalPage(
+          Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
+        );
+        //  console.log(resp?.data?.metadata?.count, resp?.data?.metadata?.limit);
       });
     });
-  }, []);
+  }, [count]);
+
   const totalJobs = myData?.length;
-  const totalPage = Math.ceil(totalJobs / showPerPage);
-  // console.log({ totalPage });
   const increment = () => {
     count < totalPage && setCount(count + 1);
   };
@@ -85,48 +90,56 @@ const index = () => {
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
-            {myData
-              ?.slice(pagination.start, pagination.end)
-              .map((item: cardTypes, key) => {
-                //  console.log("id", item.id);
-                return (
-                  <div className={style.postjoballcards} key={key}>
-                    <div className={style.postjobmycard_heading} key={key}>
-                      <h1>{item.title}</h1>
+            {myData.map((item: cardTypes, key) => {
+              //  console.log("id", item.id);
+              return (
+                <div className={style.postjoballcards} key={key}>
+                  <div
+                    className={`${style.postjobmycard_heading} ${style.line_clamps}`}
+                    key={key}
+                  >
+                    <h1>{item.title}</h1>
+                  </div>
+                  <div
+                    className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                  >
+                    <p>{item.description}</p>
+                  </div>
+                  <div className={style.postjobmycard_locsection}>
+                    <div className={style.postjobmycard_locationcard}>
+                      <img src="iconsimgs/mypin.png" alt="" />
+                      <h3
+                        className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                      >
+                        {item.location}
+                      </h3>
                     </div>
-                    <div
-                      className={`${style.postjobmycard_para} ${style.line_clamp}`}
-                    >
-                      <p>{item.description}</p>
-                    </div>
-                    <div className={style.postjobmycard_locsection}>
-                      <div className={style.postjobmycard_locationcard}>
-                        <img src="iconsimgs/mypin.png" alt="" />
-                        <h3
-                          className={`${style.postjobmycard_h3} ${style.line_clamps}`}
-                        >
-                          {item.location}
-                        </h3>
-                      </div>
-                      <div>
-                        <button
-                          className={`${style.postjobmycard_btn} ${style.open}`}
-                          onClick={() => postClick(item.id)}
-                        >
-                          View applications
-                        </button>
-                      </div>
+                    <div>
+                      <button
+                        className={`${style.postjobmycard_btn} ${style.open}`}
+                        onClick={() => postClick(item.id)}
+                      >
+                        View applications
+                      </button>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
       <div className={style.postedjobyou_section}>
         <div className={style.postedjobyou_footers}>
           <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
-          <span className={style.postjobyou_span}>{count}</span>
+          {myArray.map((i, key) => {
+            return (
+              <span className={style.postjobyou_span} key={key}>
+                {i}
+              </span>
+            );
+          })}
+
           <img src="iconsimgs/right.png" alt="" onClick={() => increment()} />
         </div>
       </div>

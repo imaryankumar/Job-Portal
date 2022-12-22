@@ -2,6 +2,9 @@ import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
 import style from "../signup/Signup.module.css";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Router from "next/router";
 // import { getEnvironmentData } from "worker_threads";
 const index = () => {
   const [name, setName] = useState("");
@@ -12,6 +15,7 @@ const index = () => {
   const [btn, setBtn] = useState(true);
   const [btn2, setBtn2] = useState(false);
   const [skill, setSkill] = useState("");
+  const [error, setError] = useState(false);
 
   interface dataType {
     success?: boolean;
@@ -66,13 +70,19 @@ const index = () => {
       setPassword("");
       setConpassword("");
       setSkill("");
+      toast.success("Signup  Successfull");
+      setTimeout(() => {
+        Router.push("/login");
+      }, 1000);
     } else {
-      alert("Error");
+      setError(true);
+      toast.error("Signup Failed");
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className={style.signup_header}>
         <div className={style.signup_card}>
           <div className={style.signup_content}>
@@ -114,11 +124,11 @@ const index = () => {
                   type="text"
                   content="Full Name*"
                   placeholder="Enter your full name"
-                  error={data?.success === false ? true : false}
+                  error={error ? true : false}
                   value={name}
                   onchange={setName}
                 />
-                {data?.success === false ? (
+                {error ? (
                   <p className={style.signup_errorpara}>
                     The field is mandatory.
                   </p>
@@ -129,12 +139,12 @@ const index = () => {
                   type="email"
                   content="Email Address*"
                   placeholder="Enter your email"
-                  error={data?.success === false ? true : false}
+                  error={error ? true : false}
                   value={mail}
                   onchange={setMail}
                   pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                 />
-                {data?.success === false ? (
+                {error ? (
                   <p className={style.signup_errorpara}>
                     The field is mandatory.
                   </p>
@@ -146,7 +156,7 @@ const index = () => {
                     type="password"
                     content="Create Password*"
                     placeholder="Enter your password"
-                    error={data?.success === false ? true : false}
+                    error={error ? true : false}
                     value={password}
                     onchange={setPassword}
                   />
@@ -155,12 +165,12 @@ const index = () => {
                     type="password"
                     content="Confirm Password*"
                     placeholder="Enter your password"
-                    error={data?.success === false ? true : false}
+                    error={error ? true : false}
                     value={conpassword}
                     onchange={setConpassword}
                   />
                 </div>
-                {data?.success === false ? (
+                {error ? (
                   <p className={style.signup_errorpara}>
                     The field is mandatory.
                   </p>

@@ -54,7 +54,13 @@ function Navbar() {
           {isLoggedIN ? (
             <div className={style.nav_pout}>
               <Link
-                href={`${user?.userRole === 0 ? "/jobpost" : "/jobapplyyou"}`}
+                href={`${
+                  user?.userRole === 0
+                    ? "/jobpost"
+                    : {}
+                    ? "/jobappliedyou"
+                    : "/jobapplyyou"
+                }`}
               >
                 <h3 className={style.nav_ph3}>
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}

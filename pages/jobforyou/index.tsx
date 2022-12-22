@@ -1,6 +1,6 @@
 import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 
 interface cardTypes {
@@ -18,17 +18,17 @@ interface jobData {
 }
 const index = () => {
   const [count, setCount] = useState(1);
-  const [showPerPage] = useState(12);
-  const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
+  const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
+  console.log("totalPage", totalPage);
+  let myArray = useMemo(() => {
+    return Array(totalPage)
+      .fill("")
+      .map((e, index) => index + 1);
+  }, [totalPage]);
 
-  // console.log({ user });
-  useEffect(() => {
-    const value = showPerPage * count;
-    setPagination({ start: value - showPerPage, end: value });
-  }, [count]);
-
+  //  console.log(myArray);
   useEffect(() => {
     // const token = user?.token ? user?.token : "";
     fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
@@ -41,14 +41,16 @@ const index = () => {
     }).then((res) => {
       res.json().then((resp) => {
         setCanMyData(resp.data);
-        //  console.log("mydata", resp.data);
+
+        setTotalPage(
+          Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
+        );
+        //  console.log("mydata", resp?.metadata?.count, resp?.metadata?.limit);
       });
     });
-  }, []);
+  }, [count]);
 
-  const totalJobs = myCanData?.length;
-  const totalPage = Math.ceil(totalJobs / showPerPage);
-  // console.log({ totalPage });
+  // const totalJobs = myCanData?.length;
   const increment = () => {
     count < totalPage && setCount(count + 1);
   };
@@ -73,47 +75,55 @@ const index = () => {
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
-            {myCanData
-              ?.slice(pagination.start, pagination.end)
-              .map((item: cardTypes, key) => {
-                return (
-                  <div className={style.postjoballcards} key={key}>
-                    <div className={style.postjobmycard_heading} key={key}>
-                      <h1>{item.title}</h1>
+            {myCanData.map((item: cardTypes, key) => {
+              return (
+                <div className={style.postjoballcards} key={key}>
+                  <div
+                    className={`${style.postjobmycard_heading} ${style.line_clamp}`}
+                    key={key}
+                  >
+                    <h1>{item.title}</h1>
+                  </div>
+                  <div
+                    className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                  >
+                    <p>{item.description}</p>
+                  </div>
+                  <div className={style.postjobmycard_locsection}>
+                    <div className={style.postjobmycard_locationcard}>
+                      <img src="iconsimgs/mypin.png" alt="" />
+                      <h3
+                        className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                      >
+                        {item.location}
+                      </h3>
                     </div>
-                    <div
-                      className={`${style.postjobmycard_para} ${style.line_clamp}`}
-                    >
-                      <p>{item.description}</p>
-                    </div>
-                    <div className={style.postjobmycard_locsection}>
-                      <div className={style.postjobmycard_locationcard}>
-                        <img src="iconsimgs/mypin.png" alt="" />
-                        <h3
-                          className={`${style.postjobmycard_h3} ${style.line_clamps}`}
-                        >
-                          {item.location}
-                        </h3>
-                      </div>
-                      <div>
-                        <button
-                          className={style.postjobmycard_btn}
-                          onClick={() => postClick()}
-                        >
-                          Apply
-                        </button>
-                      </div>
+                    <div>
+                      <button
+                        className={style.postjobmycard_btn}
+                        onClick={() => postClick()}
+                      >
+                        Apply
+                      </button>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
       <div className={style.postedjobyou_section}>
         <div className={style.postedjobyou_footers}>
           <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
-          <span className={style.postjobyou_span}>{count}</span>
+          {myArray.map((i, k) => {
+            return (
+              <span className={style.postjobyou_span} key={k}>
+                {i}
+              </span>
+            );
+          })}
+
           <img src="iconsimgs/right.png" alt="" onClick={() => increment()} />
         </div>
       </div>

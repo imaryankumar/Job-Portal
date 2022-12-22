@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Fields from "../../components/common/fields/Fields";
 import style from "../resetpassword/Reset.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const index = () => {
   const [newPass, setNewPass] = useState("");
@@ -12,11 +14,8 @@ const index = () => {
   const { token } = router.query;
   const onResetPassword = async () => {
     if (newPass && newPass === conPass) {
-      console.log("Good");
       setConPass("");
       setNewPass("");
-      setError(false);
-      //  console.log("newpass", newPass, "conPass", conPass, "Token", token);
       const data = await fetch(
         "https://jobs-api.squareboat.info/api/v1/auth/resetpassword",
         {
@@ -33,22 +32,20 @@ const index = () => {
         }
       );
       const res = await data.json();
-      // console.log(res);
+      console.log("result is ", res.message);
+      toast.success("Password updated successfully");
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
     } else {
+      toast.error("Invalid Password");
       setError(true);
     }
   };
 
-  // const getData = async () => {
-  //   const data = await fetch(
-  //     "https://jobs-api.squareboat.info/api/v1/auth/resetpassword"
-  //   );
-  //   const res = await data.json();
-  //   console.log("res is : ", res);
-  // };
-
   return (
     <>
+      <ToastContainer />
       <div className={style.reset_header}>
         <div className={style.reset_card}>
           <div className={style.reset_content}>
@@ -71,7 +68,7 @@ const index = () => {
               error={error}
             />
             {error ? (
-              <p className={style.login_errorpara}>Don't Match Password.</p>
+              <p className={style.login_errorpara}>Password do not Match.</p>
             ) : (
               ""
             )}

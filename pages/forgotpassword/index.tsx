@@ -35,7 +35,7 @@ const index = () => {
         }
       } else {
         // Toast
-        toast.error("Email Not Found");
+        toast.error(res.message);
       }
     } catch (error) {
       //  console.log(error);
