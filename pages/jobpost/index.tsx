@@ -14,6 +14,7 @@ const index = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [data, setData] = useState<dataType | undefined>(undefined);
+  const [error, setError] = useState(false);
   const router = useRouter();
 
   const JustonClick = async (e: any) => {
@@ -23,7 +24,7 @@ const index = () => {
       description: description,
       location: location,
     };
-    // console.log(body);
+
     const d = await fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
       method: "POST",
       headers: {
@@ -34,9 +35,12 @@ const index = () => {
       body: JSON.stringify(body),
     });
     const finalRes = await d.json();
-    // console.log({ finalRes });
-    setData(finalRes);
-    router.push("/postjobyou");
+    if (finalRes.success) {
+      setData(finalRes);
+      router.push("/postjobyou");
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -60,7 +64,7 @@ const index = () => {
             >
               <Fields
                 type="text"
-                error={data?.success === false ? true : false}
+                error={error ? true : false}
                 content="Job title*"
                 placeholder="Enter job title"
                 value={title}
@@ -72,17 +76,17 @@ const index = () => {
                 placeholder="Enter job description"
                 value={description}
                 onchange={setDescription}
-                error={data?.success === false ? true : false}
+                error={error ? true : false}
               />
               <Fields
                 type="text"
-                error={data?.success === false ? true : false}
+                error={error ? true : false}
                 content="Location*"
                 placeholder="Enter location"
                 value={location}
                 onchange={setLocation}
               />
-              {data?.success === false ? (
+              {error ? (
                 <p className={style.jobpost_errorpara}>
                   All fields are mandatory.
                 </p>

@@ -20,11 +20,10 @@ const index = () => {
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(12);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
-  const [isOpen, setIsOpen] = useState(false);
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const { user } = useContext(authcontext);
 
-  console.log({ user });
+  // console.log({ user });
   useEffect(() => {
     const value = showPerPage * count;
     setPagination({ start: value - showPerPage, end: value });
@@ -42,7 +41,7 @@ const index = () => {
     }).then((res) => {
       res.json().then((resp) => {
         setCanMyData(resp.data);
-        console.log("mydata", resp.data);
+        //  console.log("mydata", resp.data);
       });
     });
   }, []);
@@ -57,9 +56,9 @@ const index = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
   const postClick = () => {
-    isOpen === false ? setIsOpen(true) : setIsOpen(false);
+    console.log("Hello");
   };
-  console.log({ myCanData });
+  //  console.log({ myCanData });
   return (
     <>
       <div className={style.postedjobyou_header}>
@@ -98,26 +97,11 @@ const index = () => {
                       </div>
                       <div>
                         <button
-                          className={`${style.postjobmycard_btn} ${style.open}`}
+                          className={style.postjobmycard_btn}
                           onClick={() => postClick()}
                         >
                           Apply
                         </button>
-                        {isOpen && (
-                          <>
-                            <div className={style.modalWrapper}>
-                              <div className={style.modal}>
-                                <button
-                                  onClick={postClick}
-                                  className={style.close}
-                                >
-                                  X
-                                </button>
-                                <h3>This is my modal</h3>
-                              </div>
-                            </div>
-                          </>
-                        )}
                       </div>
                     </div>
                   </div>

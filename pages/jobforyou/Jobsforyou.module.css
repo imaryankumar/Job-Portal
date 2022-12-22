@@ -168,34 +168,6 @@
   padding: 8px;
 }
 
-.modalWrapper {
-  height: 10vh;
-  width: 10vw;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal {
-  background: #fff;
-  width: 60%;
-  margin: auto;
-  height: 70%;
-  position: relative;
-}
-
-.close {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  color: red;
-  position: absolute;
-  right: 0;
-  margin: 20px;
-}
-
 @media (max-width: 330px) {
   .postedjobyou_header {
     background-color: #303f60;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { authcontext } from "../../contextapi/ContextAPI";
+import { authcontext, Tuser } from "../../contextapi/ContextAPI";
 import style from "../navbar/Navbar.module.css";
 
 function Navbar() {
@@ -17,15 +17,15 @@ function Navbar() {
     setLogout();
   };
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}") as Tuser;
     if (
-      !user &&
-      !["/signup", "/login", "/forgotpassword", "/resetpassword", "/"].includes(
-        router.asPath
-      )
+      !user.token &&
+      !["/signup", "/login", "/forgotpassword", "/"].includes(router.asPath) &&
+      !router.asPath.includes("/resetpassword")
     ) {
       router.push("/login");
     }
-  }, [router, user]);
+  }, [router]);
   return (
     <div className="container-lg mx-20">
       <div className={style.wrapper}>
@@ -60,7 +60,6 @@ function Navbar() {
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                 </h3>
               </Link>
-
               <span className={style.nav_span}>
                 {user?.userRole === 0 ? "R" : "C"}
                 <img
@@ -77,7 +76,7 @@ function Navbar() {
                     Logout
                   </div>
                 )}
-              </span>
+              </span>{" "}
             </div>
           ) : (
             ""

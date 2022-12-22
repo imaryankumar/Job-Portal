@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import style from "../header/Header.module.css";
+import { authcontext } from "../../contextapi/ContextAPI";
+import { useContext } from "react";
 
 const header = () => {
   const router = useRouter();
+  const { user } = useContext(authcontext);
   return (
     <div className={style.header}>
       <div className={style.header_txt}>
@@ -13,7 +16,11 @@ const header = () => {
         </h1>
         <button
           className={style.header_btns}
-          onClick={() => router.push("/postjobyou")}
+          onClick={() =>
+            router.push(
+              `${user?.userRole === 0 ? "/postjobyou" : "/jobforyou"}`
+            )
+          }
         >
           Get Started
         </button>

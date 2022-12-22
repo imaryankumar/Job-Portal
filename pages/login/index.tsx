@@ -16,8 +16,6 @@ const index = () => {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(false);
-  const [errorMail, setErrorMail] = useState(false);
-  const [errorPass, setErrorPass] = useState(false);
 
   const [data, setData] = useState<dataType | undefined>(undefined);
 
@@ -27,21 +25,7 @@ const index = () => {
       email: mail,
       password: pass,
     };
-
-    // validation
-    //if invalid show error else continue
-    // let pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    // if (errorMail || errorPass) {
-    //   if (errorMail && pattern) {
-    //     alert("Error MAil");
-    //     setErrorMail(true);
-    //   } else {
-    //     alert("Error PAssword");
-    //     setErrorPass(true);
-
-    //   }
-    // } else {
-    const d = await fetch(
+    const allData = await fetch(
       "https://jobs-api.squareboat.info/api/v1/auth/login",
       {
         method: "POST",
@@ -52,7 +36,7 @@ const index = () => {
         body: JSON.stringify(body),
       }
     );
-    const finalRes = await d.json();
+    const finalRes = await allData.json();
     if (finalRes.success) {
       toast.success("Logged in");
       setData(finalRes);
@@ -65,7 +49,6 @@ const index = () => {
       setError(true);
       toast.error("Login Failed");
     }
-    // }
   };
 
   return (

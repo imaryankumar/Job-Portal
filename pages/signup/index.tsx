@@ -58,11 +58,17 @@ const index = () => {
         body: JSON.stringify(body),
       }
     );
-
-    const finalRes = await res.json();
-
-    // console.log({ finalRes });
-    setData(finalRes);
+    if (password === conpassword) {
+      const finalRes = await res.json();
+      setData(finalRes);
+      setName("");
+      setMail("");
+      setPassword("");
+      setConpassword("");
+      setSkill("");
+    } else {
+      alert("Error");
+    }
   };
 
   return (
@@ -144,6 +150,7 @@ const index = () => {
                     value={password}
                     onchange={setPassword}
                   />
+
                   <Fields
                     type="password"
                     content="Confirm Password*"

@@ -40,8 +40,28 @@
   font: normal normal normal 14px/20px Helvetica Neue;
   padding-bottom: 2rem;
 }
-.reset_btns {
+.reset_btn {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.reset_btns {
+  width: 148px;
+  height: 46px;
+  background: #43afff 0% 0% no-repeat padding-box;
+  border: 1px solid #43afff;
+  border-radius: 5px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+.login_errorpara {
+  color: red;
+  text-align: right;
+  margin-top: -12px;
+  font-size: 12px;
 }

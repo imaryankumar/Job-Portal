@@ -8,6 +8,7 @@ interface cardTypes {
   description?: string;
   id?: string;
   updatedAt?: any;
+  email?: any;
 }
 interface jobData {
   email: string;
@@ -151,12 +152,21 @@ const index = () => {
                   jobData?.map((items: cardTypes, k) => {
                     return (
                       <div key={k}>
-                        <p>{items.updatedAt}</p>
+                        <p style={{ color: "red" }}>{items.email}</p>
                       </div>
                     );
                   })
                 ) : (
-                  <div>no job available</div>
+                  <div className={style.modalempty_div}>
+                    <div className={style.modalempty_content}>
+                      <img
+                        src="iconsimgs/resume.png"
+                        alt=""
+                        className={style.modalimgs}
+                      />
+                      <h3>No applications available!</h3>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
