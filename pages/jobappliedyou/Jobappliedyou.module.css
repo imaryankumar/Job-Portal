@@ -170,6 +170,45 @@
   padding: 8px;
 }
 
+.jobapply_section {
+  margin-top: 10rem;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rem;
+}
+.jobapply_h2 {
+  width: 292px;
+  height: 23px;
+  color: #303f60;
+  font-size: 20px;
+  opacity: 0.8;
+  padding: 1rem 0;
+  font: normal normal normal 20px/24px Helvetica Neue;
+}
+.jobapply_btn {
+  width: 148px;
+  height: 46px;
+  background: #43afff 0% 0% no-repeat padding-box;
+  border: 1px solid #43afff;
+  border-radius: 5px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+.jobapply_img {
+  width: 106px;
+  height: 106px;
+  opacity: 0.5;
+  background: transparent 0% 0% no-repeat padding-box;
+}
+
 @media (max-width: 330px) {
   .jobappliedyou_header {
     background-color: #303f60;

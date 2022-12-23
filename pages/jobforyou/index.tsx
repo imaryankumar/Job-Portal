@@ -2,12 +2,14 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface cardTypes {
   location?: string;
   title?: string;
   description?: string;
-  id?: string;
+  id: string;
   updatedAt?: any;
 }
 interface jobData {
@@ -28,9 +30,7 @@ const index = () => {
       .map((e, index) => index + 1);
   }, [totalPage]);
 
-  //  console.log(myArray);
-  useEffect(() => {
-    // const token = user?.token ? user?.token : "";
+  const reloadData = () => {
     fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
       method: "GET",
       headers: {
@@ -41,28 +41,52 @@ const index = () => {
     }).then((res) => {
       res.json().then((resp) => {
         setCanMyData(resp.data);
-
         setTotalPage(
           Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
         );
-        //  console.log("mydata", resp?.metadata?.count, resp?.metadata?.limit);
       });
     });
+  };
+  useEffect(() => {
+    reloadData();
   }, [count]);
 
-  // const totalJobs = myCanData?.length;
   const increment = () => {
     count < totalPage && setCount(count + 1);
   };
   const decrement = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
-  const postClick = () => {
-    console.log("Hello");
+  const clickMe = (id: string) => {
+    const getData = async () => {
+      const body = {
+        jobId: id,
+      };
+      const res = await fetch(
+        "https://jobs-api.squareboat.info/api/v1/candidates/jobs",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+              ?.token,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const showres = await res.json();
+      if (showres.success === true) {
+        toast.success("Applied Successfull");
+        reloadData();
+      }
+    };
+    getData();
   };
-  //  console.log({ myCanData });
+
   return (
     <>
+      <ToastContainer />
       <div className={style.postedjobyou_header}>
         <div className={style.postedjobyou_topbar}>
           <Link href={"/"}>
@@ -101,7 +125,7 @@ const index = () => {
                     <div>
                       <button
                         className={style.postjobmycard_btn}
-                        onClick={() => postClick()}
+                        onClick={() => clickMe(item.id)}
                       >
                         Apply
                       </button>
