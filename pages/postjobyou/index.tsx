@@ -10,6 +10,8 @@ interface cardTypes {
   id?: string;
   updatedAt?: any;
   email?: any;
+  name?: string;
+  skills?: string;
 }
 interface jobData {
   email: string;
@@ -24,7 +26,6 @@ const index = () => {
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
   const [myData, setMyData] = useState([]);
-  // console.log("posted job you", user);
   let myArray = useMemo(() => {
     return Array(totalPage)
       .fill("")
@@ -46,16 +47,15 @@ const index = () => {
     ).then((res) => {
       res.json().then((resp) => {
         setMyData(resp.data?.data);
-        console.log("Data : ", resp.data?.data);
+        //  console.log("Data : ", resp.data?.data);
         setTotalPage(
           Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
         );
-        //  console.log(resp?.data?.metadata?.count, resp?.data?.metadata?.limit);
       });
     });
   }, [count]);
 
-  const totalJobs = myData?.length;
+  //  const totalJobs = myData?.length;
   const increment = () => {
     count < totalPage && setCount(count + 1);
   };
@@ -63,7 +63,7 @@ const index = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
   const postClick = async (job_id: string | undefined) => {
-    console.log({ job_id });
+    //  console.log({ job_id });
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
     let response = await fetch(
       `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
@@ -74,6 +74,7 @@ const index = () => {
     );
     let data = await response.json();
     setJobData(data?.data);
+    console.log("Data :", data?.data);
   };
 
   return (
@@ -91,7 +92,6 @@ const index = () => {
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
             {myData.map((item: cardTypes, key) => {
-              //  console.log("id", item.id);
               return (
                 <div className={style.postjoballcards} key={key}>
                   <div
@@ -134,7 +134,15 @@ const index = () => {
           <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
           {myArray.map((i, key) => {
             return (
-              <span className={style.postjobyou_span} key={key}>
+              <span
+                className={style.postjobyou_span}
+                style={
+                  count === i
+                    ? { color: "black", backgroundColor: "#43AFFF33" }
+                    : { backgroundColor: "white" }
+                }
+                key={key}
+              >
                 {i}
               </span>
             );
@@ -164,8 +172,33 @@ const index = () => {
                 {jobData ? (
                   jobData?.map((items: cardTypes, k) => {
                     return (
-                      <div key={k}>
-                        <p style={{ color: "red" }}>{items.email}</p>
+                      <div key={k} className={style.modalheader}>
+                        <div className={style.modalcards}>
+                          <div className={style.modalcard_txts}>
+                            <div className={style.modalcard_content}>
+                              <span className={style.modalcard_span}>
+                                {items.name?.slice(0, 1)}
+                              </span>
+                              <div className={style.modalcard_word}>
+                                <h2 className={style.modalcard_h2}>
+                                  {items.name}
+                                </h2>
+                                <h3 className={style.modalcard_h3}>
+                                  {items.email}
+                                </h3>
+                              </div>
+                            </div>
+
+                            <div className={style.modalcard_skills}>
+                              <h2 className={style.modalcard_skillsh3}>
+                                Skills
+                              </h2>
+                              <h3 className={style.modalcard_h3}>
+                                {items.skills}
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     );
                   })

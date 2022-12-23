@@ -23,7 +23,7 @@ const index = () => {
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
-  console.log("totalPage", totalPage);
+  // console.log("totalPage", totalPage);
   let myArray = useMemo(() => {
     return Array(totalPage)
       .fill("")
@@ -31,22 +31,28 @@ const index = () => {
   }, [totalPage]);
 
   const reloadData = () => {
-    fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
-      },
-    }).then((res) => {
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${count}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+      }
+    ).then((res) => {
       res.json().then((resp) => {
         setCanMyData(resp.data);
+        //  console.log("resp.data :", resp.data);
         setTotalPage(
           Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
         );
       });
     });
   };
+
   useEffect(() => {
     reloadData();
   }, [count]);
@@ -142,7 +148,15 @@ const index = () => {
           <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
           {myArray.map((i, k) => {
             return (
-              <span className={style.postjobyou_span} key={k}>
+              <span
+                className={style.postjobyou_span}
+                style={
+                  count === i
+                    ? { color: "black", backgroundColor: "#43AFFF33" }
+                    : { backgroundColor: "white" }
+                }
+                key={k}
+              >
                 {i}
               </span>
             );

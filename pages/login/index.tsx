@@ -54,7 +54,7 @@ const index = () => {
   return (
     <>
       <ToastContainer />
-      <div className={style.header}>
+      <div className={`${style.header} ${style.mainWrapper}`}>
         <div className={style.login_card}>
           <div className={style.login_content}>
             <div className={style.login_title}>

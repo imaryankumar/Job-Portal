@@ -52,10 +52,6 @@ const index = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
   };
 
-  const postClick = () => {
-    console.log("Hello");
-  };
-
   return (
     <>
       {" "}

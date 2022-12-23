@@ -27,7 +27,7 @@ const index = () => {
         const myData = await fetch(`
         https://jobs-api.squareboat.info/api/v1/auth/resetpassword/${res.data.token}`);
         const resmyData = await myData.json();
-        console.log("resmyData", resmyData);
+        // console.log("resmyData", resmyData);
         if (resmyData.code === 200) {
           router.push(`/resetpassword?token=${res.data.token}`);
         } else {
@@ -66,11 +66,11 @@ const index = () => {
                 pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                 error={error}
               />
-              {error ? (
+              {/* {error ? (
                 <p className={style.forgot_errorpara}>The Field is mandatory</p>
               ) : (
                 ""
-              )}
+              )} */}
               <div className={style.forgot_btn}>
                 <button className={style.forgot_btns}>Submit</button>
               </div>
