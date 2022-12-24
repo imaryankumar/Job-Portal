@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Seo from "../../components/nexthead/Seo";
 import style from "../postedjob/Postedjob.module.css";
 const index = () => {
   const router = useRouter();
   return (
     <>
+      <Seo title="PostedJob" />
+
       <div className={style.postedjob_header}>
         <div className={style.postedjob_topbar}>
           <Link href={"/"}>

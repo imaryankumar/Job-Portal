@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { authcontext } from "../../components/contextapi/ContextAPI";
+import Head from "next/head";
+import Seo from "../../components/nexthead/Seo";
 
 interface dataType {
   success?: boolean;
@@ -53,6 +55,7 @@ const index = () => {
 
   return (
     <>
+      <Seo title="Login" description="This is Login page " />
       <ToastContainer />
       <div className={`${style.header} ${style.mainWrapper}`}>
         <div className={style.login_card}>

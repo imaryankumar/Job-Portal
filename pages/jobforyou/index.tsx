@@ -4,6 +4,8 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router, { useRouter } from "next/router";
+import Seo from "../../components/nexthead/Seo";
 
 interface cardTypes {
   location?: string;
@@ -19,10 +21,21 @@ interface jobData {
   id: string;
 }
 const index = () => {
+  const router = useRouter();
   const [count, setCount] = useState(1);
+  console.log(Number(router.query.page), count);
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
+
   const { user } = useContext(authcontext);
+
+  useEffect(() => {
+    const page = router.query?.page ? Number(router.query.page) : 1;
+    if (!isNaN(page) && page > 0) {
+      setCount(page);
+      reloadData(page);
+    }
+  }, [router]);
   // console.log("totalPage", totalPage);
   let myArray = useMemo(() => {
     return Array(totalPage)
@@ -30,9 +43,9 @@ const index = () => {
       .map((e, index) => index + 1);
   }, [totalPage]);
 
-  const reloadData = () => {
+  const reloadData = (page: number) => {
     fetch(
-      `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${count}`,
+      `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`,
       {
         method: "GET",
         headers: {
@@ -45,24 +58,48 @@ const index = () => {
     ).then((res) => {
       res.json().then((resp) => {
         setCanMyData(resp.data);
-        //  console.log("resp.data :", resp.data);
+        console.log("resp.data :", resp.data);
         setTotalPage(
           Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
         );
       });
     });
   };
-
-  useEffect(() => {
-    reloadData();
-  }, [count]);
-
   const increment = () => {
     count < totalPage && setCount(count + 1);
+    router.push(`/jobforyou?page=${count + 1} `, undefined, {
+      shallow: true,
+    });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const decrement = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
+    router.push(`/jobforyou?page=${count - 1}`, undefined, { shallow: true });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
+
+  const onNumClick = (e: any) => {
+    const numValue = +e.target.innerText;
+    console.log(numValue);
+    setCount(numValue);
+    router.push(`/jobforyou?page=${numValue} `, undefined, {
+      shallow: true,
+    });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   const clickMe = (id: string) => {
     const getData = async () => {
       const body = {
@@ -84,7 +121,7 @@ const index = () => {
       const showres = await res.json();
       if (showres.success === true) {
         toast.success("Applied Successfull");
-        reloadData();
+        reloadData(count);
       }
     };
     getData();
@@ -92,6 +129,7 @@ const index = () => {
 
   return (
     <>
+      <Seo title="JobForYou" />
       <ToastContainer />
       <div className={style.postedjobyou_header}>
         <div className={style.postedjobyou_topbar}>
@@ -150,10 +188,15 @@ const index = () => {
             return (
               <span
                 className={style.postjobyou_span}
+                onClick={(e) => onNumClick(e)}
                 style={
                   count === i
-                    ? { color: "black", backgroundColor: "#43AFFF33" }
-                    : { backgroundColor: "white" }
+                    ? {
+                        color: "black",
+                        backgroundColor: "#43AFFF33",
+                        cursor: "pointer",
+                      }
+                    : { backgroundColor: "white", cursor: "pointer" }
                 }
                 key={k}
               >

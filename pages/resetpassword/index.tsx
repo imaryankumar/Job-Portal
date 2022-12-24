@@ -4,6 +4,7 @@ import Fields from "../../components/common/fields/Fields";
 import style from "../resetpassword/Reset.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Seo from "../../components/nexthead/Seo";
 
 const index = () => {
   const [newPass, setNewPass] = useState("");
@@ -46,6 +47,7 @@ const index = () => {
   return (
     <>
       <ToastContainer />
+      <Seo title="ResetPassword" />
       <div className={style.reset_header}>
         <div className={style.reset_card}>
           <div className={style.reset_content}>

@@ -27,7 +27,7 @@ function Navbar() {
     }
   }, [router]);
   return (
-    <div className={`container-lg mx-20 mainWrapper`}>
+    <div className={`container-lg mx-20`}>
       <div className={style.wrapper}>
         <nav className="bg-[#303F60] py-2 ">
           <div className="flex justify-between items-center w-full ">

@@ -47,13 +47,16 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(data));
     setIsLogged(true);
     if (data?.userRole !== undefined) {
-      if (data?.userRole === 0 && router.asPath !== "/postjobyou") {
-        router.push("/postjobyou");
-      } else if (data?.userRole === 1 && router.asPath !== "/jobforyou") {
-        router.push("/jobforyou");
+      if (data?.userRole === 0 && !router.asPath.includes("/postjobyou")) {
+        router.push("/postjobyou?page=1");
+      } else if (
+        data?.userRole === 1 &&
+        !router.asPath.includes("/jobforyou")
+      ) {
+        router.push("/jobforyou?page=1");
       }
     }
-    // /postjobyou
+    // post job
   };
   const handleLoggedOut = () => {
     //set

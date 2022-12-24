@@ -4,6 +4,7 @@ import Fields from "../../components/common/fields/Fields";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Seo from "../../components/nexthead/Seo";
 
 const index = () => {
   const router = useRouter();
@@ -45,6 +46,7 @@ const index = () => {
   return (
     <>
       <ToastContainer />
+      <Seo title="ForgotpagePassword" />
       <div className={style.forgot_header}>
         <div className={style.forgot_card}>
           <div className={style.forgot_content}>

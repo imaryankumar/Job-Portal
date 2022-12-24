@@ -1,6 +1,7 @@
 import style from "../jobappliedyou/Jobappliedyou.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Seo from "../../components/nexthead/Seo";
 
 interface cardTypes {
   location?: string;
@@ -54,7 +55,7 @@ const index = () => {
 
   return (
     <>
-      {" "}
+      <Seo title="JobAppliedYou" />{" "}
       <div className={style.jobappliedyou_header}>
         <div className={style.jobapplied_bars}>
           <div className={style.jobappliedyou_topbar}>

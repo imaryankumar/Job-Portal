@@ -4,6 +4,7 @@ import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
 import Description from "../../components/description/Description";
 import style from "../jobpost/jobpost.module.css";
+import Seo from "../../components/nexthead/Seo";
 interface dataType {
   success?: boolean;
   code: number;
@@ -45,6 +46,8 @@ const index = () => {
 
   return (
     <>
+      <Seo title="JobPost" />
+
       <div className={style.header}>
         <div className={style.jobpost_topcontent}>
           <Link href={"/"}>

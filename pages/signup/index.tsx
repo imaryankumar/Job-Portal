@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
+import Seo from "../../components/nexthead/Seo";
 // import { getEnvironmentData } from "worker_threads";
 const index = () => {
   const [name, setName] = useState("");
@@ -51,29 +52,36 @@ const index = () => {
       skills: skill,
     };
     // console.log("🚀 ~ file: index.tsx:50 ~ Justclick ~ body", body);
-    const res = await fetch(
-      "https://jobs-api.squareboat.info/api/v1/auth/register",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
     if (password === conpassword) {
+      const res = await fetch(
+        "https://jobs-api.squareboat.info/api/v1/auth/register",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
       const finalRes = await res.json();
-      setData(finalRes);
-      setName("");
-      setMail("");
-      setPassword("");
-      setConpassword("");
-      setSkill("");
-      toast.success("Signup  Successfull");
-      setTimeout(() => {
-        Router.push("/login");
-      }, 1000);
+      if (finalRes.success) {
+        setData(finalRes);
+        setName("");
+        setMail("");
+        setPassword("");
+        setConpassword("");
+        setSkill("");
+        setError(true);
+        toast.success("Signup  Successfull");
+        setTimeout(() => {
+          Router.push("/login");
+        }, 1000);
+      } else {
+        setError(true);
+        toast.error("Signup Failed");
+      }
     } else {
       setError(true);
       toast.error("Signup Failed");

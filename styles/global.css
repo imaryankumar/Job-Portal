@@ -18,6 +18,6 @@
   display: none !important;
 }
 .mainWrapper {
-  max-width: 2000px;
-  margin: auto;
+  max-width: 2400px;
+  /* margin: auto; */
 }

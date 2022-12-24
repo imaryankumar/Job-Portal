@@ -2,6 +2,8 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
+import Router, { useRouter } from "next/router";
+import Seo from "../../components/nexthead/Seo";
 
 interface cardTypes {
   location?: string;
@@ -20,21 +22,31 @@ interface jobData {
   id: string;
 }
 const index = () => {
+  const router = useRouter();
   const [count, setCount] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [jobData, setJobData] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
   const [myData, setMyData] = useState([]);
+
+  useEffect(() => {
+    const page = router.query?.page ? Number(router.query.page) : 1;
+    if (!isNaN(page) && page > 0) {
+      setCount(page);
+      reloadData(page);
+    }
+  }, [router]);
   let myArray = useMemo(() => {
     return Array(totalPage)
       .fill("")
       .map((e, index) => index + 1);
   }, [totalPage]);
 
-  useEffect(() => {
+  // useEffect(() => {}, []);
+  const reloadData = (page: number) => {
     fetch(
-      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${count}`,
+      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
       {
         method: "GET",
         headers: {
@@ -47,20 +59,45 @@ const index = () => {
     ).then((res) => {
       res.json().then((resp) => {
         setMyData(resp.data?.data);
-        //  console.log("Data : ", resp.data?.data);
+        console.log("Data : ", resp.data?.data);
         setTotalPage(
           Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
         );
       });
     });
-  }, [count]);
+  };
 
   //  const totalJobs = myData?.length;
   const increment = () => {
     count < totalPage && setCount(count + 1);
+    router.push(`/postjobyou?page=${count + 1}`, undefined, { shallow: true });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const decrement = () => {
     count == 1 ? setCount(1) : setCount(count - 1);
+    router.push(`/postjobyou?page=${count - 1}`, undefined, { shallow: true });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+  const onNumClick = (e: any) => {
+    const numValue = +e.target.innerText;
+    console.log(numValue);
+    setCount(numValue);
+    router.push(`/jobforyou?page=${numValue} `, undefined, {
+      shallow: true,
+    });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const postClick = async (job_id: string | undefined) => {
     //  console.log({ job_id });
@@ -79,6 +116,7 @@ const index = () => {
 
   return (
     <>
+      <Seo title="PostJobYou" />
       <div className={style.postedjobyou_header}>
         <div className={style.postedjobyou_topbar}>
           <Link href={"/"}>
@@ -136,10 +174,15 @@ const index = () => {
             return (
               <span
                 className={style.postjobyou_span}
+                onClick={(e) => onNumClick(e)}
                 style={
                   count === i
-                    ? { color: "black", backgroundColor: "#43AFFF33" }
-                    : { backgroundColor: "white" }
+                    ? {
+                        color: "black",
+                        backgroundColor: "#43AFFF33",
+                        cursor: "pointer",
+                      }
+                    : { backgroundColor: "white", cursor: "pointer" }
                 }
                 key={key}
               >
