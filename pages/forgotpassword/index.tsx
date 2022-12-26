@@ -10,6 +10,7 @@ const index = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setISLoading] = useState(false);
   const onReset = (e?: any) => {
     e.preventDefault();
     if (mail === "") {
@@ -36,6 +37,7 @@ const index = () => {
         }
       } else {
         // Toast
+        setISLoading(true);
         toast.error(res.message);
       }
     } catch (error) {
@@ -73,7 +75,17 @@ const index = () => {
                 ""
               )} */}
               <div className={style.forgot_btn}>
-                <button className={style.forgot_btns}>Submit</button>
+                <button
+                  className={style.forgot_btns}
+                  disabled={isLoading}
+                  style={
+                    isLoading
+                      ? { backgroundColor: "white", color: "black" }
+                      : { backgroundColor: "#43afff" }
+                  }
+                >
+                  Submit
+                </button>
               </div>
             </form>
           </div>

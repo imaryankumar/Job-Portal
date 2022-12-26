@@ -10,6 +10,7 @@ const index = () => {
   const [newPass, setNewPass] = useState("");
   const [conPass, setConPass] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setISLoading] = useState(false);
   const router = useRouter();
 
   const { token } = router.query;
@@ -39,6 +40,7 @@ const index = () => {
         router.push("/login");
       }, 2000);
     } else {
+      setISLoading(true);
       toast.error("Invalid Password");
       setError(true);
     }
@@ -75,7 +77,17 @@ const index = () => {
               ""
             )}
             <div className={style.reset_btn}>
-              <button className={style.reset_btns} onClick={onResetPassword}>
+              <button
+                className={style.reset_btns}
+                onClick={onResetPassword}
+                disabled={isLoading}
+                type="submit"
+                style={
+                  isLoading
+                    ? { backgroundColor: "white", color: "black" }
+                    : { backgroundColor: "#43afff" }
+                }
+              >
                 Submit
               </button>
             </div>

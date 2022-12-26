@@ -11,7 +11,7 @@
 .postedjobyou_section {
   background-color: #edf6ff;
   width: 100%;
-  height: 130vh;
+  height: auto;
 }
 .postedjobyou_topbar {
   display: flex;
@@ -210,7 +210,7 @@
   .postedjobyou_section {
     background-color: #edf6ff;
     width: 100%;
-    height: 520vh;
+    height: auto;
   }
   .postedjobyou_footers {
     display: flex;

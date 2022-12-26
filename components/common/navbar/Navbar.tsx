@@ -14,6 +14,7 @@ function Navbar() {
 
   const JustSubmit = () => setClick(!click);
   const LogoutClear = () => {
+    setClick(false);
     setLogout();
   };
   useEffect(() => {
@@ -27,9 +28,11 @@ function Navbar() {
     }
   }, [router]);
   return (
-    <div className={`container-lg mx-20 mainWrapper`}>
+    <div className={`container-lg mx-22 `}>
       <div className={style.wrapper}>
-        <nav className="bg-[#303F60] py-2">
+        <nav
+          className={`${style.mynavbar} bg-[#303F60] py-2 px-20 mainWrapper`}
+        >
           <div className="flex justify-between items-center w-full  ">
             <Link href={"/"}>
               <div className={style.logo}>
@@ -83,7 +86,7 @@ function Navbar() {
           )}
         </div>
       </div>
-      <div className="border-b" />
+      <div className={style.border_b} />
     </div>
   );
 }

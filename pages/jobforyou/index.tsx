@@ -38,9 +38,12 @@ const index = () => {
   }, [router]);
   // console.log("totalPage", totalPage);
   let myArray = useMemo(() => {
-    return Array(totalPage)
-      .fill("")
-      .map((e, index) => index + 1);
+    if (!isNaN(totalPage)) {
+      return Array(totalPage)
+        .fill("")
+        .map((e, index) => index + 1);
+    }
+    return [];
   }, [totalPage]);
 
   const reloadData = (page: number) => {
@@ -145,7 +148,7 @@ const index = () => {
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>
-            {myCanData.map((item: cardTypes, key) => {
+            {myCanData?.map((item: cardTypes, key) => {
               return (
                 <div className={style.postjoballcards} key={key}>
                   <div
@@ -186,7 +189,7 @@ const index = () => {
       <div className={style.postedjobyou_section}>
         <div className={style.postedjobyou_footers}>
           <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
-          {myArray.map((i, k) => {
+          {myArray?.map((i, k) => {
             return (
               <span
                 className={style.postjobyou_span}

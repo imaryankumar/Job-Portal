@@ -39,9 +39,12 @@ const index = () => {
   }, [router]);
 
   let myArray = useMemo(() => {
-    return Array(totalPage)
-      .fill("")
-      .map((e, index) => index + 1);
+    if (!isNaN(totalPage)) {
+      return Array(totalPage)
+        .fill("")
+        .map((e, index) => index + 1);
+    }
+    return [];
   }, [totalPage]);
   console.log("TotalPage", totalPage);
   // useEffect(() => {}, []);
@@ -91,7 +94,7 @@ const index = () => {
     const numValue = +e.target.innerText;
     console.log(numValue);
     setCount(numValue);
-    router.push(`/jobforyou?page=${numValue} `, undefined, {
+    router.push(`/postjobyou?page=${numValue} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -132,7 +135,7 @@ const index = () => {
         </div>
         <div className={style.postedjob_allcards}>
           <div className={`${style.postjob_mycard} mainWrapper`}>
-            {myData.map((item: cardTypes, key) => {
+            {myData?.map((item: cardTypes, key) => {
               return (
                 <div className={style.postjoballcards} key={key}>
                   <div

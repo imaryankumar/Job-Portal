@@ -9,7 +9,7 @@
 .postedjob_section {
   background-color: #edf6ff;
   width: 100%;
-  height: 75vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

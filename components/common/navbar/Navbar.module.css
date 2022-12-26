@@ -18,9 +18,9 @@
   font-size: 1.8rem;
   font-weight: bold;
 }
-/* .wrapper {
-  border: 2px solid red;
-} */
+.wrapper {
+  padding: 0 2px;
+}
 .navbtns {
   text-align: center;
   font-size: 16px;
@@ -34,7 +34,7 @@
 .nav_pout {
   margin-top: -3rem;
   color: white;
-  padding-right: 2rem;
+  padding-right: 7rem;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -67,6 +67,7 @@
   height: 10px;
   margin-left: 3.5rem;
   margin-top: -0.9rem;
+  position: relative;
 }
 .nav_logoutbtn {
   width: 112px;
@@ -82,20 +83,39 @@
   font: normal normal normal 14px/16px Helvetica Neue;
   border-radius: 5px;
   cursor: pointer;
+  z-index: 500;
+  position: absolute;
 }
-
-@media (max-width: 320px) {
-  .wrapper {
-    padding: 0 2rem;
+.border_b {
+  border-bottom-width: 1px;
+  margin: 0 5rem;
+}
+@media (max-width: 768px) {
+  .mynavbar {
+    padding: 0.5rem 2.5rem;
+  }
+  .border_b {
+    border-bottom-width: 1px;
+    margin: 0 2.5rem;
+  }
+  .nav_pout {
+    padding-right: 4rem;
   }
 }
-@media (min-width: 321px) and (max-width: 768px) {
-  .wrapper {
-    padding: 0 1.5rem;
+@media (max-width: 499px) {
+  .mynavbar {
+    padding: 0.5rem 1rem;
   }
-}
-@media (max-width: 1200px) {
-  .wrapper {
-    padding: 0 1rem;
+  .border_b {
+    border-bottom-width: 1px;
+    margin: 0 0.9rem;
+  }
+  .nav_pout {
+    padding-right: 2rem;
+  }
+  .nav_logoutbtn {
+    width: 100px;
+    height: 40px;
+    margin-left: -1.7rem;
   }
 }

@@ -1,25 +1,26 @@
 .header {
   background-color: #303f60;
   width: 100%;
-  height: 42vh;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5.5rem;
   position: relative;
+}
+.myheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rem;
 }
 .header_txt {
   color: #ffffff;
-  font-size: 1rem;
-  margin-left: 100px;
   width: 100%;
 }
 .header_h1 {
-  font-size: 3rem;
-  line-height: 3.5rem;
+  font-size: 4.2vw;
+  line-height: 1;
   padding-bottom: 1.5rem;
-  font: normal normal normal 60px/74px Helvetica Neue;
 }
 .header_btns {
   border: 1px solid #43afff;
@@ -33,69 +34,53 @@
   color: #43afff;
   font-weight: bold;
 }
+.header_imgs {
+  position: relative;
+  top: 3rem;
+}
 
 .header_img {
-  width: 600px;
-  height: 350px;
   border-radius: 20px;
   box-shadow: 0px 30px 36px #557da526;
-  position: absolute;
-  bottom: -4rem;
-  right: 10rem;
+  width: 100%;
+  height: 100%;
 }
 
-/* media quries */
-@media (max-width: 330px) {
-  .header {
-    height: 35vh;
-    width: 100%;
-    padding: 0rem 2rem;
+@media (max-width: 975px) {
+  .myheader {
+    padding: 0 3rem;
   }
-  .header_txt {
-    margin: auto;
-    width: 100%;
-    margin-bottom: 4rem;
+}
+@media (max-width: 640px) {
+  .myheader {
+    padding: 0 1.5rem;
   }
   .header_h1 {
-    font-size: 2rem;
-    line-height: 1.3;
-    height: 7rem;
-    text-align: center;
-    letter-spacing: 3px;
-  }
-
-  .header_img {
-    width: 280px;
-    height: 200px;
-    border-radius: 4%;
-    left: 25px;
-    bottom: -10rem;
+    font-size: 5.2vw;
+    padding-bottom: 1rem;
   }
   .header_btns {
-    border: 1px solid #43afff;
-    background-color: #43afff;
-    outline: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    margin-left: 3.5rem;
-    margin-top: -6rem;
+    padding: 0.3rem 1rem;
   }
 }
-@media (max-width: 320px) {
-  .header_img {
-    width: 280px;
-    height: 200px;
-    border-radius: 4%;
-    left: 20px;
-    bottom: -10rem;
+@media (max-width: 502px) {
+  .myheader {
+    display: flex;
+    flex-direction: column;
   }
-}
-@media (min-width: 288px) and (max-width: 425px) {
-  .header_img {
-    width: 260px;
-    height: 180px;
-    border-radius: 4%;
-    left: 20px;
-    bottom: -10rem;
+  .header_txt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .header_h1 {
+    font-size: 13vw;
+    line-height: 1;
+    padding-bottom: 2rem;
+  }
+  .header_btns {
+    padding: 0.9rem 2.5rem;
   }
 }

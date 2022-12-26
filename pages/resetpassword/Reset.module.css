@@ -10,7 +10,7 @@
 .reset_section {
   background-color: #edf6ff;
   width: 100%;
-  height: 70vh;
+  height: auto;
 }
 .reset_card {
   width: 557px;

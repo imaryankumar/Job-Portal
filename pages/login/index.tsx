@@ -18,10 +18,12 @@ const index = () => {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setISLoading] = useState(false);
 
   const [data, setData] = useState<dataType | undefined>(undefined);
 
   const justsubmit = async (e: any) => {
+    setISLoading(true);
     e.preventDefault();
     const body = {
       email: mail,
@@ -39,6 +41,7 @@ const index = () => {
       }
     );
     const finalRes = await allData.json();
+    setISLoading(false);
     if (finalRes.success) {
       toast.success("Logged in");
       setData(finalRes);
@@ -97,7 +100,16 @@ const index = () => {
                   ""
                 )}
                 <div className={style.login_btns}>
-                  <button className={style.login_btn} type="submit">
+                  <button
+                    className={style.login_btn}
+                    disabled={isLoading}
+                    type="submit"
+                    style={
+                      isLoading
+                        ? { backgroundColor: "white", color: "black" }
+                        : { backgroundColor: "#43afff" }
+                    }
+                  >
                     Login
                   </button>
                 </div>

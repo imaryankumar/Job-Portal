@@ -17,6 +17,7 @@ const index = () => {
   const [btn2, setBtn2] = useState(false);
   const [skill, setSkill] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setISLoading] = useState(false);
 
   interface dataType {
     success?: boolean;
@@ -80,9 +81,11 @@ const index = () => {
         }, 1000);
       } else {
         setError(true);
+
         toast.error("Signup Failed");
       }
     } else {
+      setISLoading(true);
       setError(true);
       toast.error("Signup Failed");
     }
@@ -193,7 +196,18 @@ const index = () => {
                   onchange={setSkill}
                 />
                 <div className={style.signup_btns}>
-                  <button className={style.signup_onclick}>Signup</button>
+                  <button
+                    className={style.signup_onclick}
+                    disabled={isLoading}
+                    type="submit"
+                    style={
+                      isLoading
+                        ? { backgroundColor: "white", color: "black" }
+                        : { backgroundColor: "#43afff" }
+                    }
+                  >
+                    Signup
+                  </button>
                 </div>
               </form>
               <div className={style.signup_check}>
