@@ -10,7 +10,7 @@
 .signup_section {
   background-color: #edf6ff;
   width: 100%;
-  height: 70vh;
+  height: 85vh;
 }
 .signup_card {
   width: 557px;
@@ -107,4 +107,86 @@
   text-align: right;
   margin-top: -15px;
   font-size: 12px;
+}
+/* media Quries */
+@media (max-width: 580px) {
+  .signup_card {
+    width: 500px;
+    height: 675px;
+    margin-top: 32rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .signup_content {
+    width: 100%;
+    padding: 0rem 1rem;
+  }
+  .signup_onclick {
+    width: 148px;
+    height: 40px;
+    margin-top: 1rem;
+  }
+  .signup_check {
+    margin-top: 1.5rem;
+  }
+}
+@media (max-width: 514px) {
+  .signup_card {
+    width: 430px;
+    height: 675px;
+    margin-top: 32rem;
+  }
+}
+@media (max-width: 480px) {
+  .signup_card {
+    width: 370px;
+    height: 675px;
+    margin-top: 32rem;
+  }
+}
+@media (max-width: 392px) {
+  .signup_card {
+    width: 330px;
+    height: 675px;
+    margin-top: 32rem;
+  }
+}
+@media (max-width: 344px) {
+  .signup_card {
+    width: 280px;
+    height: 675px;
+    margin-top: 32rem;
+  }
+
+  .signup_password {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    gap: 5px;
+  }
+}
+@media (max-width: 294px) {
+  .signup_card {
+    width: 230px;
+    height: 675px;
+    margin-top: 32rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signup_btnchange {
+    width: 130px;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-right: 1rem;
+  }
+  .signup_password {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    gap: 5px;
+  }
 }

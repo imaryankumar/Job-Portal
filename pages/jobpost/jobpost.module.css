@@ -3,7 +3,13 @@
   width: 100%;
   height: 40vh;
   color: white;
+  position: relative;
+}
+.jobpost_allmycard {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
 }
 .jobpost_card {
   width: 557px;
@@ -11,9 +17,7 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 30px 36px #557da526;
   border-radius: 20px;
-  margin-top: 8rem;
   display: flex;
-  margin-left: 5rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -39,7 +43,6 @@
 .jobpost_check {
   color: #303f60;
   text-align: center;
-  margin-top: 2.5rem;
   cursor: pointer;
 }
 .create_account {
@@ -62,7 +65,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   cursor: pointer;
   color: #ffffff;
 }
@@ -73,14 +76,10 @@
   font-size: 12px;
   opacity: 80%;
 }
-.jobpost_topbar {
-  border: 2px solid red;
-  margin-top: -15rem;
-}
+
 .jobpost_topcontent {
   display: flex;
-  margin-left: 12rem;
-  margin-top: 10px;
+  padding: 1rem 12rem;
 }
 .jobpost_topcontent img {
   width: 10px;
@@ -97,5 +96,81 @@
   height: 15px;
   font: normal normal medium 12px/15px Helvetica Neue;
 }
-@media (max-width: 330px) {
+@media (max-width: 580px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 8rem;
+  }
+  .jobpost_form {
+    width: 400px;
+  }
+  .jobpost_card {
+    width: 450px;
+    height: 500px;
+  }
+}
+@media (max-width: 476px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 6rem;
+  }
+  .jobpost_form {
+    width: 350px;
+  }
+  .jobpost_card {
+    width: 400px;
+    height: 490px;
+  }
+}
+@media (max-width: 415px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 5rem;
+  }
+  .jobpost_form {
+    width: 300px;
+  }
+  .jobpost_card {
+    width: 350px;
+    height: 480px;
+  }
+}
+@media (max-width: 369px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 4rem;
+  }
+  .jobpost_form {
+    width: 270px;
+  }
+  .jobpost_card {
+    width: 330px;
+    height: 480px;
+  }
+}
+@media (max-width: 345px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 3rem;
+  }
+  .jobpost_form {
+    width: 250px;
+  }
+  .jobpost_card {
+    width: 290px;
+    height: 480px;
+  }
+}
+@media (max-width: 312px) {
+  .jobpost_topcontent {
+    display: flex;
+    padding: 1rem 3rem;
+  }
+  .jobpost_form {
+    width: 220px;
+  }
+  .jobpost_card {
+    width: 250px;
+    height: 480px;
+  }
 }

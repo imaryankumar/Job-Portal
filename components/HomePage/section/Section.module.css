@@ -1,7 +1,7 @@
 .section {
   background-color: #edf6ff;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .section_txts {
   font-size: larger;
@@ -18,7 +18,6 @@
   padding: 2rem 9rem;
 }
 .section_content {
-  padding: 3rem 5.5rem;
   text-align: start;
 }
 .section_img {

@@ -48,58 +48,60 @@ const index = () => {
     <>
       <Seo title="JobPost" />
 
-      <div className={style.header}>
-        <div className={style.jobpost_topcontent}>
+      <div className={`${style.header} mainwrapper`}>
+        <div className={`${style.jobpost_topcontent}  `}>
           <Link href={"/"}>
             <img src="iconsimgs/homeicon.png" alt="" />
           </Link>
           <span>Home &gt; Post a Job</span>
         </div>
-        <div className={style.jobpost_card}>
-          <div className={style.jobpost_content}>
-            <div className={style.jobpost_title}>
-              <h2 className={style.jobpost_h2}>Post a Job </h2>
-            </div>
-
-            <form
-              className={style.jobpost_form}
-              onSubmit={(e) => JustonClick(e)}
-            >
-              <Fields
-                type="text"
-                error={error ? true : false}
-                content="Job title*"
-                placeholder="Enter job title"
-                value={title}
-                onchange={setTitle}
-              />
-              <Description
-                type="text"
-                content="Description*"
-                placeholder="Enter job description"
-                value={description}
-                onchange={setDescription}
-                error={error ? true : false}
-              />
-              <Fields
-                type="text"
-                error={error ? true : false}
-                content="Location*"
-                placeholder="Enter location"
-                value={location}
-                onchange={setLocation}
-              />
-              {error ? (
-                <p className={style.jobpost_errorpara}>
-                  All fields are mandatory.
-                </p>
-              ) : (
-                ""
-              )}
-              <div className={style.jobpost_btns}>
-                <button className={style.jobpost_btn}>Post</button>
+        <div className={`${style.jobpost_allmycard} mainwrapper`}>
+          <div className={style.jobpost_card}>
+            <div className={style.jobpost_content}>
+              <div className={style.jobpost_title}>
+                <h2 className={style.jobpost_h2}>Post a Job </h2>
               </div>
-            </form>
+
+              <form
+                className={style.jobpost_form}
+                onSubmit={(e) => JustonClick(e)}
+              >
+                <Fields
+                  type="text"
+                  error={error ? true : false}
+                  content="Job title*"
+                  placeholder="Enter job title"
+                  value={title}
+                  onchange={setTitle}
+                />
+                <Description
+                  type="text"
+                  content="Description*"
+                  placeholder="Enter job description"
+                  value={description}
+                  onchange={setDescription}
+                  error={error ? true : false}
+                />
+                <Fields
+                  type="text"
+                  error={error ? true : false}
+                  content="Location*"
+                  placeholder="Enter location"
+                  value={location}
+                  onchange={setLocation}
+                />
+                {error ? (
+                  <p className={style.jobpost_errorpara}>
+                    All fields are mandatory.
+                  </p>
+                ) : (
+                  ""
+                )}
+                <div className={style.jobpost_btns}>
+                  <button className={style.jobpost_btn}>Post</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

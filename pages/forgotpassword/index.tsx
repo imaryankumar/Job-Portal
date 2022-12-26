@@ -56,7 +56,6 @@ const index = () => {
               instructions to reset your password.
             </p>
           </div>
-
           <div className={style.forgot_field}>
             <form onSubmit={(e) => onReset(e)}>
               <Fields

@@ -1,4 +1,4 @@
-import style from "../postjobyou/Postjobyou.module.css";
+import style from "../jobforyou/Jobsforyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
@@ -132,14 +132,16 @@ const index = () => {
       <Seo title="JobForYou" />
       <ToastContainer />
       <div className={style.postedjobyou_header}>
-        <div className={style.postedjobyou_topbar}>
-          <Link href={"/"}>
-            <img src="iconsimgs/homeicon.png" alt="" />
-          </Link>
-          <span>Home</span>
-        </div>
-        <div className={style.postedjobyou_para}>
-          <h1>Jobs for you</h1>
+        <div className={style.postedjobyou_mytopbar}>
+          <div className={style.postedjobyou_topbar}>
+            <Link href={"/"}>
+              <img src="iconsimgs/homeicon.png" alt="" />
+            </Link>
+            <span>Home</span>
+          </div>
+          <div className={style.postedjobyou_para}>
+            <h1>Jobs for you</h1>
+          </div>
         </div>
         <div className={style.postedjob_allcards}>
           <div className={style.postjob_mycard}>

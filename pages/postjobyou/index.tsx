@@ -37,12 +37,13 @@ const index = () => {
       reloadData(page);
     }
   }, [router]);
+
   let myArray = useMemo(() => {
     return Array(totalPage)
       .fill("")
       .map((e, index) => index + 1);
   }, [totalPage]);
-
+  console.log("TotalPage", totalPage);
   // useEffect(() => {}, []);
   const reloadData = (page: number) => {
     fetch(
@@ -117,18 +118,20 @@ const index = () => {
   return (
     <>
       <Seo title="PostJobYou" />
-      <div className={style.postedjobyou_header}>
-        <div className={style.postedjobyou_topbar}>
-          <Link href={"/"}>
-            <img src="iconsimgs/homeicon.png" alt="" />
-          </Link>
-          <span>Home</span>
-        </div>
-        <div className={style.postedjobyou_para}>
-          <h1>Jobs posted by you</h1>
+      <div className={`${style.postedjobyou_header} `}>
+        <div className={`${style.postedjobyou_mytopbar} mainWrapper`}>
+          <div className={style.postedjobyou_topbar}>
+            <Link href={"/"}>
+              <img src="iconsimgs/homeicon.png" alt="" />
+            </Link>
+            <span>Home</span>
+          </div>
+          <div className={style.postedjobyou_para}>
+            <h1>Jobs posted by you</h1>
+          </div>
         </div>
         <div className={style.postedjob_allcards}>
-          <div className={style.postjob_mycard}>
+          <div className={`${style.postjob_mycard} mainWrapper`}>
             {myData.map((item: cardTypes, key) => {
               return (
                 <div className={style.postjoballcards} key={key}>

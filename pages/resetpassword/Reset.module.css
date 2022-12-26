@@ -26,7 +26,7 @@
 .reset_content {
   color: #303f60;
   width: 100%;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
 }
 .reset_h1 {
   color: #303f60;
@@ -38,7 +38,7 @@
   font-size: 14px;
   color: #303f60;
   font: normal normal normal 14px/20px Helvetica Neue;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 .reset_btn {
   display: flex;
@@ -64,4 +64,73 @@
   text-align: right;
   margin-top: -12px;
   font-size: 12px;
+}
+/* media quries */
+@media (max-width: 576px) {
+  .reset_card {
+    width: 490px;
+    height: 420px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 30px 36px #557da526;
+    border-radius: 20px;
+    margin-top: 21rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 576px) {
+  .reset_card {
+    width: 450px;
+    height: 420px;
+    margin-top: 20rem;
+  }
+}
+@media (max-width: 467px) {
+  .reset_card {
+    width: 400px;
+    height: 420px;
+    margin-top: 20rem;
+  }
+}
+@media (max-width: 413px) {
+  .reset_card {
+    width: 370px;
+    height: 420px;
+    margin-top: 20rem;
+  }
+}
+@media (max-width: 381px) {
+  .reset_card {
+    width: 340px;
+    height: 420px;
+    margin-top: 20rem;
+  }
+}
+@media (max-width: 355px) {
+  .reset_card {
+    width: 300px;
+    height: 420px;
+    margin-top: 20rem;
+  }
+}
+@media (max-width: 310px) {
+  .reset_card {
+    width: 260px;
+    height: 420px;
+    margin-top: 19rem;
+  }
+}
+@media (max-width: 274px) {
+  .reset_card {
+    width: 230px;
+    height: 420px;
+    margin-top: 15rem;
+  }
+  .reset_btns {
+    width: 130px;
+    height: 36px;
+    border-radius: 4px;
+    margin-top: 0.1rem;
+  }
 }

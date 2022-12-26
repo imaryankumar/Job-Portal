@@ -57,54 +57,60 @@ const index = () => {
     <>
       <Seo title="Login" description="This is Login page " />
       <ToastContainer />
-      <div className={`${style.header} ${style.mainWrapper}`}>
+
+      <div className={style.header}>
         <div className={style.login_card}>
-          <div className={style.login_content}>
-            <div className={style.login_title}>
-              <h2 className={style.login_h2}>Login </h2>
-            </div>
-
-            <form onSubmit={(e) => justsubmit(e)} className={style.login_form}>
-              <Fields
-                type="email"
-                error={error}
-                content="Email address"
-                placeholder="Enter your email"
-                value={mail}
-                onchange={setMail}
-                pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
-              />
-              {error ? "" : ""}
-              <Fields
-                type="password"
-                error={error}
-                content="Password"
-                placeholder="Enter your password"
-                password="Forgot your password?"
-                value={pass}
-                onchange={setPass}
-              />
-              {error ? (
-                <p className={style.login_errorpara}>
-                  Incorrect email address or password.
-                </p>
-              ) : (
-                ""
-              )}
-              <div className={style.login_btns}>
-                <button className={style.login_btn} type="submit">
-                  Login
-                </button>
+          <div className={`mainWrapper`}>
+            <div className={style.login_content}>
+              <div className={style.login_title}>
+                <h2 className={style.login_h2}>Login </h2>
               </div>
-            </form>
 
-            <div className={style.login_check}>
-              <h2>
-                New to MyJobs?{" "}
-                <span className={style.create_account}>
-                  <Link href={"/signup"}>Create an account</Link>
-                </span>
-              </h2>
+              <form
+                onSubmit={(e) => justsubmit(e)}
+                className={style.login_form}
+              >
+                <Fields
+                  type="email"
+                  error={error}
+                  content="Email address"
+                  placeholder="Enter your email"
+                  value={mail}
+                  onchange={setMail}
+                  pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                />
+                {error ? "" : ""}
+                <Fields
+                  type="password"
+                  error={error}
+                  content="Password"
+                  placeholder="Enter your password"
+                  password="Forgot your password?"
+                  value={pass}
+                  onchange={setPass}
+                />
+                {error ? (
+                  <p className={style.login_errorpara}>
+                    Incorrect email address or password.
+                  </p>
+                ) : (
+                  ""
+                )}
+                <div className={style.login_btns}>
+                  <button className={style.login_btn} type="submit">
+                    Login
+                  </button>
+                </div>
+              </form>
+
+              <div className={style.login_check}>
+                <h2>
+                  New to MyJobs?{" "}
+                  <span className={style.create_account}>
+                    <Link href={"/signup"}>Create an account</Link>
+                  </span>
+                </h2>
+              </div>
             </div>
           </div>
         </div>
