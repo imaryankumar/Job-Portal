@@ -35,95 +35,84 @@ const Section = () => {
           <div className={style.section_img}>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/apple.png"
+                src="/iconsimgs/solaytic@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={125}
+                height={40}
               />
-              <h3>Solyatic</h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/billing.png"
+                src="/iconsimgs/kanba@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={144}
+                height={40}
               />
-              <h3>Kanba</h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/larevel.png"
+                src="/iconsimgs/lighting@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={124}
+                height={40}
               />
-              <h3>
-                Light<span className={style.section_span}>AI</span>
-              </h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/chips.png"
+                src="/iconsimgs/ztos@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={100}
+                height={40}
               />
-              <h3>Ztos</h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/rotate.png"
+                src="/iconsimgs/kanba@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={144}
+                height={40}
               />
-              <h3>Direction</h3>
             </div>
 
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/code.png"
+                src="/iconsimgs/goldline@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={172}
+                height={40}
               />
-              <h3>goldline</h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/curlyarrow.png"
+                src="/iconsimgs/ideaa@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={118}
+                height={40}
               />
-              <h3>ideaa</h3>
             </div>
             <div className={style.section_t}>
               <Image
-                src="/iconsimgs/time.png"
+                src="/iconsimgs/liva@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={100}
+                height={40}
               />
-              <h3>liva</h3>
             </div>
             <div className={style.section_t}>
-              <h3>Velocity</h3>
               <Image
-                src="/iconsimgs/water.png"
+                src="/iconsimgs/velocity-9@2x.png"
                 alt=""
                 className={style.section_imgs}
-                width={60}
-                height={60}
+                width={156}
+                height={40}
               />
             </div>
           </div>

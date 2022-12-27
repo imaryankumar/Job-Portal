@@ -39,9 +39,13 @@ const Index = () => {
         // Toast
         setISLoading(true);
         toast.error(res.message);
+        setTimeout(() => {
+          setISLoading(false);
+        }, 1000);
       }
     } catch (error) {
       //  console.log(error);
+      toast.error("No email Found");
     }
   };
 
@@ -49,7 +53,7 @@ const Index = () => {
     <>
       <ToastContainer />
       <Seo title="ForgotpagePassword" />
-      <div className={style.forgot_header}>
+      <div className={`${style.forgot_header} mainwrapper`}>
         <div className={style.forgot_card}>
           <div className={style.forgot_content}>
             <h1 className={style.forgot_h1}>Forgot your password?</h1>

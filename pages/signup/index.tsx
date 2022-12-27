@@ -53,173 +53,184 @@ const Index = () => {
       name: name,
       skills: skill,
     };
-    // console.log("🚀 ~ file: index.tsx:50 ~ Justclick ~ body", body);
-    if (password === conpassword) {
-      const res = await fetch(
-        "https://jobs-api.squareboat.info/api/v1/auth/register",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      );
+    try {
+      if (password === conpassword) {
+        const res = await fetch(
+          "https://jobs-api.squareboat.info/api/v1/auth/register",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
 
-      const finalRes = await res.json();
-      if (finalRes.success) {
-        setData(finalRes);
-        setName("");
-        setMail("");
-        setPassword("");
-        setConpassword("");
-        setSkill("");
-        setError(true);
-        toast.success("Signup  Successfull");
-        setTimeout(() => {
+        const finalRes = await res.json();
+        if (finalRes.success) {
+          setData(finalRes);
+          setName("");
+          setMail("");
+          setPassword("");
+          setConpassword("");
+          setSkill("");
+          setError(false);
+          toast.success(finalRes.message);
           Router.push("/login");
-        }, 1000);
+        } else {
+          setISLoading(true);
+          setError(true);
+          toast.error(finalRes.message);
+          setTimeout(() => {
+            setISLoading(false);
+          }, 1500);
+        }
       } else {
+        setISLoading(true);
         setError(true);
-
         toast.error("Signup Failed");
+        setTimeout(() => {
+          setISLoading(false);
+        }, 1500);
       }
-    } else {
-      setISLoading(true);
-      setError(true);
-      toast.error("Signup Failed");
+    } catch (e) {
+      // console.log("Error");
+      toast.error("Error Found");
     }
   };
 
   return (
     <>
       <ToastContainer />
+      <Seo title="Signup" />
       <div className={style.signup_header}>
-        <div className={style.signup_card}>
-          <div className={style.signup_content}>
-            <h1 className={style.signup_h1}>Signup</h1>
-            <h3 className={style.signup_h3}>I’m a*</h3>
-            <div className={style.signup_onchange}>
-              <button
-                type="button"
-                className={`${style.signup_btnchange} ${
-                  btn ? style.btnTrue : style.btnFalse
-                }`}
-                onClick={() => mybtn1()}
-              >
-                <Image
-                  src="/iconsimgs/Recruiter.png"
-                  alt=""
-                  width={25}
-                  height={25}
-                />
-                Recruiter
-              </button>
-              <button
-                type="button"
-                className={`${style.signup_btnchange} ${
-                  btn2 ? style.btnTrue : style.btnFalse
-                }`}
-                onClick={() => mybtn2()}
-              >
-                <Image
-                  src="/iconsimgs/candidate.png"
-                  alt=""
-                  width={25}
-                  height={25}
-                />
-                Candidate
-              </button>
-            </div>
-            <div className={style.signup_fields}>
-              <form onSubmit={(e) => Justclick(e)}>
-                <Fields
-                  type="text"
-                  content="Full Name*"
-                  placeholder="Enter your full name"
-                  error={error ? true : false}
-                  value={name}
-                  onchange={setName}
-                />
-                {error ? (
-                  <p className={style.signup_errorpara}>
-                    The field is mandatory.
-                  </p>
-                ) : (
-                  ""
-                )}
-                <Fields
-                  type="email"
-                  content="Email Address*"
-                  placeholder="Enter your email"
-                  error={error ? true : false}
-                  value={mail}
-                  onchange={setMail}
-                  pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
-                />
-                {error ? (
-                  <p className={style.signup_errorpara}>
-                    The field is mandatory.
-                  </p>
-                ) : (
-                  ""
-                )}
-                <div className={style.signup_password}>
-                  <Fields
-                    type="password"
-                    content="Create Password*"
-                    placeholder="Enter your password"
-                    error={error ? true : false}
-                    value={password}
-                    onchange={setPassword}
+        <div className="mainWrapper">
+          <div className={style.signup_card}>
+            <div className={style.signup_content}>
+              <h1 className={style.signup_h1}>Signup</h1>
+              <h3 className={style.signup_h3}>I’m a*</h3>
+              <div className={style.signup_onchange}>
+                <button
+                  type="button"
+                  className={`${style.signup_btnchange} ${
+                    btn ? style.btnTrue : style.btnFalse
+                  }`}
+                  onClick={() => mybtn1()}
+                >
+                  <Image
+                    src="/iconsimgs/Recruiter.png"
+                    alt=""
+                    width={25}
+                    height={25}
                   />
+                  Recruiter
+                </button>
+                <button
+                  type="button"
+                  className={`${style.signup_btnchange} ${
+                    btn2 ? style.btnTrue : style.btnFalse
+                  }`}
+                  onClick={() => mybtn2()}
+                >
+                  <Image
+                    src="/iconsimgs/candidate.png"
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+                  Candidate
+                </button>
+              </div>
+              <div className={style.signup_fields}>
+                <form onSubmit={(e) => Justclick(e)}>
+                  <Fields
+                    type="text"
+                    content="Full Name*"
+                    placeholder="Enter your full name"
+                    error={error ? true : false}
+                    value={name}
+                    onchange={setName}
+                  />
+                  {error ? (
+                    <p className={style.signup_errorpara}>
+                      The field is mandatory.
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  <Fields
+                    type="email"
+                    content="Email Address*"
+                    placeholder="Enter your email"
+                    error={error ? true : false}
+                    value={mail}
+                    onchange={setMail}
+                    pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                  />
+                  {error ? (
+                    <p className={style.signup_errorpara}>
+                      The field is mandatory.
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  <div className={style.signup_password}>
+                    <Fields
+                      type="password"
+                      content="Create Password*"
+                      placeholder="Enter your password"
+                      error={error ? true : false}
+                      value={password}
+                      onchange={setPassword}
+                    />
 
+                    <Fields
+                      type="password"
+                      content="Confirm Password*"
+                      placeholder="Enter your password"
+                      error={error ? true : false}
+                      value={conpassword}
+                      onchange={setConpassword}
+                    />
+                  </div>
+                  {error ? (
+                    <p className={style.signup_errorpara}>
+                      The field is mandatory.
+                    </p>
+                  ) : (
+                    ""
+                  )}
                   <Fields
-                    type="password"
-                    content="Confirm Password*"
-                    placeholder="Enter your password"
-                    error={error ? true : false}
-                    value={conpassword}
-                    onchange={setConpassword}
+                    type="text"
+                    content="Skills"
+                    placeholder="Enter comma separated skills"
+                    value={skill}
+                    onchange={setSkill}
                   />
+                  <div className={style.signup_btns}>
+                    <button
+                      className={style.signup_onclick}
+                      disabled={isLoading}
+                      type="submit"
+                      style={
+                        isLoading
+                          ? { backgroundColor: "white", color: "black" }
+                          : { backgroundColor: "#43afff" }
+                      }
+                    >
+                      Signup
+                    </button>
+                  </div>
+                </form>
+                <div className={style.signup_check}>
+                  <h2>
+                    Have an account?{" "}
+                    <span className={style.signup_account}>
+                      <Link href={"/login"}>Login</Link>
+                    </span>
+                  </h2>
                 </div>
-                {error ? (
-                  <p className={style.signup_errorpara}>
-                    The field is mandatory.
-                  </p>
-                ) : (
-                  ""
-                )}
-                <Fields
-                  type="text"
-                  content="Skills"
-                  placeholder="Enter comma separated skills"
-                  value={skill}
-                  onchange={setSkill}
-                />
-                <div className={style.signup_btns}>
-                  <button
-                    className={style.signup_onclick}
-                    disabled={isLoading}
-                    type="submit"
-                    style={
-                      isLoading
-                        ? { backgroundColor: "white", color: "black" }
-                        : { backgroundColor: "#43afff" }
-                    }
-                  >
-                    Signup
-                  </button>
-                </div>
-              </form>
-              <div className={style.signup_check}>
-                <h2>
-                  Have an account?{" "}
-                  <span className={style.signup_account}>
-                    <Link href={"/login"}>Login</Link>
-                  </span>
-                </h2>
               </div>
             </div>
           </div>
