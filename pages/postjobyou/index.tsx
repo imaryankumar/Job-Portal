@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Router, { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+import Loader from "../../components/Loader/Loader";
 
 interface cardTypes {
   location?: string;
@@ -32,6 +33,7 @@ const Index = () => {
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
   const [myData, setMyData] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     const page = router.query?.page ? Number(router.query.page) : 1;
@@ -49,31 +51,35 @@ const Index = () => {
     }
     return [];
   }, [totalPage]);
-  // console.log("TotalPage", totalPage);
-  // useEffect(() => {
-  //   toast.success("You have successfully logged in.");
-  // }, []);
+
   const reloadData = (page: number) => {
-    fetch(
-      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-            ?.token,
-        },
-      }
-    ).then((res) => {
-      res.json().then((resp) => {
-        setMyData(resp.data?.data);
-        console.log("Data : ", resp.data?.data);
-        setTotalPage(
-          Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
-        );
+    setLoader(true);
+    try {
+      fetch(
+        `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+              ?.token,
+          },
+        }
+      ).then((res) => {
+        res.json().then((resp) => {
+          setMyData(resp.data?.data);
+          setLoader(false);
+          console.log("Data : ", resp.data?.data);
+          setTotalPage(
+            Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
+          );
+        });
       });
-    });
+    } catch (e) {
+      // console.log("Error");
+      toast.error("Error Found");
+    }
   };
 
   //  const totalJobs = myData?.length;
@@ -111,24 +117,30 @@ const Index = () => {
   const postClick = async (job_id: string | undefined) => {
     //  console.log({ job_id });
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
-    let response = await fetch(
-      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
-      {
-        method: "GET",
-        headers: { Authorization: `${user?.token}` },
-      }
-    );
-    let data = await response.json();
-    setJobData(data?.data);
-    console.log("Data :", data?.data);
+    setLoader(true);
+    try {
+      let response = await fetch(
+        `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
+        {
+          method: "GET",
+          headers: { Authorization: `${user?.token}` },
+        }
+      );
+      let data = await response.json();
+      setJobData(data?.data);
+      setLoader(false);
+      console.log("Data :", data?.data);
+    } catch (e) {
+      toast.error("Error Found");
+    }
   };
 
   return (
     <>
       <ToastContainer />
       <Seo title="PostJobYou" />
-      <div className={`${style.postedjobyou_header} `}>
-        <div className={`${style.postedjobyou_mytopbar} mainWrapper`}>
+      <div className={`${style.postedjobyou_header} mainWrapper `}>
+        <div className={`${style.postedjobyou_mytopbar} `}>
           <div className={style.postedjobyou_topbar}>
             <Link href={"/"}>
               <Image
@@ -144,9 +156,11 @@ const Index = () => {
             <h1>Jobs posted by you</h1>
           </div>
         </div>
-        {myData?.length > 0 ? (
-          <div className={style.postedjob_allcards}>
-            <div className={`${style.postjob_mycard} mainWrapper`}>
+        {loader ? (
+          <Loader />
+        ) : myData?.length > 0 ? (
+          <div className={`${style.postedjob_allcards}mainWrapper`}>
+            <div className={`${style.postjob_mycard}`}>
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div className={style.postjoballcards} key={key}>
@@ -272,7 +286,9 @@ const Index = () => {
                 Total {jobData ? jobData.length : 0} applications
               </h3>
               <div className={style.modal_cards}>
-                {jobData ? (
+                {loader ? (
+                  <Loader />
+                ) : jobData ? (
                   jobData?.map((items: cardTypes, k) => {
                     return (
                       <div key={k} className={style.modalheader}>

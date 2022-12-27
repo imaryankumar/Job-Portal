@@ -88,7 +88,6 @@
   padding: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-
   position: relative;
   text-transform: capitalize;
 }
@@ -97,7 +96,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 1.5rem 2rem;
 }
 .postjobmycard_heading {
   width: 100%;
@@ -180,13 +179,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
 }
 .modal {
   background: #fff;
   width: 48%;
   height: 85%;
-  /* width: 694px;
-  height: 731px; */
   margin: auto;
   position: relative;
   border-radius: 20px;
@@ -229,7 +227,6 @@
 .modalempty_div {
   width: 650px;
   height: 560px;
-  border: 2px solid red;
 }
 .modalimgs {
   margin-bottom: 1rem;
@@ -352,6 +349,30 @@
   .postedjobyou_footers {
     padding-top: 78rem;
   }
+  .modalempty_content {
+    width: 510px;
+    height: 550px;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  .modal {
+    background: #fff;
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+  }
+  .modalempty_div {
+    width: auto;
+    height: auto;
+  }
+  .wrapmodle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    font-size: 15px;
+    color: #303f60;
+  }
 }
 @media (max-width: 891px) {
   .postedjobyou_mytopbar {
@@ -389,6 +410,22 @@
   .modalcard_skillsh3 {
     font-size: 10px;
   }
+  .modalempty_content {
+    width: 470px;
+    height: 470px;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  .modal {
+    background: #fff;
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+  }
+  .modalempty_div {
+    width: auto;
+    height: auto;
+  }
 }
 @media (max-width: 658px) {
   .modalcards {
@@ -415,6 +452,22 @@
   }
   .modalcard_skillsh3 {
     font-size: 8px;
+  }
+  .modalempty_content {
+    width: 470px;
+    height: 470px;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  .modal {
+    background: #fff;
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+  }
+  .modalempty_div {
+    width: auto;
+    height: auto;
   }
 }
 @media (max-width: 615px) {
@@ -463,6 +516,22 @@
     justify-content: center;
     align-items: center;
   }
+  .modalempty_content {
+    width: 280px;
+    height: 280px;
+    font-size: 18px;
+    opacity: 0.8;
+  }
+  .modal {
+    background: #fff;
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+  }
+  .modalempty_div {
+    width: auto;
+    height: auto;
+  }
 }
 @media (max-width: 384px) {
   .postedjobyou_mytopbar {
@@ -474,6 +543,18 @@
   }
   .postedjobyou_footers {
     padding-top: 223rem;
+  }
+  .modalempty_content {
+    width: 200px;
+    height: 200px;
+    font-size: 16px;
+    opacity: 0.8;
+  }
+  .modal {
+    background: #fff;
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
   }
 }
 @media (max-width: 340px) {

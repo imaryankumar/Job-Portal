@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Router, { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+import Loader from "../../components/Loader/Loader";
 
 interface cardTypes {
   location?: string;
@@ -27,6 +28,7 @@ const Index = () => {
   console.log(Number(router.query.page), count);
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
+  const [loader, setLoader] = useState(false);
 
   const { user } = useContext(authcontext);
 
@@ -48,26 +50,33 @@ const Index = () => {
   }, [totalPage]);
 
   const reloadData = (page: number) => {
-    fetch(
-      `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-            ?.token,
-        },
-      }
-    ).then((res) => {
-      res.json().then((resp) => {
-        setCanMyData(resp.data);
-        console.log("resp.data :", resp.data);
-        setTotalPage(
-          Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
-        );
+    setLoader(true);
+    try {
+      fetch(
+        `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+              ?.token,
+          },
+        }
+      ).then((res) => {
+        res.json().then((resp) => {
+          setCanMyData(resp.data);
+          setLoader(false);
+          console.log("resp.data :", resp.data);
+          setTotalPage(
+            Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
+          );
+        });
       });
-    });
+    } catch (e) {
+      // console.log("Error");
+      toast.error("Error Found");
+    }
   };
   const increment = () => {
     count < totalPage && setCount(count + 1);
@@ -103,32 +112,36 @@ const Index = () => {
       behavior: "smooth",
     });
   };
-
   const clickMe = (id: string) => {
-    const getData = async () => {
-      const body = {
-        jobId: id,
-      };
-      const res = await fetch(
-        "https://jobs-api.squareboat.info/api/v1/candidates/jobs",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-              ?.token,
-          },
-          body: JSON.stringify(body),
+    try {
+      const getData = async () => {
+        const body = {
+          jobId: id,
+        };
+        const res = await fetch(
+          "https://jobs-api.squareboat.info/api/v1/candidates/jobs",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+                ?.token,
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        const showres = await res.json();
+        if (showres.success === true) {
+          toast.success("Applied Successfull");
+          reloadData(count);
         }
-      );
-      const showres = await res.json();
-      if (showres.success === true) {
-        toast.success("Applied Successfull");
-        reloadData(count);
-      }
-    };
-    getData();
+      };
+      getData();
+    } catch (e) {
+      // console.log("Error");
+      toast.error("Error Found");
+    }
   };
 
   return (
@@ -136,64 +149,70 @@ const Index = () => {
       <Seo title="JobForYou" />
       <ToastContainer />
       <div className={style.postedjobyou_header}>
-        <div className={style.postedjobyou_mytopbar}>
-          <div className={style.postedjobyou_topbar}>
-            <Link href={"/"}>
-              <Image
-                src="/iconsimgs/homeicon.png"
-                alt=""
-                width={10}
-                height={9}
-              />
-            </Link>
-            <span>Home</span>
+        <div className="mainWrapper">
+          <div className={style.postedjobyou_mytopbar}>
+            <div className={style.postedjobyou_topbar}>
+              <Link href={"/"}>
+                <Image
+                  src="/iconsimgs/homeicon.png"
+                  alt=""
+                  width={10}
+                  height={9}
+                />
+              </Link>
+              <span>Home</span>
+            </div>
+            <div className={style.postedjobyou_para}>
+              <h1>Jobs for you</h1>
+            </div>
           </div>
-          <div className={style.postedjobyou_para}>
-            <h1>Jobs for you</h1>
-          </div>
-        </div>
-        <div className={style.postedjob_allcards}>
-          <div className={style.postjob_mycard}>
-            {myCanData?.map((item: cardTypes, key) => {
-              return (
-                <div className={style.postjoballcards} key={key}>
-                  <div
-                    className={`${style.postjobmycard_heading} ${style.line_clamp}`}
-                    key={key}
-                  >
-                    <h1>{item.title}</h1>
-                  </div>
-                  <div
-                    className={`${style.postjobmycard_para} ${style.line_clamp}`}
-                  >
-                    <p>{item.description}</p>
-                  </div>
-                  <div className={style.postjobmycard_locsection}>
-                    <div className={style.postjobmycard_locationcard}>
-                      <Image
-                        src="/iconsimgs/mypin.png"
-                        alt=""
-                        width={10}
-                        height={15}
-                      />
-                      <h3
-                        className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+          <div className={style.postedjob_allcards}>
+            <div className={style.postjob_mycard}>
+              {loader ? (
+                <Loader />
+              ) : (
+                myCanData?.map((item: cardTypes, key) => {
+                  return (
+                    <div className={style.postjoballcards} key={key}>
+                      <div
+                        className={`${style.postjobmycard_heading} ${style.line_clamp}`}
+                        key={key}
                       >
-                        {item.location}
-                      </h3>
-                    </div>
-                    <div>
-                      <button
-                        className={style.postjobmycard_btn}
-                        onClick={() => clickMe(item.id)}
+                        <h1>{item.title}</h1>
+                      </div>
+                      <div
+                        className={`${style.postjobmycard_para} ${style.line_clamp}`}
                       >
-                        Apply
-                      </button>
+                        <p>{item.description}</p>
+                      </div>
+                      <div className={style.postjobmycard_locsection}>
+                        <div className={style.postjobmycard_locationcard}>
+                          <Image
+                            src="/iconsimgs/mypin.png"
+                            alt=""
+                            width={10}
+                            height={15}
+                          />
+                          <h3
+                            className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                          >
+                            {item.location}
+                          </h3>
+                        </div>
+                        <div>
+                          <button
+                            className={style.postjobmycard_btn}
+                            onClick={() => clickMe(item.id)}
+                          >
+                            Apply
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })
+              )}
+            </div>
           </div>
         </div>
       </div>

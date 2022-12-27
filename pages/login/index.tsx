@@ -5,7 +5,6 @@ import { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { authcontext } from "../../components/contextapi/ContextAPI";
-import Head from "next/head";
 import Seo from "../../components/nexthead/Seo";
 
 interface dataType {
@@ -29,31 +28,36 @@ const Index = () => {
       email: mail,
       password: pass,
     };
-    const allData = await fetch(
-      "https://jobs-api.squareboat.info/api/v1/auth/login",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
-    const finalRes = await allData.json();
-    setISLoading(false);
-    if (finalRes.success) {
-      setISLoading(true);
-      toast.success("You have successfully logged in");
-      setData(finalRes);
-      setTimeout(() => {
-        myData.setLoggin(finalRes.data);
-      }, 1000);
+    try {
+      const allData = await fetch(
+        "https://jobs-api.squareboat.info/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const finalRes = await allData.json();
+      setISLoading(false);
+      if (finalRes.success) {
+        setISLoading(true);
+        toast.success("You have successfully logged in");
+        setData(finalRes);
+        setTimeout(() => {
+          myData.setLoggin(finalRes.data);
+        }, 500);
 
-      // console.log(finalRes);
-    } else {
-      setISLoading(true);
-      setError(true);
+        // console.log(finalRes);
+      } else {
+        setISLoading(true);
+        setError(true);
+        toast.error("Login Failed");
+        setISLoading(false);
+      }
+    } catch (e) {
       toast.error("Login Failed");
     }
   };
