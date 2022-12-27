@@ -75,14 +75,12 @@ const Index = () => {
         setPassword("");
         setConpassword("");
         setSkill("");
-        setError(true);
+        setError(false);
         toast.success("Signup  Successfull");
-        setTimeout(() => {
-          Router.push("/login");
-        }, 1000);
+        Router.push("/login");
       } else {
+        setISLoading(true);
         setError(true);
-
         toast.error("Signup Failed");
       }
     } else {

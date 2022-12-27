@@ -139,90 +139,116 @@ const Index = () => {
             <h1>Jobs posted by you</h1>
           </div>
         </div>
-        <div className={style.postedjob_allcards}>
-          <div className={`${style.postjob_mycard} mainWrapper`}>
-            {myData?.map((item: cardTypes, key) => {
+        {myData?.length > 0 ? (
+          <div className={style.postedjob_allcards}>
+            <div className={`${style.postjob_mycard} mainWrapper`}>
+              {myData?.map((item: cardTypes, key) => {
+                return (
+                  <div className={style.postjoballcards} key={key}>
+                    <div
+                      className={`${style.postjobmycard_heading} ${style.line_clamps}`}
+                      key={key}
+                    >
+                      <h1>{item.title}</h1>
+                    </div>
+                    <div
+                      className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                    >
+                      <p>{item.description}</p>
+                    </div>
+                    <div className={style.postjobmycard_locsection}>
+                      <div className={style.postjobmycard_locationcard}>
+                        <Image
+                          src="/iconsimgs/mypin.png"
+                          alt=""
+                          width={10}
+                          height={15}
+                        />
+                        <h3
+                          className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                        >
+                          {item.location}
+                        </h3>
+                      </div>
+                      <div>
+                        <button
+                          className={`${style.postjobmycard_btn} ${style.open}`}
+                          onClick={() => postClick(item.id)}
+                        >
+                          View applications
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <>
+            <Seo title="PostedJob" />
+            <div className={style.postedjob_section}>
+              <Image
+                src="/iconsimgs/write.png"
+                alt=""
+                className={style.postedjob_img}
+                width={106}
+                height={106}
+              />
+              <h2 className={style.postedjob_h2}>
+                Your posted jobs will show here!
+              </h2>
+              <button
+                className={style.postjob_btn}
+                onClick={() => router.push("jobpost")}
+              >
+                Post a Job
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+      {myData?.length > 0 && (
+        <div className={style.postedjobyou_section}>
+          <div className={style.postedjobyou_footers}>
+            <Image
+              src="/iconsimgs/left.png"
+              alt=""
+              onClick={() => decrement()}
+              width={30}
+              height={30}
+            />
+            {myArray.map((i, key) => {
               return (
-                <div className={style.postjoballcards} key={key}>
-                  <div
-                    className={`${style.postjobmycard_heading} ${style.line_clamps}`}
-                    key={key}
-                  >
-                    <h1>{item.title}</h1>
-                  </div>
-                  <div
-                    className={`${style.postjobmycard_para} ${style.line_clamp}`}
-                  >
-                    <p>{item.description}</p>
-                  </div>
-                  <div className={style.postjobmycard_locsection}>
-                    <div className={style.postjobmycard_locationcard}>
-                      <Image
-                        src="/iconsimgs/mypin.png"
-                        alt=""
-                        width={10}
-                        height={15}
-                      />
-                      <h3
-                        className={`${style.postjobmycard_h3} ${style.line_clamps}`}
-                      >
-                        {item.location}
-                      </h3>
-                    </div>
-                    <div>
-                      <button
-                        className={`${style.postjobmycard_btn} ${style.open}`}
-                        onClick={() => postClick(item.id)}
-                      >
-                        View applications
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <span
+                  className={style.postjobyou_span}
+                  onClick={(e) => onNumClick(e)}
+                  style={
+                    count === i
+                      ? {
+                          color: "black",
+                          backgroundColor: "#43AFFF33",
+                          cursor: "pointer",
+                        }
+                      : { backgroundColor: "white", cursor: "pointer" }
+                  }
+                  key={key}
+                >
+                  {i}
+                </span>
               );
             })}
+
+            <Image
+              src="/iconsimgs/right.png"
+              alt=""
+              onClick={() => increment()}
+              width={30}
+              height={30}
+            />
           </div>
         </div>
-      </div>
-      <div className={style.postedjobyou_section}>
-        <div className={style.postedjobyou_footers}>
-          <Image
-            src="/iconsimgs/left.png"
-            alt=""
-            onClick={() => decrement()}
-            width={30}
-            height={30}
-          />
-          {myArray.map((i, key) => {
-            return (
-              <span
-                className={style.postjobyou_span}
-                onClick={(e) => onNumClick(e)}
-                style={
-                  count === i
-                    ? {
-                        color: "black",
-                        backgroundColor: "#43AFFF33",
-                        cursor: "pointer",
-                      }
-                    : { backgroundColor: "white", cursor: "pointer" }
-                }
-                key={key}
-              >
-                {i}
-              </span>
-            );
-          })}
-
-          <Image
-            src="/iconsimgs/right.png"
-            alt=""
-            onClick={() => increment()}
-            width={30}
-            height={30}
-          />
-        </div>
-      </div>
+      )}
       {isOpen && (
         <>
           <div className={style.modalWrapper}>

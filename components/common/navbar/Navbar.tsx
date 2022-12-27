@@ -64,13 +64,12 @@ function Navbar() {
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                 </h3>
               </Link>
-              <span className={style.nav_span}>
+              <span className={style.nav_span} onClick={JustSubmit}>
                 {user?.userRole === 0 ? "R" : "C"}
                 <Image
                   src="/iconsimgs/arrow-down.png"
                   alt=""
                   className={style.nav_arrowbtn}
-                  onClick={JustSubmit}
                   width={17}
                   height={10}
                 />

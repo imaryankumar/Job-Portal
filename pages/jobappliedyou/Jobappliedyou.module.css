@@ -47,11 +47,12 @@
 }
 .postedjob_allcards {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 2%;
   flex-wrap: wrap;
   margin-top: 2rem;
+  padding: 0 8rem;
 }
 .jobappliedyou_footers {
   display: flex;
@@ -60,6 +61,7 @@
   align-items: center;
   gap: 1%;
   padding-top: 55rem;
+  padding-bottom: 2rem;
 }
 .jobappliedyou_footers img {
   width: 30px;
@@ -95,7 +97,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 0 3rem;
 }
 .postjobmycard_heading {
@@ -170,7 +172,7 @@
 
 .jobapply_section {
   margin-top: 10rem;
-  height: 50vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -216,6 +218,9 @@
   .jobappliedyou_footers {
     padding-top: 77rem;
   }
+  .postedjob_allcards {
+    padding: 0 5rem;
+  }
 }
 @media (max-width: 924px) {
   .jobapplied_bars {
@@ -226,6 +231,9 @@
   }
   .jobappliedyou_footers {
     padding-top: 110rem;
+  }
+  .postedjob_allcards {
+    padding: 0 3rem;
   }
 }
 @media (max-width: 647px) {
@@ -240,5 +248,8 @@
   }
   .postjob_mycard {
     padding: 0 2px;
+  }
+  .postedjob_allcards {
+    padding: 0 2rem;
   }
 }
