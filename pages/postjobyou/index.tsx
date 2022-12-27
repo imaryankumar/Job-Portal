@@ -4,6 +4,7 @@ import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Router, { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
+import Image from "next/image";
 
 interface cardTypes {
   location?: string;
@@ -21,7 +22,7 @@ interface jobData {
   skills: string;
   id: string;
 }
-const index = () => {
+const Index = () => {
   const router = useRouter();
   const [count, setCount] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
@@ -125,7 +126,12 @@ const index = () => {
         <div className={`${style.postedjobyou_mytopbar} mainWrapper`}>
           <div className={style.postedjobyou_topbar}>
             <Link href={"/"}>
-              <img src="iconsimgs/homeicon.png" alt="" />
+              <Image
+                src="/iconsimgs/homeicon.png"
+                alt=""
+                width={10}
+                height={9}
+              />
             </Link>
             <span>Home</span>
           </div>
@@ -151,7 +157,12 @@ const index = () => {
                   </div>
                   <div className={style.postjobmycard_locsection}>
                     <div className={style.postjobmycard_locationcard}>
-                      <img src="iconsimgs/mypin.png" alt="" />
+                      <Image
+                        src="/iconsimgs/mypin.png"
+                        alt=""
+                        width={10}
+                        height={15}
+                      />
                       <h3
                         className={`${style.postjobmycard_h3} ${style.line_clamps}`}
                       >
@@ -175,7 +186,13 @@ const index = () => {
       </div>
       <div className={style.postedjobyou_section}>
         <div className={style.postedjobyou_footers}>
-          <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
+          <Image
+            src="/iconsimgs/left.png"
+            alt=""
+            onClick={() => decrement()}
+            width={30}
+            height={30}
+          />
           {myArray.map((i, key) => {
             return (
               <span
@@ -197,7 +214,13 @@ const index = () => {
             );
           })}
 
-          <img src="iconsimgs/right.png" alt="" onClick={() => increment()} />
+          <Image
+            src="/iconsimgs/right.png"
+            alt=""
+            onClick={() => increment()}
+            width={30}
+            height={30}
+          />
         </div>
       </div>
       {isOpen && (
@@ -254,10 +277,12 @@ const index = () => {
                 ) : (
                   <div className={style.modalempty_div}>
                     <div className={style.modalempty_content}>
-                      <img
-                        src="iconsimgs/resume.png"
+                      <Image
+                        src="/iconsimgs/resume.png"
                         alt=""
                         className={style.modalimgs}
+                        width={100}
+                        height={106}
                       />
                       <h3>No applications available!</h3>
                     </div>
@@ -272,4 +297,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

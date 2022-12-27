@@ -10,7 +10,7 @@
 .signup_section {
   background-color: #edf6ff;
   width: 100%;
-  height: auto;
+  height: 75vh;
 }
 .signup_card {
   width: 557px;
@@ -54,7 +54,11 @@
   justify-content: space-evenly;
   margin-right: 1.5rem;
 }
-
+/* .signup_btnchange:hover {
+  border: 1px solid #43afff;
+  color: #fff;
+  background: #43afff 0% 0% no-repeat padding-box;
+} */
 .signup_fields {
   margin: 1rem 0;
 }

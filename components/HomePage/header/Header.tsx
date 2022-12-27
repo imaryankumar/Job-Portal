@@ -5,7 +5,7 @@ import { authcontext } from "../../contextapi/ContextAPI";
 import { useContext } from "react";
 import Seo from "../../nexthead/Seo";
 
-const header = () => {
+const Header = () => {
   const router = useRouter();
   const { user } = useContext(authcontext);
   return (
@@ -33,10 +33,12 @@ const header = () => {
           </button>
         </div>
         <div className={style.header_imgs}>
-          <img
-            src="mainimg.png"
-            alt="headerimages"
+          <Image
+            src="/mainimg.png"
+            alt=""
             className={style.header_img}
+            width={1000}
+            height={1000}
           />
         </div>
       </div>
@@ -44,4 +46,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

@@ -6,8 +6,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
+import Image from "next/image";
 // import { getEnvironmentData } from "worker_threads";
-const index = () => {
+const Index = () => {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -107,10 +108,11 @@ const index = () => {
                 }`}
                 onClick={() => mybtn1()}
               >
-                <img
-                  src="iconsimgs/Recruiter.png"
+                <Image
+                  src="/iconsimgs/Recruiter.png"
                   alt=""
-                  style={{ width: "25px", height: "25px" }}
+                  width={25}
+                  height={25}
                 />
                 Recruiter
               </button>
@@ -121,10 +123,11 @@ const index = () => {
                 }`}
                 onClick={() => mybtn2()}
               >
-                <img
-                  src="iconsimgs/candidate.png"
+                <Image
+                  src="/iconsimgs/candidate.png"
                   alt=""
-                  style={{ width: "25px", height: "25px" }}
+                  width={25}
+                  height={25}
                 />
                 Candidate
               </button>
@@ -227,4 +230,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

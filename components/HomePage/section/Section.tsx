@@ -1,7 +1,8 @@
 import React from "react";
 import Cards from "./cards/Cards";
 import style from "../section/Section.module.css";
-const section = () => {
+import Image from "next/image";
+const Section = () => {
   return (
     <div className={`${style.section}`}>
       <div className={`mainWrapper`}>
@@ -33,78 +34,96 @@ const section = () => {
           <h1 className={style.section_h1}>Companies Who Trust Us</h1>
           <div className={style.section_img}>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/apple.png"
+              <Image
+                src="/iconsimgs/apple.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>Solyatic</h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/billing.png"
+              <Image
+                src="/iconsimgs/billing.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>Kanba</h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/larevel.png"
+              <Image
+                src="/iconsimgs/larevel.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>
                 Light<span className={style.section_span}>AI</span>
               </h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/chips.png"
+              <Image
+                src="/iconsimgs/chips.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>Ztos</h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/rotate.png"
+              <Image
+                src="/iconsimgs/rotate.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>Direction</h3>
             </div>
 
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/code.png"
+              <Image
+                src="/iconsimgs/code.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>goldline</h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/curlyarrow.png"
+              <Image
+                src="/iconsimgs/curlyarrow.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>ideaa</h3>
             </div>
             <div className={style.section_t}>
-              <img
-                src="iconsimgs/time.png"
+              <Image
+                src="/iconsimgs/time.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
               <h3>liva</h3>
             </div>
             <div className={style.section_t}>
               <h3>Velocity</h3>
-              <img
-                src="iconsimgs/water.png"
+              <Image
+                src="/iconsimgs/water.png"
                 alt=""
                 className={style.section_imgs}
+                width={60}
+                height={60}
               />
             </div>
           </div>
@@ -114,4 +133,4 @@ const section = () => {
   );
 };
 
-export default section;
+export default Section;

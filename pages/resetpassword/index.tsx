@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Seo from "../../components/nexthead/Seo";
 
-const index = () => {
+const Index = () => {
   const [newPass, setNewPass] = useState("");
   const [conPass, setConPass] = useState("");
   const [error, setError] = useState(false);
@@ -99,4 +99,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

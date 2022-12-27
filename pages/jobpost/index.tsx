@@ -5,12 +5,13 @@ import Fields from "../../components/common/fields/Fields";
 import Description from "../../components/description/Description";
 import style from "../jobpost/jobpost.module.css";
 import Seo from "../../components/nexthead/Seo";
+import Image from "next/image";
 interface dataType {
   success?: boolean;
   code: number;
   errors?: any[];
 }
-const index = () => {
+const Index = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -51,7 +52,7 @@ const index = () => {
       <div className={`${style.header} mainwrapper`}>
         <div className={`${style.jobpost_topcontent}  `}>
           <Link href={"/"}>
-            <img src="iconsimgs/homeicon.png" alt="" />
+            <Image src="/iconsimgs/homeicon.png" alt="" width={10} height={9} />
           </Link>
           <span>Home &gt; Post a Job</span>
         </div>
@@ -110,4 +111,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

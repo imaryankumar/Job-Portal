@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 
-const index = () => {
+const Index = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
   const [error, setError] = useState(false);
@@ -96,4 +96,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

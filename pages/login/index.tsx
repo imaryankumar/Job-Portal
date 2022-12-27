@@ -13,7 +13,7 @@ interface dataType {
   code: number;
   errors?: any;
 }
-const index = () => {
+const Index = () => {
   const myData = useContext(authcontext);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
@@ -132,4 +132,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

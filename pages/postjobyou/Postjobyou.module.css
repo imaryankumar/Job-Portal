@@ -220,7 +220,7 @@
 .modal_cards {
   background-color: #557da526;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   height: 73vh;
   flex-wrap: wrap;

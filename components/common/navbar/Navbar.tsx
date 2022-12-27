@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext, Tuser } from "../../contextapi/ContextAPI";
 import style from "../navbar/Navbar.module.css";
+import Image from "next/image";
 
 function Navbar() {
   const { isLoggedIN, user, setLogout } = useContext(authcontext);
@@ -65,11 +66,13 @@ function Navbar() {
               </Link>
               <span className={style.nav_span}>
                 {user?.userRole === 0 ? "R" : "C"}
-                <img
-                  src="iconsimgs/arrow-down.png"
+                <Image
+                  src="/iconsimgs/arrow-down.png"
                   alt=""
                   className={style.nav_arrowbtn}
                   onClick={JustSubmit}
+                  width={17}
+                  height={10}
                 />
                 {click && (
                   <div

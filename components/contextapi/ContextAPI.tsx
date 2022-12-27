@@ -3,6 +3,7 @@ import React, {
   createContext,
   FC,
   PropsWithChildren,
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -33,6 +34,26 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
   const [islogged, setIsLogged] = useState(false); //get value from localstorage
   const [user, setUser] = useState<Tuser>();
   const router = useRouter();
+  const handleLoggedIn = useCallback(
+    (data: Tuser) => {
+      //set
+      setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      setIsLogged(true);
+      if (data?.userRole !== undefined) {
+        if (data?.userRole === 0 && !router.asPath.includes("/postjobyou")) {
+          router.push("/postjobyou?page=1");
+        } else if (
+          data?.userRole === 1 &&
+          !router.asPath.includes("/jobforyou")
+        ) {
+          router.push("/jobforyou?page=1");
+        }
+      }
+      // post job
+    },
+    [router]
+  );
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     if (user.token) {
@@ -40,24 +61,8 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     } else {
       setIsLogged(false);
     }
-  }, []);
-  const handleLoggedIn = (data: Tuser) => {
-    //set
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
-    setIsLogged(true);
-    if (data?.userRole !== undefined) {
-      if (data?.userRole === 0 && !router.asPath.includes("/postjobyou")) {
-        router.push("/postjobyou?page=1");
-      } else if (
-        data?.userRole === 1 &&
-        !router.asPath.includes("/jobforyou")
-      ) {
-        router.push("/jobforyou?page=1");
-      }
-    }
-    // post job
-  };
+  }, [handleLoggedIn]);
+
   const handleLoggedOut = () => {
     //set
     setUser(undefined);

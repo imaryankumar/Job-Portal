@@ -2,6 +2,7 @@ import style from "../jobappliedyou/Jobappliedyou.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Seo from "../../components/nexthead/Seo";
+import Image from "next/image";
 
 interface cardTypes {
   location?: string;
@@ -17,7 +18,7 @@ interface jobData {
   id: string;
 }
 
-const index = () => {
+const Index = () => {
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(20);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
@@ -26,7 +27,7 @@ const index = () => {
   useEffect(() => {
     const value = showPerPage * count;
     setPagination({ start: value - showPerPage, end: value });
-  }, [count]);
+  }, [count, showPerPage]);
 
   useEffect(() => {
     fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied", {
@@ -60,7 +61,12 @@ const index = () => {
         <div className={style.jobapplied_bars}>
           <div className={style.jobappliedyou_topbar}>
             <Link href={"/"}>
-              <img src="iconsimgs/homeicon.png" alt="" />
+              <Image
+                src="/iconsimgs/homeicon.png"
+                alt=""
+                width={10}
+                height={9}
+              />
             </Link>
             Home &gt; Applied Jobs
           </div>
@@ -89,7 +95,12 @@ const index = () => {
                       </div>
                       <div className={style.postjobmycard_locsection}>
                         <div className={style.postjobmycard_locationcard}>
-                          <img src="iconsimgs/mypin.png" alt="" />
+                          <Image
+                            src="/iconsimgs/mypin.png"
+                            alt=""
+                            width={10}
+                            height={15}
+                          />
                           <h3
                             className={`${style.postjobmycard_h3} ${style.line_clamps}`}
                           >
@@ -106,10 +117,12 @@ const index = () => {
           <>
             {" "}
             <div className={style.jobapply_section}>
-              <img
-                src="iconsimgs/write.png"
+              <Image
+                src="/iconsimgs/write.png"
                 alt=""
                 className={style.jobapply_img}
+                width={106}
+                height={106}
               />
               <h2 className={style.jobapply_h2}>
                 Your applied jobs will show here!
@@ -122,9 +135,21 @@ const index = () => {
       {myCanData?.length > 0 && (
         <div className={style.jobappliedyou_section}>
           <div className={style.jobappliedyou_footers}>
-            <img src="iconsimgs/left.png" alt="" onClick={() => decrement()} />
+            <Image
+              src="/iconsimgs/left.png"
+              alt=""
+              onClick={() => decrement()}
+              width={30}
+              height={30}
+            />
             <span className={style.postjobyou_span}>{count}</span>
-            <img src="iconsimgs/right.png" alt="" onClick={() => increment()} />
+            <Image
+              src="/iconsimgs/right.png"
+              alt=""
+              onClick={() => increment()}
+              width={30}
+              height={30}
+            />
           </div>
         </div>
       )}
@@ -132,4 +157,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
