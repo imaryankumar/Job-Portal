@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface cardTypes {
   location?: string;
@@ -19,6 +20,7 @@ interface jobData {
 }
 
 const Index = () => {
+  const router = useRouter();
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(20);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
@@ -127,7 +129,12 @@ const Index = () => {
               <h2 className={style.jobapply_h2}>
                 Your applied jobs will show here!
               </h2>
-              <button className={style.jobapply_btn}>See all jobs</button>
+              <button
+                className={style.jobapply_btn}
+                onClick={() => router.push("/jobforyou")}
+              >
+                See all jobs
+              </button>
             </div>
           </>
         )}

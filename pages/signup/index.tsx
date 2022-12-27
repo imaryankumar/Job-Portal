@@ -93,6 +93,7 @@ const Index = () => {
   return (
     <>
       <ToastContainer />
+      <Seo title="Signup" />
       <div className={style.signup_header}>
         <div className={style.signup_card}>
           <div className={style.signup_content}>

@@ -34,11 +34,11 @@ const Header = () => {
         </div>
         <div className={style.header_imgs}>
           <Image
-            src="/mainimg.png"
+            src="/iconsimgs/mainimg.png"
             alt=""
             className={style.header_img}
-            width={1000}
-            height={1000}
+            width={1050}
+            height={1050}
           />
         </div>
       </div>

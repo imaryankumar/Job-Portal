@@ -2,6 +2,8 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Router, { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
@@ -47,8 +49,10 @@ const Index = () => {
     }
     return [];
   }, [totalPage]);
-  console.log("TotalPage", totalPage);
-  // useEffect(() => {}, []);
+  // console.log("TotalPage", totalPage);
+  // useEffect(() => {
+  //   toast.success("You have successfully logged in.");
+  // }, []);
   const reloadData = (page: number) => {
     fetch(
       `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
@@ -121,6 +125,7 @@ const Index = () => {
 
   return (
     <>
+      <ToastContainer />
       <Seo title="PostJobYou" />
       <div className={`${style.postedjobyou_header} `}>
         <div className={`${style.postedjobyou_mytopbar} mainWrapper`}>
@@ -200,7 +205,7 @@ const Index = () => {
               </h2>
               <button
                 className={style.postjob_btn}
-                onClick={() => router.push("jobpost")}
+                onClick={() => router.push("/jobpost")}
               >
                 Post a Job
               </button>

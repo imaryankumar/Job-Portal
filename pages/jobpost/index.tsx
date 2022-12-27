@@ -6,6 +6,7 @@ import Description from "../../components/description/Description";
 import style from "../jobpost/jobpost.module.css";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+
 interface dataType {
   success?: boolean;
   code: number;
@@ -18,6 +19,7 @@ const Index = () => {
   const [data, setData] = useState<dataType | undefined>(undefined);
   const [error, setError] = useState(false);
   const router = useRouter();
+  const [isLoading, setISLoading] = useState(false);
 
   const JustonClick = async (e: any) => {
     e.preventDefault();
@@ -39,8 +41,10 @@ const Index = () => {
     const finalRes = await d.json();
     if (finalRes.success) {
       setData(finalRes);
+      setISLoading(true);
       router.push("/postjobyou");
     } else {
+      setISLoading(true);
       setError(true);
     }
   };
@@ -99,7 +103,18 @@ const Index = () => {
                   ""
                 )}
                 <div className={style.jobpost_btns}>
-                  <button className={style.jobpost_btn}>Post</button>
+                  <button
+                    className={style.jobpost_btn}
+                    disabled={isLoading}
+                    type="submit"
+                    style={
+                      isLoading
+                        ? { backgroundColor: "white", color: "black" }
+                        : { backgroundColor: "#43afff" }
+                    }
+                  >
+                    Post
+                  </button>
                 </div>
               </form>
             </div>

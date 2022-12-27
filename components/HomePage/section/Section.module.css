@@ -16,25 +16,17 @@
   align-items: flex-start;
   padding: 2rem 9rem;
 }
-.section_content {
-  text-align: center;
-}
+
 .section_img {
   display: flex;
   flex-wrap: wrap;
-  text-align: start;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 2.5rem;
-  gap: 6%;
-  padding: 0 7rem;
+  gap: 10%;
+  padding: 0 8rem;
 }
 
-.section_imgs {
-  width: 60px;
-  height: 60px;
-}
 .section_t {
   display: flex;
   align-items: center;
@@ -97,5 +89,10 @@
     background-color: #edf6ff;
     width: 100%;
     height: auto;
+  }
+  .section_img {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4rem;
   }
 }

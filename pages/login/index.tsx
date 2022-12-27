@@ -43,7 +43,8 @@ const Index = () => {
     const finalRes = await allData.json();
     setISLoading(false);
     if (finalRes.success) {
-      toast.success("Logged in");
+      setISLoading(true);
+      toast.success("You have successfully logged in");
       setData(finalRes);
       setTimeout(() => {
         myData.setLoggin(finalRes.data);
@@ -51,6 +52,7 @@ const Index = () => {
 
       // console.log(finalRes);
     } else {
+      setISLoading(true);
       setError(true);
       toast.error("Login Failed");
     }
