@@ -40,11 +40,16 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(data));
     setIsLogged(true);
     if (data?.userRole !== undefined) {
-      if (data?.userRole === 0 && !router.asPath.includes("/postjobyou")) {
+      if (
+        data?.userRole === 0 &&
+        !router.asPath.includes("/postjobyou") &&
+        !router.asPath.includes("/jobpost")
+      ) {
         router.push("/postjobyou?page=1");
       } else if (
         data?.userRole === 1 &&
-        !router.asPath.includes("/jobforyou")
+        !router.asPath.includes("/jobforyou") &&
+        !router.asPath.includes("/jobappliedyou")
       ) {
         router.push("/jobforyou?page=1");
       }
