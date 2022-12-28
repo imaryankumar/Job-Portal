@@ -179,17 +179,19 @@ const Index = () => {
                 return (
                   <div className={style.postjoballcards} key={key}>
                     <div
-                      className={`${style.postjobmycard_heading} ${style.line_clamps}`}
+                      className={`${style.postjobmycard_heading} overflow-hidden`}
                       key={key}
                     >
                       <h1>{item.title}</h1>
                     </div>
                     <div
-                      className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                      className={`${style.postjobmycard_para} ${style.line_clamp} overflow-hidden`}
                     >
                       <p>{item.description}</p>
                     </div>
-                    <div className={style.postjobmycard_locsection}>
+                    <div
+                      className={`${style.postjobmycard_locsection} overflow-hidden`}
+                    >
                       <div className={style.postjobmycard_locationcard}>
                         <Image
                           src="/iconsimgs/mypin.png"
@@ -222,22 +224,24 @@ const Index = () => {
             <Seo title="PostedJob" />
 
             <div className={style.postedjob_section}>
-              <Image
-                src="/iconsimgs/write.png"
-                alt=""
-                className={style.postedjob_img}
-                width={106}
-                height={106}
-              />
-              <h2 className={style.postedjob_h2}>
-                Your posted jobs will show here!
-              </h2>
-              <button
-                className={style.postjob_btn}
-                onClick={() => router.push("/jobpost")}
-              >
-                Post a Job
-              </button>
+              <div className={style.postedjob_mySection}>
+                <Image
+                  src="/iconsimgs/write.png"
+                  alt=""
+                  className={style.postedjob_img}
+                  width={106}
+                  height={106}
+                />
+                <h2 className={style.postedjob_h2}>
+                  Your posted jobs will show here!
+                </h2>
+                <button
+                  className={style.postjob_btn}
+                  onClick={() => router.push("/jobpost")}
+                >
+                  Post a Job
+                </button>
+              </div>
             </div>
           </>
         )}
@@ -331,10 +335,14 @@ const Index = () => {
                                 {items.name?.slice(0, 1)}
                               </span>
                               <div className={style.modalcard_word}>
-                                <h2 className={style.modalcard_h2}>
+                                <h2
+                                  className={`${style.modalcard_h2} ${style.line_clamps}`}
+                                >
                                   {items.name}
                                 </h2>
-                                <h3 className={style.modalcard_h3}>
+                                <h3
+                                  className={`${style.modalcard_h3} ${style.line_clamps}`}
+                                >
                                   {items.email}
                                 </h3>
                               </div>
@@ -344,7 +352,9 @@ const Index = () => {
                               <h2 className={style.modalcard_skillsh3}>
                                 Skills
                               </h2>
-                              <h3 className={style.modalcard_h3}>
+                              <h3
+                                className={`${style.modalcard_h3} ${style.line_clamps}`}
+                              >
                                 {items.skills}
                               </h3>
                             </div>

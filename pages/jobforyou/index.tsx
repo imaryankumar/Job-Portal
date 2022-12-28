@@ -229,6 +229,19 @@ const Index = () => {
             width={30}
             height={30}
           />
+          {count > 1 ? (
+            <>
+              <div
+                className={style.postjobyou_span}
+                onClick={() => onNumClick(1)}
+              >
+                1
+              </div>
+              ...
+            </>
+          ) : (
+            ""
+          )}
           {(count + 2 >= totalPage
             ? [totalPage - 2, totalPage - 1, totalPage]
             : [count, count + 1, count + 2]

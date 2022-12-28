@@ -15,8 +15,8 @@
 }
 .description_input {
   color: black;
-  width: 100%;
-  height: 110px;
+  /* width: 100%;
+  height: 110px; */
   outline-color: #43afff;
   background: #e8e8e833 0% 0% no-repeat padding-box;
   border: 1px solid gray;

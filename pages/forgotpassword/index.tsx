@@ -46,6 +46,7 @@ const Index = () => {
     } catch (error) {
       //  console.log(error);
       toast.error("No email Found");
+      setISLoading(false);
     }
   };
 
@@ -70,7 +71,7 @@ const Index = () => {
                 placeholder="Enter your email"
                 value={mail}
                 onchange={setMail}
-                pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                 error={error}
               />
               {/* {error ? (

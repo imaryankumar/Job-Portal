@@ -9,6 +9,13 @@ import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 // import { getEnvironmentData } from "worker_threads";
 const Index = () => {
+  interface formError {
+    name?: boolean;
+    email?: boolean;
+    password?: boolean;
+    conpassword?: boolean;
+  }
+
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +25,14 @@ const Index = () => {
   const [btn2, setBtn2] = useState(false);
   const [skill, setSkill] = useState("");
   const [error, setError] = useState(false);
+  // const [formErrors, setFormErrors] = useState<formError>({});
   const [isLoading, setISLoading] = useState(false);
+
+  const [nameError, setNameError] = useState(false);
+  const [mailError, setMailError] = useState(false);
+  const [passError, setPassError] = useState(false);
+  const [conPassError, setConPassError] = useState(false);
+  const [skillError, setSkillError] = useState(false);
 
   interface dataType {
     success?: boolean;
@@ -45,6 +59,33 @@ const Index = () => {
 
   const Justclick = async (e: any) => {
     e.preventDefault();
+
+    // const error: {
+    //   name?: boolean;
+    //   email?: boolean;
+    //   password?: boolean;
+    //   conpassword?: boolean;
+    // } = {};
+
+    // if (!!name) {
+    //   error.name = true;
+    // }
+    // if (!!mail) {
+    //   error.email = true;
+    // }
+    // if (!!password) {
+    //   error.password = true;
+    // }
+    // if (!!conpassword) {
+    //   error.conpassword = true;
+    // }
+
+    // if (Object.keys(error).length < 0) {
+    //   setFormErrors(error);
+    //   setName("");
+    //   return null;
+    // }
+
     const body = {
       email: mail,
       userRole: role,
@@ -67,6 +108,8 @@ const Index = () => {
           }
         );
 
+        console.log("🚀 ~ file: index.tsx:77 ~ Justclick ~ res", res);
+
         const finalRes = await res.json();
         if (finalRes.success) {
           setData(finalRes);
@@ -75,12 +118,12 @@ const Index = () => {
           setPassword("");
           setConpassword("");
           setSkill("");
-          setError(false);
+          // setError(true);
           toast.success(finalRes.message);
           Router.push("/login");
         } else {
           setISLoading(true);
-          setError(true);
+          // setError(true);
           toast.error(finalRes.message);
           setTimeout(() => {
             setISLoading(false);
@@ -88,7 +131,7 @@ const Index = () => {
         }
       } else {
         setISLoading(true);
-        setError(true);
+        // setError(true);
         toast.error("Signup Failed");
         setTimeout(() => {
           setISLoading(false);
@@ -97,6 +140,7 @@ const Index = () => {
     } catch (e) {
       // console.log("Error");
       toast.error("Error Found");
+      setISLoading(false);
     }
   };
 
@@ -109,7 +153,9 @@ const Index = () => {
           <div className={style.signup_card}>
             <div className={style.signup_content}>
               <h1 className={style.signup_h1}>Signup</h1>
-              <h3 className={style.signup_h3}>I’m a*</h3>
+              <h2 className={style.signup_h2}>
+                I’m a<span className="star_red">*</span>
+              </h2>
               <div className={style.signup_onchange}>
                 <button
                   type="button"
@@ -148,11 +194,12 @@ const Index = () => {
                     type="text"
                     content="Full Name*"
                     placeholder="Enter your full name"
-                    error={error ? true : false}
+                    error={nameError ? true : false}
                     value={name}
                     onchange={setName}
                   />
-                  {error ? (
+
+                  {nameError ? (
                     <p className={style.signup_errorpara}>
                       The field is mandatory.
                     </p>
@@ -163,12 +210,12 @@ const Index = () => {
                     type="email"
                     content="Email Address*"
                     placeholder="Enter your email"
-                    error={error ? true : false}
+                    error={nameError ? true : false}
                     value={mail}
                     onchange={setMail}
-                    pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                    pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                   />
-                  {error ? (
+                  {nameError ? (
                     <p className={style.signup_errorpara}>
                       The field is mandatory.
                     </p>

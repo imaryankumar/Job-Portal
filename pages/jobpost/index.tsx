@@ -60,6 +60,7 @@ const Index = () => {
     } catch (e) {
       // console.log("Error");
       toast.error("Error Found");
+      setISLoading(false);
     }
   };
 

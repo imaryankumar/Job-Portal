@@ -10,6 +10,7 @@ interface cardTypes {
   onchange?: any;
   pattern?: any;
   error?: boolean;
+  required?: boolean;
 }
 const Fields = ({
   content,
@@ -20,11 +21,13 @@ const Fields = ({
   onchange,
   pattern,
   error,
+  required,
 }: cardTypes) => {
   return (
     <div className={style.field_content}>
       <h2 className={style.field_h2}>
-        {content}{" "}
+        {content}
+        {required && <span className="star_red">*</span>}
         <span className={style.forget_password}>
           <Link href={"/forgotpassword"}>{password}</Link>
         </span>
@@ -38,6 +41,7 @@ const Fields = ({
         value={value}
         onChange={(e) => onchange(e.target.value)}
         pattern={pattern}
+        maxLength={40}
       />
     </div>
   );

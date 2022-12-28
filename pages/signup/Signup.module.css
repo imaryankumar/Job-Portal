@@ -34,8 +34,9 @@
   color: #303f60;
   padding: 1.5rem 0;
 }
-.signup_h3 {
+.signup_h2 {
   padding-bottom: 0.5rem;
+  font-size: 14px;
 }
 .signup_onchange {
   display: flex;

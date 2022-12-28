@@ -57,6 +57,7 @@ const Index = () => {
       }
     } catch (e) {
       toast.error("Login Failed");
+      setISLoading(false);
     }
   };
 
@@ -79,11 +80,11 @@ const Index = () => {
                 <Fields
                   type="email"
                   error={error}
-                  content="Email address"
+                  content={"Email address"}
                   placeholder="Enter your email"
                   value={mail}
                   onchange={setMail}
-                  pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                  pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                 />
                 {error ? "" : ""}
                 <Fields

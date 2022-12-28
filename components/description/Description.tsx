@@ -19,14 +19,15 @@ const Description = ({
   return (
     <div className={style.description_content}>
       <h2 className={style.description_h2}>{content}</h2>
-      <input
-        type={type}
+      <textarea
         placeholder={placeholder}
         className={`${style.description_input} ${
           error ? `${style.description_Fields}` : ""
         }`}
         value={value}
         onChange={(e) => onchange(e.target.value)}
+        rows={2.5}
+        cols={55}
       />
     </div>
   );
