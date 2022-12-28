@@ -84,22 +84,30 @@ const Index = () => {
 
   //  const totalJobs = myData?.length;
   const increment = () => {
-    count < totalPage && setCount(count + 1);
-    router.push(`/postjobyou?page=${count + 1}`, undefined, { shallow: true });
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    if (count < totalPage) {
+      count < totalPage && setCount(count + 1);
+      router.push(`/postjobyou?page=${count + 1}`, undefined, {
+        shallow: true,
+      });
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   };
   const decrement = () => {
-    count == 1 ? setCount(1) : setCount(count - 1);
-    router.push(`/postjobyou?page=${count - 1}`, undefined, { shallow: true });
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    if (count > 1) {
+      count == 1 ? setCount(1) : setCount(count - 1);
+      router.push(`/postjobyou?page=${count - 1}`, undefined, {
+        shallow: true,
+      });
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   };
   const onNumClick = (e: any) => {
     const numValue = +e.target.innerText;
@@ -139,27 +147,33 @@ const Index = () => {
     <>
       <ToastContainer />
       <Seo title="PostJobYou" />
-      <div className={`${style.postedjobyou_header} mainWrapper `}>
-        <div className={`${style.postedjobyou_mytopbar} `}>
-          <div className={style.postedjobyou_topbar}>
-            <Link href={"/"}>
-              <Image
-                src="/iconsimgs/homeicon.png"
-                alt=""
-                width={10}
-                height={9}
-              />
-            </Link>
-            <span>Home</span>
-          </div>
-          <div className={style.postedjobyou_para}>
-            <h1>Jobs posted by you</h1>
+      <div className={`${style.postedjobyou_header}`}>
+        <div className="mainWrapper">
+          <div className={`${style.postedjobyou_mytopbar} `}>
+            <div className={style.postedjobyou_topbar}>
+              <Link href={"/"}>
+                <Image
+                  src="/iconsimgs/homeicon.png"
+                  alt=""
+                  width={10}
+                  height={9}
+                />
+              </Link>
+              <Link href={"/"}>
+                {" "}
+                <span>Home</span>
+              </Link>
+            </div>
+            <div className={style.postedjobyou_para}>
+              <h1>Jobs posted by you</h1>
+            </div>
           </div>
         </div>
+
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div className={`${style.postedjob_allcards}mainWrapper`}>
+          <div className={`${style.postedjob_allcards}  `}>
             <div className={`${style.postjob_mycard}`}>
               {myData?.map((item: cardTypes, key) => {
                 return (
@@ -206,6 +220,7 @@ const Index = () => {
         ) : (
           <>
             <Seo title="PostedJob" />
+
             <div className={style.postedjob_section}>
               <Image
                 src="/iconsimgs/write.png"
@@ -227,6 +242,7 @@ const Index = () => {
           </>
         )}
       </div>
+
       {myData?.length > 0 && (
         <div className={style.postedjobyou_section}>
           <div className={style.postedjobyou_footers}>
@@ -237,7 +253,10 @@ const Index = () => {
               width={30}
               height={30}
             />
-            {myArray.map((i, key) => {
+            {(count + 2 >= totalPage
+              ? [totalPage - 2, totalPage - 1, totalPage]
+              : [count, count + 1, count + 2]
+            )?.map((i, key) => {
               return (
                 <span
                   className={style.postjobyou_span}
@@ -257,6 +276,19 @@ const Index = () => {
                 </span>
               );
             })}
+            {count + 2 >= totalPage ? (
+              ""
+            ) : (
+              <>
+                ...
+                <div
+                  className={style.postjobyou_span}
+                  onClick={() => onNumClick(totalPage)}
+                >
+                  {totalPage}
+                </div>
+              </>
+            )}
 
             <Image
               src="/iconsimgs/right.png"
@@ -270,8 +302,8 @@ const Index = () => {
       )}
       {isOpen && (
         <>
-          <div className={style.modalWrapper}>
-            <div className={style.modal}>
+          <div className={style.modalWrapper} onClick={() => setIsOpen(false)}>
+            <div className={style.modal} onClick={(e) => e.stopPropagation()}>
               <div className={style.wrapmodle}>
                 <h2>Applicants for this job</h2>
                 <button

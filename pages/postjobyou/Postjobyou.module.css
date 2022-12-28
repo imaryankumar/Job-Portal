@@ -373,6 +373,9 @@
     font-size: 15px;
     color: #303f60;
   }
+  .modalWrapper {
+    position: fixed;
+  }
 }
 @media (max-width: 891px) {
   .postedjobyou_mytopbar {
@@ -469,6 +472,9 @@
     width: auto;
     height: auto;
   }
+  .modalWrapper {
+    position: fixed;
+  }
 }
 @media (max-width: 615px) {
   .postedjobyou_mytopbar {
@@ -532,6 +538,9 @@
     width: auto;
     height: auto;
   }
+  .modalWrapper {
+    position: fixed;
+  }
 }
 @media (max-width: 384px) {
   .postedjobyou_mytopbar {
@@ -556,6 +565,9 @@
     height: auto;
     padding: 1rem 2rem;
   }
+  .modalWrapper {
+    position: fixed;
+  }
 }
 @media (max-width: 340px) {
   .postedjobyou_mytopbar {
@@ -570,6 +582,9 @@
   }
   .postjob_mycard {
     padding: 0 0.5rem;
+  }
+  .modalWrapper {
+    position: fixed;
   }
 }
 @media (max-width: 340px) {
@@ -589,5 +604,8 @@
   .postedjobyou_section {
     width: 100%;
     height: auto;
+  }
+  .modalWrapper {
+    position: fixed;
   }
 }

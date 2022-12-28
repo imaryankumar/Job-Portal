@@ -33,6 +33,7 @@
   width: 33px;
   height: 15px;
   font: normal normal medium 12px/15px Helvetica Neue;
+  cursor: pointer;
 }
 .postedjobyou_para {
   margin-top: 1rem;
@@ -98,6 +99,8 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-height: 50vh;
 }
 .postjobmycard_heading {
   width: 100%;

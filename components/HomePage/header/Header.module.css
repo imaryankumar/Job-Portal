@@ -16,9 +16,10 @@
 .header_txt {
   color: #ffffff;
   width: 100%;
+  margin-top: 5rem;
 }
 .header_h1 {
-  font-size: 4.2vw;
+  font-size: min(4.2vw, 80px);
   line-height: 1;
   padding-bottom: 1.5rem;
 }

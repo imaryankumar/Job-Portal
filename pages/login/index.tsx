@@ -2,8 +2,7 @@ import style from "../login/login.module.css";
 import Fields from "../../components/common/fields/Fields";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
 
@@ -46,9 +45,8 @@ const Index = () => {
         setISLoading(true);
         toast.success("You have successfully logged in");
         setData(finalRes);
-        setTimeout(() => {
-          myData.setLoggin(finalRes.data);
-        }, 500);
+
+        myData.setLoggin(finalRes.data);
 
         // console.log(finalRes);
       } else {
@@ -65,7 +63,6 @@ const Index = () => {
   return (
     <>
       <Seo title="Login" description="This is Login page " />
-      <ToastContainer />
 
       <div className={style.header}>
         <div className={style.login_card}>

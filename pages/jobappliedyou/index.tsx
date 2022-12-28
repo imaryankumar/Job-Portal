@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../components/Loader/Loader";
-
+import { toast } from "react-toastify";
 interface cardTypes {
   location?: string;
   title?: string;
@@ -53,7 +51,6 @@ const Index = () => {
         });
       });
     } catch (e) {
-      // console.log("Error");
       toast.error("Error Found");
     }
   }, []);
@@ -62,80 +59,101 @@ const Index = () => {
   const totalPage = Math.ceil(totalJobs / showPerPage);
 
   const increment = () => {
-    count < totalPage && setCount(count + 1);
+    if (count < totalPage) {
+      count < totalPage && setCount(count + 1);
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   };
   const decrement = () => {
-    count == 1 ? setCount(1) : setCount(count - 1);
+    if (count > 1) {
+      count == 1 ? setCount(1) : setCount(count - 1);
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+  const onNumClick = (e: number) => {
+    setCount(e);
+    router.push(`/jobforyou?page=${e} `, undefined, {
+      shallow: true,
+    });
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
-      <ToastContainer />
       <Seo title="JobAppliedYou" />{" "}
       <div className={style.jobappliedyou_header}>
-        <div className="mainWrapper">
-          <div className={style.jobapplied_bars}>
-            <div className={style.jobappliedyou_topbar}>
-              <Link href={"/"}>
-                <Image
-                  src="/iconsimgs/homeicon.png"
-                  alt=""
-                  width={10}
-                  height={9}
-                />
-              </Link>
-              Home &gt; Applied Jobs
-            </div>
-            <div className={style.jobappliedyou_para}>
-              <h1>Jobs applied by you</h1>
+        <div className={style.jobapplied_bars}>
+          <div className={style.jobappliedyou_topbar}>
+            <Link href={"/"}>
+              <Image
+                src="/iconsimgs/homeicon.png"
+                alt=""
+                width={10}
+                height={9}
+              />
+            </Link>
+            Home &gt; Applied Jobs
+          </div>
+          <div className={style.jobappliedyou_para}>
+            <h1>Jobs applied by you</h1>
+          </div>
+        </div>
+        {myCanData?.length > 0 ? (
+          <div className={style.postedjob_allcards}>
+            <div className={style.postjob_mycard}>
+              {myCanData
+                ?.slice(pagination.start, pagination.end)
+                .map((item: cardTypes, key) => {
+                  return (
+                    <div className={style.postjoballcards} key={key}>
+                      <div
+                        className={`${style.postjobmycard_heading} ${style.line_clamp}`}
+                        key={key}
+                      >
+                        <h1>{item.title}</h1>
+                      </div>
+                      <div
+                        className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                      >
+                        <p>{item.description}</p>
+                      </div>
+                      <div className={style.postjobmycard_locsection}>
+                        <div className={style.postjobmycard_locationcard}>
+                          <Image
+                            src="/iconsimgs/mypin.png"
+                            alt=""
+                            width={10}
+                            height={15}
+                          />
+                          <h3
+                            className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                          >
+                            {item.location}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
-          {myCanData?.length > 0 ? (
-            <div className={style.postedjob_allcards}>
-              <div className={style.postjob_mycard}>
-                {loader ? (
-                  <Loader />
-                ) : (
-                  myCanData
-                    ?.slice(pagination.start, pagination.end)
-                    .map((item: cardTypes, key) => {
-                      return (
-                        <div className={style.postjoballcards} key={key}>
-                          <div
-                            className={`${style.postjobmycard_heading} ${style.line_clamp}`}
-                            key={key}
-                          >
-                            <h1>{item.title}</h1>
-                          </div>
-                          <div
-                            className={`${style.postjobmycard_para} ${style.line_clamp}`}
-                          >
-                            <p>{item.description}</p>
-                          </div>
-                          <div className={style.postjobmycard_locsection}>
-                            <div className={style.postjobmycard_locationcard}>
-                              <Image
-                                src="/iconsimgs/mypin.png"
-                                alt=""
-                                width={10}
-                                height={15}
-                              />
-                              <h3
-                                className={`${style.postjobmycard_h3} ${style.line_clamps}`}
-                              >
-                                {item.location}
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                )}
-              </div>
-            </div>
-          ) : (
-            <>
-              {" "}
+        ) : (
+          <>
+            {loader ? (
+              <Loader />
+            ) : (
               <div className={style.jobapply_section}>
                 <Image
                   src="/iconsimgs/write.png"
@@ -154,30 +172,64 @@ const Index = () => {
                   See all jobs
                 </button>
               </div>
-            </>
-          )}
-        </div>
+            )}
+          </>
+        )}
       </div>
       {myCanData?.length > 0 && (
         <div className={style.jobappliedyou_section}>
-          <div className="mainWrapper">
-            <div className={style.jobappliedyou_footers}>
-              <Image
-                src="/iconsimgs/left.png"
-                alt=""
-                onClick={() => decrement()}
-                width={30}
-                height={30}
-              />
-              <span className={style.postjobyou_span}>{count}</span>
-              <Image
-                src="/iconsimgs/right.png"
-                alt=""
-                onClick={() => increment()}
-                width={30}
-                height={30}
-              />
-            </div>
+          <div className={style.jobappliedyou_footers}>
+            <Image
+              src="/iconsimgs/left.png"
+              alt=""
+              onClick={() => decrement()}
+              width={30}
+              height={30}
+            />
+            {/* <span className={style.postjobyou_span}>{count}</span> */}
+            {(count + 2 >= totalPage
+              ? [totalPage - 2, totalPage - 1, totalPage]
+              : [count, count + 1, count + 2]
+            )?.map((i, k) => {
+              return (
+                <span
+                  className={style.postjobyou_span}
+                  onClick={() => onNumClick(i)}
+                  style={
+                    count === i
+                      ? {
+                          color: "black",
+                          backgroundColor: "#43AFFF33",
+                          cursor: "pointer",
+                        }
+                      : { backgroundColor: "white", cursor: "pointer" }
+                  }
+                  key={k}
+                >
+                  {i}
+                </span>
+              );
+            })}
+            {count + 2 >= totalPage ? (
+              ""
+            ) : (
+              <>
+                ...
+                <div
+                  className={style.postjobyou_span}
+                  onClick={() => onNumClick(totalPage)}
+                >
+                  {totalPage}
+                </div>
+              </>
+            )}
+            <Image
+              src="/iconsimgs/right.png"
+              alt=""
+              onClick={() => increment()}
+              width={30}
+              height={30}
+            />
           </div>
         </div>
       )}

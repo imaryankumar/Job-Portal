@@ -4,6 +4,8 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext, Tuser } from "../../contextapi/ContextAPI";
 import style from "../navbar/Navbar.module.css";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const { isLoggedIN, user, setLogout } = useContext(authcontext);
@@ -59,6 +61,12 @@ function Navbar() {
             <div className={style.nav_pout}>
               <Link
                 href={`${user?.userRole === 0 ? "/jobpost" : "/jobappliedyou"}`}
+                className={
+                  router.asPath.includes("/jobpost") ||
+                  router.asPath.includes("/jobappliedyou")
+                    ? style.border_active
+                    : undefined
+                }
               >
                 <h3 className={style.nav_ph3}>
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}

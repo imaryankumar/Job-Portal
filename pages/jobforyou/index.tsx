@@ -69,7 +69,7 @@ const Index = () => {
           setLoader(false);
           console.log("resp.data :", resp.data);
           setTotalPage(
-            Math.ceil(resp?.metadata?.count / resp?.metadata?.limit) % 20
+            Math.ceil(resp?.metadata?.count / resp?.metadata?.limit)
           );
         });
       });
@@ -79,31 +79,33 @@ const Index = () => {
     }
   };
   const increment = () => {
-    count < totalPage && setCount(count + 1);
-    router.push(`/jobforyou?page=${count + 1} `, undefined, {
-      shallow: true,
-    });
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    if (count < totalPage) {
+      count < totalPage && setCount(count + 1);
+      router.push(`/jobforyou?page=${count + 1} `, undefined, {
+        shallow: true,
+      });
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   };
   const decrement = () => {
-    count == 1 ? setCount(1) : setCount(count - 1);
-    router.push(`/jobforyou?page=${count - 1}`, undefined, { shallow: true });
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    if (count > 1) {
+      count == 1 ? setCount(1) : setCount(count - 1);
+      router.push(`/jobforyou?page=${count - 1}`, undefined, { shallow: true });
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
-  const onNumClick = (e: any) => {
-    const numValue = +e.target.innerText;
-    console.log(numValue);
-    setCount(numValue);
-    router.push(`/jobforyou?page=${numValue} `, undefined, {
+  const onNumClick = (e: number) => {
+    setCount(e);
+    router.push(`/jobforyou?page=${e} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -160,7 +162,9 @@ const Index = () => {
                   height={9}
                 />
               </Link>
-              <span>Home</span>
+              <Link href={"/"}>
+                <span>Home</span>
+              </Link>
             </div>
             <div className={style.postedjobyou_para}>
               <h1>Jobs for you</h1>
@@ -225,11 +229,14 @@ const Index = () => {
             width={30}
             height={30}
           />
-          {myArray?.map((i, k) => {
+          {(count + 2 >= totalPage
+            ? [totalPage - 2, totalPage - 1, totalPage]
+            : [count, count + 1, count + 2]
+          )?.map((i, k) => {
             return (
               <span
                 className={style.postjobyou_span}
-                onClick={(e) => onNumClick(e)}
+                onClick={() => onNumClick(i)}
                 style={
                   count === i
                     ? {
@@ -245,6 +252,19 @@ const Index = () => {
               </span>
             );
           })}
+          {count + 2 >= totalPage ? (
+            ""
+          ) : (
+            <>
+              ...
+              <div
+                className={style.postjobyou_span}
+                onClick={() => onNumClick(totalPage)}
+              >
+                {totalPage}
+              </div>
+            </>
+          )}
 
           <Image
             src="/iconsimgs/right.png"

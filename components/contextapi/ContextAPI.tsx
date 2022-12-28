@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 type TuserContext = {
   isLoggedIN: boolean;
   user?: Tuser;
@@ -72,6 +73,7 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     localStorage.removeItem("user");
     setIsLogged(false);
     router.push("/");
+    toast.info("Logout Succesfull");
   };
 
   return (
