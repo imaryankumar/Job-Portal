@@ -9,7 +9,7 @@
   opacity: 1;
   padding: 0.5rem 0;
   font-size: 14px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 }
@@ -27,7 +27,33 @@
   color: #43afff;
   font-size: 14px;
   cursor: pointer;
+  padding-left: 18rem;
 }
 .input_Fields {
   border: 1px solid red;
+}
+@media (max-width: 581px) {
+  .forget_password {
+    padding-left: 11rem;
+  }
+}
+@media (max-width: 448px) {
+  .forget_password {
+    padding-left: 8rem;
+  }
+}
+@media (max-width: 392px) {
+  .forget_password {
+    padding-left: 5rem;
+  }
+}
+@media (max-width: 350px) {
+  .forget_password {
+    padding-left: 2rem;
+  }
+}
+@media (max-width: 300px) {
+  .forget_password {
+    padding: 1px;
+  }
 }

@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
+import Loader from "../../components/Loader/Loader";
 
 interface dataType {
   success?: boolean;
@@ -15,50 +16,68 @@ const Index = () => {
   const myData = useContext(authcontext);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<{
+    password?: string;
+    email?: string;
+  }>();
   const [isLoading, setISLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const [data, setData] = useState<dataType | undefined>(undefined);
 
-  const justsubmit = async (e: any) => {
-    setISLoading(true);
+  const justsubmit = (e: any) => {
     e.preventDefault();
     const body = {
       email: mail,
       password: pass,
     };
-    try {
-      const allData = await fetch(
-        "https://jobs-api.squareboat.info/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
+    setISLoading(true);
+    setLoader(true);
+    fetch("https://jobs-api.squareboat.info/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((finalRes) => {
+        setISLoading(false);
+        if (finalRes.success) {
+          setISLoading(true);
+          toast.success("You have successfully logged in");
+          setData(finalRes);
+
+          myData.setLoggin(finalRes.data);
+        } else {
+          setISLoading(true);
+          setError({});
+          if (finalRes?.message) {
+            toast.error(finalRes.message);
+          } else {
+            const errors = finalRes?.errors;
+            errors.forEach((item: any) => {
+              setError((prev) => ({
+                ...prev,
+                [Object.keys(item)[0]]: Object.values(item)[0],
+              }));
+            });
+          }
         }
-      );
-      const finalRes = await allData.json();
-      setISLoading(false);
-      if (finalRes.success) {
-        setISLoading(true);
-        toast.success("You have successfully logged in");
-        setData(finalRes);
-
-        myData.setLoggin(finalRes.data);
-
-        // console.log(finalRes);
-      } else {
-        setISLoading(true);
-        setError(true);
+      })
+      .catch((e) => {
+        toast.error(e);
         toast.error("Login Failed");
         setISLoading(false);
-      }
-    } catch (e) {
-      toast.error("Login Failed");
-      setISLoading(false);
-    }
+      })
+      .finally(() => {
+        setISLoading(false);
+        setLoader(false);
+      });
+    // const finalRes = await allData.json();
   };
 
   return (
@@ -79,27 +98,31 @@ const Index = () => {
               >
                 <Fields
                   type="email"
-                  error={error}
+                  error={error?.email ? true : false}
                   content={"Email address"}
                   placeholder="Enter your email"
                   value={mail}
                   onchange={setMail}
-                  pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                  pattern={"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,4}$"}
+                  required
                 />
-                {error ? "" : ""}
+                {error ? (
+                  <p className={style.login_errorpara}>{error.email}</p>
+                ) : (
+                  ""
+                )}
                 <Fields
                   type="password"
-                  error={error}
+                  error={error?.password ? true : false}
                   content="Password"
                   placeholder="Enter your password"
                   password="Forgot your password?"
                   value={pass}
                   onchange={setPass}
+                  required
                 />
                 {error ? (
-                  <p className={style.login_errorpara}>
-                    Incorrect email address or password.
-                  </p>
+                  <p className={style.login_errorpara}>{error.password}</p>
                 ) : (
                   ""
                 )}
@@ -114,7 +137,7 @@ const Index = () => {
                         : { backgroundColor: "#43afff" }
                     }
                   >
-                    Login
+                    {loader ? <Loader /> : "Login"}
                   </button>
                 </div>
               </form>

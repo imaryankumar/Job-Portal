@@ -76,7 +76,7 @@
 .signup_password {
   display: flex;
   justify-content: space-between;
-  max-width: 100%;
+  max-width: 49%;
   gap: 10px;
 }
 .signup_btns {
@@ -110,6 +110,14 @@
   font-size: 12px;
 }
 /* media Quries */
+@media (max-width: 836px) {
+  .signup_password {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    gap: 10px;
+  }
+}
 @media (max-width: 580px) {
   .signup_card {
     width: 500px;

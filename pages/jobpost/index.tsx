@@ -6,8 +6,8 @@ import Description from "../../components/description/Description";
 import style from "../jobpost/jobpost.module.css";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import Loader from "../../components/Loader/Loader";
 
 interface dataType {
   success?: boolean;
@@ -18,56 +18,74 @@ const Index = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [loader, setLoader] = useState(false);
   const [data, setData] = useState<dataType | undefined>(undefined);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<{
+    title?: string;
+    description?: string;
+    location?: string;
+  }>();
   const router = useRouter();
   const [isLoading, setISLoading] = useState(false);
 
-  const JustonClick = async (e: any) => {
+  const JustonClick = (e: any) => {
     e.preventDefault();
     const body = {
       title: title,
       description: description,
       location: location,
     };
+    setISLoading(true);
+    setLoader(true);
+    fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((finalRes) => {
+        if (finalRes.success) {
+          setData(finalRes);
+          setISLoading(true);
+          router.push("/postjobyou");
+        } else {
+          setISLoading(true);
+          setError({});
+          if (finalRes?.message) {
+            toast.error(finalRes.message);
+          } else {
+            const errors = finalRes?.errors;
 
-    try {
-      const myData = await fetch(
-        "https://jobs-api.squareboat.info/api/v1/jobs/",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-              ?.token,
-          },
-          body: JSON.stringify(body),
+            errors.forEach((item: any) => {
+              setError((prev) => ({
+                ...prev,
+                [Object.keys(item)[0]]: Object.values(item)[0],
+              }));
+            });
+          }
         }
-      );
-      const finalRes = await myData.json();
-      if (finalRes.success) {
-        setData(finalRes);
-        setISLoading(true);
-        router.push("/postjobyou");
-      } else {
-        setISLoading(true);
-        setError(true);
-        setTimeout(() => {
-          setISLoading(false);
-        }, 1000);
-      }
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-      setISLoading(false);
-    }
+      })
+      .catch((e) => {
+        toast.error(e);
+        toast.error("Error Found");
+        setISLoading(false);
+      })
+      .finally(() => {
+        setISLoading(false);
+        setLoader(false);
+      });
   };
 
   return (
     <>
       <Seo title="JobPost" />
-      <ToastContainer />
+
       <div className={`${style.header}`}>
         <div className="mainWrapper">
           <div className={`${style.jobpost_topcontent}  `}>
@@ -97,31 +115,44 @@ const Index = () => {
                   <Fields
                     type="text"
                     error={error ? true : false}
-                    content="Job title*"
+                    content="Job title"
                     placeholder="Enter job title"
                     value={title}
                     onchange={setTitle}
+                    required
                   />
+                  {error ? (
+                    <p className={style.jobpost_errorpara}>{error.title}</p>
+                  ) : (
+                    ""
+                  )}
                   <Description
                     type="text"
-                    content="Description*"
+                    content="Description"
                     placeholder="Enter job description"
                     value={description}
                     onchange={setDescription}
                     error={error ? true : false}
-                  />
-                  <Fields
-                    type="text"
-                    error={error ? true : false}
-                    content="Location*"
-                    placeholder="Enter location"
-                    value={location}
-                    onchange={setLocation}
+                    required
                   />
                   {error ? (
                     <p className={style.jobpost_errorpara}>
-                      All fields are mandatory.
+                      {error.description}
                     </p>
+                  ) : (
+                    ""
+                  )}
+                  <Fields
+                    type="text"
+                    error={error ? true : false}
+                    content="Location"
+                    placeholder="Enter location"
+                    value={location}
+                    onchange={setLocation}
+                    required
+                  />
+                  {error ? (
+                    <p className={style.jobpost_errorpara}>{error.location}</p>
                   ) : (
                     ""
                   )}
@@ -136,7 +167,7 @@ const Index = () => {
                           : { backgroundColor: "#43afff" }
                       }
                     >
-                      Post
+                      {loader ? <Loader /> : "Post"}
                     </button>
                   </div>
                 </form>

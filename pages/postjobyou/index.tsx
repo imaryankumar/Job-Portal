@@ -2,8 +2,8 @@ import style from "../postjobyou/Postjobyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import Router, { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
@@ -54,32 +54,28 @@ const Index = () => {
 
   const reloadData = (page: number) => {
     setLoader(true);
-    try {
-      fetch(
-        `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-              ?.token,
-          },
-        }
-      ).then((res) => {
-        res.json().then((resp) => {
-          setMyData(resp.data?.data);
-          setLoader(false);
-          console.log("Data : ", resp.data?.data);
-          setTotalPage(
-            Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
-          );
-        });
+
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+      }
+    ).then((res) => {
+      res.json().then((resp) => {
+        setMyData(resp.data?.data);
+        setLoader(false);
+        console.log("Data : ", resp.data?.data);
+        setTotalPage(
+          Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
+        );
       });
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-    }
+    });
   };
 
   //  const totalJobs = myData?.length;
@@ -122,30 +118,33 @@ const Index = () => {
       behavior: "smooth",
     });
   };
-  const postClick = async (job_id: string | undefined) => {
-    //  console.log({ job_id });
+  const postClick = (job_id: string | undefined) => {
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
     setLoader(true);
-    try {
-      let response = await fetch(
-        `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
-        {
-          method: "GET",
-          headers: { Authorization: `${user?.token}` },
-        }
-      );
-      let data = await response.json();
-      setJobData(data?.data);
-      setLoader(false);
-      console.log("Data :", data?.data);
-    } catch (e) {
-      toast.error("Error Found");
-    }
+
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/recruiters/jobs/${job_id}/candidates`,
+      {
+        method: "GET",
+        headers: { Authorization: `${user?.token}` },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setJobData(data?.data);
+        setLoader(false);
+        console.log("Data :", data?.data);
+      })
+      .catch((e) => {
+        toast.error(e);
+        toast.error("Error Found");
+      });
   };
 
   return (
     <>
-      <ToastContainer />
       <Seo title="PostJobYou" />
       <div className={`${style.postedjobyou_header}`}>
         <div className="mainWrapper">
@@ -247,7 +246,7 @@ const Index = () => {
         )}
       </div>
 
-      {myData?.length > 0 && (
+      {myData?.length > 0 && totalPage > 1 && (
         <div className={style.postedjobyou_section}>
           <div className={style.postedjobyou_footers}>
             <Image

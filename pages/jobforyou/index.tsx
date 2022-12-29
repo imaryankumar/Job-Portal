@@ -2,9 +2,8 @@ import style from "../jobforyou/Jobsforyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Router, { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import Loader from "../../components/Loader/Loader";
@@ -51,19 +50,20 @@ const Index = () => {
 
   const reloadData = (page: number) => {
     setLoader(true);
-    try {
-      fetch(
-        `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-              ?.token,
-          },
-        }
-      ).then((res) => {
+
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/candidates/jobs?page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+      }
+    )
+      .then((res) => {
         res.json().then((resp) => {
           setCanMyData(resp.data);
           setLoader(false);
@@ -72,11 +72,14 @@ const Index = () => {
             Math.ceil(resp?.metadata?.count / resp?.metadata?.limit)
           );
         });
+      })
+      .catch((e) => {
+        setLoader(false);
+        toast.error("Error Found");
+      })
+      .finally(() => {
+        setLoader(false);
       });
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-    }
   };
   const increment = () => {
     if (count < totalPage) {
@@ -115,41 +118,42 @@ const Index = () => {
     });
   };
   const clickMe = (id: string) => {
-    try {
-      const getData = async () => {
-        const body = {
-          jobId: id,
-        };
-        const res = await fetch(
-          "https://jobs-api.squareboat.info/api/v1/candidates/jobs",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-                ?.token,
-            },
-            body: JSON.stringify(body),
-          }
-        );
-        const showres = await res.json();
-        if (showres.success === true) {
-          toast.success("Applied Successfull");
-          reloadData(count);
-        }
+    const getData = () => {
+      const body = {
+        jobId: id,
       };
-      getData();
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-    }
+
+      fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((showres) => {
+          if (showres.success === true) {
+            toast.success("Applied Successfull");
+            reloadData(count);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          toast.error("Something went wrong");
+        });
+    };
+    getData();
   };
 
   return (
     <>
       <Seo title="JobForYou" />
-      <ToastContainer />
+
       <div className={style.postedjobyou_header}>
         <div className="mainWrapper">
           <div className={style.postedjobyou_mytopbar}>
@@ -204,12 +208,16 @@ const Index = () => {
                           </h3>
                         </div>
                         <div>
-                          <button
-                            className={style.postjobmycard_btn}
-                            onClick={() => clickMe(item.id)}
-                          >
-                            Apply
-                          </button>
+                          {loader ? (
+                            <Loader />
+                          ) : (
+                            <button
+                              className={style.postjobmycard_btn}
+                              onClick={() => clickMe(item.id)}
+                            >
+                              Apply
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

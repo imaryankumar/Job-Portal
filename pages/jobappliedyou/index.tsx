@@ -35,24 +35,24 @@ const Index = () => {
 
   useEffect(() => {
     setLoader(true);
-    try {
-      fetch("https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
-            ?.token,
-        },
-      }).then((res) => {
+
+    fetch(`https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied?`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
+      },
+    })
+      .then((res) => {
         res.json().then((resp) => {
           setCanMyData(resp.data);
           setLoader(false);
         });
+      })
+      .catch((e) => {
+        toast.error("Error Found");
       });
-    } catch (e) {
-      toast.error("Error Found");
-    }
   }, []);
 
   const totalJobs = myCanData?.length;
@@ -61,6 +61,9 @@ const Index = () => {
   const increment = () => {
     if (count < totalPage) {
       count < totalPage && setCount(count + 1);
+      router.push(`/jobappliedyou?page=${count + 1} `, undefined, {
+        shallow: true,
+      });
       window.scroll({
         top: 0,
         left: 0,
@@ -71,6 +74,9 @@ const Index = () => {
   const decrement = () => {
     if (count > 1) {
       count == 1 ? setCount(1) : setCount(count - 1);
+      router.push(`/jobappliedyou?page=${count - 1}`, undefined, {
+        shallow: true,
+      });
       window.scroll({
         top: 0,
         left: 0,
@@ -176,7 +182,7 @@ const Index = () => {
           </>
         )}
       </div>
-      {myCanData?.length > 0 && (
+      {myCanData?.length > 0 && totalPage > 1 && (
         <div className={style.jobappliedyou_section}>
           <div className={style.jobappliedyou_footers}>
             <Image
@@ -187,6 +193,19 @@ const Index = () => {
               height={30}
             />
             {/* <span className={style.postjobyou_span}>{count}</span> */}
+            {count > 1 ? (
+              <>
+                <div
+                  className={style.postjobyou_span}
+                  onClick={() => onNumClick(1)}
+                >
+                  1
+                </div>
+                ...
+              </>
+            ) : (
+              ""
+            )}
             {(count + 2 >= totalPage
               ? [totalPage - 2, totalPage - 1, totalPage]
               : [count, count + 1, count + 2]

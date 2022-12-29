@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Fields from "../../components/common/fields/Fields";
 import style from "../resetpassword/Reset.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import Seo from "../../components/nexthead/Seo";
 
 const Index = () => {
@@ -14,50 +14,49 @@ const Index = () => {
   const router = useRouter();
 
   const { token } = router.query;
-  const onResetPassword = async () => {
-    try {
-      if (newPass && newPass === conPass) {
-        setConPass("");
-        setNewPass("");
-        const data = await fetch(
-          "https://jobs-api.squareboat.info/api/v1/auth/resetpassword",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              password: newPass,
-              confirmPassword: conPass,
-              token: token,
-            }),
-          }
-        );
-        const res = await data.json();
-        console.log("result is ", res.message);
-        toast.success("Password updated successfully");
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
-      } else {
-        setISLoading(true);
-        toast.error("Invalid Password");
-        setError(true);
-        setTimeout(() => {
+  const onResetPassword = () => {
+    if (newPass && newPass === conPass) {
+      setConPass("");
+      setNewPass("");
+
+      setISLoading(true);
+
+      fetch("https://jobs-api.squareboat.info/api/v1/auth/resetpassword", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password: newPass,
+          confirmPassword: conPass,
+          token: token,
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          toast.success("Password updated successfully");
+          setTimeout(() => {
+            router.push("/login");
+          }, 2000);
+        })
+        .catch((e) => {
+          toast.error(e);
+        })
+        .finally(() => {
           setISLoading(false);
-        }, 1000);
-      }
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-      setISLoading(false);
+        });
+    } else {
+      setISLoading(true);
+      setError(true);
+      toast.error("Invalid Password");
     }
   };
 
   return (
     <>
-      <ToastContainer />
       <Seo title="ResetPassword" />
       <div className={style.reset_header}>
         <div className="mainWrapper">
@@ -72,6 +71,7 @@ const Index = () => {
                 value={newPass}
                 onchange={setNewPass}
                 error={error}
+                required
               />
               <Fields
                 type="password"
@@ -80,6 +80,7 @@ const Index = () => {
                 value={conPass}
                 onchange={setConPass}
                 error={error}
+                required
               />
               {error ? (
                 <p className={style.login_errorpara}>Password do not Match.</p>

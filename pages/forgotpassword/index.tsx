@@ -1,8 +1,8 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../forgotpassword/Forgot.module.css";
 import Fields from "../../components/common/fields/Fields";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 
@@ -19,42 +19,42 @@ const Index = () => {
     getData();
   };
 
-  const getData = async () => {
-    try {
-      const alldata = await fetch(
-        `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${mail}`
-      );
-      const res = await alldata.json();
-      if (res.data && res.data.token) {
-        const myData = await fetch(`
-        https://jobs-api.squareboat.info/api/v1/auth/resetpassword/${res.data.token}`);
-        const resmyData = await myData.json();
-        // console.log("resmyData", resmyData);
-        if (resmyData.code === 200) {
-          router.push(`/resetpassword?token=${res.data.token}`);
+  const getData = () => {
+    fetch(
+      `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${mail}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data?.data?.token) {
+          fetch(`
+          https://jobs-api.squareboat.info/api/v1/auth/resetpassword/${data?.data?.token}`)
+            .then((resData) => {
+              return resData.json();
+            })
+            .then((data) => {
+              console.log("456", data);
+              if (data.code === 200) {
+                router.push(`/resetpassword?token=${data?.data?.token}`);
+              } else {
+                toast.error("Error Found");
+              }
+            });
         } else {
-          alert("Error");
-        }
-      } else {
-        // Toast
-        setISLoading(true);
-        toast.error(res.message);
-        setTimeout(() => {
           setISLoading(false);
-        }, 1000);
-      }
-    } catch (error) {
-      //  console.log(error);
-      toast.error("No email Found");
-      setISLoading(false);
-    }
+          toast.error(data.message);
+        }
+      })
+      .catch(() => {
+        toast.error("Error Found");
+      });
   };
 
   return (
     <>
-      <ToastContainer />
       <Seo title="ForgotpagePassword" />
-      <div className={`${style.forgot_header} mainwrapper`}>
+      <div className={style.forgot_header}>
         <div className={style.forgot_card}>
           <div className={style.forgot_content}>
             <h1 className={style.forgot_h1}>Forgot your password?</h1>
@@ -71,7 +71,7 @@ const Index = () => {
                 placeholder="Enter your email"
                 value={mail}
                 onchange={setMail}
-                pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
                 error={error}
               />
               {/* {error ? (

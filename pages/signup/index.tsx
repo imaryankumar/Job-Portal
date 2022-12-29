@@ -2,20 +2,14 @@ import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
 import style from "../signup/Signup.module.css";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import Loader from "../../components/Loader/Loader";
 import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+import { userAgent } from "next/server";
 // import { getEnvironmentData } from "worker_threads";
 const Index = () => {
-  interface formError {
-    name?: boolean;
-    email?: boolean;
-    password?: boolean;
-    conpassword?: boolean;
-  }
-
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,15 +18,15 @@ const Index = () => {
   const [btn, setBtn] = useState(true);
   const [btn2, setBtn2] = useState(false);
   const [skill, setSkill] = useState("");
-  const [error, setError] = useState(false);
-  // const [formErrors, setFormErrors] = useState<formError>({});
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState<{
+    name?: string;
+    password?: string;
+    email?: string;
+    confirmPassword?: string;
+    skills?: string;
+  }>();
   const [isLoading, setISLoading] = useState(false);
-
-  const [nameError, setNameError] = useState(false);
-  const [mailError, setMailError] = useState(false);
-  const [passError, setPassError] = useState(false);
-  const [conPassError, setConPassError] = useState(false);
-  const [skillError, setSkillError] = useState(false);
 
   interface dataType {
     success?: boolean;
@@ -57,34 +51,8 @@ const Index = () => {
 
   // console.log({ btn, btn2 });
 
-  const Justclick = async (e: any) => {
+  const Justclick = (e: any) => {
     e.preventDefault();
-
-    // const error: {
-    //   name?: boolean;
-    //   email?: boolean;
-    //   password?: boolean;
-    //   conpassword?: boolean;
-    // } = {};
-
-    // if (!!name) {
-    //   error.name = true;
-    // }
-    // if (!!mail) {
-    //   error.email = true;
-    // }
-    // if (!!password) {
-    //   error.password = true;
-    // }
-    // if (!!conpassword) {
-    //   error.conpassword = true;
-    // }
-
-    // if (Object.keys(error).length < 0) {
-    //   setFormErrors(error);
-    //   setName("");
-    //   return null;
-    // }
 
     const body = {
       email: mail,
@@ -94,23 +62,21 @@ const Index = () => {
       name: name,
       skills: skill,
     };
-    try {
-      if (password === conpassword) {
-        const res = await fetch(
-          "https://jobs-api.squareboat.info/api/v1/auth/register",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          }
-        );
+    setISLoading(true);
+    setLoader(true);
 
-        console.log("🚀 ~ file: index.tsx:77 ~ Justclick ~ res", res);
-
-        const finalRes = await res.json();
+    fetch("https://jobs-api.squareboat.info/api/v1/auth/register", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((finalRes) => {
         if (finalRes.success) {
           setData(finalRes);
           setName("");
@@ -122,31 +88,34 @@ const Index = () => {
           toast.success(finalRes.message);
           Router.push("/login");
         } else {
-          setISLoading(true);
+          setError({});
           // setError(true);
-          toast.error(finalRes.message);
-          setTimeout(() => {
-            setISLoading(false);
-          }, 1500);
+          if (finalRes?.message) {
+            toast.error(finalRes.message);
+          } else {
+            const errors = finalRes?.errors;
+            errors.forEach((item: any) => {
+              setError((prev) => ({
+                ...prev,
+                [Object.keys(item)[0]]: Object.values(item)[0],
+              }));
+            });
+          }
         }
-      } else {
-        setISLoading(true);
-        // setError(true);
-        toast.error("Signup Failed");
-        setTimeout(() => {
-          setISLoading(false);
-        }, 1500);
-      }
-    } catch (e) {
-      // console.log("Error");
-      toast.error("Error Found");
-      setISLoading(false);
-    }
+      })
+      .catch((e) => {
+        toast.error(e);
+        toast.error("Error Found");
+        setISLoading(false);
+      })
+      .finally(() => {
+        setISLoading(false);
+        setLoader(false);
+      });
   };
 
   return (
     <>
-      <ToastContainer />
       <Seo title="Signup" />
       <div className={style.signup_header}>
         <div className="mainWrapper">
@@ -192,58 +161,58 @@ const Index = () => {
                 <form onSubmit={(e) => Justclick(e)}>
                   <Fields
                     type="text"
-                    content="Full Name*"
+                    content="Full Name"
                     placeholder="Enter your full name"
-                    error={nameError ? true : false}
+                    error={error?.name ? true : false}
                     value={name}
                     onchange={setName}
+                    required
                   />
 
-                  {nameError ? (
-                    <p className={style.signup_errorpara}>
-                      The field is mandatory.
-                    </p>
+                  {error ? (
+                    <p className={style.signup_errorpara}>{error.name}</p>
                   ) : (
                     ""
                   )}
                   <Fields
                     type="email"
-                    content="Email Address*"
+                    content="Email Address"
                     placeholder="Enter your email"
-                    error={nameError ? true : false}
+                    error={error?.email ? true : false}
                     value={mail}
                     onchange={setMail}
-                    pattern={"[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
+                    pattern={"[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$"}
+                    required
                   />
-                  {nameError ? (
-                    <p className={style.signup_errorpara}>
-                      The field is mandatory.
-                    </p>
+                  {error ? (
+                    <p className={style.signup_errorpara}>{error.email}</p>
                   ) : (
                     ""
                   )}
                   <div className={style.signup_password}>
                     <Fields
                       type="password"
-                      content="Create Password*"
+                      content="Create Password"
                       placeholder="Enter your password"
-                      error={error ? true : false}
+                      error={error?.password ? true : false}
                       value={password}
                       onchange={setPassword}
+                      required
                     />
 
                     <Fields
                       type="password"
-                      content="Confirm Password*"
+                      content="Confirm Password"
                       placeholder="Enter your password"
-                      error={error ? true : false}
+                      error={error?.confirmPassword ? true : false}
                       value={conpassword}
                       onchange={setConpassword}
+                      required
                     />
                   </div>
-                  {error ? (
+                  {error?.password || error?.confirmPassword ? (
                     <p className={style.signup_errorpara}>
-                      The field is mandatory.
+                      {error.password || error.confirmPassword}
                     </p>
                   ) : (
                     ""
@@ -253,8 +222,15 @@ const Index = () => {
                     content="Skills"
                     placeholder="Enter comma separated skills"
                     value={skill}
+                    error={error?.skills ? true : false}
                     onchange={setSkill}
+                    required={role == 1}
                   />
+                  {error?.skills ? (
+                    <p className={style.signup_errorpara}>{error.skills}</p>
+                  ) : (
+                    ""
+                  )}
                   <div className={style.signup_btns}>
                     <button
                       className={style.signup_onclick}
@@ -266,7 +242,7 @@ const Index = () => {
                           : { backgroundColor: "#43afff" }
                       }
                     >
-                      Signup
+                      {loader ? <Loader /> : " Signup"}
                     </button>
                   </div>
                 </form>

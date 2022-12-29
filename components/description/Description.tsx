@@ -7,6 +7,7 @@ interface cardTypes {
   value?: string;
   onchange?: any;
   error?: boolean;
+  required?: boolean;
 }
 const Description = ({
   content,
@@ -15,10 +16,14 @@ const Description = ({
   value,
   onchange,
   error,
+  required,
 }: cardTypes) => {
   return (
     <div className={style.description_content}>
-      <h2 className={style.description_h2}>{content}</h2>
+      <h2 className={style.description_h2}>
+        {content}
+        {required && <span className="star_red">*</span>}
+      </h2>
       <textarea
         placeholder={placeholder}
         className={`${style.description_input} ${
