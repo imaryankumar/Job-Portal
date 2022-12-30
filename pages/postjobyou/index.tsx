@@ -52,6 +52,14 @@ const Index = () => {
     return [];
   }, [totalPage]);
 
+  const pageDefiner = (num: any) => {
+    if (num > 2) {
+      return [num - 2, num - 1, num];
+    } else {
+      return [num - 1, num];
+    }
+  };
+
   const reloadData = (page: number) => {
     setLoader(true);
     fetch(
@@ -261,7 +269,7 @@ const Index = () => {
               height={30}
             />
             {(count + 2 >= totalPage
-              ? [totalPage - 2, totalPage - 1, totalPage]
+              ? pageDefiner(totalPage)
               : [count, count + 1, count + 2]
             )?.map((i, key) => {
               return (

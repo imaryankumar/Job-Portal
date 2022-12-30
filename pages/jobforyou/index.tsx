@@ -81,6 +81,13 @@ const Index = () => {
         setLoader(false);
       });
   };
+  const pageDefiner = (num: any) => {
+    if (num > 2) {
+      return [num - 2, num - 1, num];
+    } else {
+      return [num - 1, num];
+    }
+  };
   const increment = () => {
     if (count < totalPage) {
       count < totalPage && setCount(count + 1);
@@ -252,7 +259,7 @@ const Index = () => {
             ""
           )}
           {(count + 2 >= totalPage
-            ? [count > 2 ? NaN : NaN, totalPage - 1, totalPage]
+            ? pageDefiner(totalPage)
             : [count, count + 1, count + 2]
           )?.map((i, k) => {
             return (
