@@ -35,35 +35,40 @@ const Index = () => {
       [key]: value,
     }));
   };
+  function validateMail(mail: String) {
+    if (!mail.trim()) {
+      setErrorState("email", "Email is required");
+      return true;
+    } else {
+      if (!validateEmail(mail)) {
+        setErrorState("email", "Enter valid email");
+        return true;
+      } else {
+        setErrorState("email", false);
+        return false;
+      }
+    }
+  }
+  function validatePass(pass: string) {
+    if (!pass) {
+      setErrorState("password", "Password is required");
+      return true;
+    } else {
+      if (pass.length < 6) {
+        setErrorState("password", "Password should be min 6 characters");
+        return true;
+      } else {
+        setErrorState("password", false);
+        return false;
+      }
+    }
+  }
   const validateForm = async () => {
     let emailError = false;
     let passwordError = false;
 
-    if (!mail.trim()) {
-      setErrorState("email", "Email is required");
-      emailError = true;
-    } else {
-      if (!validateEmail(mail)) {
-        setErrorState("email", "Enter valid email");
-        emailError = true;
-      } else {
-        setErrorState("email", false);
-        emailError = false;
-      }
-    }
-
-    if (!pass) {
-      setErrorState("password", "Password is required");
-      passwordError = true;
-    } else {
-      if (pass.length < 6) {
-        setErrorState("password", "Password should be min 6 characters");
-        passwordError = true;
-      } else {
-        setErrorState("password", false);
-        passwordError = false;
-      }
-    }
+    emailError = validateMail(mail);
+    passwordError = validatePass(pass);
 
     return emailError || passwordError;
   };
@@ -147,7 +152,13 @@ const Index = () => {
                   content={"Email address"}
                   placeholder="Enter your email"
                   value={mail}
-                  onchange={setMail}
+                  onchange={(value: string) => {
+                    setMail(value);
+                    validateMail(value);
+                  }}
+                  onBlur={() => {
+                    validateMail(mail);
+                  }}
                   pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                   required
                 />
@@ -163,7 +174,13 @@ const Index = () => {
                   placeholder="Enter your password"
                   password="Forgot your password?"
                   value={pass}
-                  onchange={setPass}
+                  onchange={(value: string) => {
+                    setPass(value);
+                    validatePass(value);
+                  }}
+                  onBlur={() => {
+                    validatePass(pass);
+                  }}
                   required
                 />
                 {error ? (

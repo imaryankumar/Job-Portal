@@ -23,21 +23,24 @@ const Index = () => {
       [key]: value,
     }));
   };
-  const validateForm = async () => {
-    let emailError = false;
-
+  function validateMail(mail: string) {
     if (!mail.trim()) {
       setErrorState("email", "Email is required");
-      emailError = true;
+      return true;
     } else {
       if (!validateEmail(mail)) {
         setErrorState("email", "Enter valid email");
-        emailError = true;
+        return true;
       } else {
         setErrorState("email", false);
-        emailError = false;
+        return false;
       }
     }
+  }
+  const validateForm = async () => {
+    let emailError = false;
+    emailError = validateMail(mail);
+
     return emailError;
   };
   const onReset = async (e?: any) => {
@@ -94,7 +97,14 @@ const Index = () => {
                 content="Email address"
                 placeholder="Enter your email"
                 value={mail}
-                onchange={setMail}
+                // onchange={setMail}
+                onchange={(value: string) => {
+                  setMail(value);
+                  validateMail(value);
+                }}
+                onBlur={() => {
+                  validateMail(mail);
+                }}
                 pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                 error={error?.email ? true : false}
               />

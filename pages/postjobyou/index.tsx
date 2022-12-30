@@ -54,7 +54,6 @@ const Index = () => {
 
   const reloadData = (page: number) => {
     setLoader(true);
-
     fetch(
       `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
       {
@@ -66,16 +65,20 @@ const Index = () => {
             ?.token,
         },
       }
-    ).then((res) => {
-      res.json().then((resp) => {
-        setMyData(resp.data?.data);
+    )
+      .then((res) => {
+        res.json().then((resp) => {
+          setMyData(resp.data?.data);
+          setLoader(false);
+          console.log("Data : ", resp.data?.data);
+          setTotalPage(
+            Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
+          );
+        });
+      })
+      .catch((e) => {
         setLoader(false);
-        console.log("Data : ", resp.data?.data);
-        setTotalPage(
-          Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
-        );
       });
-    });
   };
 
   //  const totalJobs = myData?.length;
@@ -140,6 +143,7 @@ const Index = () => {
       .catch((e) => {
         toast.error(e);
         toast.error("Error Found");
+        setLoader(false);
       });
   };
 

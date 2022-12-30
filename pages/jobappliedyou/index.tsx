@@ -35,7 +35,6 @@ const Index = () => {
 
   useEffect(() => {
     setLoader(true);
-
     fetch(`https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied?`, {
       method: "GET",
       headers: {
@@ -52,6 +51,7 @@ const Index = () => {
       })
       .catch((e) => {
         toast.error("Error Found");
+        setLoader(false);
       });
   }, []);
 

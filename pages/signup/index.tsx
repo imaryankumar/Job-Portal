@@ -7,7 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
-import { userAgent } from "next/server";
+
 // import { getEnvironmentData } from "worker_threads";
 const Index = () => {
   const [name, setName] = useState("");
@@ -34,10 +34,68 @@ const Index = () => {
     errors?: any[];
   }
 
-  function validateEmail(email: any) {
-    let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return re.test(email);
+  function validateName(name: string) {
+    if (!name.trim()) {
+      setErrorState("name", "Name is required");
+      return true;
+    }
+    let re = /^[a-zA-Z]+$/;
+    if (!re.test(name)) {
+      setErrorState("name", "Enter valid name");
+      return true;
+    }
+    setErrorState("name", false);
+    return false;
   }
+
+  function validateEmail(email: string) {
+    if (!mail.trim()) {
+      setErrorState("email", "Email is required");
+      return true;
+    }
+    let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!re.test(email)) {
+      setErrorState("email", "Enter valid email");
+      return true;
+    }
+    setErrorState("email", false);
+    return false;
+  }
+
+  function validatePassword(password: string) {
+    if (!password) {
+      setErrorState("password", "Password is required");
+      return true;
+    } else {
+      if (password.length < 6) {
+        setErrorState("password", "Password should be min 6 characters");
+        return true;
+      } else {
+        setErrorState("password", false);
+        return false;
+      }
+    }
+  }
+
+  function validateConfirmPassword(password: string, conpassword: string) {
+    if (conpassword !== password) {
+      setErrorState("confirmPassword", "Passwords do not match");
+      return true;
+    } else {
+      setErrorState("confirmPassword", false);
+      return false;
+    }
+  }
+  function validateSkill(skill: string) {
+    if (Number(role) === 1 && !skill.trim()) {
+      setErrorState("skills", "Skills is required");
+      return true;
+    } else {
+      setErrorState("skills", false);
+      return false;
+    }
+  }
+
   const setErrorState = (key: string, value: any) => {
     setError((prev) => ({
       ...prev,
@@ -51,59 +109,11 @@ const Index = () => {
     let confirmPasswordError = false;
     let skillsError = false;
 
-    if (!name.trim()) {
-      setErrorState("name", "Name is required");
-      nameError = true;
-    } else {
-      let re = /^[a-zA-Z]+$/;
-      if (re.test(name)) {
-      } else {
-        setErrorState("name", false);
-        nameError = false;
-      }
-    }
-
-    if (!mail.trim()) {
-      setErrorState("email", "Email is required");
-      emailError = true;
-    } else {
-      if (!validateEmail(mail)) {
-        setErrorState("email", "Enter valid email");
-        emailError = true;
-      } else {
-        setErrorState("email", false);
-        emailError = false;
-      }
-    }
-
-    if (!password) {
-      setErrorState("password", "Password is required");
-      passwordError = true;
-    } else {
-      if (password.length < 6) {
-        setErrorState("password", "Password should be min 6 characters");
-        passwordError = true;
-      } else {
-        setErrorState("password", false);
-        passwordError = false;
-      }
-    }
-
-    if (conpassword !== password) {
-      setErrorState("confirmPassword", "Passwords do not match");
-      confirmPasswordError = true;
-    } else {
-      setErrorState("confirmPassword", false);
-      confirmPasswordError = false;
-    }
-
-    if (Number(role) === 1 && !skill.trim()) {
-      setErrorState("skills", "Skills is required");
-      skillsError = true;
-    } else {
-      setErrorState("skills", false);
-      skillsError = false;
-    }
+    nameError = validateName(name);
+    emailError = validateEmail(mail);
+    passwordError = validatePassword(password);
+    confirmPasswordError = validateConfirmPassword(password, conpassword);
+    skillsError = validateSkill(skill);
 
     return (
       nameError ||
@@ -185,6 +195,7 @@ const Index = () => {
           toast.error(e);
           toast.error("Error Found");
           setISLoading(false);
+          setLoader(false);
         })
         .finally(() => {
           setISLoading(false);
@@ -244,7 +255,13 @@ const Index = () => {
                     placeholder="Enter your full name"
                     error={error?.name ? true : false}
                     value={name}
-                    onchange={setName}
+                    onchange={(value: string) => {
+                      setName(value);
+                      validateName(value);
+                    }}
+                    onBlur={() => {
+                      validateName(name);
+                    }}
                     required
                   />
 
@@ -257,7 +274,13 @@ const Index = () => {
                     placeholder="Enter your email"
                     error={error?.email ? true : false}
                     value={mail}
-                    onchange={setMail}
+                    onchange={(value: string) => {
+                      setMail(value);
+                      validateEmail(value);
+                    }}
+                    onBlur={() => {
+                      validateEmail(mail);
+                    }}
                     pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                     required
                   />
@@ -273,7 +296,13 @@ const Index = () => {
                       error?.password || error?.confirmPassword ? true : false
                     }
                     value={password}
-                    onchange={setPassword}
+                    onchange={(value: string) => {
+                      setPassword(value);
+                      validatePassword(value);
+                    }}
+                    onBlur={() => {
+                      validatePassword(password);
+                    }}
                     required
                   />
                   {error?.password && (
@@ -286,7 +315,13 @@ const Index = () => {
                     placeholder="Enter your password"
                     error={error?.confirmPassword ? true : false}
                     value={conpassword}
-                    onchange={setConpassword}
+                    onchange={(value: string) => {
+                      setConpassword(value);
+                      validateConfirmPassword(password, value);
+                    }}
+                    onBlur={() => {
+                      validateConfirmPassword(password, conpassword);
+                    }}
                     required
                   />
                   {error?.confirmPassword && (
@@ -301,7 +336,13 @@ const Index = () => {
                     placeholder="Enter comma separated skills"
                     value={skill}
                     error={error?.skills ? true : false}
-                    onchange={setSkill}
+                    onchange={(value: string) => {
+                      setSkill(value);
+                      validateSkill(value);
+                    }}
+                    onBlur={() => {
+                      validateSkill(skill);
+                    }}
                     required={role == 1}
                   />
                   {error?.skills && (

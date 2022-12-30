@@ -33,33 +33,41 @@ const Index = () => {
       [key]: value,
     }));
   };
+  function validateTitle(title: string) {
+    if (!title) {
+      setErrorState("title", "Title is required");
+      return true;
+    } else {
+      setErrorState("title", false);
+      return false;
+    }
+  }
+  function validateDesc(description: string) {
+    if (!description) {
+      setErrorState("description", "Description is required");
+      return true;
+    } else {
+      setErrorState("description", false);
+      return false;
+    }
+  }
+  function validateLoc(location: string) {
+    if (!location) {
+      setErrorState("location", "Location is required");
+      return true;
+    } else {
+      setErrorState("location", false);
+      return false;
+    }
+  }
   const validateForm = async () => {
     let titleError = false;
     let descError = false;
     let locationError = false;
-    if (!title) {
-      setErrorState("title", "Title is required");
-      titleError = true;
-    } else {
-      setErrorState("title", false);
-      titleError = false;
-    }
 
-    if (!description) {
-      setErrorState("description", "Description is required");
-      descError = true;
-    } else {
-      setErrorState("description", false);
-      descError = false;
-    }
-
-    if (!location) {
-      setErrorState("location", "Location is required");
-      titleError = true;
-    } else {
-      setErrorState("location", false);
-      titleError = false;
-    }
+    titleError = validateTitle(title);
+    descError = validateDesc(description);
+    locationError = validateLoc(location);
 
     return titleError || descError || locationError;
   };
@@ -112,6 +120,7 @@ const Index = () => {
           toast.error(e);
           toast.error("Error Found");
           setISLoading(false);
+          setLoader(false);
         })
         .finally(() => {
           setISLoading(false);
@@ -156,7 +165,13 @@ const Index = () => {
                     content="Job title"
                     placeholder="Enter job title"
                     value={title}
-                    onchange={setTitle}
+                    onchange={(value: string) => {
+                      setTitle(value);
+                      validateTitle(value);
+                    }}
+                    onBlur={() => {
+                      validateTitle(title);
+                    }}
                     required
                   />
                   {error && (
@@ -167,7 +182,13 @@ const Index = () => {
                     content="Description"
                     placeholder="Enter job description"
                     value={description}
-                    onchange={setDescription}
+                    onchange={(value: string) => {
+                      setDescription(value);
+                      validateDesc(value);
+                    }}
+                    onBlur={() => {
+                      validateDesc(description);
+                    }}
                     error={error?.description ? true : false}
                     required
                   />
@@ -182,7 +203,13 @@ const Index = () => {
                     content="Location"
                     placeholder="Enter location"
                     value={location}
-                    onchange={setLocation}
+                    onchange={(value: string) => {
+                      setLocation(value);
+                      validateLoc(value);
+                    }}
+                    onBlur={() => {
+                      validateLoc(location);
+                    }}
                     required
                   />
                   {error && (

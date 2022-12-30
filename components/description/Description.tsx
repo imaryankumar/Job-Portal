@@ -6,6 +6,7 @@ interface cardTypes {
   type: string;
   value?: string;
   onchange?: any;
+  onBlur?: any;
   error?: boolean;
   required?: boolean;
 }
@@ -15,6 +16,7 @@ const Description = ({
   type,
   value,
   onchange,
+  onBlur,
   error,
   required,
 }: cardTypes) => {
@@ -32,7 +34,9 @@ const Description = ({
         value={value}
         onChange={(e) => onchange(e.target.value)}
         rows={2.5}
+        onBlur={(e) => onBlur()}
         cols={55}
+        maxLength={1200}
       />
     </div>
   );

@@ -8,6 +8,7 @@ interface cardTypes {
   type: string;
   value?: string;
   onchange?: any;
+  onBlur?: any;
   pattern?: any;
   error?: boolean;
   required?: boolean;
@@ -19,6 +20,7 @@ const Fields = ({
   type,
   value,
   onchange,
+  onBlur,
   pattern,
   error,
   required,
@@ -40,8 +42,9 @@ const Fields = ({
         }`}
         value={value}
         onChange={(e) => onchange(e.target.value)}
+        onBlur={(e) => onBlur()}
         pattern={pattern}
-        maxLength={40}
+        maxLength={255}
       />
     </div>
   );

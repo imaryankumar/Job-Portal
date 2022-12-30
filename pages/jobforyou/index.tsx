@@ -145,6 +145,7 @@ const Index = () => {
         .catch((e) => {
           console.log(e);
           toast.error("Something went wrong");
+          setLoader(false);
         });
     };
     getData();
@@ -251,7 +252,7 @@ const Index = () => {
             ""
           )}
           {(count + 2 >= totalPage
-            ? [totalPage - 2, totalPage - 1, totalPage]
+            ? [count > 2 ? NaN : NaN, totalPage - 1, totalPage]
             : [count, count + 1, count + 2]
           )?.map((i, k) => {
             return (
