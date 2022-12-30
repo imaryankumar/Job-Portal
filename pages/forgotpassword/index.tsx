@@ -9,46 +9,70 @@ import Seo from "../../components/nexthead/Seo";
 const Index = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<{
+    email?: string;
+  }>();
   const [isLoading, setISLoading] = useState(false);
-  const onReset = (e?: any) => {
-    e.preventDefault();
-    if (mail === "") {
-      setError(true);
-    }
-    getData();
+  function validateEmail(email: any) {
+    let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return re.test(email);
+  }
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
+  const validateForm = async () => {
+    let emailError = false;
 
-  const getData = () => {
-    fetch(
-      `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${mail}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data && data?.data?.token) {
-          fetch(`
-          https://jobs-api.squareboat.info/api/v1/auth/resetpassword/${data?.data?.token}`)
-            .then((resData) => {
-              return resData.json();
-            })
-            .then((data) => {
-              console.log("456", data);
-              if (data.code === 200) {
-                router.push(`/resetpassword?token=${data?.data?.token}`);
-              } else {
-                toast.error("Error Found");
-              }
-            });
-        } else {
-          setISLoading(false);
-          toast.error(data.message);
-        }
-      })
-      .catch(() => {
-        toast.error("Error Found");
-      });
+    if (!mail.trim()) {
+      setErrorState("email", "Email is required");
+      emailError = true;
+    } else {
+      if (!validateEmail(mail)) {
+        setErrorState("email", "Enter valid email");
+        emailError = true;
+      } else {
+        setErrorState("email", false);
+        emailError = false;
+      }
+    }
+    return emailError;
+  };
+  const onReset = async (e?: any) => {
+    e.preventDefault();
+    if (!(await validateForm())) {
+      fetch(
+        `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${mail}`
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data && data?.data?.token) {
+            fetch(`
+            https://jobs-api.squareboat.info/api/v1/auth/resetpassword/${data?.data?.token}`)
+              .then((resData) => {
+                return resData.json();
+              })
+              .then((data) => {
+                console.log("456", data);
+                if (data.code === 200) {
+                  router.push(`/resetpassword?token=${data?.data?.token}`);
+                } else {
+                  toast.error("Error Found");
+                }
+              });
+          } else {
+            setISLoading(false);
+            toast.error(data.message);
+          }
+        })
+        .catch(() => {
+          toast.error("Error Found");
+        });
+    }
   };
 
   return (
@@ -71,14 +95,14 @@ const Index = () => {
                 placeholder="Enter your email"
                 value={mail}
                 onchange={setMail}
-                pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
-                error={error}
+                pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
+                error={error?.email ? true : false}
               />
-              {/* {error ? (
-                <p className={style.forgot_errorpara}>The Field is mandatory</p>
+              {error ? (
+                <p className={style.forgot_errorpara}>{error.email}</p>
               ) : (
                 ""
-              )} */}
+              )}
               <div className={style.forgot_btn}>
                 <button
                   className={style.forgot_btns}

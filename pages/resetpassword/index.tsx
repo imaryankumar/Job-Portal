@@ -5,12 +5,14 @@ import style from "../resetpassword/Reset.module.css";
 import { toast } from "react-toastify";
 
 import Seo from "../../components/nexthead/Seo";
+import Loader from "../../components/Loader/Loader";
 
 const Index = () => {
   const [newPass, setNewPass] = useState("");
   const [conPass, setConPass] = useState("");
   const [error, setError] = useState(false);
   const [isLoading, setISLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
 
   const { token } = router.query;
@@ -20,7 +22,7 @@ const Index = () => {
       setNewPass("");
 
       setISLoading(true);
-
+      setLoader(true);
       fetch("https://jobs-api.squareboat.info/api/v1/auth/resetpassword", {
         method: "POST",
         headers: {
@@ -49,9 +51,9 @@ const Index = () => {
           setISLoading(false);
         });
     } else {
-      setISLoading(true);
       setError(true);
       toast.error("Invalid Password");
+      setLoader(false);
     }
   };
 
@@ -99,7 +101,7 @@ const Index = () => {
                       : { backgroundColor: "#43afff" }
                   }
                 >
-                  Submit
+                  {loader ? <Loader /> : "Submit"}
                 </button>
               </div>
             </div>

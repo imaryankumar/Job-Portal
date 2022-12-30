@@ -34,6 +34,85 @@ const Index = () => {
     errors?: any[];
   }
 
+  function validateEmail(email: any) {
+    let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return re.test(email);
+  }
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+  const validateForm = async () => {
+    let nameError = false;
+    let emailError = false;
+    let passwordError = false;
+    let confirmPasswordError = false;
+    let skillsError = false;
+
+    if (!name.trim()) {
+      setErrorState("name", "Name is required");
+      nameError = true;
+    } else {
+      let re = /^[a-zA-Z]+$/;
+      if (re.test(name)) {
+      } else {
+        setErrorState("name", false);
+        nameError = false;
+      }
+    }
+
+    if (!mail.trim()) {
+      setErrorState("email", "Email is required");
+      emailError = true;
+    } else {
+      if (!validateEmail(mail)) {
+        setErrorState("email", "Enter valid email");
+        emailError = true;
+      } else {
+        setErrorState("email", false);
+        emailError = false;
+      }
+    }
+
+    if (!password) {
+      setErrorState("password", "Password is required");
+      passwordError = true;
+    } else {
+      if (password.length < 6) {
+        setErrorState("password", "Password should be min 6 characters");
+        passwordError = true;
+      } else {
+        setErrorState("password", false);
+        passwordError = false;
+      }
+    }
+
+    if (conpassword !== password) {
+      setErrorState("confirmPassword", "Passwords do not match");
+      confirmPasswordError = true;
+    } else {
+      setErrorState("confirmPassword", false);
+      confirmPasswordError = false;
+    }
+
+    if (Number(role) === 1 && !skill.trim()) {
+      setErrorState("skills", "Skills is required");
+      skillsError = true;
+    } else {
+      setErrorState("skills", false);
+      skillsError = false;
+    }
+
+    return (
+      nameError ||
+      emailError ||
+      passwordError ||
+      confirmPasswordError ||
+      skillsError
+    );
+  };
   const [data, setData] = useState<dataType | undefined>(undefined);
 
   //  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -51,67 +130,67 @@ const Index = () => {
 
   // console.log({ btn, btn2 });
 
-  const Justclick = (e: any) => {
+  const Justclick = async (e: any) => {
     e.preventDefault();
-
-    const body = {
-      email: mail,
-      userRole: role,
-      password: password,
-      confirmPassword: conpassword,
-      name: name,
-      skills: skill,
-    };
-    setISLoading(true);
-    setLoader(true);
-
-    fetch("https://jobs-api.squareboat.info/api/v1/auth/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        return res.json();
+    if (!(await validateForm())) {
+      const body = {
+        email: mail,
+        userRole: role,
+        password: password,
+        confirmPassword: conpassword,
+        name: name,
+        skills: skill,
+      };
+      setISLoading(true);
+      setLoader(true);
+      fetch("https://jobs-api.squareboat.info/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       })
-      .then((finalRes) => {
-        if (finalRes.success) {
-          setData(finalRes);
-          setName("");
-          setMail("");
-          setPassword("");
-          setConpassword("");
-          setSkill("");
-          // setError(true);
-          toast.success(finalRes.message);
-          Router.push("/login");
-        } else {
-          setError({});
-          // setError(true);
-          if (finalRes?.message) {
-            toast.error(finalRes.message);
+        .then((res) => {
+          return res.json();
+        })
+        .then((finalRes) => {
+          if (finalRes.success) {
+            setData(finalRes);
+            setName("");
+            setMail("");
+            setPassword("");
+            setConpassword("");
+            setSkill("");
+            // setError(true);
+            toast.success(finalRes.message);
+            Router.push("/login");
           } else {
-            const errors = finalRes?.errors;
-            errors.forEach((item: any) => {
-              setError((prev) => ({
-                ...prev,
-                [Object.keys(item)[0]]: Object.values(item)[0],
-              }));
-            });
+            setError({});
+            // setError(true);
+            if (finalRes?.message) {
+              toast.error(finalRes.message);
+            } else {
+              const errors = finalRes?.errors;
+              errors.forEach((item: any) => {
+                setError((prev) => ({
+                  ...prev,
+                  [Object.keys(item)[0]]: Object.values(item)[0],
+                }));
+              });
+            }
           }
-        }
-      })
-      .catch((e) => {
-        toast.error(e);
-        toast.error("Error Found");
-        setISLoading(false);
-      })
-      .finally(() => {
-        setISLoading(false);
-        setLoader(false);
-      });
+        })
+        .catch((e) => {
+          toast.error(e);
+          toast.error("Error Found");
+          setISLoading(false);
+        })
+        .finally(() => {
+          setISLoading(false);
+          setLoader(false);
+        });
+    }
   };
 
   return (
@@ -169,54 +248,53 @@ const Index = () => {
                     required
                   />
 
-                  {error ? (
+                  {error?.name && (
                     <p className={style.signup_errorpara}>{error.name}</p>
-                  ) : (
-                    ""
                   )}
                   <Fields
-                    type="email"
+                    type="tex"
                     content="Email Address"
                     placeholder="Enter your email"
                     error={error?.email ? true : false}
                     value={mail}
                     onchange={setMail}
-                    pattern={"[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$"}
+                    pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                     required
                   />
-                  {error ? (
-                    <p className={style.signup_errorpara}>{error.email}</p>
-                  ) : (
-                    ""
+                  {error?.email && (
+                    <p className={style.signup_errorpara}>{error?.email}</p>
                   )}
-                  <div className={style.signup_password}>
-                    <Fields
-                      type="password"
-                      content="Create Password"
-                      placeholder="Enter your password"
-                      error={error?.password ? true : false}
-                      value={password}
-                      onchange={setPassword}
-                      required
-                    />
 
-                    <Fields
-                      type="password"
-                      content="Confirm Password"
-                      placeholder="Enter your password"
-                      error={error?.confirmPassword ? true : false}
-                      value={conpassword}
-                      onchange={setConpassword}
-                      required
-                    />
-                  </div>
-                  {error?.password || error?.confirmPassword ? (
-                    <p className={style.signup_errorpara}>
-                      {error.password || error.confirmPassword}
-                    </p>
-                  ) : (
-                    ""
+                  <Fields
+                    type="password"
+                    content="Create Password"
+                    placeholder="Enter your password"
+                    error={
+                      error?.password || error?.confirmPassword ? true : false
+                    }
+                    value={password}
+                    onchange={setPassword}
+                    required
+                  />
+                  {error?.password && (
+                    <p className={style.signup_errorpara}>{error?.password}</p>
                   )}
+
+                  <Fields
+                    type="password"
+                    content="Confirm Password"
+                    placeholder="Enter your password"
+                    error={error?.confirmPassword ? true : false}
+                    value={conpassword}
+                    onchange={setConpassword}
+                    required
+                  />
+                  {error?.confirmPassword && (
+                    <p className={style.signup_errorpara}>
+                      {error?.confirmPassword}
+                    </p>
+                  )}
+
                   <Fields
                     type="text"
                     content="Skills"
@@ -226,10 +304,8 @@ const Index = () => {
                     onchange={setSkill}
                     required={role == 1}
                   />
-                  {error?.skills ? (
-                    <p className={style.signup_errorpara}>{error.skills}</p>
-                  ) : (
-                    ""
+                  {error?.skills && (
+                    <p className={style.signup_errorpara}>{error?.skills}</p>
                   )}
                   <div className={style.signup_btns}>
                     <button

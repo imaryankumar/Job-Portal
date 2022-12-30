@@ -25,58 +25,103 @@ const Index = () => {
 
   const [data, setData] = useState<dataType | undefined>(undefined);
 
-  const justsubmit = (e: any) => {
-    e.preventDefault();
-    const body = {
-      email: mail,
-      password: pass,
-    };
-    setISLoading(true);
-    setLoader(true);
-    fetch("https://jobs-api.squareboat.info/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((finalRes) => {
-        setISLoading(false);
-        if (finalRes.success) {
-          setISLoading(true);
-          toast.success("You have successfully logged in");
-          setData(finalRes);
+  function validateEmail(email: any) {
+    let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return re.test(email);
+  }
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+  const validateForm = async () => {
+    let emailError = false;
+    let passwordError = false;
 
-          myData.setLoggin(finalRes.data);
-        } else {
-          setISLoading(true);
-          setError({});
-          if (finalRes?.message) {
-            toast.error(finalRes.message);
+    if (!mail.trim()) {
+      setErrorState("email", "Email is required");
+      emailError = true;
+    } else {
+      if (!validateEmail(mail)) {
+        setErrorState("email", "Enter valid email");
+        emailError = true;
+      } else {
+        setErrorState("email", false);
+        emailError = false;
+      }
+    }
+
+    if (!pass) {
+      setErrorState("password", "Password is required");
+      passwordError = true;
+    } else {
+      if (pass.length < 6) {
+        setErrorState("password", "Password should be min 6 characters");
+        passwordError = true;
+      } else {
+        setErrorState("password", false);
+        passwordError = false;
+      }
+    }
+
+    return emailError || passwordError;
+  };
+
+  const justsubmit = async (e: any) => {
+    e.preventDefault();
+    if (!(await validateForm())) {
+      const body = {
+        email: mail,
+        password: pass,
+      };
+      setISLoading(true);
+      setLoader(true);
+      fetch("https://jobs-api.squareboat.info/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((finalRes) => {
+          setISLoading(false);
+          if (finalRes.success) {
+            setISLoading(true);
+            toast.success("You have successfully logged in");
+            setData(finalRes);
+
+            myData.setLoggin(finalRes.data);
           } else {
-            const errors = finalRes?.errors;
-            errors.forEach((item: any) => {
-              setError((prev) => ({
-                ...prev,
-                [Object.keys(item)[0]]: Object.values(item)[0],
-              }));
-            });
+            setISLoading(true);
+            setError({});
+            if (finalRes?.message) {
+              toast.error(finalRes.message);
+            } else {
+              const errors = finalRes?.errors;
+              errors.forEach((item: any) => {
+                setError((prev) => ({
+                  ...prev,
+                  [Object.keys(item)[0]]: Object.values(item)[0],
+                }));
+              });
+            }
           }
-        }
-      })
-      .catch((e) => {
-        toast.error(e);
-        toast.error("Login Failed");
-        setISLoading(false);
-      })
-      .finally(() => {
-        setISLoading(false);
-        setLoader(false);
-      });
+        })
+        .catch((e) => {
+          toast.error(e);
+          toast.error("Login Failed");
+          setISLoading(false);
+        })
+        .finally(() => {
+          setISLoading(false);
+          setLoader(false);
+        });
+    }
     // const finalRes = await allData.json();
   };
 
@@ -103,7 +148,7 @@ const Index = () => {
                   placeholder="Enter your email"
                   value={mail}
                   onchange={setMail}
-                  pattern={"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,4}$"}
+                  pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                   required
                 />
                 {error ? (

@@ -27,59 +27,97 @@ const Index = () => {
   }>();
   const router = useRouter();
   const [isLoading, setISLoading] = useState(false);
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+  const validateForm = async () => {
+    let titleError = false;
+    let descError = false;
+    let locationError = false;
+    if (!title) {
+      setErrorState("title", "Title is required");
+      titleError = true;
+    } else {
+      setErrorState("title", false);
+      titleError = false;
+    }
 
-  const JustonClick = (e: any) => {
+    if (!description) {
+      setErrorState("description", "Description is required");
+      descError = true;
+    } else {
+      setErrorState("description", false);
+      descError = false;
+    }
+
+    if (!location) {
+      setErrorState("location", "Location is required");
+      titleError = true;
+    } else {
+      setErrorState("location", false);
+      titleError = false;
+    }
+
+    return titleError || descError || locationError;
+  };
+  const JustonClick = async (e: any) => {
     e.preventDefault();
-    const body = {
-      title: title,
-      description: description,
-      location: location,
-    };
-    setISLoading(true);
-    setLoader(true);
-    fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: JSON.parse(localStorage.getItem("user") || "{}")?.token,
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        return res.json();
+    if (!(await validateForm())) {
+      const body = {
+        title: title,
+        description: description,
+        location: location,
+      };
+      setISLoading(true);
+      setLoader(true);
+      fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("user") || "{}")
+            ?.token,
+        },
+        body: JSON.stringify(body),
       })
-      .then((finalRes) => {
-        if (finalRes.success) {
-          setData(finalRes);
-          setISLoading(true);
-          router.push("/postjobyou");
-        } else {
-          setISLoading(true);
-          setError({});
-          if (finalRes?.message) {
-            toast.error(finalRes.message);
+        .then((res) => {
+          return res.json();
+        })
+        .then((finalRes) => {
+          if (finalRes.success) {
+            setData(finalRes);
+            setISLoading(true);
+            router.push("/postjobyou");
           } else {
-            const errors = finalRes?.errors;
+            setISLoading(true);
+            setError({});
+            if (finalRes?.message) {
+              toast.error(finalRes.message);
+            } else {
+              const errors = finalRes?.errors;
 
-            errors.forEach((item: any) => {
-              setError((prev) => ({
-                ...prev,
-                [Object.keys(item)[0]]: Object.values(item)[0],
-              }));
-            });
+              errors.forEach((item: any) => {
+                setError((prev) => ({
+                  ...prev,
+                  [Object.keys(item)[0]]: Object.values(item)[0],
+                }));
+              });
+            }
           }
-        }
-      })
-      .catch((e) => {
-        toast.error(e);
-        toast.error("Error Found");
-        setISLoading(false);
-      })
-      .finally(() => {
-        setISLoading(false);
-        setLoader(false);
-      });
+        })
+        .catch((e) => {
+          toast.error(e);
+          toast.error("Error Found");
+          setISLoading(false);
+        })
+        .finally(() => {
+          setISLoading(false);
+          setLoader(false);
+        });
+    }
   };
 
   return (
@@ -114,17 +152,15 @@ const Index = () => {
                 >
                   <Fields
                     type="text"
-                    error={error ? true : false}
+                    error={error?.title ? true : false}
                     content="Job title"
                     placeholder="Enter job title"
                     value={title}
                     onchange={setTitle}
                     required
                   />
-                  {error ? (
+                  {error && (
                     <p className={style.jobpost_errorpara}>{error.title}</p>
-                  ) : (
-                    ""
                   )}
                   <Description
                     type="text"
@@ -132,29 +168,25 @@ const Index = () => {
                     placeholder="Enter job description"
                     value={description}
                     onchange={setDescription}
-                    error={error ? true : false}
+                    error={error?.description ? true : false}
                     required
                   />
-                  {error ? (
+                  {error && (
                     <p className={style.jobpost_errorpara}>
                       {error.description}
                     </p>
-                  ) : (
-                    ""
                   )}
                   <Fields
                     type="text"
-                    error={error ? true : false}
+                    error={error?.location ? true : false}
                     content="Location"
                     placeholder="Enter location"
                     value={location}
                     onchange={setLocation}
                     required
                   />
-                  {error ? (
+                  {error && (
                     <p className={style.jobpost_errorpara}>{error.location}</p>
-                  ) : (
-                    ""
                   )}
                   <div className={style.jobpost_btns}>
                     <button

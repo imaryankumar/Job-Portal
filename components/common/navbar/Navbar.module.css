@@ -66,8 +66,8 @@
   border-bottom: 5px solid #43afff;
 }
 .nav_arrowbtn {
-  width: 17px;
-  height: 10px;
+  /* width: 17px;
+  height: 10px; */
   margin-left: 3.5rem;
   margin-top: -0.9rem;
   position: relative;
