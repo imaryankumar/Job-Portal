@@ -4,8 +4,6 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext, Tuser } from "../../contextapi/ContextAPI";
 import style from "../navbar/Navbar.module.css";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const { isLoggedIN, user, setLogout } = useContext(authcontext);
@@ -31,8 +29,8 @@ function Navbar() {
     }
   }, [router]);
   return (
-    <div className={`container-lg mx-22 `}>
-      <div className={style.wrapper}>
+    <div className="container-lg mx-22">
+      <div className="px-0.5">
         <nav
           className={`${style.mynavbar} bg-[#303F60] py-2 px-20 mainWrapper`}
         >
@@ -40,7 +38,8 @@ function Navbar() {
             <Link href={"/"}>
               <div className={style.logo}>
                 <h2>
-                  My<span className={style.span}>Jobs</span>
+                  My
+                  <span className="text-blue-500 text-3xl font-bold">Jobs</span>
                 </h2>
               </div>{" "}
             </Link>

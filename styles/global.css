@@ -24,3 +24,6 @@
 .star_red {
   color: red;
 }
+.mytexts {
+  @apply text-3xl sm:text-5xl md:text-7xl lg:text-[min(4.2vw,80px)];
+}
