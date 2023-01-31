@@ -1,4 +1,3 @@
-import style from "../jobforyou/Jobsforyou.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
@@ -162,10 +161,10 @@ const Index = () => {
     <>
       <Seo title="JobForYou" />
 
-      <div className={style.postedjobyou_header}>
+      <div className="bg-[#303f60] w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
-          <div className={style.postedjobyou_mytopbar}>
-            <div className={style.postedjobyou_topbar}>
+          <div className="px-44 py-0">
+            <div className="flex text-center items-center pt-[5px] ">
               <Link href={"/"}>
                 <Image
                   src="/iconsimgs/homeicon.png"
@@ -178,31 +177,34 @@ const Index = () => {
                 <span>Home</span>
               </Link>
             </div>
-            <div className={style.postedjobyou_para}>
+            <div className="mt-4">
               <h1>Jobs for you</h1>
             </div>
           </div>
-          <div className={style.postedjob_allcards}>
-            <div className={style.postjob_mycard}>
+          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 py-0 px-8 ">
+            <div className="flex flex-wrap items-center justify-center w-full min-h-[50vh] ">
               {loader ? (
                 <Loader />
               ) : (
                 myCanData?.map((item: cardTypes, key) => {
                   return (
-                    <div className={style.postjoballcards} key={key}>
+                    <div
+                      className="w-[260px] h-[162px] bg-[#ffffff] rounded-[5px] p-4 mr-4 mb-4 relative capitalize shadow "
+                      key={key}
+                    >
                       <div
-                        className={`${style.postjobmycard_heading} ${style.line_clamp}`}
+                        className={`w-full h-[20px] text-[17px] opacity-100 text-[#303f60] tracking-normal line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                        className={`w-[229px] text-[14px] tracking-normal text-[#303f60] opacity-80 my-2 mx-0 line-clamps`}
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className={style.postjobmycard_locsection}>
-                        <div className={style.postjobmycard_locationcard}>
+                      <div className="flex items-center text-center  absolute bottom-4 justify-center ">
+                        <div className="flex mr-4">
                           <Image
                             src="/iconsimgs/mypin.png"
                             alt=""
@@ -210,7 +212,7 @@ const Index = () => {
                             height={15}
                           />
                           <h3
-                            className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-[#303f60] opacity-80 line-clamps`}
                           >
                             {item.location}
                           </h3>
@@ -220,7 +222,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className={style.postjobmycard_btn}
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded-[5px] opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply
@@ -236,8 +238,8 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className={style.postedjobyou_section}>
-        <div className={style.postedjobyou_footers}>
+      <div className="bg-[#edf6ff] w-full h-auto">
+        <div className="flex justify-center text-center items-center gap-[1%] pt-[55rem] cursor-pointer pb-8 ">
           <Image
             src="/iconsimgs/left.png"
             alt=""
@@ -248,7 +250,7 @@ const Index = () => {
           {count > 1 ? (
             <>
               <div
-                className={style.postjobyou_span}
+                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400] "
                 onClick={() => onNumClick(1)}
               >
                 1
@@ -264,7 +266,7 @@ const Index = () => {
           )?.map((i, k) => {
             return (
               <span
-                className={style.postjobyou_span}
+                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
                 onClick={() => onNumClick(i)}
                 style={
                   count === i
@@ -287,7 +289,7 @@ const Index = () => {
             <>
               ...
               <div
-                className={style.postjobyou_span}
+                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
                 onClick={() => onNumClick(totalPage)}
               >
                 {totalPage}

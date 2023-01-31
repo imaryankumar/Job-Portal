@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
 import Description from "../../components/description/Description";
-import style from "../jobpost/jobpost.module.css";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import { toast } from "react-toastify";
@@ -133,32 +132,32 @@ const Index = () => {
     <>
       <Seo title="JobPost" />
 
-      <div className={`${style.header}`}>
+      <div className="bg-[#303f60] w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
-          <div className={`${style.jobpost_topcontent}  `}>
+          <div className="flex py-4 px-48">
             <Link href={"/"}>
               <Image
                 src="/iconsimgs/homeicon.png"
                 alt=""
                 width={10}
                 height={9}
+                className="mt-2 mr-2"
               />
             </Link>
             <span>Home &gt; Post a Job</span>
           </div>
         </div>
         <div className="mainWrapper">
-          <div className={`${style.jobpost_allmycard}`}>
-            <div className={style.jobpost_card}>
-              <div className={style.jobpost_content}>
-                <div className={style.jobpost_title}>
-                  <h2 className={style.jobpost_h2}>Post a Job </h2>
+          <div className="flex items-center justify-center pt-12">
+            <div className="w-[557px] h-[506px] bg-[#ffffff] box-shadows rounded-[20px] flex flex-col items-center justify-center ">
+              <div>
+                <div className="px-0 py-4">
+                  <h2 className="text-[#303f60] text-[22px] tracking-normal opacity-100 ">
+                    Post a Job{" "}
+                  </h2>
                 </div>
 
-                <form
-                  className={style.jobpost_form}
-                  onSubmit={(e) => JustonClick(e)}
-                >
+                <form className="w-[500px]" onSubmit={(e) => JustonClick(e)}>
                   <Fields
                     type="text"
                     error={error?.title ? true : false}
@@ -175,7 +174,9 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className={style.jobpost_errorpara}>{error.title}</p>
+                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%] ">
+                      {error.title}
+                    </p>
                   )}
                   <Description
                     type="text"
@@ -193,7 +194,7 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className={style.jobpost_errorpara}>
+                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%]">
                       {error.description}
                     </p>
                   )}
@@ -213,11 +214,13 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className={style.jobpost_errorpara}>{error.location}</p>
+                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%]">
+                      {error.location}
+                    </p>
                   )}
-                  <div className={style.jobpost_btns}>
+                  <div className="flex items-center justify-center pb-[20px] ">
                     <button
-                      className={style.jobpost_btn}
+                      className="w-[148px] h-[46px] bg-[#43afff] border border-solid border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-4 cursor-pointer text-[#ffffff] "
                       disabled={isLoading}
                       type="submit"
                       style={
@@ -235,7 +238,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className={style.jobpost_section}></div>
+      <div className="bg-[#edf6ff] w-full"></div>
     </>
   );
 };

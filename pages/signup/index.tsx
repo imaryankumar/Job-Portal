@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
-import style from "../signup/Signup.module.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
@@ -204,22 +203,25 @@ const Index = () => {
     }
   };
 
+  // console.log("button", btn2 ? "a" : "b");
+  // console.log("button", btn ? "aa" : "bb");
+
   return (
     <>
       <Seo title="Signup" />
-      <div className={style.signup_header}>
+      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className={style.signup_card}>
-            <div className={style.signup_content}>
-              <h1 className={style.signup_h1}>Signup</h1>
-              <h2 className={style.signup_h2}>
+          <div className="w-[557px] h-auto bg-[#ffffff] box-shadows rounded-[20px] mt-[32rem] flex flex-col items-center text-[#303f60]">
+            <div className="w-full py-0 px-10">
+              <h1 className="text-[22px] text-[#303f60] py-6 px-0">Signup</h1>
+              <h2 className="pb-2 text-[14px]">
                 I’m a<span className="star_red">*</span>
               </h2>
-              <div className={style.signup_onchange}>
+              <div className="flex">
                 <button
                   type="button"
-                  className={`${style.signup_btnchange} ${
-                    btn ? style.btnTrue : style.btnFalse
+                  className={`w-[148px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded-[5px] cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                    btn && "BtnTrue"
                   }`}
                   onClick={() => mybtn1()}
                 >
@@ -233,8 +235,8 @@ const Index = () => {
                 </button>
                 <button
                   type="button"
-                  className={`${style.signup_btnchange} ${
-                    btn2 ? style.btnTrue : style.btnFalse
+                  className={`w-[148px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded-[5px] cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                    btn2 && "BtnTrue"
                   }`}
                   onClick={() => mybtn2()}
                 >
@@ -247,7 +249,7 @@ const Index = () => {
                   Candidate
                 </button>
               </div>
-              <div className={style.signup_fields}>
+              <div className="my-4 mx-0">
                 <form onSubmit={(e) => Justclick(e)}>
                   <Fields
                     type="text"
@@ -266,10 +268,12 @@ const Index = () => {
                   />
 
                   {error?.name && (
-                    <p className={style.signup_errorpara}>{error.name}</p>
+                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                      {error.name}
+                    </p>
                   )}
                   <Fields
-                    type="tex"
+                    type="text"
                     content="Email Address"
                     placeholder="Enter your email"
                     error={error?.email ? true : false}
@@ -285,7 +289,9 @@ const Index = () => {
                     required
                   />
                   {error?.email && (
-                    <p className={style.signup_errorpara}>{error?.email}</p>
+                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                      {error?.email}
+                    </p>
                   )}
 
                   <Fields
@@ -306,7 +312,9 @@ const Index = () => {
                     required
                   />
                   {error?.password && (
-                    <p className={style.signup_errorpara}>{error?.password}</p>
+                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                      {error?.password}
+                    </p>
                   )}
 
                   <Fields
@@ -325,7 +333,7 @@ const Index = () => {
                     required
                   />
                   {error?.confirmPassword && (
-                    <p className={style.signup_errorpara}>
+                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
                       {error?.confirmPassword}
                     </p>
                   )}
@@ -346,11 +354,13 @@ const Index = () => {
                     required={role == 1}
                   />
                   {error?.skills && (
-                    <p className={style.signup_errorpara}>{error?.skills}</p>
+                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                      {error?.skills}
+                    </p>
                   )}
-                  <div className={style.signup_btns}>
+                  <div className="flex items-center justify-center">
                     <button
-                      className={style.signup_onclick}
+                      className="w-[148px] h-[46px] bg-[#43afff] border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={
@@ -363,10 +373,10 @@ const Index = () => {
                     </button>
                   </div>
                 </form>
-                <div className={style.signup_check}>
+                <div className="text-[#303f60] text-center mt-9 cursor-pointer">
                   <h2>
                     Have an account?{" "}
-                    <span className={style.signup_account}>
+                    <span className="text-[#43afff] text-[16px]">
                       <Link href={"/login"}>Login</Link>
                     </span>
                   </h2>
@@ -376,7 +386,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className={style.signup_section}></div>
+      <div className="bg-[#edf6ff] w-full h-[75vh]"></div>
     </>
   );
 };

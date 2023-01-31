@@ -1,4 +1,3 @@
-import style from "../jobappliedyou/Jobappliedyou.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Seo from "../../components/nexthead/Seo";
@@ -99,9 +98,9 @@ const Index = () => {
   return (
     <>
       <Seo title="JobAppliedYou" />{" "}
-      <div className={style.jobappliedyou_header}>
-        <div className={style.jobapplied_bars}>
-          <div className={style.jobappliedyou_topbar}>
+      <div className="bg-[#303f60] w-full h-[18vh] text-white ">
+        <div className="px-44 py-0">
+          <div className="flex text-center items-center pt-[5px] text-[12px] opacity-80 ">
             <Link href={"/"}>
               <Image
                 src="/iconsimgs/homeicon.png"
@@ -112,31 +111,34 @@ const Index = () => {
             </Link>
             Home &gt; Applied Jobs
           </div>
-          <div className={style.jobappliedyou_para}>
+          <div className="mt-4">
             <h1>Jobs applied by you</h1>
           </div>
         </div>
         {myCanData?.length > 0 ? (
-          <div className={style.postedjob_allcards}>
-            <div className={style.postjob_mycard}>
+          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 px-32 py-0 ">
+            <div className="flex flex-wrap items-center justify-start px-8 py-0">
               {myCanData
                 ?.slice(pagination.start, pagination.end)
                 .map((item: cardTypes, key) => {
                   return (
-                    <div className={style.postjoballcards} key={key}>
+                    <div
+                      className="w-[260px] h-[162px] bg-[#ffffff] shadow rounded-[5px] p-4 mr-4 mb-4 relative capitalize "
+                      key={key}
+                    >
                       <div
-                        className={`${style.postjobmycard_heading} ${style.line_clamp}`}
+                        className={`w-full h-[20px] text-[17px] tracking-normal text-[#303f60] opacity-100 line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`${style.postjobmycard_para} ${style.line_clamp}`}
+                        className={`w-[229px] text-[14px] tracking-normal text-[#303f60] opacity-80 mx-0 my-2 line-clamps`}
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className={style.postjobmycard_locsection}>
-                        <div className={style.postjobmycard_locationcard}>
+                      <div className="flex items-center text-center absolute justify-center bottom-4 ">
+                        <div className="flex">
                           <Image
                             src="/iconsimgs/mypin.png"
                             alt=""
@@ -144,7 +146,7 @@ const Index = () => {
                             height={15}
                           />
                           <h3
-                            className={`${style.postjobmycard_h3} ${style.line_clamps}`}
+                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-[#303f60] opacity-80 line-clamps`}
                           >
                             {item.location}
                           </h3>
@@ -160,19 +162,19 @@ const Index = () => {
             {loader ? (
               <Loader />
             ) : (
-              <div className={style.jobapply_section}>
+              <div className="mt-40 h-[80vh] flex flex-col items-center justify-center ">
                 <Image
                   src="/iconsimgs/write.png"
                   alt=""
-                  className={style.jobapply_img}
+                  className="opacity-50 bg-transparent "
                   width={106}
                   height={106}
                 />
-                <h2 className={style.jobapply_h2}>
+                <h2 className="w-[292px] h-[23px] text-[#303f60] text-[20px] opacity-80 px-0 py-4 ">
                   Your applied jobs will show here!
                 </h2>
                 <button
-                  className={style.jobapply_btn}
+                  className="w-[148px] h-[46px] bg-[#43afff] border border-solid border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-10 cursor-pointer text-[#ffffff] "
                   onClick={() => router.push("/jobforyou")}
                 >
                   See all jobs
@@ -183,8 +185,8 @@ const Index = () => {
         )}
       </div>
       {myCanData?.length > 0 && totalPage > 1 && (
-        <div className={style.jobappliedyou_section}>
-          <div className={style.jobappliedyou_footers}>
+        <div className="h-auto">
+          <div className="pt-[77rem]">
             <Image
               src="/iconsimgs/left.png"
               alt=""
@@ -196,7 +198,7 @@ const Index = () => {
             {count > 1 ? (
               <>
                 <div
-                  className={style.postjobyou_span}
+                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(1)}
                 >
                   1
@@ -212,7 +214,7 @@ const Index = () => {
             )?.map((i, k) => {
               return (
                 <span
-                  className={style.postjobyou_span}
+                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
                   onClick={() => onNumClick(i)}
                   style={
                     count === i
@@ -235,7 +237,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className={style.postjobyou_span}
+                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}

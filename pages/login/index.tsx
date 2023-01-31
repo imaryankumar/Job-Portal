@@ -1,4 +1,3 @@
-import style from "../login/login.module.css";
 import Fields from "../../components/common/fields/Fields";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -134,18 +133,17 @@ const Index = () => {
     <>
       <Seo title="Login" description="This is Login page " />
 
-      <div className={style.header}>
-        <div className={style.login_card}>
+      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
+        <div className="bg-[#ffffff] box-shadows rounded-2xl mt-[17rem] flex flex-col items-center justify-center py-6 px-8">
           <div className={`mainWrapper`}>
-            <div className={style.login_content}>
-              <div className={style.login_title}>
-                <h2 className={style.login_h2}>Login </h2>
+            <div>
+              <div className="py-1 px-0">
+                <h2 className="text-[#303f60] text-2xl tracking-normal opacity-100">
+                  Login{" "}
+                </h2>
               </div>
 
-              <form
-                onSubmit={(e) => justsubmit(e)}
-                className={style.login_form}
-              >
+              <form onSubmit={(e) => justsubmit(e)} className="w-[500px]">
                 <Fields
                   type="email"
                   error={error?.email ? true : false}
@@ -163,7 +161,9 @@ const Index = () => {
                   required
                 />
                 {error ? (
-                  <p className={style.login_errorpara}>{error.email}</p>
+                  <p className="text-red-500 text-right mt-[-12px] text-xs">
+                    {error.email}
+                  </p>
                 ) : (
                   ""
                 )}
@@ -184,13 +184,15 @@ const Index = () => {
                   required
                 />
                 {error ? (
-                  <p className={style.login_errorpara}>{error.password}</p>
+                  <p className="text-red-500 text-right mt-[-12px] text-xs">
+                    {error.password}
+                  </p>
                 ) : (
                   ""
                 )}
-                <div className={style.login_btns}>
+                <div className="flex items-center justify-center">
                   <button
-                    className={style.login_btn}
+                    className="w-[148px] h-[46px] bg-[#43afff]  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#ffffff]"
                     disabled={isLoading}
                     type="submit"
                     style={
@@ -204,10 +206,10 @@ const Index = () => {
                 </div>
               </form>
 
-              <div className={style.login_check}>
+              <div className="text-[#303f60] text-center mt-10 cursor-pointer">
                 <h2>
                   New to MyJobs?{" "}
-                  <span className={style.create_account}>
+                  <span className="text-[#43afff] text-base">
                     <Link href={"/signup"}>Create an account</Link>
                   </span>
                 </h2>
@@ -216,7 +218,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className={style.login_section}></div>
+      <div className="bg-[#edf6ff] w-full h-[70vh]"></div>
     </>
   );
 };

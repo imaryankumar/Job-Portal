@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import style from "../forgotpassword/Forgot.module.css";
 import Fields from "../../components/common/fields/Fields";
 import { toast } from "react-toastify";
 
@@ -81,16 +80,18 @@ const Index = () => {
   return (
     <>
       <Seo title="ForgotpagePassword" />
-      <div className={style.forgot_header}>
-        <div className={style.forgot_card}>
-          <div className={style.forgot_content}>
-            <h1 className={style.forgot_h1}>Forgot your password?</h1>
-            <p className={style.forgot_p}>
+      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
+        <div className="w-[557px] h-[318px] bg-[#ffffff] box-shadows rounded-3xl mt-56 flex flex-col items-center">
+          <div className="px-8 py-2">
+            <h1 className="text-[#303f60] text-[22px] py-2 px-0 ">
+              Forgot your password?
+            </h1>
+            <p className="text-sm text-[#303f60] py-2 px-0">
               Enter the email associated with your account and we’ll send you
               instructions to reset your password.
             </p>
           </div>
-          <div className={style.forgot_field}>
+          <div className="w-[500px]">
             <form onSubmit={(e) => onReset(e)}>
               <Fields
                 type="email"
@@ -109,13 +110,15 @@ const Index = () => {
                 error={error?.email ? true : false}
               />
               {error ? (
-                <p className={style.forgot_errorpara}>{error.email}</p>
+                <p className="text-red-700 text-right text-[12px] mt-[-12px] ">
+                  {error.email}
+                </p>
               ) : (
                 ""
               )}
-              <div className={style.forgot_btn}>
+              <div className="flex items-center justify-center">
                 <button
-                  className={style.forgot_btns}
+                  className="w-[148px] h-[46px] bg-[#43afff] border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
                   style={
                     isLoading
@@ -130,7 +133,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className={style.forgot_section}></div>
+      <div className="bg-[#edf6ff] w-full h-auto"></div>
     </>
   );
 };
