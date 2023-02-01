@@ -80,9 +80,9 @@ const Index = () => {
   return (
     <>
       <Seo title="ForgotpagePassword" />
-      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
+      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center ">
         <div className="w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center">
-          <div className="px-8 py-2">
+          <div className="px-1 py-2 w-[380px] md:w-[500px]  ">
             <h1 className="text-[#303f60] text-[22px] py-2 px-0 ">
               Forgot your password?
             </h1>
@@ -91,7 +91,7 @@ const Index = () => {
               instructions to reset your password.
             </p>
           </div>
-          <div className="w-[500px]">
+          <div className=" w-[380px] md:w-[500px]">
             <form onSubmit={(e) => onReset(e)}>
               <Fields
                 type="email"
