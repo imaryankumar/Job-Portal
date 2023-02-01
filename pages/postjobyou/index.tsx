@@ -157,7 +157,7 @@ const Index = () => {
   return (
     <>
       <Seo title="PostJobYou" />
-      <div className="bg-[#303f60] w-full h-[18vh] text-white">
+      <div className="bg-[#1A253C] w-full h-[18vh] text-white">
         <div className="mainWrapper">
           <div className="px-44 py-0">
             <div className="flex text-center items-center pt-[5px]">
@@ -189,7 +189,7 @@ const Index = () => {
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
-                    className="w-[260px] h-[162px] bg-[#ffffff] rounded-[5px] p-4 mr-4 mb-4 relative capitalize shadow "
+                    className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow "
                     key={key}
                   >
                     <div
@@ -221,7 +221,7 @@ const Index = () => {
                       </div>
                       <div>
                         <button
-                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded-[5px] opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 `}
+                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 `}
                           onClick={() => postClick(item.id)}
                         >
                           View applications
@@ -249,7 +249,7 @@ const Index = () => {
                   Your posted jobs will show here!
                 </h2>
                 <button
-                  className="w-[148px] h-[46px] bg-[#43afff] border border-solid border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-10 cursor-pointer text-[#ffffff] "
+                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white "
                   onClick={() => router.push("/jobpost")}
                 >
                   Post a Job
@@ -276,7 +276,7 @@ const Index = () => {
             )?.map((i, key) => {
               return (
                 <span
-                  className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-normal "
+                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal "
                   onClick={(e) => onNumClick(e)}
                   style={
                     count === i
@@ -299,7 +299,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400] "
+                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}
@@ -347,7 +347,7 @@ const Index = () => {
                   jobData?.map((items: cardTypes, k) => {
                     return (
                       <div key={k} className="p-2">
-                        <div className="w-[295px] h-[159px] flex items-center justify-center bg-[#ffffff] border border-solid border-[#303f6080] rounded-[5px] py-0 px-2 flex-wrap ">
+                        <div className="w-[295px] h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded py-0 px-2 flex-wrap ">
                           <div className="w-[274px] h-[131px] capitalize ">
                             <div className="flex items-center">
                               <span className="w-[35px] h-[35px] rounded-[25px] opacity-100 bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4 ">

@@ -133,8 +133,8 @@ const Index = () => {
     <>
       <Seo title="Login" description="This is Login page " />
 
-      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
-        <div className="bg-[#ffffff] box-shadows rounded-2xl mt-[17rem] flex flex-col items-center justify-center py-6 px-8">
+      <div className="bg-[#1A253C] w-full h-[38vh] text-white flex items-center justify-center">
+        <div className="bg-white box-shadows rounded-2xl mt-[17rem] flex flex-col items-center justify-center py-6 px-5">
           <div className={`mainWrapper`}>
             <div>
               <div className="py-1 px-0">
@@ -142,8 +142,53 @@ const Index = () => {
                   Login{" "}
                 </h2>
               </div>
-
-              <form onSubmit={(e) => justsubmit(e)} className="w-[500px]">
+              {/* <form className="" onSubmit={(e) => justsubmit(e)}>
+                <div className="">
+                  <label htmlFor="">Login</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id=""
+                    className="w-full border px-2 py-2 rounded-lg"
+                    placeholder="Enter your email here..."
+                  />
+                  {error ? (
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
+                      {error.email}
+                    </p>
+                  ) : (
+                    <p className="h-2"></p>
+                  )}
+                </div>
+                <div className="">
+                  <label htmlFor="">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id=""
+                    className="w-full border px-2 py-2 rounded-lg"
+                    placeholder="Enter your password here..."
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <button
+                    className="w-40 h-[46px] bg-blue-400  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-white"
+                    disabled={isLoading}
+                    type="submit"
+                    style={
+                      isLoading
+                        ? { backgroundColor: "white", color: "black" }
+                        : { backgroundColor: "#43afff" }
+                    }
+                  >
+                    {loader ? <Loader /> : "Login"}
+                  </button>
+                </div>
+              </form> */}
+              <form
+                onSubmit={(e) => justsubmit(e)}
+                className=" w-[370px] xs:w-[260px]  md:w-[557px]"
+              >
                 <Fields
                   type="email"
                   error={error?.email ? true : false}
@@ -161,11 +206,11 @@ const Index = () => {
                   required
                 />
                 {error ? (
-                  <p className="text-red-500 text-right mt-[-12px] text-xs">
+                  <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
                     {error.email}
                   </p>
                 ) : (
-                  ""
+                  <p className="h-2"></p>
                 )}
                 <Fields
                   type="password"
@@ -184,15 +229,15 @@ const Index = () => {
                   required
                 />
                 {error ? (
-                  <p className="text-red-500 text-right mt-[-12px] text-xs">
+                  <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
                     {error.password}
                   </p>
                 ) : (
-                  ""
+                  <p className="h-2"></p>
                 )}
                 <div className="flex items-center justify-center">
                   <button
-                    className="w-[148px] h-[46px] bg-[#43afff]  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#ffffff]"
+                    className="w-40 h-[46px] bg-blue-400  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-white"
                     disabled={isLoading}
                     type="submit"
                     style={

@@ -1,5 +1,4 @@
 import React from "react";
-import style from "../description/Description.module.css";
 interface cardTypes {
   content?: string;
   placeholder?: string;
@@ -21,15 +20,15 @@ const Description = ({
   required,
 }: cardTypes) => {
   return (
-    <div className={style.description_content}>
-      <h2 className={style.description_h2}>
+    <div className="w-full h-32 mb-[10px]">
+      <h2 className="text-[14px] tracking-normal text-[#303f60] px-0 py-2 items-center justify-between ">
         {content}
         {required && <span className="star_red">*</span>}
       </h2>
       <textarea
         placeholder={placeholder}
-        className={`${style.description_input} ${
-          error ? `${style.description_Fields}` : ""
+        className={`text-black w-full h-24 outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 pb-16 ${
+          error ? `border border-solid border-red-500` : ""
         }`}
         value={value}
         onChange={(e) => onchange(e.target.value)}

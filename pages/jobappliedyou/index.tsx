@@ -98,7 +98,7 @@ const Index = () => {
   return (
     <>
       <Seo title="JobAppliedYou" />{" "}
-      <div className="bg-[#303f60] w-full h-[18vh] text-white ">
+      <div className="bg-[#1A253C] w-full h-[18vh] text-white ">
         <div className="px-44 py-0">
           <div className="flex text-center items-center pt-[5px] text-[12px] opacity-80 ">
             <Link href={"/"}>
@@ -123,7 +123,7 @@ const Index = () => {
                 .map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[260px] h-[162px] bg-[#ffffff] shadow rounded-[5px] p-4 mr-4 mb-4 relative capitalize "
+                      className="w-[260px] h-[162px] bg-white shadow rounded p-4 mr-4 mb-4 relative capitalize "
                       key={key}
                     >
                       <div
@@ -174,7 +174,7 @@ const Index = () => {
                   Your applied jobs will show here!
                 </h2>
                 <button
-                  className="w-[148px] h-[46px] bg-[#43afff] border border-solid border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-10 cursor-pointer text-[#ffffff] "
+                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white"
                   onClick={() => router.push("/jobforyou")}
                 >
                   See all jobs
@@ -198,7 +198,7 @@ const Index = () => {
             {count > 1 ? (
               <>
                 <div
-                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400] "
+                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(1)}
                 >
                   1
@@ -214,7 +214,7 @@ const Index = () => {
             )?.map((i, k) => {
               return (
                 <span
-                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
+                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
                   onClick={() => onNumClick(i)}
                   style={
                     count === i
@@ -237,7 +237,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className="h-[30px] w-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
+                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}

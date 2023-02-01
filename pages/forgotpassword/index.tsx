@@ -80,8 +80,8 @@ const Index = () => {
   return (
     <>
       <Seo title="ForgotpagePassword" />
-      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
-        <div className="w-[557px] h-[318px] bg-[#ffffff] box-shadows rounded-3xl mt-56 flex flex-col items-center">
+      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
+        <div className="w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center">
           <div className="px-8 py-2">
             <h1 className="text-[#303f60] text-[22px] py-2 px-0 ">
               Forgot your password?
@@ -110,7 +110,7 @@ const Index = () => {
                 error={error?.email ? true : false}
               />
               {error ? (
-                <p className="text-red-700 text-right text-[12px] mt-[-12px] ">
+                <p className="text-red-700 text-right text-[12px] mt-[-8px] h-2 ">
                   {error.email}
                 </p>
               ) : (
@@ -118,7 +118,7 @@ const Index = () => {
               )}
               <div className="flex items-center justify-center">
                 <button
-                  className="w-[148px] h-[46px] bg-[#43afff] border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                  className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
                   style={
                     isLoading

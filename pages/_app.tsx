@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ContextAPI>
-      <div className="bg-[#303F60]">
+      <div className="bg-[#1A253C]">
         <Navbar />
         {/* <hr className="w-[91%] mx-auto " /> */}
       </div>

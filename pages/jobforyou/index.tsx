@@ -161,7 +161,7 @@ const Index = () => {
     <>
       <Seo title="JobForYou" />
 
-      <div className="bg-[#303f60] w-full h-[18vh] text-white relative ">
+      <div className="bg-[#1A253C] w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
           <div className="px-44 py-0">
             <div className="flex text-center items-center pt-[5px] ">
@@ -189,7 +189,7 @@ const Index = () => {
                 myCanData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[260px] h-[162px] bg-[#ffffff] rounded-[5px] p-4 mr-4 mb-4 relative capitalize shadow "
+                      className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow "
                       key={key}
                     >
                       <div
@@ -222,7 +222,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded-[5px] opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply
@@ -250,7 +250,7 @@ const Index = () => {
           {count > 1 ? (
             <>
               <div
-                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400] "
+                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
                 onClick={() => onNumClick(1)}
               >
                 1
@@ -266,7 +266,7 @@ const Index = () => {
           )?.map((i, k) => {
             return (
               <span
-                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
+                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
                 onClick={() => onNumClick(i)}
                 style={
                   count === i
@@ -289,7 +289,7 @@ const Index = () => {
             <>
               ...
               <div
-                className="w-[30px] h-[30px] rounded-[5px] bg-[#43afff33] text-center text-[19px] font-[400]"
+                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
                 onClick={() => onNumClick(totalPage)}
               >
                 {totalPage}

@@ -132,7 +132,7 @@ const Index = () => {
     <>
       <Seo title="JobPost" />
 
-      <div className="bg-[#303f60] w-full h-[40vh] text-white relative ">
+      <div className="bg-[#1A253C] w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
           <div className="flex py-4 px-48">
             <Link href={"/"}>
@@ -149,7 +149,7 @@ const Index = () => {
         </div>
         <div className="mainWrapper">
           <div className="flex items-center justify-center pt-12">
-            <div className="w-[557px] h-[506px] bg-[#ffffff] box-shadows rounded-[20px] flex flex-col items-center justify-center ">
+            <div className="w-[557px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center ">
               <div>
                 <div className="px-0 py-4">
                   <h2 className="text-[#303f60] text-[22px] tracking-normal opacity-100 ">
@@ -174,7 +174,7 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%] ">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px] opacity-[80%] ">
                       {error.title}
                     </p>
                   )}
@@ -194,7 +194,7 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%]">
+                    <p className="text-red-500 text-right mt-[-5px] h-2 text-[12px] opacity-[80%]">
                       {error.description}
                     </p>
                   )}
@@ -214,13 +214,13 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className="text-red-500 text-right mt-[-12px] text-[12px] opacity-[80%]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px] opacity-[80%]">
                       {error.location}
                     </p>
                   )}
                   <div className="flex items-center justify-center pb-[20px] ">
                     <button
-                      className="w-[148px] h-[46px] bg-[#43afff] border border-solid border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-4 cursor-pointer text-[#ffffff] "
+                      className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-4 cursor-pointer text-white "
                       disabled={isLoading}
                       type="submit"
                       style={

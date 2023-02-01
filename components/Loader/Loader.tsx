@@ -1,10 +1,9 @@
 import React from "react";
-import style from "../Loader/Loader.module.css";
 import { ThreeDots } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <div className={style.mainLoader}>
+    <div className="grid place-items-center ">
       <ThreeDots
         height="80"
         width="80"

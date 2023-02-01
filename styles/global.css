@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    background: #edf6ff;
+  }
+  /* * {
+    background: #edf6ff;
+    border: 1px solid red;
+  } */
+}
 .bg-background {
   background: transparent
     linear-gradient(248deg, var(--unnamed-color-303f60) 0%, #1a253c 100%) 0% 0%

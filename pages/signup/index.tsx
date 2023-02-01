@@ -209,10 +209,10 @@ const Index = () => {
   return (
     <>
       <Seo title="Signup" />
-      <div className="bg-[#303f60] w-full h-[40vh] text-white flex items-center justify-center">
+      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="w-[557px] h-auto bg-[#ffffff] box-shadows rounded-[20px] mt-[32rem] flex flex-col items-center text-[#303f60]">
-            <div className="w-full py-0 px-10">
+          <div className="w-[557px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60]">
+            <div className="w-full py-0 px-10 ">
               <h1 className="text-[22px] text-[#303f60] py-6 px-0">Signup</h1>
               <h2 className="pb-2 text-[14px]">
                 I’m a<span className="star_red">*</span>
@@ -220,7 +220,7 @@ const Index = () => {
               <div className="flex">
                 <button
                   type="button"
-                  className={`w-[148px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded-[5px] cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                  className={`w-40 h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
                     btn && "BtnTrue"
                   }`}
                   onClick={() => mybtn1()}
@@ -235,7 +235,7 @@ const Index = () => {
                 </button>
                 <button
                   type="button"
-                  className={`w-[148px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded-[5px] cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                  className={`w-40 h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
                     btn2 && "BtnTrue"
                   }`}
                   onClick={() => mybtn2()}
@@ -268,7 +268,7 @@ const Index = () => {
                   />
 
                   {error?.name && (
-                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
                       {error.name}
                     </p>
                   )}
@@ -289,7 +289,7 @@ const Index = () => {
                     required
                   />
                   {error?.email && (
-                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
                       {error?.email}
                     </p>
                   )}
@@ -312,7 +312,7 @@ const Index = () => {
                     required
                   />
                   {error?.password && (
-                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
                       {error?.password}
                     </p>
                   )}
@@ -333,7 +333,7 @@ const Index = () => {
                     required
                   />
                   {error?.confirmPassword && (
-                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
                       {error?.confirmPassword}
                     </p>
                   )}
@@ -354,13 +354,13 @@ const Index = () => {
                     required={role == 1}
                   />
                   {error?.skills && (
-                    <p className="text-red-500 text-right mt-[-15px] text-[12px]">
+                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
                       {error?.skills}
                     </p>
                   )}
                   <div className="flex items-center justify-center">
                     <button
-                      className="w-[148px] h-[46px] bg-[#43afff] border-[#43afff] rounded-[5px] opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={
@@ -376,7 +376,7 @@ const Index = () => {
                 <div className="text-[#303f60] text-center mt-9 cursor-pointer">
                   <h2>
                     Have an account?{" "}
-                    <span className="text-[#43afff] text-[16px]">
+                    <span className="text-[#43afff] text-base ">
                       <Link href={"/login"}>Login</Link>
                     </span>
                   </h2>

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../cards/Cards.module.css";
+
 interface cardTypes {
   name?: string;
   para?: string;
@@ -7,7 +7,7 @@ interface cardTypes {
 }
 const Cards = ({ name, para, paraspam }: cardTypes) => {
   return (
-    <div className="bg-[#ffffff] p-4 shadow-md rounded-md flex flex-col flex-wrap m-6">
+    <div className="bg-white p-4 shadow-md rounded-md flex flex-col flex-wrap m-6">
       <h1 className="text-[#43afff] pb-4 font-normal text-2xl ">
         {name}
         <br />
