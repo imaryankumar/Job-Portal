@@ -142,49 +142,6 @@ const Index = () => {
                   Login{" "}
                 </h2>
               </div>
-              {/* <form className="" onSubmit={(e) => justsubmit(e)}>
-                <div className="">
-                  <label htmlFor="">Login</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id=""
-                    className="w-full border px-2 py-2 rounded-lg"
-                    placeholder="Enter your email here..."
-                  />
-                  {error ? (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
-                      {error.email}
-                    </p>
-                  ) : (
-                    <p className="h-2"></p>
-                  )}
-                </div>
-                <div className="">
-                  <label htmlFor="">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id=""
-                    className="w-full border px-2 py-2 rounded-lg"
-                    placeholder="Enter your password here..."
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <button
-                    className="w-40 h-[46px] bg-blue-400  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-white"
-                    disabled={isLoading}
-                    type="submit"
-                    style={
-                      isLoading
-                        ? { backgroundColor: "white", color: "black" }
-                        : { backgroundColor: "#43afff" }
-                    }
-                  >
-                    {loader ? <Loader /> : "Login"}
-                  </button>
-                </div>
-              </form> */}
               <form
                 onSubmit={(e) => justsubmit(e)}
                 className=" w-[370px] xs:w-[260px]  md:w-[557px]"
@@ -204,14 +161,15 @@ const Index = () => {
                   }}
                   pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                   required
-                />
-                {error ? (
-                  <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
-                    {error.email}
-                  </p>
-                ) : (
-                  <p className="h-2"></p>
-                )}
+                >
+                  {error ? (
+                    <p className="text-red-500 text-right  text-xs">
+                      {error.email}
+                    </p>
+                  ) : (
+                    <p className="h-2"></p>
+                  )}
+                </Fields>
                 <Fields
                   type="password"
                   error={error?.password ? true : false}
@@ -227,14 +185,15 @@ const Index = () => {
                     validatePass(pass);
                   }}
                   required
-                />
-                {error ? (
-                  <p className="text-red-500 text-right mt-[-8px] h-2 text-xs">
-                    {error.password}
-                  </p>
-                ) : (
-                  <p className="h-2"></p>
-                )}
+                >
+                  {error ? (
+                    <p className="text-red-500 text-right  text-xs">
+                      {error.password}
+                    </p>
+                  ) : (
+                    <p className="h-2"></p>
+                  )}
+                </Fields>
                 <div className="flex items-center justify-center">
                   <button
                     className="w-40 h-[46px] bg-blue-400  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-white"

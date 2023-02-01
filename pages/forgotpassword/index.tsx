@@ -81,8 +81,8 @@ const Index = () => {
     <>
       <Seo title="ForgotpagePassword" />
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center ">
-        <div className="w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center">
-          <div className="px-1 py-2 w-[380px] md:w-[500px]  ">
+        <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center w-[420px] xs:w-[305px]  ">
+          <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">
             <h1 className="text-[#303f60] text-[22px] py-2 px-0 ">
               Forgot your password?
             </h1>
@@ -91,7 +91,7 @@ const Index = () => {
               instructions to reset your password.
             </p>
           </div>
-          <div className=" w-[380px] md:w-[500px]">
+          <div className=" w-[380px] xs:w-[280px] md:w-[500px]">
             <form onSubmit={(e) => onReset(e)}>
               <Fields
                 type="email"
@@ -108,17 +108,18 @@ const Index = () => {
                 }}
                 pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                 error={error?.email ? true : false}
-              />
-              {error ? (
-                <p className="text-red-700 text-right text-[12px] mt-[-8px] h-2 ">
-                  {error.email}
-                </p>
-              ) : (
-                ""
-              )}
+              >
+                {error ? (
+                  <p className="text-red-700 text-right text-[12px]  ">
+                    {error.email}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </Fields>
               <div className="flex items-center justify-center">
                 <button
-                  className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                  className="md:w-40 w-32 h-[40px] md:h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
                   style={
                     isLoading

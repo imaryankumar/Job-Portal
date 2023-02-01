@@ -11,6 +11,7 @@ interface cardTypes {
   pattern?: any;
   error?: boolean;
   required?: boolean;
+  children?: any;
 }
 const Fields = ({
   content,
@@ -23,16 +24,20 @@ const Fields = ({
   pattern,
   error,
   required,
+  children,
 }: cardTypes) => {
   return (
     <div className="w-full h-[95px] ">
-      <h2 className="text-[#303f60] opacity-100 px-0 py-2 text-[14px] items-center justify-between ">
-        {content}
-        {required && <span className="star_red">*</span>}
-        <span className="text-[#43afff] text-[14px] cursor-pointer  pl-[9.5rem] xs:pl-[2.5rem] md:pl-[21rem] ">
-          <Link href={"/forgotpassword"}>{password}</Link>
-        </span>
-      </h2>
+      <div className="text-[#303f60] opacity-100 px-0 py-2 text-[14px] flex items-center justify-between ">
+        <div className="">
+          {content}
+          {required && <span className="star_red">*</span>}
+        </div>
+
+        <Link href={"/forgotpassword"} className="text-[#43AFFF]">
+          {password}
+        </Link>
+      </div>
       <input
         type={type}
         placeholder={placeholder}
@@ -45,6 +50,7 @@ const Fields = ({
         pattern={pattern}
         maxLength={255}
       />
+      {children}
     </div>
   );
 };

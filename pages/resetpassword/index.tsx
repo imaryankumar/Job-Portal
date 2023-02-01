@@ -61,7 +61,7 @@ const Index = () => {
       <Seo title="ResetPassword" />
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="w-[557px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
+          <div className="md:w-[557px] w-[450px] xs:w-[310px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
             <div className="text-[#303f60] w-full py-2 px-4">
               <h1 className="text-[#303f60] text-[22px] py-4 px-0">
                 Reset Your Password
@@ -86,14 +86,15 @@ const Index = () => {
                 onchange={setConPass}
                 error={error}
                 required
-              />
-              {error ? (
-                <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                  Password do not Match.
-                </p>
-              ) : (
-                ""
-              )}
+              >
+                {error ? (
+                  <p className="text-red-500 text-right text-[12px]">
+                    Password do not Match.
+                  </p>
+                ) : (
+                  ""
+                )}
+              </Fields>
               <div className="flex items-center justify-center">
                 <button
                   className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"

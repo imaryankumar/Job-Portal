@@ -211,8 +211,8 @@ const Index = () => {
       <Seo title="Signup" />
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="w-[557px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60]">
-            <div className="w-full py-0 px-10 ">
+          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60]  ">
+            <div className="w-full py-0 md:px-10 px-4 ">
               <h1 className="text-[22px] text-[#303f60] py-6 px-0">Signup</h1>
               <h2 className="pb-2 text-[14px]">
                 I’m a<span className="star_red">*</span>
@@ -265,13 +265,13 @@ const Index = () => {
                       validateName(name);
                     }}
                     required
-                  />
-
-                  {error?.name && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                      {error.name}
-                    </p>
-                  )}
+                  >
+                    {error?.name && (
+                      <p className="text-red-500 text-right  text-[12px]">
+                        {error.name}
+                      </p>
+                    )}
+                  </Fields>
                   <Fields
                     type="text"
                     content="Email Address"
@@ -287,57 +287,60 @@ const Index = () => {
                     }}
                     pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                     required
-                  />
-                  {error?.email && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                      {error?.email}
-                    </p>
-                  )}
+                  >
+                    {error?.email && (
+                      <p className="text-red-500 text-right  text-[12px]">
+                        {error?.email}
+                      </p>
+                    )}
+                  </Fields>
+                  <div className=" grid md:grid-cols-2 gap-x-6 xs:grid-rows-2">
+                    <Fields
+                      type="password"
+                      content="Create Password"
+                      placeholder="Enter your password"
+                      error={
+                        error?.password || error?.confirmPassword ? true : false
+                      }
+                      value={password}
+                      onchange={(value: string) => {
+                        setPassword(value);
+                        validatePassword(value);
+                      }}
+                      onBlur={() => {
+                        validatePassword(password);
+                      }}
+                      required
+                    >
+                      {error?.password && (
+                        <p className="text-red-500 text-right text-[12px]">
+                          {error?.password}
+                        </p>
+                      )}
+                    </Fields>
 
-                  <Fields
-                    type="password"
-                    content="Create Password"
-                    placeholder="Enter your password"
-                    error={
-                      error?.password || error?.confirmPassword ? true : false
-                    }
-                    value={password}
-                    onchange={(value: string) => {
-                      setPassword(value);
-                      validatePassword(value);
-                    }}
-                    onBlur={() => {
-                      validatePassword(password);
-                    }}
-                    required
-                  />
-                  {error?.password && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                      {error?.password}
-                    </p>
-                  )}
-
-                  <Fields
-                    type="password"
-                    content="Confirm Password"
-                    placeholder="Enter your password"
-                    error={error?.confirmPassword ? true : false}
-                    value={conpassword}
-                    onchange={(value: string) => {
-                      setConpassword(value);
-                      validateConfirmPassword(password, value);
-                    }}
-                    onBlur={() => {
-                      validateConfirmPassword(password, conpassword);
-                    }}
-                    required
-                  />
-                  {error?.confirmPassword && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                      {error?.confirmPassword}
-                    </p>
-                  )}
-
+                    <Fields
+                      type="password"
+                      content="Confirm Password"
+                      placeholder="Enter your password"
+                      error={error?.confirmPassword ? true : false}
+                      value={conpassword}
+                      onchange={(value: string) => {
+                        setConpassword(value);
+                        validateConfirmPassword(password, value);
+                      }}
+                      onBlur={() => {
+                        validateConfirmPassword(password, conpassword);
+                      }}
+                      required
+                    >
+                      {error?.confirmPassword && (
+                        <p className="text-red-500 text-right text-[12px]">
+                          {error?.confirmPassword}
+                        </p>
+                      )}
+                    </Fields>
+                  </div>
                   <Fields
                     type="text"
                     content="Skills"
@@ -352,12 +355,13 @@ const Index = () => {
                       validateSkill(skill);
                     }}
                     required={role == 1}
-                  />
-                  {error?.skills && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px]">
-                      {error?.skills}
-                    </p>
-                  )}
+                  >
+                    {error?.skills && (
+                      <p className="text-red-500 text-right text-[12px]">
+                        {error?.skills}
+                      </p>
+                    )}
+                  </Fields>
                   <div className="flex items-center justify-center">
                     <button
                       className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"

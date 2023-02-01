@@ -172,12 +172,13 @@ const Index = () => {
                       validateTitle(title);
                     }}
                     required
-                  />
-                  {error && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px] opacity-[80%] ">
-                      {error.title}
-                    </p>
-                  )}
+                  >
+                    {error && (
+                      <p className="text-red-500 text-right  text-[12px] opacity-[80%] ">
+                        {error.title}
+                      </p>
+                    )}
+                  </Fields>
                   <Description
                     type="text"
                     content="Description"
@@ -212,12 +213,13 @@ const Index = () => {
                       validateLoc(location);
                     }}
                     required
-                  />
-                  {error && (
-                    <p className="text-red-500 text-right mt-[-8px] h-2 text-[12px] opacity-[80%]">
-                      {error.location}
-                    </p>
-                  )}
+                  >
+                    {error && (
+                      <p className="text-red-500 text-right  text-[12px] opacity-[80%]">
+                        {error.location}
+                      </p>
+                    )}
+                  </Fields>
                   <div className="flex items-center justify-center pb-[20px] ">
                     <button
                       className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-4 cursor-pointer text-white "
