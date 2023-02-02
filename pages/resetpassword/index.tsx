@@ -63,7 +63,7 @@ const Index = () => {
         <div className="mainWrapper">
           <div className="md:w-[557px] w-[450px] xs:w-[310px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
             <div className="text-[#303f60] w-full py-2 px-4">
-              <h1 className="text-[#303f60] text-[22px] py-4 px-0">
+              <h1 className="text-[#303f60] text-xl py-4 px-0">
                 Reset Your Password
               </h1>
               <h3 className="text-[14px] text-[#303f60] pb-4">
@@ -88,7 +88,7 @@ const Index = () => {
                 required
               >
                 {error ? (
-                  <p className="text-red-500 text-right text-[12px]">
+                  <p className="text-red-500 text-right text-xs">
                     Password do not Match.
                   </p>
                 ) : (

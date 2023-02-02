@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 interface cardTypes {
   content?: string;
   placeholder?: string;
@@ -27,7 +27,7 @@ const Description = ({
       </h2>
       <textarea
         placeholder={placeholder}
-        className={`text-black w-full h-24 outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 pb-16 ${
+        className={`text-black w-full h-24 outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-2  ${
           error ? `border border-solid border-red-500` : ""
         }`}
         value={value}

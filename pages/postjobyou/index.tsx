@@ -159,8 +159,8 @@ const Index = () => {
       <Seo title="PostJobYou" />
       <div className="bg-[#1A253C] w-full h-[18vh] text-white">
         <div className="mainWrapper">
-          <div className="px-44 py-0">
-            <div className="flex text-center items-center pt-[5px]">
+          <div className="md:px-44 py-0 px-20 ">
+            <div className="flex text-center items-center pt-1">
               <Link href={"/"}>
                 <Image
                   src="/iconsimgs/homeicon.png"
@@ -184,8 +184,8 @@ const Index = () => {
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div className="flex justify-center items-center flex-wrap mt-8 gap-[2%]">
-            <div className="flex flex-wrap items-center justify-center px-8 py-6">
+          <div className="flex justify-center items-center flex-wrap md:mt-2 mt-4 gap-[2%]  ">
+            <div className="flex flex-wrap items-center justify-center md:px-8 md:py-6 px-4 ">
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
@@ -261,14 +261,14 @@ const Index = () => {
       </div>
 
       {myData?.length > 0 && totalPage > 1 && (
-        <div className="bg-[#edf6ff] w-full h-auto">
-          <div className="flex justify-center text-center items-center gap-[10px] pt-[55rem] pb-8  ">
+        <div className="bg-[#edf6ff] w-full h-auto border  ">
+          <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] pb-8  ">
             <Image
               src="/iconsimgs/left.png"
               alt=""
               onClick={() => decrement()}
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
             {(count + 2 >= totalPage
               ? pageDefiner(totalPage)
@@ -311,8 +311,8 @@ const Index = () => {
               src="/iconsimgs/right.png"
               alt=""
               onClick={() => increment()}
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
           </div>
         </div>
@@ -320,11 +320,11 @@ const Index = () => {
       {isOpen && (
         <>
           <div
-            className="h-screen w-screen absolute bg top-0 flex justify-center items-center  "
+            className="h-screen w-screen fixed bg top-0 flex justify-center items-center "
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] w-[48%] h-[85%] m-auto relative rounded-[20px] flex flex-col px-8 py-4 "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col md:px-8 py-4 px-4 md:py-4 border  "
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-0 py-3 text-[19px] text-[#303f60] ">
@@ -340,17 +340,17 @@ const Index = () => {
               <h3 className="text-[#303f60] text-[15px] px-0 py-2 ">
                 Total {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="bg-[#557da526] flex justify-start w-full h-[73vh] flex-wrap ">
+              <div className="bg-[#557da526] flex justify-start w-full h-[73vh] flex-wrap overflow-auto ">
                 {loader ? (
                   <Loader />
                 ) : jobData ? (
                   jobData?.map((items: cardTypes, k) => {
                     return (
-                      <div key={k} className="p-2">
-                        <div className="w-[295px] h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded py-0 px-2 flex-wrap ">
-                          <div className="w-[274px] h-[131px] capitalize ">
-                            <div className="flex items-center">
-                              <span className="w-[35px] h-[35px] rounded-[25px] opacity-100 bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4 ">
+                      <div key={k} className="md:p-2 p-1">
+                        <div className=" md:w-[295px] w-[270px] h-[135px] md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded py-0 px-2  flex-wrap  ">
+                          <div className="w-[274px] h-[131px] capitalize  ">
+                            <div className="flex items-center  ">
+                              <span className="w-[35px] h-[35px] rounded-[25px] opacity-100 bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4  ">
                                 {items.name?.slice(0, 1)}
                               </span>
                               <div>
@@ -384,7 +384,7 @@ const Index = () => {
                   })
                 ) : (
                   <div className="w-auto h-auto ">
-                    <div className="h-[550px] w-[610px] text-[20px] opacity-80 flex flex-col justify-center items-center">
+                    <div className="md:h-[454px] md:w-[610px] h-[330px] w-[270px] text-[20px] opacity-80 flex flex-col justify-center items-center">
                       <Image
                         src="/iconsimgs/resume.png"
                         alt=""

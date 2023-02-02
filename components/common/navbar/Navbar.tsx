@@ -30,14 +30,10 @@ function Navbar() {
   return (
     <div className="container-lg mx-22 mainWrapper">
       <div className="px-0.5">
-        <nav className={`bg-[#1A253C] py-4 px-8 md:px-20 mainWrapper`}>
+        <nav className={`bg-[#1A253C] py-4 px-4 md:px-20 mainWrapper`}>
           <div className="flex justify-between items-center w-full  ">
             <Link href={"/"}>
-              <div className="text-white text-[1.6rem] font-[500] cursor-pointer ">
-                {/* <h2 className="text-xl">
-                  My
-                  <span className="text-blue-500 text-xl font-bold">Jobs</span>
-                </h2> */}
+              <div className="text-white text-[1.6rem] font-[500] cursor-pointer  ">
                 <Image
                   src="/iconsimgs/MyJobs.png"
                   alt="Logo"
@@ -62,49 +58,48 @@ function Navbar() {
         </nav>
         <div>
           {isLoggedIN ? (
-            <div className="mt-[-3rem] text-white pr-[7rem] flex items-end justify-end gap-[3%] cursor-pointer ">
+            <div className="mt-[-3rem] xs:mt-[-3.4rem] text-white  pr-4 md:pr-20 flex items-end justify-end gap-[3%] cursor-pointer   ">
               <Link
                 href={`${user?.userRole === 0 ? "/jobpost" : "/jobappliedyou"}`}
                 className={
                   router.asPath.includes("/jobpost") ||
                   router.asPath.includes("/jobappliedyou")
-                    ? "border-b-4 border-solid border-blue-400 "
+                    ? "md:border-b-4 border-b-2 border-solid border-blue-400 "
                     : undefined
                 }
               >
-                <h3 className="mb-[25px] w-20 h-6 text-base tracking-normal text-white opacity-80 ">
+                <h3 className="md:mb-[20px] mb-[12px] w-20 h-6 md:text-base text-[14px] tracking-normal text-white opacity-80 xs:pl-2  ">
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                 </h3>
               </Link>
-              <span
-                className="text-center w-12 h-12 bg-[#D9EFFF] rounded-[25px] opacity-100 text-[#303F60] text-[18px] mb-[10px] pt-[8px] cursor-pointer "
-                onClick={JustSubmit}
-              >
-                {user?.userRole === 0 ? "R" : "C"}
+              <div className="flex items-center gap-3  " onClick={JustSubmit}>
+                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px] opacity-100 text-[#303F60] md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[8px] pt-[10px] cursor-pointer  ">
+                  {user?.userRole === 0 ? "R" : "C"}
+                </div>
                 <Image
                   src="/iconsimgs/arrow-down.png"
-                  alt=""
-                  className="ml-[3.5rem] mt-[-0.9rem] relative text-[#FFFFFF]"
+                  alt="arrowdown"
+                  className=" relative text-[#FFFFFF]"
                   width={17}
                   height={10}
                 />
 
                 {click && (
                   <div
-                    className="w-[112px] h-[47px] bg-white flex justify-center items-center mt-[1.5rem] ml-[-1.6rem] text-[14px] text-[#303f60] rounded cursor-pointer absolute z-50 "
+                    className=" w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-[#303f60] rounded cursor-pointer absolute z-50 "
                     onClick={() => LogoutClear()}
                   >
                     Logout
                   </div>
                 )}
-              </span>{" "}
+              </div>{" "}
             </div>
           ) : (
             ""
           )}
         </div>
       </div>
-      <div className=" border-b-2 mx-8 md:mx-20  border-[#EDF6FF] opacity-20 " />
+      <div className=" border-b-2 mx-4 md:mx-20  border-[#EDF6FF] opacity-20 " />
     </div>
   );
 }

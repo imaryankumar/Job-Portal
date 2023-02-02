@@ -213,7 +213,7 @@ const Index = () => {
         <div className="mainWrapper">
           <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60]  ">
             <div className="w-full py-0 md:px-10 px-4 ">
-              <h1 className="text-[22px] text-[#303f60] py-6 px-0">Signup</h1>
+              <h1 className="text-xl text-[#303f60] py-6 px-0">Signup</h1>
               <h2 className="pb-2 text-[14px]">
                 I’m a<span className="star_red">*</span>
               </h2>
@@ -227,7 +227,7 @@ const Index = () => {
                 >
                   <Image
                     src="/iconsimgs/Recruiter.png"
-                    alt=""
+                    alt="Recruiter"
                     width={25}
                     height={25}
                   />
@@ -242,7 +242,7 @@ const Index = () => {
                 >
                   <Image
                     src="/iconsimgs/candidate.png"
-                    alt=""
+                    alt="Candidate"
                     width={25}
                     height={25}
                   />
@@ -267,7 +267,7 @@ const Index = () => {
                     required
                   >
                     {error?.name && (
-                      <p className="text-red-500 text-right  text-[12px]">
+                      <p className="text-red-500 text-right  text-xs">
                         {error.name}
                       </p>
                     )}
@@ -289,7 +289,7 @@ const Index = () => {
                     required
                   >
                     {error?.email && (
-                      <p className="text-red-500 text-right  text-[12px]">
+                      <p className="text-red-500 text-right  text-xs">
                         {error?.email}
                       </p>
                     )}
@@ -313,7 +313,7 @@ const Index = () => {
                       required
                     >
                       {error?.password && (
-                        <p className="text-red-500 text-right text-[12px]">
+                        <p className="text-red-500 text-right text-xs">
                           {error?.password}
                         </p>
                       )}
@@ -335,7 +335,7 @@ const Index = () => {
                       required
                     >
                       {error?.confirmPassword && (
-                        <p className="text-red-500 text-right text-[12px]">
+                        <p className="text-red-500 text-right text-xs">
                           {error?.confirmPassword}
                         </p>
                       )}
@@ -357,7 +357,7 @@ const Index = () => {
                     required={role == 1}
                   >
                     {error?.skills && (
-                      <p className="text-red-500 text-right text-[12px]">
+                      <p className="text-red-500 text-right text-xs">
                         {error?.skills}
                       </p>
                     )}

@@ -134,11 +134,11 @@ const Index = () => {
 
       <div className="bg-[#1A253C] w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
-          <div className="flex py-4 px-48">
+          <div className="flex md:py-4 md:px-48 xs:px-20 px-32 py-6 ">
             <Link href={"/"}>
               <Image
                 src="/iconsimgs/homeicon.png"
-                alt=""
+                alt="Homeicon"
                 width={10}
                 height={9}
                 className="mt-2 mr-2"
@@ -148,16 +148,19 @@ const Index = () => {
           </div>
         </div>
         <div className="mainWrapper">
-          <div className="flex items-center justify-center pt-12">
-            <div className="w-[557px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center ">
-              <div>
+          <div className="flex items-center justify-center md:pt-12 pt-4">
+            <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
+              <div className=" xs:w-[290px] md:w-[500px] w-[430px]">
                 <div className="px-0 py-4">
-                  <h2 className="text-[#303f60] text-[22px] tracking-normal opacity-100 ">
+                  <h2 className="text-[#303f60] text-xl tracking-normal opacity-100 ">
                     Post a Job{" "}
                   </h2>
                 </div>
 
-                <form className="w-[500px]" onSubmit={(e) => JustonClick(e)}>
+                <form
+                  className=" md:w-[500px] w-[430px] xs:w-[290px] "
+                  onSubmit={(e) => JustonClick(e)}
+                >
                   <Fields
                     type="text"
                     error={error?.title ? true : false}
@@ -174,7 +177,7 @@ const Index = () => {
                     required
                   >
                     {error && (
-                      <p className="text-red-500 text-right  text-[12px] opacity-[80%] ">
+                      <p className="text-red-500 text-right  text-xs opacity-[80%] ">
                         {error.title}
                       </p>
                     )}
@@ -195,7 +198,7 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className="text-red-500 text-right mt-[-5px] h-2 text-[12px] opacity-[80%]">
+                    <p className="text-red-500 text-right mt-[-5px] h-2 text-xs opacity-[80%]">
                       {error.description}
                     </p>
                   )}
@@ -215,7 +218,7 @@ const Index = () => {
                     required
                   >
                     {error && (
-                      <p className="text-red-500 text-right  text-[12px] opacity-[80%]">
+                      <p className="text-red-500 text-right  text-xs opacity-[80%]">
                         {error.location}
                       </p>
                     )}

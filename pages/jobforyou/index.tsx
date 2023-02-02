@@ -164,11 +164,11 @@ const Index = () => {
       <div className="bg-[#1A253C] w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
           <div className="px-44 py-0">
-            <div className="flex text-center items-center pt-[5px] ">
+            <div className="flex text-center items-center pt-1 ">
               <Link href={"/"}>
                 <Image
                   src="/iconsimgs/homeicon.png"
-                  alt=""
+                  alt="Homeicon"
                   width={10}
                   height={9}
                 />
@@ -207,7 +207,7 @@ const Index = () => {
                         <div className="flex mr-4">
                           <Image
                             src="/iconsimgs/mypin.png"
-                            alt=""
+                            alt="Pinicon"
                             width={10}
                             height={15}
                           />
@@ -222,7 +222,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-xs p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply
@@ -242,7 +242,7 @@ const Index = () => {
         <div className="flex justify-center text-center items-center gap-[1%] pt-[55rem] cursor-pointer pb-8 ">
           <Image
             src="/iconsimgs/left.png"
-            alt=""
+            alt="Lefticon"
             onClick={() => decrement()}
             width={30}
             height={30}
@@ -299,7 +299,7 @@ const Index = () => {
 
           <Image
             src="/iconsimgs/right.png"
-            alt=""
+            alt="Righticon"
             onClick={() => increment()}
             width={30}
             height={30}

@@ -100,11 +100,11 @@ const Index = () => {
       <Seo title="JobAppliedYou" />{" "}
       <div className="bg-[#1A253C] w-full h-[18vh] text-white ">
         <div className="px-44 py-0">
-          <div className="flex text-center items-center pt-[5px] text-[12px] opacity-80 ">
+          <div className="flex text-center items-center pt-1 text-xs opacity-80 ">
             <Link href={"/"}>
               <Image
                 src="/iconsimgs/homeicon.png"
-                alt=""
+                alt="Homeicon"
                 width={10}
                 height={9}
               />
@@ -141,7 +141,7 @@ const Index = () => {
                         <div className="flex">
                           <Image
                             src="/iconsimgs/mypin.png"
-                            alt=""
+                            alt="Pinicons"
                             width={10}
                             height={15}
                           />
@@ -165,7 +165,7 @@ const Index = () => {
               <div className="mt-40 h-[80vh] flex flex-col items-center justify-center ">
                 <Image
                   src="/iconsimgs/write.png"
-                  alt=""
+                  alt="Writeicon"
                   className="opacity-50 bg-transparent "
                   width={106}
                   height={106}
@@ -189,7 +189,7 @@ const Index = () => {
           <div className="pt-[77rem]">
             <Image
               src="/iconsimgs/left.png"
-              alt=""
+              alt="Lefticon"
               onClick={() => decrement()}
               width={30}
               height={30}
@@ -246,7 +246,7 @@ const Index = () => {
             )}
             <Image
               src="/iconsimgs/right.png"
-              alt=""
+              alt="Righticon"
               onClick={() => increment()}
               width={30}
               height={30}
