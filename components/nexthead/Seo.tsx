@@ -6,7 +6,7 @@ const defaultMeta = {
   description:
     "Get quickly matched with only the most qualified candidates. That’s because LinkedIn goes beyond the resume and uses insights from your job post, your company, and our member profiles to find the people that meet your needs best.",
   url: process.env.NEXT_PUBLIC_WEB_URL,
-  image: "https://unsplash.com/photos/5aiRb5f464A",
+  image: "https://aryan-jp.squareboat.info/mainimg.png",
   type: "website",
   robots: "follow, index",
 };
@@ -46,7 +46,7 @@ export default function Seo(props: SeoProps) {
       <meta name="twitter:description" content={meta.description} />
       <meta name="twitter:image" content={meta.image} />
       <meta property="twitter:image:alt" content="JOB PORTAL" />
-      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="shortcut icon" href="/favicon.png" />
       <meta name="msapplication-TileColor" content="#FFFFFF" />
       <meta name="msapplication-TileImage" content={meta.image} />
       <meta name="theme-color" content="#FFFFFF" />

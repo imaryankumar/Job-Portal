@@ -164,7 +164,7 @@ const Index = () => {
       <div className="bg-[#1A253C] w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
           <div className="px-44 py-0">
-            <div className="flex text-center items-center pt-1 ">
+            <div className="flex text-center items-center pt-1  ">
               <Link href={"/"}>
                 <Image
                   src="/iconsimgs/homeicon.png"
@@ -174,10 +174,10 @@ const Index = () => {
                 />
               </Link>
               <Link href={"/"}>
-                <span>Home</span>
+                <span className="pl-1 text-xs ">Home</span>
               </Link>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 text-xl ">
               <h1>Jobs for you</h1>
             </div>
           </div>
