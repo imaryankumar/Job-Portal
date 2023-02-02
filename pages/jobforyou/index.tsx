@@ -163,8 +163,8 @@ const Index = () => {
 
       <div className="bg-[#1A253C] w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
-          <div className="px-44 py-0">
-            <div className="flex text-center items-center pt-1  ">
+          <div className=" md:px-44  xs:px-20 px-32 py-0  ">
+            <div className="flex text-center items-center md:pt-1 pt-3   ">
               <Link href={"/"}>
                 <Image
                   src="/iconsimgs/homeicon.png"
@@ -177,19 +177,19 @@ const Index = () => {
                 <span className="pl-1 text-xs ">Home</span>
               </Link>
             </div>
-            <div className="mt-4 text-xl ">
+            <div className=" mt-4  text-xl  ">
               <h1>Jobs for you</h1>
             </div>
           </div>
-          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 py-0 px-8 ">
-            <div className="flex flex-wrap items-center justify-center w-full min-h-[50vh] ">
+          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 xs:mt-5 py-0 px-8 ">
+            <div className="flex flex-wrap items-center justify-center w-full ">
               {loader ? (
                 <Loader />
               ) : (
                 myCanData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow "
+                      className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow  "
                       key={key}
                     >
                       <div
@@ -238,14 +238,14 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full h-auto">
-        <div className="flex justify-center text-center items-center gap-[1%] pt-[55rem] cursor-pointer pb-8 ">
+      <div className="bg-[#edf6ff] w-full h-auto ">
+        <div className="flex justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[112rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8  ">
           <Image
             src="/iconsimgs/left.png"
             alt="Lefticon"
             onClick={() => decrement()}
-            width={30}
-            height={30}
+            width={20}
+            height={20}
           />
           {count > 1 ? (
             <>
@@ -301,8 +301,8 @@ const Index = () => {
             src="/iconsimgs/right.png"
             alt="Righticon"
             onClick={() => increment()}
-            width={30}
-            height={30}
+            width={20}
+            height={20}
           />
         </div>
       </div>

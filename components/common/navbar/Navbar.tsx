@@ -68,7 +68,7 @@ function Navbar() {
                     : undefined
                 }
               >
-                <h3 className="md:mb-[20px] mb-[12px] w-20 h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
+                <h3 className="md:mb-[20px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                 </h3>
               </Link>

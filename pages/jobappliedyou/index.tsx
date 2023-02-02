@@ -99,8 +99,8 @@ const Index = () => {
     <>
       <Seo title="JobAppliedYou" />{" "}
       <div className="bg-[#1A253C] w-full h-[18vh] text-white ">
-        <div className="px-44 py-0">
-          <div className="flex text-center items-center pt-1 text-xs opacity-80 ">
+        <div className=" md:px-44  xs:px-20 px-32 py-0 ">
+          <div className="flex  text-center items-center pt-4 xs:pt-6 text-xs opacity-80  ">
             <Link href={"/"}>
               <Image
                 src="/iconsimgs/homeicon.png"
@@ -109,15 +109,15 @@ const Index = () => {
                 height={9}
               />
             </Link>
-            Home &gt; Applied Jobs
+            <p className="ml-1"> Home &gt; Applied Jobs</p>
           </div>
-          <div className="mt-4">
+          <div className="mt-4  text-xl xs:text-base ">
             <h1>Jobs applied by you</h1>
           </div>
         </div>
         {myCanData?.length > 0 ? (
-          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 px-32 py-0 ">
-            <div className="flex flex-wrap items-center justify-start px-8 py-0">
+          <div className=" mt-8">
+            <div className="flex flex-wrap items-center justify-center   px-8 py-0">
               {myCanData
                 ?.slice(pagination.start, pagination.end)
                 .map((item: cardTypes, key) => {
@@ -162,7 +162,7 @@ const Index = () => {
             {loader ? (
               <Loader />
             ) : (
-              <div className="mt-40 h-[80vh] flex flex-col items-center justify-center ">
+              <div className="mt-40 h-[50vh] xs:h-[40vh] flex flex-col items-center justify-center ">
                 <Image
                   src="/iconsimgs/write.png"
                   alt="Writeicon"
@@ -185,14 +185,14 @@ const Index = () => {
         )}
       </div>
       {myCanData?.length > 0 && totalPage > 1 && (
-        <div className="h-auto">
-          <div className="pt-[77rem]">
+        <div className="h-auto  ">
+          <div className="flex flex-wrap justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[110rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8 ">
             <Image
               src="/iconsimgs/left.png"
               alt="Lefticon"
               onClick={() => decrement()}
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
             {/* <span className={style.postjobyou_span}>{count}</span> */}
             {count > 1 ? (
@@ -248,8 +248,8 @@ const Index = () => {
               src="/iconsimgs/right.png"
               alt="Righticon"
               onClick={() => increment()}
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
           </div>
         </div>
