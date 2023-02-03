@@ -30,9 +30,9 @@ const Section = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-[22px] mb-6 md:text-left  text-center md:px-[170px]">
+          <h2 className="text-[22px] mb-6 md:text-left  text-center md:px-[170px]">
             Companies Who Trust Us
-          </h1>
+          </h2>
           {/* <div className={style.section_img}> */}
           <div className="flex  flex-wrap items-center justify-center w-full px-[110px] gap-[10%]">
             <div className="flex items-center text-3xl mb-12 font-sans">
