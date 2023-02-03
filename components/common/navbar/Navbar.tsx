@@ -21,8 +21,9 @@ function Navbar() {
     const user = JSON.parse(localStorage.getItem("user") || "{}") as Tuser;
     if (
       !user.token &&
-      !["/signup", "/login", "/forgotpassword", "/"].includes(router.asPath) &&
-      !router.asPath.includes("/resetpassword")
+      ["/jobpost", "/postjobyou", "/jobforyou", "/jobappliedyou"].includes(
+        router.asPath
+      )
     ) {
       router.push("/login");
     }
@@ -46,7 +47,7 @@ function Navbar() {
               <Link href="/login">
                 <button
                   type="button"
-                  className={`text-center  md:w-40 md:h-12 text-xs md:text-base text-white cursor-pointer border border-solid border-blue-400 p-2 md:p-3 rounded bg-[#43afff33] ${
+                  className={`text-center text-[16px] font-medium  md:w-40 md:h-12 text-xs md:text-base text-white cursor-pointer border border-solid border-blue-400 p-2 md:p-3 rounded bg-[#43afff33] ${
                     isHidden ? "d-none" : ""
                   }`}
                 >
