@@ -204,12 +204,14 @@ const Index = () => {
                       </div>
                       <div className="flex items-center text-center  absolute bottom-4 justify-center ">
                         <div className="flex mr-4">
-                          <Image
-                            src="/iconsimgs/mypin.png"
-                            alt="Pinicon"
-                            width={10}
-                            height={15}
-                          />
+                          <div className="relative w-4 h-4 mr-2">
+                            <Image
+                              src="/iconsimgs/mypin.png"
+                              alt="Pinicons"
+                              fill
+                              className="absolute top-0 object-contain"
+                            />
+                          </div>
                           <h3
                             className={`w-[64px] h-[16px] text-[14px] tracking-normal text-[#303f60] opacity-80 line-clamps`}
                           >

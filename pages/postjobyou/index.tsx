@@ -209,7 +209,7 @@ const Index = () => {
                         <div className="relative w-4 h-4 mr-2">
                           <Image
                             src="/iconsimgs/mypin.png"
-                            alt=""
+                            alt="Pinicon"
                             fill
                             className="absolute top-0 object-contain"
                           />
@@ -350,7 +350,7 @@ const Index = () => {
                       <div key={k} className="">
                         <div
                           key={k}
-                          className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-2  flex-wrap "
+                          className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-4 py-4  flex-wrap "
                         >
                           <div className="w-[274px] h-[131px] capitalize  ">
                             <div className="flex items-center  ">
