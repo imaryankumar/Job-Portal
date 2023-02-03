@@ -28,7 +28,7 @@ const Fields = ({
 }: cardTypes) => {
   return (
     <div className="w-full h-[95px] ">
-      <div className="text-[#303f60] opacity-100 px-0 py-2 text-[14px] flex items-center justify-between ">
+      <div className="text-[#303f60]  px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
           {required && <span className="star_red">*</span>}

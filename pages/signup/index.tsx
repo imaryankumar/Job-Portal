@@ -361,7 +361,7 @@ const Index = () => {
                   </Fields>
                   <div className="flex items-center justify-center">
                     <button
-                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={

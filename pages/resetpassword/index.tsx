@@ -103,7 +103,7 @@ const Index = () => {
               </Fields>
               <div className="flex items-center justify-center">
                 <button
-                  className="w-40 h-[46px] bg-blue-400 text-[16px] font-medium  border-blue-400 rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                  className="w-40 h-[46px] bg-blue-400 text-[16px] font-medium  border-blue-400 rounded-md  flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                   onClick={onResetPassword}
                   disabled={isLoading}
                   type="submit"

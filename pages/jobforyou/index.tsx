@@ -193,7 +193,7 @@ const Index = () => {
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px] opacity-100 text-[#303f60] tracking-normal line-clamps`}
+                        className={`w-full h-[20px] text-[17px]  text-[#303f60] tracking-normal line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
@@ -222,7 +222,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply

@@ -1,9 +1,16 @@
 import React from "react";
-
+import Image from "next/image";
 const myError = () => {
   return (
-    <div>
-      <p>myError is Here</p>
+    <div className="h-full w-full xs:py-[13rem] flex items-center justify-center mainWrapper bg-white">
+      <div>
+        <Image
+          src="/iconsimgs/404page.jpg"
+          alt="500"
+          width={900}
+          height={100}
+        />
+      </div>
     </div>
   );
 };

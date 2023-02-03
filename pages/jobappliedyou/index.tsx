@@ -130,7 +130,7 @@ const Index = () => {
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px] tracking-normal text-[#303f60] opacity-100 line-clamps`}
+                        className={`w-full h-[20px] text-[17px] tracking-normal text-[#303f60]  line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
@@ -177,7 +177,7 @@ const Index = () => {
                   Your applied jobs will show here!
                 </h2>
                 <button
-                  className="w-40 h-[46px]  font-medium  bg-blue-400 border border-solid border-blue-400 text-[16px] rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white"
+                  className="w-40 h-[46px]  font-medium  bg-blue-400 border border-solid border-blue-400 text-[16px] rounded  flex items-center justify-center mt-10 cursor-pointer text-white"
                   onClick={() => router.push("/jobforyou")}
                 >
                   See all jobs

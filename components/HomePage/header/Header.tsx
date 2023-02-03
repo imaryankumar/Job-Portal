@@ -25,9 +25,11 @@ const Header = () => {
               onClick={() =>
                 router.push(
                   `${
-                    user?.userRole === 0
-                      ? "/postjobyou?page=1"
-                      : "/jobforyou?page=1"
+                    user?.token
+                      ? user?.userRole === 0
+                        ? "/postjobyou?page=1"
+                        : "/jobforyou?page=1"
+                      : "/login"
                   }`
                 )
               }

@@ -154,7 +154,7 @@ const Index = () => {
             <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
               <div className=" xs:w-[290px] md:w-[500px] w-[430px]">
                 <div className="px-0 py-4">
-                  <h2 className="text-[#303f60] text-[22px] font-medium tracking-normal opacity-100 ">
+                  <h2 className="text-[#303f60] text-[22px] font-medium tracking-normal  ">
                     Post a Job{" "}
                   </h2>
                 </div>
@@ -227,7 +227,7 @@ const Index = () => {
                   </Fields>
                   <div className="flex items-center justify-center pb-[20px] ">
                     <button
-                      className="w-40 h-[46px]  bg-blue-400 border border-solid border-blue-400 rounded opacity-100 text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white "
+                      className="w-40 h-[46px]  bg-blue-400 border border-solid border-blue-400 rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white "
                       disabled={isLoading}
                       type="submit"
                       style={

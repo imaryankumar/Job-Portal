@@ -74,7 +74,7 @@ function Navbar() {
                 </h3>
               </Link>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
-                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px] opacity-100 text-[#303F60] md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[8px] pt-[10px] cursor-pointer  ">
+                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-[#303F60] md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[8px] pt-[10px] cursor-pointer  ">
                   {user?.userRole === 0 ? "R" : "C"}
                 </div>
                 <Image

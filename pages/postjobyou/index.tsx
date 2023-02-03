@@ -77,7 +77,7 @@ const Index = () => {
         res.json().then((resp) => {
           setMyData(resp.data?.data);
           setLoader(false);
-          console.log("Data : ", resp.data?.data);
+
           setTotalPage(
             Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
           );
@@ -117,7 +117,7 @@ const Index = () => {
   };
   const onNumClick = (e: any) => {
     const numValue = +e.target.innerText;
-    console.log(numValue);
+
     setCount(numValue);
     router.push(`/postjobyou?page=${numValue} `, undefined, {
       shallow: true,
@@ -145,7 +145,6 @@ const Index = () => {
       .then((data) => {
         setJobData(data?.data);
         setLoader(false);
-        console.log("Data :", data?.data);
       })
       .catch((e) => {
         toast.error(e);
@@ -172,11 +171,11 @@ const Index = () => {
               </Link>
               <Link href={"/"}>
                 {" "}
-                <span>Home</span>
+                <span className="text-[12px] font-medium ">Home</span>
               </Link>
             </div>
             <div className="mt-4">
-              <h1>Jobs posted by you</h1>
+              <h1 className="text-[22px] font-medium ">Jobs posted by you</h1>
             </div>
           </div>
         </div>
@@ -193,7 +192,7 @@ const Index = () => {
                     key={key}
                   >
                     <div
-                      className={`w-full h-[20px] text-[17px] opacity-100 text-[#303f60] tracking-normal overflow-hidden`}
+                      className={`w-full h-[20px] text-[17px]  text-[#303f60] tracking-normal overflow-hidden`}
                       key={key}
                     >
                       <h1>{item.title}</h1>
@@ -207,12 +206,14 @@ const Index = () => {
                       className={`flex items-center text-center  absolute bottom-4 justify-center overflow-hidden`}
                     >
                       <div className="flex mr-4">
-                        <Image
-                          src="/iconsimgs/mypin.png"
-                          alt=""
-                          width={10}
-                          height={15}
-                        />
+                        <div className="relative w-4 h-4 mr-2">
+                          <Image
+                            src="/iconsimgs/mypin.png"
+                            alt=""
+                            fill
+                            className="absolute top-0 object-contain"
+                          />
+                        </div>
                         <h3
                           className={`w-[64px] h-[16px] line-clamps text-[14px] tracking-normal text-[#303f60] opacity-80`}
                         >
@@ -221,7 +222,7 @@ const Index = () => {
                       </div>
                       <div>
                         <button
-                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 `}
+                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-[#303f60] capitalize text-[12px] p-2 `}
                           onClick={() => postClick(item.id)}
                         >
                           View applications
@@ -249,7 +250,7 @@ const Index = () => {
                   Your posted jobs will show here!
                 </h2>
                 <button
-                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white "
+                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded  flex items-center justify-center mt-10 cursor-pointer text-white "
                   onClick={() => router.push("/jobpost")}
                 >
                   Post a Job
@@ -262,10 +263,10 @@ const Index = () => {
 
       {myData?.length > 0 && totalPage > 1 && (
         <div className="bg-[#edf6ff] w-full h-auto border  ">
-          <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] pb-8  ">
+          <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] xl:pt-[55rem] 2xl:pt-[30rem] pb-8   ">
             <Image
               src="/iconsimgs/left.png"
-              alt=""
+              alt="LeftButton"
               onClick={() => decrement()}
               width={20}
               height={20}
@@ -309,7 +310,7 @@ const Index = () => {
 
             <Image
               src="/iconsimgs/right.png"
-              alt=""
+              alt="RightButton"
               onClick={() => increment()}
               width={20}
               height={20}
@@ -324,43 +325,46 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col md:px-8 py-4 px-4 md:py-4   "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-0 py-3 text-[19px] text-[#303f60] ">
+              <div className="flex items-center justify-between px-0 py-3 text-[19px] text-[#303f60] font-medium ">
                 <h2>Applicants for this job</h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded-[50%] text-black text-lg  font-bold"
+                  className="rounded-[50%] text-black text-lg  font-extrabold opacity-80 "
                 >
                   X
                 </button>
               </div>
               <hr />
-              <h3 className="text-[#303f60] text-[15px] px-0 py-2 ">
+              <h3 className="text-[#303f60] text-[15px]  py-2 ">
                 Total {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="bg-[#557da526] flex justify-start w-full h-[73vh] flex-wrap overflow-auto ">
+              <div className="bg-[#557da526] flex justify-center  flex-wrap overflow-auto h-full p-2 gap-4 ">
                 {loader ? (
                   <Loader />
                 ) : jobData ? (
                   jobData?.map((items: cardTypes, k) => {
                     return (
-                      <div key={k} className="md:p-2 p-1">
-                        <div className=" md:w-[295px] w-[270px] h-[135px] md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded py-0 px-2  flex-wrap  ">
+                      <div key={k} className="">
+                        <div
+                          key={k}
+                          className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-2  flex-wrap "
+                        >
                           <div className="w-[274px] h-[131px] capitalize  ">
                             <div className="flex items-center  ">
-                              <span className="w-[35px] h-[35px] rounded-[25px] opacity-100 bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4  ">
+                              <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4  ">
                                 {items.name?.slice(0, 1)}
                               </span>
                               <div>
                                 <h2
-                                  className={`text-[#303f60] font-[15px] opacity-100 line-clamps`}
+                                  className={`text-[#303f60] text-[15px] font-medium  line-clamps`}
                                 >
                                   {items.name}
                                 </h2>
                                 <h3
-                                  className={`text-[#303f60] opacity-100 text-[10px] line-clamps`}
+                                  className={`text-[#303f60]  text-[10px] line-clamps`}
                                 >
                                   {items.email}
                                 </h3>
@@ -368,11 +372,11 @@ const Index = () => {
                             </div>
 
                             <div className="pt-8">
-                              <h2 className="text-[#1a253c] opacity-100 text-[13px]  ">
+                              <h2 className="text-[#1a253c]  text-[13px] font-medium  ">
                                 Skills
                               </h2>
                               <h3
-                                className={`text-[#303f60] opacity-100 text-[15px] line-clamps`}
+                                className={`text-[#303f60]  text-[15px] line-clamps`}
                               >
                                 {items.skills}
                               </h3>

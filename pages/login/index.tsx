@@ -138,7 +138,7 @@ const Index = () => {
           <div className={`mainWrapper`}>
             <div>
               <div className="py-1 px-0">
-                <h2 className="text-[#303f60] text-2xl tracking-normal opacity-100">
+                <h2 className="text-[#303f60] text-2xl tracking-normal ">
                   Login{" "}
                 </h2>
               </div>
@@ -196,7 +196,7 @@ const Index = () => {
                 </Fields>
                 <div className="flex items-center justify-center">
                   <button
-                    className="w-40 h-[46px] bg-blue-400 text-[16px] font-medium  rounded-md opacity-100 flex items-center justify-center mt-8 cursor-pointer text-white"
+                    className="w-40 h-[46px] bg-blue-400 text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 cursor-pointer text-white"
                     disabled={isLoading}
                     type="submit"
                     style={
