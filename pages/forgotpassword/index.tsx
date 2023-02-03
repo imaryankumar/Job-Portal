@@ -59,7 +59,6 @@ const Index = () => {
                 return resData.json();
               })
               .then((data) => {
-                console.log("456", data);
                 if (data.code === 200) {
                   router.push(`/resetpassword?token=${data?.data?.token}`);
                 } else {
@@ -83,7 +82,7 @@ const Index = () => {
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center ">
         <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center w-[420px] xs:w-[305px]  ">
           <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">
-            <h1 className="text-[#303f60] text-xl py-2 px-0 ">
+            <h1 className="text-[#303f60] text-[22px] font-medium py-2 px-0 ">
               Forgot your password?
             </h1>
             <p className="text-sm text-[#303f60] py-2 px-0">
@@ -119,7 +118,7 @@ const Index = () => {
               </Fields>
               <div className="flex items-center justify-center">
                 <button
-                  className="md:w-40 w-32 h-[40px] md:h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
+                  className="md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
                   style={
                     isLoading

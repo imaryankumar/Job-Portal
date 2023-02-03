@@ -324,7 +324,7 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col md:px-8 py-4 px-4 md:py-4 border  "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col md:px-8 py-4 px-4 md:py-4   "
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-0 py-3 text-[19px] text-[#303f60] ">

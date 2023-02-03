@@ -109,9 +109,12 @@ const Index = () => {
                 height={9}
               />
             </Link>
-            <p className="ml-1"> Home &gt; Applied Jobs</p>
+            <p className="ml-1 text-[12px] font-medium ">
+              {" "}
+              Home &gt; Applied Jobs
+            </p>
           </div>
-          <div className="mt-4  text-xl xs:text-base ">
+          <div className="mt-4  text-[22px] font-medium xs:text-base ">
             <h1>Jobs applied by you</h1>
           </div>
         </div>
@@ -174,7 +177,7 @@ const Index = () => {
                   Your applied jobs will show here!
                 </h2>
                 <button
-                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white"
+                  className="w-40 h-[46px]  font-medium  bg-blue-400 border border-solid border-blue-400 text-[16px] rounded opacity-100 flex items-center justify-center mt-10 cursor-pointer text-white"
                   onClick={() => router.push("/jobforyou")}
                 >
                   See all jobs

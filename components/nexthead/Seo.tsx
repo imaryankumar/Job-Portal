@@ -6,7 +6,7 @@ const defaultMeta = {
   description:
     "Get quickly matched with only the most qualified candidates. That’s because LinkedIn goes beyond the resume and uses insights from your job post, your company, and our member profiles to find the people that meet your needs best.",
   url: process.env.NEXT_PUBLIC_WEB_URL,
-  image: "https://aryan-jp.squareboat.info/mainimg.png",
+  image: "https://aryan-jp.squareboat.info/iconsimgs/mainimg.png",
   type: "website",
   robots: "follow, index",
 };

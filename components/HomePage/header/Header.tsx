@@ -21,7 +21,7 @@ const Header = () => {
               </h1>
             </div>
             <button
-              className="border w-40 h-12 border-solid border-blue-400 p-2 md:py-2.5 md:px-7 mt-5 md:mt-10 bg-blue-400 md:text-base outline-none rounded-lg cursor-pointer"
+              className="border text-[16px] font-medium  w-40 h-12 border-solid border-blue-400 p-2 md:py-2.5 md:px-7 mt-5 md:mt-10 bg-blue-400 md:text-base outline-none rounded-lg cursor-pointer"
               onClick={() =>
                 router.push(
                   `${

@@ -137,8 +137,6 @@ const Index = () => {
     setBtn(false);
   }
 
-  // console.log({ btn, btn2 });
-
   const Justclick = async (e: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
@@ -203,17 +201,16 @@ const Index = () => {
     }
   };
 
-  // console.log("button", btn2 ? "a" : "b");
-  // console.log("button", btn ? "aa" : "bb");
-
   return (
     <>
       <Seo title="Signup" />
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60]  ">
-            <div className="w-full py-0 md:px-10 px-4 ">
-              <h1 className="text-xl text-[#303f60] py-6 px-0">Signup</h1>
+          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60] pb-4  ">
+            <div className="w-full  md:px-10 px-4 ">
+              <h1 className="text-[22px] font-medium text-[#303f60] py-6 px-0">
+                Signup
+              </h1>
               <h2 className="pb-2 text-[14px]">
                 I’m a<span className="star_red">*</span>
               </h2>
@@ -364,7 +361,7 @@ const Index = () => {
                   </Fields>
                   <div className="flex items-center justify-center">
                     <button
-                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded opacity-100 text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={
@@ -377,10 +374,10 @@ const Index = () => {
                     </button>
                   </div>
                 </form>
-                <div className="text-[#303f60] text-center mt-9 cursor-pointer">
+                <div className="text-[#303f60] text-center text-base mt-9 cursor-pointer">
                   <h2>
                     Have an account?{" "}
-                    <span className="text-[#43afff] text-base ">
+                    <span className="text-[#43afff] text-base font-medium ">
                       <Link href={"/login"}>Login</Link>
                     </span>
                   </h2>

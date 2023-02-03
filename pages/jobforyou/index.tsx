@@ -23,7 +23,7 @@ interface jobData {
 const Index = () => {
   const router = useRouter();
   const [count, setCount] = useState(1);
-  console.log(Number(router.query.page), count);
+
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const [loader, setLoader] = useState(false);
@@ -37,7 +37,7 @@ const Index = () => {
       reloadData(page);
     }
   }, [router]);
-  // console.log("totalPage", totalPage);
+
   let myArray = useMemo(() => {
     if (!isNaN(totalPage)) {
       return Array(totalPage)
@@ -66,7 +66,7 @@ const Index = () => {
         res.json().then((resp) => {
           setCanMyData(resp.data);
           setLoader(false);
-          console.log("resp.data :", resp.data);
+
           setTotalPage(
             Math.ceil(resp?.metadata?.count / resp?.metadata?.limit)
           );
@@ -174,10 +174,10 @@ const Index = () => {
                 />
               </Link>
               <Link href={"/"}>
-                <span className="pl-1 text-xs ">Home</span>
+                <span className="pl-1 text-[12px] font-medium ">Home</span>
               </Link>
             </div>
-            <div className=" mt-4  text-xl  ">
+            <div className=" mt-4  text-[22px] font-medium  ">
               <h1>Jobs for you</h1>
             </div>
           </div>
@@ -222,7 +222,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-xs p-2 "
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded opacity-100 cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply

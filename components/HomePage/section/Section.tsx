@@ -7,7 +7,7 @@ const Section = () => {
       <div className="mainWrapper">
         <div className="text-lg pt-40 md:pt-20">
           <div>
-            <div className="text-xl md:text-left  text-center md:px-[170px]">
+            <div className="text-[22px] md:text-left  text-center md:px-[170px]">
               <h2>Why Us</h2>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 py-8 sm:px-36">
@@ -30,7 +30,7 @@ const Section = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-xl mb-6 md:text-left  text-center md:px-[170px]">
+          <h1 className="text-[22px] mb-6 md:text-left  text-center md:px-[170px]">
             Companies Who Trust Us
           </h1>
           {/* <div className={style.section_img}> */}
