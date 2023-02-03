@@ -77,9 +77,7 @@ const Index = () => {
                 onchange={setNewPass}
                 error={error}
                 required
-                onBlur={() => {
-                  console.log();
-                }}
+                onBlur={() => {}}
               />
               <Fields
                 type="password"
@@ -89,9 +87,7 @@ const Index = () => {
                 onchange={setConPass}
                 error={error}
                 required
-                onBlur={() => {
-                  console.log();
-                }}
+                onBlur={() => {}}
               >
                 {error ? (
                   <p className="text-red-500 text-right text-xs">

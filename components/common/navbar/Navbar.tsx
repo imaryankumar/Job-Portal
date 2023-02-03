@@ -69,9 +69,9 @@ function Navbar() {
                     : undefined
                 }
               >
-                <h3 className="md:mb-[20px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
+                <h1 className="md:mb-[20px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
-                </h3>
+                </h1>
               </Link>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
                 <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-[#303F60] md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[8px] pt-[10px] cursor-pointer  ">

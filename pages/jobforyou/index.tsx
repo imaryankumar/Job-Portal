@@ -149,7 +149,6 @@ const Index = () => {
           }
         })
         .catch((e) => {
-          console.log(e);
           toast.error("Something went wrong");
           setLoader(false);
         });

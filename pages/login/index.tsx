@@ -138,9 +138,9 @@ const Index = () => {
           <div className={`mainWrapper`}>
             <div>
               <div className="py-1 px-0">
-                <h2 className="text-[#303f60] text-2xl tracking-normal ">
+                <h1 className="text-[#303f60] text-2xl tracking-normal ">
                   Login{" "}
-                </h2>
+                </h1>
               </div>
               <form
                 onSubmit={(e) => justsubmit(e)}

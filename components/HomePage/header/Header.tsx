@@ -39,7 +39,7 @@ const Header = () => {
             <div className="absolute -bottom-32 md:right-0 xl:right-20  ">
               <div className="relative w-full md:w-[400px] lg:w-[550px] xl:w-[700px]  aspect-video">
                 <Image
-                  src="/iconsimgs/mainimg.png"
+                  src="/iconsimgs/mainimg.webp"
                   width={622}
                   height={395}
                   alt="Mainimage"

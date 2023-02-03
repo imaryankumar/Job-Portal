@@ -21,10 +21,10 @@ const Description = ({
 }: cardTypes) => {
   return (
     <div className="w-full h-32 mb-[10px]">
-      <h2 className="text-[14px] tracking-normal text-[#303f60] px-0 py-2 items-center justify-between ">
+      <h1 className="text-[14px] tracking-normal text-[#303f60] px-0 py-2 items-center justify-between ">
         {content}
         {required && <span className="star_red">*</span>}
-      </h2>
+      </h1>
       <textarea
         placeholder={placeholder}
         className={`text-black w-full h-24 outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-2  ${

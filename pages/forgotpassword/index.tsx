@@ -78,7 +78,7 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="ForgotpagePassword" />
+      <Seo title="Forgotpage" />
       <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center ">
         <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center w-[420px] xs:w-[305px]  ">
           <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">

@@ -144,7 +144,7 @@ const Index = () => {
                 className="mt-1 mr-2"
               />
             </Link>
-            <span className="text-[12px] font-medium ">
+            <span className="text-[12px] font-medium cursor-pointer ">
               Home &gt; Post a Job
             </span>
           </div>
@@ -154,9 +154,9 @@ const Index = () => {
             <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
               <div className=" xs:w-[290px] md:w-[500px] w-[430px]">
                 <div className="px-0 py-4">
-                  <h2 className="text-[#303f60] text-[22px] font-medium tracking-normal  ">
+                  <h1 className="text-[#303f60] text-[22px] font-medium tracking-normal  ">
                     Post a Job{" "}
-                  </h2>
+                  </h1>
                 </div>
 
                 <form
