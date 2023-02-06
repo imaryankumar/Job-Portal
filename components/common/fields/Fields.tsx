@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface cardTypes {
   content?: string;
@@ -27,9 +28,11 @@ const Fields = ({
   required,
   children,
 }: cardTypes) => {
+  const router = useRouter();
+
   return (
     <div className="w-full h-[95px] ">
-      <div className="text-[#303f60]  px-0 py-2 text-[14px] flex items-center justify-between ">
+      <div className="text-[#303f60] px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
           {required && <span className="star_red">*</span>}
@@ -40,6 +43,9 @@ const Fields = ({
         </Link>
       </div>
       <input
+        autoComplete={`${
+          router.pathname.includes("login") ? "off" : "new-password"
+        }`}
         type={type}
         placeholder={placeholder}
         className={`text-black w-full h-[40px] xs:h-[38px] md:h-[46px] outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-2 ${
@@ -50,7 +56,7 @@ const Fields = ({
         onBlur={(e) => onBlur()}
         pattern={pattern}
         maxLength={255}
-
+        
       />
       {children}
     </div>
