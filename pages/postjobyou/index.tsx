@@ -265,7 +265,7 @@ const Index = () => {
         <div className="bg-[#edf6ff] w-full h-auto border  ">
           <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] xl:pt-[55rem] 2xl:pt-[30rem] pb-8   ">
             <Image
-              src="/iconsimgs/left.png"
+              src="/iconsimgs/Prev.svg"
               alt="LeftButton"
               onClick={() => decrement()}
               width={20}
@@ -309,7 +309,7 @@ const Index = () => {
             )}
 
             <Image
-              src="/iconsimgs/right.png"
+              src="/iconsimgs/Nex.svg"
               alt="RightButton"
               onClick={() => increment()}
               width={20}
