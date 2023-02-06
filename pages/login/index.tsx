@@ -1,11 +1,10 @@
 import Fields from "../../components/common/fields/Fields";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
 import Loader from "../../components/Loader/Loader";
-
 interface dataType {
   success?: boolean;
   code: number;
@@ -19,15 +18,16 @@ const Index = () => {
     password?: string;
     email?: string;
   }>();
-  const formFields=[mail, pass];
-  const mydata=formFields.some(value=>value.length!==0)
-  if(mydata===true){
-   
-  }
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
-
   const [data, setData] = useState<dataType | undefined>(undefined);
+
+
+  // const formFields=[mail, pass];
+  // const mydata=formFields.some(value=>value.length!==0)
+  // if(mydata===true){
+   
+  // }
 
   function validateEmail(email: any) {
     let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -39,6 +39,8 @@ const Index = () => {
       [key]: value,
     }));
   };
+
+
   function validateMail(mail: String) {
     if (!mail.trim()) {
       setErrorState("email", "Email is required");
@@ -76,8 +78,6 @@ const Index = () => {
 
     return emailError || passwordError;
   };
-
-
   const justsubmit = async (e: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
