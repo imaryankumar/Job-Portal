@@ -21,14 +21,14 @@ const Description = ({
 }: cardTypes) => {
   return (
     <div className="w-full h-32 mb-[10px]">
-      <h1 className="text-[14px] tracking-normal text-[#303f60] px-0 py-2 items-center justify-between ">
+      <h1 className="text-[14px] tracking-normal text-light-dark px-0 py-2 items-center justify-between ">
         {content}
         {required && <span className="star_red">*</span>}
       </h1>
       <textarea
         placeholder={placeholder}
-        className={`text-black w-full h-24 outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-2  ${
-          error ? `border border-solid border-red-500` : ""
+        className={`text-black w-full h-24 outline-light-blue bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 pt-3  ${
+          error ? `border border-solid border-[#FF0000]` : ""
         }`}
         value={value}
         onChange={(e) => onchange(e.target.value)}

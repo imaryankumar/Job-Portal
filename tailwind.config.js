@@ -11,7 +11,14 @@ module.exports = {
       // => @media (min-width: 300px and max-width: 450px) { ... }
       ...defaultTheme.screens,
     },
-    extend: {},
+    extend: {
+      colors:{
+        'dark-blue':'#1A253C',
+        'light-blue':'#43AFFF',
+        'light-dark':'#303F60',
+        'white-blue':'#edf6ff'
+      }
+    },
   },
   plugins: [],
 }

@@ -32,13 +32,13 @@ const Fields = ({
 
   return (
     <div className="w-full h-[95px] ">
-      <div className="text-[#303f60] px-0 py-2 text-[14px] flex items-center justify-between ">
+      <div className="text-light-dark px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
           {required && <span className="star_red">*</span>}
         </div>
 
-        <Link href={"/forgotpassword"} className="text-[#43AFFF]">
+        <Link href={"/forgotpassword"} className="text-light-blue">
           {password}
         </Link>
       </div>
@@ -48,8 +48,8 @@ const Fields = ({
         }`}
         type={type}
         placeholder={placeholder}
-        className={`text-black w-full h-[40px] xs:h-[38px] md:h-[46px] outline-[#43afff] bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-2 ${
-          error ? "border border-solid border-red-500" : ""
+        className={`text-black w-full h-[40px] xs:h-[38px] md:h-[46px] outline-light-blue bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 ${
+          error ? "border border-solid border-[#FF0000]" : ""
         }`}
         value={value}
         onChange={(e) => onchange(e.target.value)}

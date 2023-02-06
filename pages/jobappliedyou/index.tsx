@@ -98,22 +98,24 @@ const Index = () => {
   return (
     <>
       <Seo title="JobAppliedYou" />{" "}
-      <div className="bg-[#1A253C] w-full h-[18vh] text-white ">
+      <div className="bg-dark-blue w-full h-[18vh] text-white ">
         <div className=" md:px-44  xs:px-20 px-32 py-0 ">
+        <Link href="/jobforyou">
           <div className="flex  text-center items-center pt-4 xs:pt-6 text-xs opacity-80  ">
-            <Link href={"/"}>
+            
               <Image
                 src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
               />
-            </Link>
+           
             <p className="ml-1 text-[12px] font-medium ">
               {" "}
-              Home &gt; Applied Jobs
+              Home &gt;<Link href={"/jobappliedyou"}>Applied Jobs</Link> 
             </p>
           </div>
+          </Link>
           <div className="mt-4  text-[22px] font-medium xs:text-base ">
             <h1>Jobs applied by you</h1>
           </div>
@@ -130,26 +132,26 @@ const Index = () => {
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px] tracking-normal text-[#303f60]  line-clamps`}
+                        className={`w-full h-[20px] text-[17px] tracking-normal text-light-dark  line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`w-[229px] text-[14px] tracking-normal text-[#303f60] opacity-80 mx-0 my-2 line-clamps`}
+                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
                       >
                         <p>{item.description}</p>
                       </div>
                       <div className="flex items-center text-center absolute justify-center bottom-4 ">
                         <div className="flex">
                           <Image
-                            src="/iconsimgs/mypin.png"
+                            src="/iconsimgs/location.svg"
                             alt="Pinicons"
                             width={10}
                             height={15}
                           />
                           <h3
-                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-[#303f60] opacity-80 line-clamps`}
+                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps`}
                           >
                             {item.location}
                           </h3>
@@ -173,11 +175,11 @@ const Index = () => {
                   width={106}
                   height={106}
                 />
-                <h2 className="w-[292px] h-[23px] text-[#303f60] text-[20px] opacity-80 px-0 py-4 ">
+                <h2 className="w-[292px] h-[23px] text-light-dark text-[20px] opacity-80 px-0 py-4 ">
                   Your applied jobs will show here!
                 </h2>
                 <button
-                  className="w-40 h-[46px]  font-medium  bg-blue-400 border border-solid border-blue-400 text-[16px] rounded  flex items-center justify-center mt-10 cursor-pointer text-white"
+                  className="w-40 h-[46px]  font-medium  bg-light-blue border border-solid border-light-blue text-[16px] rounded  flex items-center justify-center mt-10 cursor-pointer text-white"
                   onClick={() => router.push("/jobforyou")}
                 >
                   See all jobs

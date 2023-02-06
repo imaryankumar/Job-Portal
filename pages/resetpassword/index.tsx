@@ -59,14 +59,14 @@ const Index = () => {
   return (
     <>
       <Seo title="ResetPassword" />
-      <div className="bg-[#1A253C] w-full h-[40vh]  text-white flex items-center justify-center">
+      <div className="bg-dark-blue w-full h-[40vh]  text-white flex items-center justify-center">
         <div className="mainWrapper">
           <div className="md:w-[557px] w-[450px] xs:w-[310px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
-            <div className="text-[#303f60] w-full py-4 px-7 ">
-              <h1 className="text-[#303f60] text-[22px] font-medium py-4 px-0">
+            <div className="text-light-dark w-full py-4 px-7 ">
+              <h1 className="text-light-dark text-[22px] font-medium py-4 px-0">
                 Reset Your Password
               </h1>
-              <h3 className="text-[14px] text-[#303f60] pb-4">
+              <h3 className="text-[14px] text-light-dark pb-4">
                 Enter your new password below.
               </h3>
               <Fields
@@ -90,7 +90,7 @@ const Index = () => {
                 onBlur={() => {}}
               >
                 {error ? (
-                  <p className="text-red-500 text-right text-xs">
+                  <p className="text-[#FF0000] text-right text-xs">
                     Password do not Match.
                   </p>
                 ) : (
@@ -99,14 +99,14 @@ const Index = () => {
               </Fields>
               <div className="flex items-center justify-center">
                 <button
-                  className="w-40 h-[46px] bg-blue-400 text-[16px] font-medium  border-blue-400 rounded-md  flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                  className="w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                   onClick={onResetPassword}
                   disabled={isLoading}
                   type="submit"
                   style={
                     isLoading
                       ? { backgroundColor: "white", color: "black" }
-                      : { backgroundColor: "#43afff" }
+                      : { backgroundColor: "light-blue" }
                   }
                 >
                   {loader ? <Loader /> : "Reset"}
@@ -116,7 +116,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full h-auto"></div>
+      <div className="bg-white-blue w-full h-auto"></div>
     </>
   );
 };

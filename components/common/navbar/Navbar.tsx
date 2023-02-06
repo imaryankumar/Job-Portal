@@ -31,7 +31,7 @@ function Navbar() {
   return (
     <div className="container-lg mx-22 mainWrapper">
       <div className="px-0.5">
-        <nav className={`bg-[#1A253C] py-4 px-4 md:px-20 mainWrapper`}>
+        <nav className={`bg-dark-blue py-4 px-4 md:px-20 mainWrapper`}>
           <div className="flex justify-between items-center w-full  ">
             <Link href={"/"}>
               <div className="text-white text-[1.6rem] font-[500] cursor-pointer  ">
@@ -47,7 +47,7 @@ function Navbar() {
               <Link href="/login">
                 <button
                   type="button"
-                  className={`text-center text-[16px] font-medium  md:w-40 md:h-12 text-xs md:text-base text-white cursor-pointer border border-solid border-blue-400 p-2 md:p-3 rounded bg-[#43afff33] ${
+                  className={`text-center text-[16px] font-medium  md:w-40 md:h-12 text-xs md:text-base text-white cursor-pointer border border-solid border-light-blue p-2 md:p-3 rounded bg-[#43afff33] ${
                     isHidden ? "d-none" : ""
                   }`}
                 >
@@ -65,7 +65,7 @@ function Navbar() {
                 className={
                   router.asPath.includes("/jobpost") ||
                   router.asPath.includes("/jobappliedyou")
-                    ? "md:border-b-4 border-b-2 border-solid border-blue-400 "
+                    ? "md:border-b-4 border-b-2 border-solid border-light-blue "
                     : undefined
                 }
               >
@@ -74,7 +74,7 @@ function Navbar() {
                 </h1>
               </Link>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
-                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-[#303F60] md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
+                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
                   {user?.userRole === 0 ? "R" : "C"}
                 </div>
                 <Image
@@ -87,7 +87,7 @@ function Navbar() {
 
                 {click && (
                   <div
-                    className=" w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-[#303f60] rounded cursor-pointer absolute z-50 "
+                    className=" w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-light-dark rounded cursor-pointer absolute z-50 "
                     onClick={() => LogoutClear()}
                   >
                     Logout
@@ -100,7 +100,7 @@ function Navbar() {
           )}
         </div>
       </div>
-      <div className=" border-b-2 mx-4 md:mx-20  border-[#EDF6FF] opacity-20 " />
+      <div className=" border-b-2 mx-4 md:mx-20  border-white-blue opacity-20 " />
     </div>
   );
 }

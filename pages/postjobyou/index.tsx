@@ -156,11 +156,11 @@ const Index = () => {
   return (
     <>
       <Seo title="PostJobYou" />
-      <div className="bg-[#1A253C] w-full h-[18vh] text-white">
+      <div className="bg-dark-blue w-full h-[18vh] text-white">
         <div className="mainWrapper">
           <div className="md:px-44 py-0 px-20 ">
             <div className="flex text-center items-center pt-1">
-              <Link href={"/"}>
+              <Link href={"/postjobyou"}>
                 <Image
                   src="/iconsimgs/homemd.svg"
                   alt=""
@@ -169,7 +169,7 @@ const Index = () => {
                   className="mr-1"
                 />
               </Link>
-              <Link href={"/"}>
+              <Link href={"/postjobyou"}>
                 {" "}
                 <span className="text-[12px] font-medium ">Home</span>
               </Link>
@@ -184,7 +184,7 @@ const Index = () => {
           <Loader />
         ) : myData?.length > 0 ? (
           <div className="flex justify-center items-center flex-wrap md:mt-2 mt-4 gap-[2%]  ">
-            <div className="flex flex-wrap items-center justify-center md:px-8 md:py-6 px-4 ">
+            <div className="flex flex-wrap  items-center justify-center md:px-8 md:py-6 px-4  mainWrapper lg:px-16 ">
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
@@ -192,13 +192,13 @@ const Index = () => {
                     key={key}
                   >
                     <div
-                      className={`w-full h-[20px] text-[17px]  text-[#303f60] tracking-normal overflow-hidden`}
+                      className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal overflow-hidden`}
                       key={key}
                     >
                       <h1>{item.title}</h1>
                     </div>
                     <div
-                      className={`"w-[229px] mx-0 my-2 opacity-80 text-[#303f60] tracking-normal overflow-hidden`}
+                      className={`"w-[229px] mx-0 my-2 opacity-80 text-light-dark tracking-normal overflow-hidden`}
                     >
                       <p>{item.description}</p>
                     </div>
@@ -215,14 +215,14 @@ const Index = () => {
                           />
                         </div>
                         <h3
-                          className={`w-[64px] h-[16px] line-clamps text-[14px] tracking-normal text-[#303f60] opacity-80`}
+                          className={`w-[64px] h-[16px] line-clamps text-[14px] tracking-normal text-light-dark opacity-80`}
                         >
                           {item.location}
                         </h3>
                       </div>
                       <div>
                         <button
-                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-[#303f60] capitalize text-[12px] p-2 `}
+                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px] p-2 `}
                           onClick={() => postClick(item.id)}
                         >
                           View applications
@@ -238,7 +238,7 @@ const Index = () => {
           <>
             <Seo title="PostedJob" />
 
-            <div className="bg-[#edf6ff] w-full h-[90vh] mt-12 ">
+            <div className="bg-white-blue w-full h-[90vh] mt-12 ">
               <div className="flex flex-col items-center justify-center px-0 py-40">
                 <Image
                   src="/iconsimgs/writing.svg"
@@ -246,11 +246,11 @@ const Index = () => {
                   width={106}
                   height={106}
                 />
-                <h2 className="w-[289px] h-[23px] text-[#303f60] text-[20px] opacity-80 py-4 px-0  ">
+                <h2 className="w-[289px] h-[23px] text-light-dark text-[20px] opacity-80 py-4 px-0  ">
                   Your posted jobs will show here!
                 </h2>
                 <button
-                  className="w-40 h-[46px] bg-blue-400 border border-solid border-blue-400 rounded  flex items-center justify-center mt-10 cursor-pointer text-white "
+                  className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-10 cursor-pointer text-white "
                   onClick={() => router.push("/jobpost")}
                 >
                   Post a Job
@@ -262,7 +262,7 @@ const Index = () => {
       </div>
 
       {myData?.length > 0 && totalPage > 1 && (
-        <div className="bg-[#edf6ff] w-full h-auto border  ">
+        <div className="bg-white-blue w-full h-auto border  ">
           <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] xl:pt-[55rem] 2xl:pt-[30rem] pb-8   ">
             <Image
               src="/iconsimgs/Prev.svg"
@@ -300,7 +300,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
+                  className="w-8 h-8 rounded bg-light-blue text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}
@@ -328,7 +328,7 @@ const Index = () => {
               className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-0 py-3 text-[19px] text-[#303f60] font-medium ">
+              <div className="flex items-center justify-between px-0 py-3 text-[19px] text-light-dark font-medium ">
                 <h2>Applicants for this job</h2>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -338,7 +338,7 @@ const Index = () => {
                 </button>
               </div>
               <hr />
-              <h3 className="text-[#303f60] text-[15px]  py-2 ">
+              <h3 className="text-light-dark text-[15px]  py-2 ">
                 Total {jobData ? jobData.length : 0} applications
               </h3>
               <div className="bg-[#557da526] flex justify-center  flex-wrap overflow-auto h-full p-2 gap-4 ">
@@ -354,17 +354,17 @@ const Index = () => {
                         >
                           <div className="w-[274px] h-[131px] capitalize  ">
                             <div className="flex items-center  ">
-                              <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text-[#303f60] text-[20px] flex justify-center items-center mr-4  ">
+                              <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text- text-[20px] flex justify-center items-center mr-4  ">
                                 {items.name?.slice(0, 1)}
                               </span>
                               <div>
                                 <h2
-                                  className={`text-[#303f60] text-[15px] font-medium  line-clamps`}
+                                  className={`text-light-dark text-[15px] font-medium  line-clamps`}
                                 >
                                   {items.name}
                                 </h2>
                                 <h3
-                                  className={`text-[#303f60]  text-[10px] line-clamps`}
+                                  className={`text-light-dark  text-[10px] line-clamps`}
                                 >
                                   {items.email}
                                 </h3>
@@ -372,11 +372,11 @@ const Index = () => {
                             </div>
 
                             <div className="pt-8">
-                              <h2 className="text-[#1a253c]  text-[13px] font-medium  ">
+                              <h2 className="text-dark-blue  text-[13px] font-medium  ">
                                 Skills
                               </h2>
                               <h3
-                                className={`text-[#303f60]  text-[15px] line-clamps`}
+                                className={`text-light-dark  text-[15px] line-clamps`}
                               >
                                 {items.skills}
                               </h3>

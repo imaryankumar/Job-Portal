@@ -160,11 +160,11 @@ const Index = () => {
     <>
       <Seo title="JobForYou" />
 
-      <div className="bg-[#1A253C] w-full h-[18vh] text-white relative ">
+      <div className="bg-dark-blue w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
           <div className=" md:px-44  xs:px-20 px-32 py-0  ">
             <div className="flex text-center items-center md:pt-1 pt-3   ">
-              <Link href={"/"}>
+              <Link href="/jobforyou">
                 <Image
                   src="/iconsimgs/homemd.svg"
                   alt="Homeicon"
@@ -172,7 +172,7 @@ const Index = () => {
                   height={9}
                 />
               </Link>
-              <Link href={"/"}>
+              <Link href="/jobforyou">
                 <span className="pl-1 text-[12px] font-medium ">Home</span>
               </Link>
             </div>
@@ -192,13 +192,13 @@ const Index = () => {
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px]  text-[#303f60] tracking-normal line-clamps`}
+                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps`}
                         key={key}
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`w-[229px] text-[14px] tracking-normal text-[#303f60] opacity-80 my-2 mx-0 line-clamps`}
+                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamps`}
                       >
                         <p>{item.description}</p>
                       </div>
@@ -213,7 +213,7 @@ const Index = () => {
                             />
                           </div>
                           <h3
-                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-[#303f60] opacity-80 line-clamps`}
+                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps`}
                           >
                             {item.location}
                           </h3>
@@ -223,7 +223,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-[#303f60] capitalize text-[12px] p-2 "
+                              className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px] p-2 "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply
@@ -239,7 +239,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full h-auto ">
+      <div className="bg-white-blue w-full h-auto ">
         <div className="flex justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[112rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8  ">
           <Image
             src="/iconsimgs/Prev.svg"

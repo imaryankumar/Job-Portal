@@ -2,7 +2,7 @@ import "../styles/global.css";
 import type { AppProps } from "next/app";
 import Navbar from "../components/common/navbar/Navbar";
 import ContextAPI from "../components/contextapi/ContextAPI";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,9 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
       return false;
     }
   }, [router]);
+
   return (
     <ContextAPI>
-      <div className="bg-[#1A253C]">
+      <div className="bg-dark-blue">
         {!isHidd && <Navbar />}
         {/* <hr className="w-[91%] mx-auto " /> */}
       </div>

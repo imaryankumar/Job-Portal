@@ -132,29 +132,33 @@ const Index = () => {
     <>
       <Seo title="JobPost" />
 
-      <div className="bg-[#1A253C] w-full h-[40vh] text-white relative ">
+      <div className="bg-dark-blue w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
+        <Link href={"/postjobyou"}>
           <div className="flex md:py-4 md:px-48 xs:px-20 px-32 py-6 ">
-            <Link href={"/"}>
+            
               <Image
                 src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
-                className="mt-1 mr-2"
+                className="mr-2"
               />
-            </Link>
+            
+            
             <span className="text-[12px] font-medium cursor-pointer ">
-              Home &gt; Post a Job
+              Home &gt; <Link href={"jobpost"}>Post a Job</Link> 
             </span>
+            
           </div>
+          </Link>
         </div>
         <div className="mainWrapper">
           <div className="flex items-center justify-center md:pt-12 pt-4">
             <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
               <div className=" xs:w-[290px] md:w-[500px] w-[430px]">
                 <div className="px-0 py-4">
-                  <h1 className="text-[#303f60] text-[22px] font-medium tracking-normal  ">
+                  <h1 className="text-light-dark text-[22px] font-medium tracking-normal  ">
                     Post a Job{" "}
                   </h1>
                 </div>
@@ -179,7 +183,7 @@ const Index = () => {
                     required
                   >
                     {error && (
-                      <p className="text-red-500 text-right  text-xs opacity-[80%] ">
+                      <p className="text-[#FF0000] text-right  text-xs opacity-[80%] ">
                         {error.title}
                       </p>
                     )}
@@ -200,7 +204,7 @@ const Index = () => {
                     required
                   />
                   {error && (
-                    <p className="text-red-500 text-right mt-[-5px] h-2 text-xs opacity-[80%]">
+                    <p className="text-[#FF0000] text-right mt-[-5px] h-2 text-xs opacity-[80%]">
                       {error.description}
                     </p>
                   )}
@@ -220,20 +224,20 @@ const Index = () => {
                     required
                   >
                     {error && (
-                      <p className="text-red-500 text-right  text-xs opacity-[80%]">
+                      <p className="text-[#FF0000] text-right  text-xs opacity-[80%]">
                         {error.location}
                       </p>
                     )}
                   </Fields>
                   <div className="flex items-center justify-center pb-[20px] ">
                     <button
-                      className="w-40 h-[46px]  bg-blue-400 border border-solid border-blue-400 rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white "
+                      className="w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white "
                       disabled={isLoading}
                       type="submit"
                       style={
                         isLoading
                           ? { backgroundColor: "white", color: "black" }
-                          : { backgroundColor: "#43afff" }
+                          : { backgroundColor: "light-blue" }
                       }
                     >
                       {loader ? <Loader /> : "Post"}
@@ -245,7 +249,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full"></div>
+      <div className="bg-white-blue w-full"></div>
     </>
   );
 };

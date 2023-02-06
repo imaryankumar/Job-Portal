@@ -204,11 +204,11 @@ const Index = () => {
   return (
     <>
       <Seo title="Signup" />
-      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center">
+      <div className="bg-dark-blue w-full h-[40vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-[#303f60] pb-4  ">
+          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px] mt-[34rem] flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4 ">
-              <h1 className="text-[22px] font-medium text-[#303f60] py-6 px-0">
+              <h1 className="text-[22px] font-medium text-light-dark py-6 px-0">
                 Signup
               </h1>
               <h2 className="pb-2 text-[14px]">
@@ -266,7 +266,7 @@ const Index = () => {
                     required
                   >
                     {error?.name && (
-                      <p className="text-red-500 text-right  text-xs">
+                      <p className="text-[#FF0000] text-right  text-xs">
                         {error.name}
                       </p>
                     )}
@@ -288,7 +288,7 @@ const Index = () => {
                     required
                   >
                     {error?.email && (
-                      <p className="text-red-500 text-right  text-xs">
+                      <p className="text-[#FF0000] text-right  text-xs">
                         {error?.email}
                       </p>
                     )}
@@ -312,7 +312,7 @@ const Index = () => {
                       required
                     >
                       {error?.password && (
-                        <p className="text-red-500 text-right text-xs">
+                        <p className="text-[#FF0000] text-right text-xs">
                           {error?.password}
                         </p>
                       )}
@@ -334,7 +334,7 @@ const Index = () => {
                       required
                     >
                       {error?.confirmPassword && (
-                        <p className="text-red-500 text-right text-xs">
+                        <p className="text-[#FF0000] text-right text-xs">
                           {error?.confirmPassword}
                         </p>
                       )}
@@ -356,30 +356,30 @@ const Index = () => {
                     required={role == 1}
                   >
                     {error?.skills && (
-                      <p className="text-red-500 text-right text-xs">
+                      <p className="text-[#FF0000] text-right text-xs">
                         {error?.skills}
                       </p>
                     )}
                   </Fields>
                   <div className="flex items-center justify-center">
                     <button
-                      className="w-40 h-[46px] bg-blue-400 border-blue-400 rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                      className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={
                         isLoading
                           ? { backgroundColor: "white", color: "black" }
-                          : { backgroundColor: "#43afff" }
+                          : { backgroundColor: "light-blue" }
                       }
                     >
                       {loader ? <Loader /> : " Signup"}
                     </button>
                   </div>
                 </form>
-                <div className="text-[#303f60] text-center text-base mt-9 cursor-pointer">
+                <div className="text-light-dark text-center text-base mt-9 cursor-pointer">
                   <h2>
                     Have an account?{" "}
-                    <span className="text-[#43afff] text-base font-medium ">
+                    <span className="text-light-blue text-base font-medium ">
                       <Link href={"/login"}>Login</Link>
                     </span>
                   </h2>
@@ -389,7 +389,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full h-[75vh]"></div>
+      <div className="bg-white-blue w-full h-[75vh]"></div>
     </>
   );
 };

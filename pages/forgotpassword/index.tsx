@@ -79,13 +79,13 @@ const Index = () => {
   return (
     <>
       <Seo title="Forgotpage" />
-      <div className="bg-[#1A253C] w-full h-[40vh] text-white flex items-center justify-center ">
-        <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-56 flex flex-col items-center w-[420px] xs:w-[305px]  ">
+      <div className="bg-dark-blue w-full h-[40vh] text-white flex items-center justify-center ">
+        <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-60 flex flex-col items-center w-[420px] xs:w-[305px]  ">
           <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">
-            <h1 className="text-[#303f60] text-[22px] font-medium py-2 px-0 ">
+            <h1 className="text-light-dark text-[22px] font-medium py-2 px-0 ">
               Forgot your password?
             </h1>
-            <p className="text-sm text-[#303f60] py-2 px-0">
+            <p className="text-sm text-light-dark py-2 px-0">
               Enter the email associated with your account and we’ll send you
               instructions to reset your password.
             </p>
@@ -118,12 +118,12 @@ const Index = () => {
               </Fields>
               <div className="flex items-center justify-center">
                 <button
-                  className="md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-blue-400 border-blue-400 rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
+                  className="md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
                   style={
                     isLoading
                       ? { backgroundColor: "white", color: "black" }
-                      : { backgroundColor: "#43afff" }
+                      : { backgroundColor: "light-blue" }
                   }
                 >
                   Submit
@@ -133,7 +133,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#edf6ff] w-full h-auto"></div>
+      <div className="bg-white-blue w-full h-auto"></div>
     </>
   );
 };
