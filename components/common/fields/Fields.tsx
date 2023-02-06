@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { off } from "process";
 interface cardTypes {
   content?: string;
   placeholder?: string;
@@ -49,6 +50,7 @@ const Fields = ({
         onBlur={(e) => onBlur()}
         pattern={pattern}
         maxLength={255}
+        
       />
       {children}
     </div>

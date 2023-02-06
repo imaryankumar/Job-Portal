@@ -19,6 +19,11 @@ const Index = () => {
     password?: string;
     email?: string;
   }>();
+  const formFields=[mail, pass];
+  const mydata=formFields.some(value=>value.length!==0)
+  if(mydata===true){
+   
+  }
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -71,6 +76,7 @@ const Index = () => {
 
     return emailError || passwordError;
   };
+
 
   const justsubmit = async (e: any) => {
     e.preventDefault();
@@ -145,6 +151,7 @@ const Index = () => {
               <form
                 onSubmit={(e) => justsubmit(e)}
                 className=" w-[370px] xs:w-[260px]  md:w-[557px]"
+                
               >
                 <Fields
                   type="email"
@@ -155,6 +162,7 @@ const Index = () => {
                   onchange={(value: string) => {
                     setMail(value);
                     validateMail(value);
+                
                   }}
                   onBlur={() => {
                     validateMail(mail);
@@ -180,11 +188,13 @@ const Index = () => {
                   onchange={(value: string) => {
                     setPass(value);
                     validatePass(value);
+                  
                   }}
                   onBlur={() => {
                     validatePass(pass);
                   }}
                   required
+                  
                 >
                   {error ? (
                     <p className="text-red-500 text-right  text-xs">

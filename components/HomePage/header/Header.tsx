@@ -29,7 +29,7 @@ const Header = () => {
                       ? user?.userRole === 0
                         ? "/postjobyou?page=1"
                         : "/jobforyou?page=1"
-                      : "/login"
+                      : "/signup"
                   }`
                 )
               }

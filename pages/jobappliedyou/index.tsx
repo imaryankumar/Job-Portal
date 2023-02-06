@@ -103,7 +103,7 @@ const Index = () => {
           <div className="flex  text-center items-center pt-4 xs:pt-6 text-xs opacity-80  ">
             <Link href={"/"}>
               <Image
-                src="/iconsimgs/homeicon.png"
+                src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
@@ -191,11 +191,11 @@ const Index = () => {
         <div className="h-auto  ">
           <div className="flex flex-wrap justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[110rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8 ">
             <Image
-              src="/iconsimgs/left.png"
+              src="/iconsimgs/prev.svg"
               alt="Lefticon"
               onClick={() => decrement()}
-              width={20}
-              height={20}
+              width={30}
+              height={30}
             />
             {/* <span className={style.postjobyou_span}>{count}</span> */}
             {count > 1 ? (
@@ -248,11 +248,11 @@ const Index = () => {
               </>
             )}
             <Image
-              src="/iconsimgs/right.png"
+              src="/iconsimgs/nex.svg"
               alt="Righticon"
               onClick={() => increment()}
-              width={20}
-              height={20}
+              width={30}
+              height={30}
             />
           </div>
         </div>

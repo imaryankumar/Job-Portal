@@ -78,11 +78,11 @@ function Navbar() {
                   {user?.userRole === 0 ? "R" : "C"}
                 </div>
                 <Image
-                  src="/iconsimgs/arrow-down.png"
+                  src="/iconsimgs/caretdown.svg"
                   alt="arrowdown"
                   className=" relative text-[#FFFFFF]"
-                  width={17}
-                  height={10}
+                  width={13}
+                  height={8}
                 />
 
                 {click && (

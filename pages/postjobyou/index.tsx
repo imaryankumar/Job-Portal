@@ -162,7 +162,7 @@ const Index = () => {
             <div className="flex text-center items-center pt-1">
               <Link href={"/"}>
                 <Image
-                  src="/iconsimgs/homeicon.png"
+                  src="/iconsimgs/homemd.svg"
                   alt=""
                   width={10}
                   height={9}
@@ -208,7 +208,7 @@ const Index = () => {
                       <div className="flex mr-4">
                         <div className="relative w-4 h-4 mr-2">
                           <Image
-                            src="/iconsimgs/mypin.png"
+                            src="/iconsimgs/location.svg"
                             alt="Pinicon"
                             fill
                             className="absolute top-0 object-contain"
@@ -241,7 +241,7 @@ const Index = () => {
             <div className="bg-[#edf6ff] w-full h-[90vh] mt-12 ">
               <div className="flex flex-col items-center justify-center px-0 py-40">
                 <Image
-                  src="/iconsimgs/write.png"
+                  src="/iconsimgs/writing.svg"
                   alt=""
                   width={106}
                   height={106}
@@ -332,9 +332,9 @@ const Index = () => {
                 <h2>Applicants for this job</h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded-[50%] text-black text-lg  font-extrabold opacity-80 "
+                  className="cursor-pointer"
                 >
-                  X
+                  <Image src="/iconsimgs/metrocross.svg" alt="metrocross" width={15} height={15} />
                 </button>
               </div>
               <hr />
@@ -390,10 +390,10 @@ const Index = () => {
                   <div className="w-auto h-auto ">
                     <div className="md:h-[454px] md:w-[610px] h-[330px] w-[270px] text-[20px] opacity-80 flex flex-col justify-center items-center">
                       <Image
-                        src="/iconsimgs/resume.png"
+                        src="/iconsimgs/curriculum.svg"
                         alt=""
                         className="mb-4 w-[100px] h-[106px] opacity-50 "
-                        width={100}
+                        width={85}
                         height={106}
                       />
                       <h3>No applications available!</h3>

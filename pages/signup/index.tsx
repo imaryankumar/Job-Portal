@@ -247,7 +247,7 @@ const Index = () => {
                 </button>
               </div>
               <div className="my-4 mx-0">
-                <form onSubmit={(e) => Justclick(e)}>
+                <form onSubmit={(e) => Justclick(e)} autoComplete="off" >
                   <Fields
                     type="text"
                     content="Full Name"

@@ -137,7 +137,7 @@ const Index = () => {
           <div className="flex md:py-4 md:px-48 xs:px-20 px-32 py-6 ">
             <Link href={"/"}>
               <Image
-                src="/iconsimgs/homeicon.png"
+                src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
