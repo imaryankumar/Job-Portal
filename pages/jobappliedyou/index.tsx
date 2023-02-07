@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Loader from "../../components/Loader/Loader";
 import { toast } from "react-toastify";
+import { start } from "repl";
 interface cardTypes {
   location?: string;
   title?: string;
@@ -85,7 +86,7 @@ const Index = () => {
   };
   const onNumClick = (e: number) => {
     setCount(e);
-    router.push(`/jobforyou?page=${e} `, undefined, {
+    router.push(`/jobappliedyou?page=${e} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -198,12 +199,13 @@ const Index = () => {
               onClick={() => decrement()}
               width={30}
               height={30}
+              className={count==1?'cursor-no-drop' :""}
             />
             {/* <span className={style.postjobyou_span}>{count}</span> */}
             {count > 1 ? (
               <>
                 <div
-                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
+                  className="h-8 w-8 rounded bg-white text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(1)}
                 >
                   1
@@ -242,7 +244,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
+                  className="h-8 w-8 rounded bg-white text-center text-[19px] font-[400]"
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}
@@ -255,6 +257,7 @@ const Index = () => {
               onClick={() => increment()}
               width={30}
               height={30}
+              className={count==totalPage?'cursor-no-drop' :""}
             />
           </div>
         </div>

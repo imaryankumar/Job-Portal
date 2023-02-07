@@ -58,8 +58,8 @@ const Index = () => {
               .then((resData) => {
                 return resData.json();
               })
-              .then((data) => {
-                if (data.code === 200) {
+              .then((res) => {
+                if (res.code === 200) {
                   router.push(`/resetpassword?token=${data?.data?.token}`);
                 } else {
                   toast.error("Error Found");
@@ -79,8 +79,8 @@ const Index = () => {
   return (
     <>
       <Seo title="Forgotpage" />
-      <div className="bg-dark-blue w-full h-[40vh] text-white flex items-center justify-center ">
-        <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-60 flex flex-col items-center w-[420px] xs:w-[305px]  ">
+      <div className="bg-dark-blue w-full h-[33vh] 2xl:h-[15vh] text-white flex items-center justify-center ">
+        <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-48 2xl:mt-[15rem] flex flex-col items-center w-[420px] xs:w-[305px]  ">
           <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">
             <h1 className="text-light-dark text-[22px] font-medium py-2 px-0 ">
               Forgot your password?

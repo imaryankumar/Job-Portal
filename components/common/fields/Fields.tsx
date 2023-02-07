@@ -38,7 +38,7 @@ const Fields = ({
           {required && <span className="star_red">*</span>}
         </div>
 
-        <Link href={"/forgotpassword"} className="text-light-blue">
+        <Link href={"/forgotpassword"} className="text-light-blue font-medium text-[14px] ">
           {password}
         </Link>
       </div>

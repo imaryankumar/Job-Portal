@@ -33,7 +33,7 @@ function Navbar() {
       <div className="px-0.5">
         <nav className={`bg-dark-blue py-4 px-4 md:px-20 mainWrapper`}>
           <div className="flex justify-between items-center w-full  ">
-            <Link href={"/"}>
+            <Link href={!isLoggedIN?"/":user?.userRole === 0 ?'/postjobyou':'/postjobyou'}>
               <div className="text-white text-[1.6rem] font-[500] cursor-pointer  ">
                 <Image
                   src="/iconsimgs/MyJobs.png"

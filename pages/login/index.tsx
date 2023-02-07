@@ -120,6 +120,7 @@ const Index = () => {
             setError({});
             if (finalRes?.message) {
               toast.error(finalRes.message);
+              
             } else {
               const errors = finalRes?.errors;
               errors.forEach((item: any) => {
@@ -148,8 +149,8 @@ const Index = () => {
     <>
       <Seo title="Login" description="This is Login page " />
 
-      <div className="bg-dark-blue w-full h-[38vh] text-white flex items-center justify-center">
-        <div className="bg-white box-shadows rounded-2xl mt-[19rem] flex flex-col items-center justify-center py-6 px-5">
+      <div className="bg-dark-blue w-full h-[38vh] 2xl:h-[15vh] text-white flex items-center justify-center absolute ">
+        <div className="bg-white box-shadows rounded-2xl relative mt-[19rem]  2xl:mt-[20rem] flex flex-col items-center justify-center py-6 px-5">
           <div className={`mainWrapper`}>
             <div>
               <div className="py-1 px-0">
@@ -226,9 +227,9 @@ const Index = () => {
               </form>
 
               <div className="text-light-dark text-center mt-10 cursor-pointer">
-                <h2>
+                <h2 className="text-base " >
                   New to MyJobs?{" "}
-                  <span className="text-light-blue text-base">
+                  <span className="text-light-blue text-base font-medium ">
                     <Link href={"/signup"}>Create an account</Link>
                   </span>
                 </h2>

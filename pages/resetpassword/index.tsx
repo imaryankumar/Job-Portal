@@ -59,7 +59,7 @@ const Index = () => {
   return (
     <>
       <Seo title="ResetPassword" />
-      <div className="bg-dark-blue w-full h-[40vh]  text-white flex items-center justify-center">
+      <div className="bg-dark-blue w-full h-[40vh]  2xl:h-[16vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
           <div className="md:w-[557px] w-[450px] xs:w-[310px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
             <div className="text-light-dark w-full py-4 px-7 ">

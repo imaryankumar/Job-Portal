@@ -247,11 +247,12 @@ const Index = () => {
             onClick={() => decrement()}
             width={30}
             height={30}
+            className={count==1?'cursor-no-drop' :""}
           />
           {count > 1 ? (
             <>
               <div
-                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] "
+                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] "
                 onClick={() => onNumClick(1)}
               >
                 1
@@ -290,21 +291,24 @@ const Index = () => {
             <>
               ...
               <div
-                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
+                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400]"
                 onClick={() => onNumClick(totalPage)}
               >
                 {totalPage}
               </div>
             </>
           )}
-
+   
           <Image
             src="/iconsimgs/Nex.svg"
             alt="Righticon"
             onClick={() => increment()}
             width={30}
             height={30}
+            className={count==totalPage?'cursor-no-drop' :""}
+           
           />
+            {}
         </div>
       </div>
     </>

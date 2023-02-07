@@ -268,8 +268,9 @@ const Index = () => {
               src="/iconsimgs/Prev.svg"
               alt="LeftButton"
               onClick={() => decrement()}
-              width={20}
-              height={20}
+              width={30}
+              height={30}
+              className={count==1?'cursor-no-drop' :""}
             />
             {(count + 2 >= totalPage
               ? pageDefiner(totalPage)
@@ -300,7 +301,7 @@ const Index = () => {
               <>
                 ...
                 <div
-                  className="w-8 h-8 rounded bg-light-blue text-center text-[19px] font-[400] "
+                  className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] "
                   onClick={() => onNumClick(totalPage)}
                 >
                   {totalPage}
@@ -312,8 +313,9 @@ const Index = () => {
               src="/iconsimgs/Nex.svg"
               alt="RightButton"
               onClick={() => increment()}
-              width={20}
-              height={20}
+              width={30}
+              height={30}
+              className={count==totalPage?'cursor-no-drop' :""}
             />
           </div>
         </div>
