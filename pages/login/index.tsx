@@ -73,7 +73,7 @@ const Index = () => {
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
       if (mail && pass) {
-      //  console.log("sure?");
+     
       }
     });
   }, []);
@@ -135,10 +135,10 @@ const Index = () => {
         .catch((e) => {
           toast.error(e);
           toast.error("Login Failed");
-          setISLoading(false);
+          setISLoading(true);
         })
         .finally(() => {
-          setISLoading(false);
+          setISLoading(true);
           setLoader(false);
         });
     }
@@ -171,6 +171,7 @@ const Index = () => {
                   onchange={(value: string) => {
                     setMail(value);
                     validateMail(value);
+                    setISLoading(false);
                   }}
                   onBlur={() => {
                     validateMail(mail);
@@ -196,6 +197,7 @@ const Index = () => {
                   onchange={(value: string) => {
                     setPass(value);
                     validatePass(value);
+                    setISLoading(false);
                   }}
                   onBlur={() => {
                     validatePass(pass);
@@ -217,8 +219,8 @@ const Index = () => {
                     type="submit"
                     style={
                       isLoading
-                        ? { backgroundColor: "white", color: "black" }
-                        : { backgroundColor: "light-blue" }
+                        ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                        : { backgroundColor: "#43AFFF" ,color:"white"}
                     }
                   >
                     {loader ? <Loader /> : "Login"}

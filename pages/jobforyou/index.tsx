@@ -240,7 +240,7 @@ const Index = () => {
         </div>
       </div>
       <div className="bg-white-blue w-full h-auto ">
-        <div className="flex justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[112rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8  ">
+        <div className="flex justify-center text-center items-center gap-[1%] xs:pt-[100rem] md:pt-[55rem] lg:pt-[40rem] xl:pt-[28rem] 2xl:pt-[15rem] cursor-pointer pb-8  ">
           <Image
             src="/iconsimgs/Prev.svg"
             alt="Lefticon"

@@ -26,7 +26,6 @@ const Index = () => {
     skills?: string;
   }>();
   const [isLoading, setISLoading] = useState(false);
-
   interface dataType {
     success?: boolean;
     code: number;
@@ -77,13 +76,17 @@ const Index = () => {
   }
 
   function validateConfirmPassword(password: string, conpassword: string) {
-    if (conpassword !== password) {
+    if(conpassword.length ===0 ){
+      setErrorState("confirmPassword", "Password is required");
+      return true;
+    }else if ( password !== conpassword) {      
       setErrorState("confirmPassword", "Passwords do not match");
       return true;
     } else {
       setErrorState("confirmPassword", false);
       return false;
     }
+   
   }
   function validateSkill(skill: string) {
     if (Number(role) === 1 && !skill.trim()) {
@@ -130,11 +133,13 @@ const Index = () => {
     setRole(0);
     setBtn(true);
     setBtn2(false);
+  
   }
   function mybtn2() {
     setRole(1);
     setBtn2(true);
     setBtn(false);
+  
   }
 
   const Justclick = async (e: any) => {
@@ -169,14 +174,13 @@ const Index = () => {
             setPassword("");
             setConpassword("");
             setSkill("");
-            // setError(true);
             toast.success(finalRes.message);
             Router.push("/login");
           } else {
             setError({});
-            // setError(true);
             if (finalRes?.message) {
               toast.error(finalRes.message);
+               setISLoading(true);
             } else {
               const errors = finalRes?.errors;
               errors.forEach((item: any) => {
@@ -191,11 +195,11 @@ const Index = () => {
         .catch((e) => {
           toast.error(e);
           toast.error("Error Found");
-          setISLoading(false);
+          setISLoading(true);
           setLoader(false);
         })
         .finally(() => {
-          setISLoading(false);
+          setISLoading(true);
           setLoader(false);
         });
     }
@@ -259,6 +263,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setName(value);
                       validateName(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateName(name);
@@ -280,6 +285,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setMail(value);
                       validateEmail(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateEmail(mail);
@@ -305,6 +311,7 @@ const Index = () => {
                       onchange={(value: string) => {
                         setPassword(value);
                         validatePassword(value);
+                        setISLoading(false);
                       }}
                       onBlur={() => {
                         validatePassword(password);
@@ -326,6 +333,7 @@ const Index = () => {
                       value={conpassword}
                       onchange={(value: string) => {
                         setConpassword(value);
+                        setISLoading(false);
                         validateConfirmPassword(password, value);
                       }}
                       onBlur={() => {
@@ -349,6 +357,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setSkill(value);
                       validateSkill(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateSkill(skill);
@@ -363,16 +372,17 @@ const Index = () => {
                   </Fields>
                   <div className="flex items-center justify-center">
                     <button
-                      className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
+                      className="w-40  h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff]"
                       disabled={isLoading}
                       type="submit"
                       style={
                         isLoading
-                          ? { backgroundColor: "white", color: "black" }
-                          : { backgroundColor: "light-blue" }
+                          ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                          : { backgroundColor: "#43AFFF" ,color:"white" }
                       }
                     >
                       {loader ? <Loader /> : " Signup"}
+                      
                     </button>
                   </div>
                 </form>

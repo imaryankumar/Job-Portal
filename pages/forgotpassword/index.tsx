@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Fields from "../../components/common/fields/Fields";
 import { toast } from "react-toastify";
-
+import Loader from "../../components/Loader/Loader";
 import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 
@@ -12,6 +12,7 @@ const Index = () => {
     email?: string;
   }>();
   const [isLoading, setISLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
   function validateEmail(email: any) {
     let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
@@ -45,6 +46,8 @@ const Index = () => {
   const onReset = async (e?: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
+      setISLoading(true);
+      setLoader(true);
       fetch(
         `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${mail}`
       )
@@ -66,8 +69,9 @@ const Index = () => {
                 }
               });
           } else {
-            setISLoading(false);
+            setISLoading(true);
             toast.error(data.message);
+            setLoader(false);
           }
         })
         .catch(() => {
@@ -101,6 +105,7 @@ const Index = () => {
                 onchange={(value: string) => {
                   setMail(value);
                   validateMail(value);
+                  setISLoading(false);
                 }}
                 onBlur={() => {
                   validateMail(mail);
@@ -109,7 +114,7 @@ const Index = () => {
                 error={error?.email ? true : false}
               >
                 {error ? (
-                  <p className="text-red-700 text-right text-xs  ">
+                  <p className="text-[#FF0000] text-right text-xs  ">
                     {error.email}
                   </p>
                 ) : (
@@ -120,13 +125,14 @@ const Index = () => {
                 <button
                   className="md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
+                  
                   style={
                     isLoading
-                      ? { backgroundColor: "white", color: "black" }
-                      : { backgroundColor: "light-blue" }
+                      ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                      : { backgroundColor: "#43AFFF" ,color:"white" }
                   }
                 >
-                  Submit
+                    {loader ? <Loader /> : "Submit "}
                 </button>
               </div>
             </form>

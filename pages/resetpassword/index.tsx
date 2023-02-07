@@ -13,7 +13,6 @@ const Index = () => {
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
-
   const { token } = router.query;
   const onResetPassword = () => {
     if (newPass && newPass === conPass) {
@@ -47,11 +46,12 @@ const Index = () => {
           toast.error(e);
         })
         .finally(() => {
-          setISLoading(false);
+          setISLoading(true);
         });
     } else {
       setError(true);
       toast.error("Invalid Password");
+      setISLoading(true);
       setLoader(false);
     }
   };
@@ -74,7 +74,10 @@ const Index = () => {
                 content="New password"
                 placeholder="Enter your password"
                 value={newPass}
-                onchange={setNewPass}
+                onchange={(value:string)=>{
+                  setNewPass (value); 
+                  setISLoading(false);
+                }}
                 error={error}
                 required
                 onBlur={() => {}}
@@ -84,7 +87,10 @@ const Index = () => {
                 content="Confirm new password"
                 placeholder="Enter your password"
                 value={conPass}
-                onchange={setConPass}
+                onchange={(value:string)=>{
+                  setConPass (value); 
+                  setISLoading(false);
+                }}
                 error={error}
                 required
                 onBlur={() => {}}
@@ -105,8 +111,8 @@ const Index = () => {
                   type="submit"
                   style={
                     isLoading
-                      ? { backgroundColor: "white", color: "black" }
-                      : { backgroundColor: "light-blue" }
+                      ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                      : { backgroundColor: "#43AFFF" ,color:"white" }
                   }
                 >
                   {loader ? <Loader /> : "Reset"}
