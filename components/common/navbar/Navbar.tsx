@@ -9,9 +9,10 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const router = useRouter();
   const isHidden = useMemo(() => {
-    return ["/login", "/signup"].includes(router.asPath) || isLoggedIN;
+    return ["/login", "/sign-up"].includes(router.asPath) || isLoggedIN;
   }, [router, isLoggedIN]);
-
+  
+  console.log("🚀 ~ file: Navbar.tsx:12 ~ isHidden ~ isHidden", isHidden,isLoggedIN)
   const JustSubmit = () => setClick(!click);
   const LogoutClear = () => {
     setClick(false);
@@ -21,7 +22,7 @@ function Navbar() {
     const user = JSON.parse(localStorage.getItem("user") || "{}") as Tuser;
     if (
       !user.token &&
-      ["/jobpost", "/postjobyou", "/jobforyou", "/jobappliedyou"].includes(
+      ["/post-job", "/jobs-posted-by-you", "/jobs-for-you", "/applied-jobs"].includes(
         router.asPath
       )
     ) {
@@ -33,7 +34,7 @@ function Navbar() {
       <div className="px-0.5">
         <nav className={`bg-dark-blue py-4 px-4 md:px-20 mainWrapper`}>
           <div className="flex justify-between items-center w-full  ">
-            <Link href={!isLoggedIN?"/":user?.userRole === 0 ?'/postjobyou':'/jobforyou'}>
+            <Link href={!isLoggedIN?"/":user?.userRole === 0 ?'/jobs-posted-by-you':'/jobs-for-you'}>
               <div className="text-white text-[1.6rem] font-[500] cursor-pointer  ">
                 <Image
                   src="/iconsimgs/MyJobs.png"
@@ -43,7 +44,7 @@ function Navbar() {
                 />
               </div>{" "}
             </Link>
-            {!isHidden && (
+            {isHidden!==undefined && !isHidden && (
               <Link href="/login">
                 <button
                   type="button"
@@ -61,10 +62,10 @@ function Navbar() {
           {isLoggedIN ? (
             <div className="mt-[-3rem] xs:mt-[-3.4rem] text-white  pr-4 md:pr-20 flex items-end justify-end gap-[3%] cursor-pointer   ">
               <Link
-                href={`${user?.userRole === 0 ? "/jobpost" : "/jobappliedyou"}`}
+                href={`${user?.userRole === 0 ? "/post-job" : "/applied-jobs"}`}
                 className={
-                  router.asPath.includes("/jobpost") ||
-                  router.asPath.includes("/jobappliedyou")
+                  router.asPath.includes("/post-job") ||
+                  router.asPath.includes("/applied-jobs")
                     ? "md:border-b-4 border-b-2 border-solid border-light-blue "
                     : undefined
                 }

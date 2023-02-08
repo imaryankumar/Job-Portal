@@ -3,10 +3,10 @@ import type { AppProps } from "next/app";
 import Navbar from "../components/common/navbar/Navbar";
 import ContextAPI from "../components/contextapi/ContextAPI";
 import { useEffect, useMemo } from "react";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -24,7 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
         {!isHidd && <Navbar />}
         {/* <hr className="w-[91%] mx-auto " /> */}
       </div>
-      <Component {...pageProps} />
+      
+      <Component {...pageProps} /> 
       <ToastContainer />
     </ContextAPI>
   );

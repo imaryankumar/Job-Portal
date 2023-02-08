@@ -77,7 +77,7 @@ const Index = () => {
 
   function validateConfirmPassword(password: string, conpassword: string) {
     if(conpassword.length ===0 ){
-      setErrorState("confirmPassword", "Password is required");
+      setErrorState("confirmPassword", "Confirm Password is required");
       return true;
     }else if ( password !== conpassword) {      
       setErrorState("confirmPassword", "Passwords do not match");
@@ -212,7 +212,7 @@ const Index = () => {
         <div className="mainWrapper">
           <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px]  mt-[29rem] 2xl:mt-[30rem] flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4 ">
-              <h1 className="text-[22px] font-medium text-light-dark py-6 px-0">
+              <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3 px-0">
                 Signup
               </h1>
               <h2 className="pb-2 text-[14px]">
@@ -268,6 +268,7 @@ const Index = () => {
                     onBlur={() => {
                       validateName(name);
                     }}
+                  
                     required
                   >
                     {error?.name && (
@@ -377,7 +378,7 @@ const Index = () => {
                       type="submit"
                       style={
                         isLoading
-                          ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                          ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
                           : { backgroundColor: "#43AFFF" ,color:"white" }
                       }
                     >

@@ -90,7 +90,7 @@ const Index = () => {
   const increment = () => {
     if (count < totalPage) {
       count < totalPage && setCount(count + 1);
-      router.push(`/jobforyou?page=${count + 1} `, undefined, {
+      router.push(`/jobs-for-you?page=${count + 1} `, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -103,7 +103,7 @@ const Index = () => {
   const decrement = () => {
     if (count > 1) {
       count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/jobforyou?page=${count - 1}`, undefined, { shallow: true });
+      router.push(`/jobs-for-you?page=${count - 1}`, undefined, { shallow: true });
       window.scroll({
         top: 0,
         left: 0,
@@ -114,7 +114,7 @@ const Index = () => {
 
   const onNumClick = (e: number) => {
     setCount(e);
-    router.push(`/jobforyou?page=${e} `, undefined, {
+    router.push(`/jobs-for-you?page=${e} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -158,12 +158,12 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="JobForYou" />
+      <Seo title="Jobs for you" />
 
       <div className="bg-dark-blue w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
-          <div className=" md:px-44  xs:px-20 px-32 py-0  ">
-            <div className="flex text-center items-center md:pt-1 pt-3   ">
+          <div className="px-40 xs:px-20">
+            <div className="flex text-center items-center  pt-3   ">
               <Link href="/jobforyou">
                 <Image
                   src="/iconsimgs/homemd.svg"
@@ -176,33 +176,37 @@ const Index = () => {
                 <span className="pl-1 text-[12px] font-medium ">Home</span>
               </Link>
             </div>
-            <div className=" mt-4  text-[22px] font-medium  ">
+            <div className=" mt-4 mb-4 text-[22px] font-medium  ">
               <h1>Jobs for you</h1>
             </div>
           </div>
-          <div className="flex justify-start items-center gap-[2%] flex-wrap mt-8 xs:mt-5 py-0 px-8 ">
-            <div className="flex flex-wrap items-center justify-center w-full ">
+          <div>
+            <div className="flex flex-wrap items-center justify-center w-full px-40 xs:px-8 ">
               {loader ? (
                 <Loader />
               ) : (
                 myCanData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow  "
+                      className="w-[260px] h-[162px] bg-white rounded p-4  mb-4 relative capitalize shadow  "
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps`}
+                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps cursor-pointer  `}
                         key={key}
+                        title={item.title}
+                        data-toggle="tooltip"
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamps`}
+                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp cursor-pointer `}
+                        title={item.description}
+                        data-toggle="tooltip"
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="flex items-center text-center  absolute bottom-4 justify-center ">
+                      <div className="flex items-center text-center  absolute bottom-4 justify-between ">
                         <div className="flex mr-4">
                           <div className="relative w-4 h-4 mr-2">
                             <Image
@@ -213,7 +217,9 @@ const Index = () => {
                             />
                           </div>
                           <h3
-                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps`}
+                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps cursor-pointer `}
+                            title={item.location}
+                            data-toggle="tooltip"
                           >
                             {item.location}
                           </h3>
@@ -223,7 +229,7 @@ const Index = () => {
                             <Loader />
                           ) : (
                             <button
-                              className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px] p-2 "
+                              className="w-[60px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                               onClick={() => clickMe(item.id)}
                             >
                               Apply
@@ -239,8 +245,8 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white-blue w-full h-auto ">
-        <div className="flex justify-center text-center items-center gap-[1%] xs:pt-[100rem] md:pt-[55rem] lg:pt-[40rem] xl:pt-[28rem] 2xl:pt-[15rem] cursor-pointer pb-8  ">
+      <div className="bg-white-blue ">
+        <div className="flex justify-center text-center items-center gap-[1%] mt-[55rem] cursor-pointer pb-8  ">
           <Image
             src="/iconsimgs/Prev.svg"
             alt="Lefticon"

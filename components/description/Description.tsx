@@ -20,7 +20,7 @@ const Description = ({
   required,
 }: cardTypes) => {
   return (
-    <div className="w-full h-32 mb-[10px]">
+    <div className="w-full h-30 mb-[6px]">
       <h1 className="text-[14px] tracking-normal text-light-dark px-0 py-2 items-center justify-between ">
         {content}
         {required && <span className="star_red">*</span>}

@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { toast } from "react-toastify";
 type TuserContext = {
-  isLoggedIN: boolean;
+  isLoggedIN?: boolean;
   user?: Tuser;
   setLoggin: (data: Tuser) => void;
   setLogout: () => void;
@@ -25,14 +25,14 @@ export type Tuser = {
   token: string;
 };
 export const authcontext = createContext<TuserContext>({
-  isLoggedIN: false,
+  isLoggedIN: undefined,
   setLoggin: () => {},
   setLogout: () => {},
 });
 
 type Props = {};
 const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
-  const [islogged, setIsLogged] = useState(false); //get value from localstorage
+  const [islogged, setIsLogged] = useState<boolean>(); //get value from localstorage
   const [user, setUser] = useState<Tuser>();
   const router = useRouter();
   const handleLoggedIn = useCallback((data: Tuser) => {
@@ -43,16 +43,16 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     if (data?.userRole !== undefined) {
       if (
         data?.userRole === 0 &&
-        !router.asPath.includes("/postjobyou") &&
-        !router.asPath.includes("/jobpost")
+        !router.asPath.includes("/jobs-posted-by-you") &&
+        !router.asPath.includes("/post-job")
       ) {
-        router.push("/postjobyou?page=1");
+        router.push("/jobs-posted-by-you?page=1");
       } else if (
         data?.userRole === 1 &&
-        !router.asPath.includes("/jobforyou") &&
-        !router.asPath.includes("/jobappliedyou")
+        !router.asPath.includes("/jobs-for-you") &&
+        !router.asPath.includes("/applied-jobs")
       ) {
-        router.push("/jobforyou?page=1");
+        router.push("/jobs-for-you?page=1");
       }
     }
     // post job

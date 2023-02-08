@@ -92,7 +92,7 @@ const Index = () => {
   const increment = () => {
     if (count < totalPage) {
       count < totalPage && setCount(count + 1);
-      router.push(`/postjobyou?page=${count + 1}`, undefined, {
+      router.push(`/jobs-posted-by-you?page=${count + 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -105,7 +105,7 @@ const Index = () => {
   const decrement = () => {
     if (count > 1) {
       count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/postjobyou?page=${count - 1}`, undefined, {
+      router.push(`/jobs-posted-by-you?page=${count - 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -119,7 +119,7 @@ const Index = () => {
     const numValue = +e.target.innerText;
 
     setCount(numValue);
-    router.push(`/postjobyou?page=${numValue} `, undefined, {
+    router.push(`/jobs-posted-by-you?page=${numValue} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -147,7 +147,7 @@ const Index = () => {
         setLoader(false);
       })
       .catch((e) => {
-        toast.error(e);
+        // toast.error(e);
         toast.error("Error Found");
         setLoader(false);
       });
@@ -155,12 +155,12 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="PostJobYou" />
+      <Seo title="Jobs posted by you" />
       <div className="bg-dark-blue w-full h-[18vh] text-white">
         <div className="mainWrapper">
-          <div className="md:px-44 py-0 px-20 ">
-            <div className="flex text-center items-center pt-1">
-              <Link href={"/postjobyou"}>
+          <div className="px-[10rem] py-5 xs:px-[5rem]">
+            <div className="flex text-center items-center  ">
+              <Link href={"/jobs-posted-by-you"}>
                 <Image
                   src="/iconsimgs/homemd.svg"
                   alt=""
@@ -169,12 +169,12 @@ const Index = () => {
                   className="mr-1"
                 />
               </Link>
-              <Link href={"/postjobyou"}>
+              <Link href={"/jobs-posted-by-you"}>
                 {" "}
                 <span className="text-[12px] font-medium ">Home</span>
               </Link>
             </div>
-            <div className="mt-4">
+            <div className="mt-2">
               <h1 className="text-[22px] font-medium ">Jobs posted by you</h1>
             </div>
           </div>
@@ -183,12 +183,12 @@ const Index = () => {
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div className="flex justify-center items-center flex-wrap md:mt-2 mt-4 gap-[2%]  ">
-            <div className="flex flex-wrap  items-center justify-center md:px-8 md:py-6 px-4  mainWrapper lg:px-16 ">
+          <div className="" >
+            <div className="flex flex-wrap items-center gap-[2%] mainWrapper px-[10rem] xs:px-[4rem] ">
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
-                    className="w-[260px] h-[162px] bg-white rounded p-4 mr-4 mb-4 relative capitalize shadow "
+                    className="w-[260px] h-[162px] bg-white rounded mb-4 px-4 py-4   relative capitalize shadow "
                     key={key}
                   >
                     <div
@@ -198,15 +198,15 @@ const Index = () => {
                       <h1>{item.title}</h1>
                     </div>
                     <div
-                      className={`"w-[229px] mx-0 my-2 opacity-80 text-light-dark tracking-normal overflow-hidden`}
+                      className={`"w-[229px] mx-0 my-2 opacity-80 text-light-dark tracking-normal overflow-hidden  `}
                     >
                       <p>{item.description}</p>
                     </div>
                     <div
                       className={`flex items-center text-center  absolute bottom-4 justify-center overflow-hidden`}
                     >
-                      <div className="flex mr-4">
-                        <div className="relative w-4 h-4 mr-2">
+                      <div className="flex mr-2">
+                        <div className="relative w-4 h-4 mr-1">
                           <Image
                             src="/iconsimgs/location.svg"
                             alt="Pinicon"
@@ -236,7 +236,7 @@ const Index = () => {
           </div>
         ) : (
           <>
-            <Seo title="PostedJob" />
+            <Seo title="Posted Job" />
 
             <div className="bg-white-blue w-full h-[90vh] mt-12 ">
               <div className="flex flex-col items-center justify-center px-0 py-40">
@@ -251,7 +251,7 @@ const Index = () => {
                 </h2>
                 <button
                   className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-10 cursor-pointer text-white "
-                  onClick={() => router.push("/jobpost")}
+                  onClick={() => router.push("/post-job")}
                 >
                   Post a Job
                 </button>
@@ -270,7 +270,7 @@ const Index = () => {
               onClick={() => decrement()}
               width={30}
               height={30}
-              className={count==1?'cursor-no-drop' :""}
+              className={count == 1 ? "cursor-no-drop" : ""}
             />
             {(count + 2 >= totalPage
               ? pageDefiner(totalPage)
@@ -315,7 +315,7 @@ const Index = () => {
               onClick={() => increment()}
               width={30}
               height={30}
-              className={count==totalPage?'cursor-no-drop' :""}
+              className={count == totalPage ? "cursor-no-drop" : ""}
             />
           </div>
         </div>
@@ -327,7 +327,7 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
+              className="bg-[#fff] md:w-[694px] w-[694px] h-[750px] md:h-[700px] m-auto relative rounded-[20px] flex flex-col px-4 py-4 "
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-0 py-3 text-[19px] text-light-dark font-medium ">
@@ -336,14 +336,19 @@ const Index = () => {
                   onClick={() => setIsOpen(false)}
                   className="cursor-pointer"
                 >
-                  <Image src="/iconsimgs/metrocross.svg" alt="metrocross" width={15} height={15} />
+                  <Image
+                    src="/iconsimgs/metrocross.svg"
+                    alt="metrocross"
+                    width={15}
+                    height={15}
+                  />
                 </button>
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
                 Total {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="bg-[#557da526] flex justify-center  flex-wrap overflow-auto h-full p-2 gap-4 ">
+              <div className="bg-[#D3D3D3] flex   flex-wrap overflow-auto h-full p-2 gap-4 ">
                 {loader ? (
                   <Loader />
                 ) : jobData ? (

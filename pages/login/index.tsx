@@ -153,7 +153,7 @@ const Index = () => {
         <div className="bg-white box-shadows rounded-2xl relative mt-[19rem]  2xl:mt-[20rem] flex flex-col items-center justify-center py-6 px-5">
           <div className={`mainWrapper`}>
             <div>
-              <div className="py-1 px-0">
+              <div className="py-0 px-0">
                 <h1 className="text-light-dark text-2xl tracking-normal font-medium ">
                   Login{" "}
                 </h1>
@@ -212,14 +212,14 @@ const Index = () => {
                     <p className="h-2"></p>
                   )}
                 </Fields>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center  ">
                   <button
-                    className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 cursor-pointer text-white"
+                    className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 xs:mt-6 cursor-pointer text-white"
                     disabled={isLoading}
                     type="submit"
                     style={
                       isLoading
-                        ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                        ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
                         : { backgroundColor: "#43AFFF" ,color:"white"}
                     }
                   >
@@ -228,11 +228,11 @@ const Index = () => {
                 </div>
               </form>
 
-              <div className="text-light-dark text-center mt-10 cursor-pointer">
+              <div className="text-light-dark text-center mt-10 xs:mt-6  cursor-pointer">
                 <h2 className="text-base " >
                   New to MyJobs?{" "}
                   <span className="text-light-blue text-base font-medium ">
-                    <Link href={"/signup"}>Create an account</Link>
+                    <Link href={"/sign-up"}>Create an account</Link>
                   </span>
                 </h2>
               </div>

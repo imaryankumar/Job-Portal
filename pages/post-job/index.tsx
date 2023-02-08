@@ -97,7 +97,7 @@ const Index = () => {
           if (finalRes.success) {
             setData(finalRes);
             setISLoading(true);
-            router.push("/postjobyou");
+            router.push("/jobs-posted-by-you");
           } else {
             setISLoading(true);
             setError({});
@@ -118,11 +118,11 @@ const Index = () => {
         .catch((e) => {
           toast.error(e);
           toast.error("Error Found");
-          setISLoading(false);
+          setISLoading(true);
           setLoader(false);
         })
         .finally(() => {
-          setISLoading(false);
+          setISLoading(true);
           setLoader(false);
         });
     }
@@ -130,11 +130,11 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="JobPost" />
+      <Seo title="Post a Job" />
 
       <div className="bg-dark-blue w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
-        <Link href={"/postjobyou"}>
+        <Link href={"/jobs-posted-by-you"}>
           <div className="flex md:py-4 md:px-48 xs:px-20 px-32 py-6 ">
             
               <Image
@@ -154,10 +154,10 @@ const Index = () => {
           </Link>
         </div>
         <div className="mainWrapper">
-          <div className="flex items-center justify-center md:pt-12 pt-4">
-            <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
-              <div className=" xs:w-[290px] md:w-[500px] w-[430px]">
-                <div className="px-0 py-4">
+          <div className="flex items-center justify-center md:pt-12 pt-4 ">
+            <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] xs:h-[460px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
+              <div>
+                <div >
                   <h1 className="text-light-dark text-[22px] font-medium tracking-normal  ">
                     Post a Job{" "}
                   </h1>
@@ -236,8 +236,8 @@ const Index = () => {
                       type="submit"
                       style={
                         isLoading
-                          ? { backgroundColor: "white", color: "black" }
-                          : { backgroundColor: "light-blue" }
+                        ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
+                        : { backgroundColor: "#43AFFF" ,color:"white"}
                       }
                     >
                       {loader ? <Loader /> : "Post"}

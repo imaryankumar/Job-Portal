@@ -82,7 +82,7 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="Forgotpage" />
+      <Seo title="Forgot your password" />
       <div className="bg-dark-blue w-full h-[33vh] 2xl:h-[15vh] text-white flex items-center justify-center ">
         <div className=" md:w-[557px] h-[318px] bg-white box-shadows rounded-3xl mt-48 2xl:mt-[15rem] flex flex-col items-center w-[420px] xs:w-[305px]  ">
           <div className="px-1 py-2 w-[380px] md:w-[500px] xs:w-[285px] ">
@@ -128,7 +128,7 @@ const Index = () => {
                   
                   style={
                     isLoading
-                      ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                      ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
                       : { backgroundColor: "#43AFFF" ,color:"white" }
                   }
                 >

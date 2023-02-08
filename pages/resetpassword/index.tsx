@@ -58,12 +58,12 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="ResetPassword" />
+      <Seo title="Reset Your Password" />
       <div className="bg-dark-blue w-full h-[40vh]  2xl:h-[16vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
           <div className="md:w-[557px] w-[450px] xs:w-[310px] h-[420px] bg-white box-shadows rounded-[20px] mt-[21rem] flex flex-col items-center">
             <div className="text-light-dark w-full py-4 px-7 ">
-              <h1 className="text-light-dark text-[22px] font-medium py-4 px-0">
+              <h1 className="text-light-dark text-[22px] font-medium py-4 xs:py-2 px-0">
                 Reset Your Password
               </h1>
               <h3 className="text-[14px] text-light-dark pb-4">
@@ -111,7 +111,7 @@ const Index = () => {
                   type="submit"
                   style={
                     isLoading
-                      ? { backgroundColor: "#3a3b3c", color: "white",cursor:"no-drop" }
+                      ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
                       : { backgroundColor: "#43AFFF" ,color:"white" }
                   }
                 >

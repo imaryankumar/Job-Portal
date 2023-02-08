@@ -9,7 +9,7 @@ const Header = () => {
   const { user } = useContext(authcontext);
   return (
     <div className=" ">
-      <Seo title="HomePage" />
+      <Seo title="JobPortal" />
 
       <div className="bg-dark-blue">
         <div className="mainWrapper">
@@ -27,9 +27,9 @@ const Header = () => {
                   `${
                     user?.token
                       ? user?.userRole === 0
-                        ? "/postjobyou?page=1"
-                        : "/jobforyou?page=1"
-                      : "/signup"
+                        ? "/jobs-posted-by-you?page=1"
+                        : "/jobs-for-you?page=1"
+                      : "/sign-up"
                   }`
                 )
               }

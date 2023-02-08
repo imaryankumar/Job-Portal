@@ -31,14 +31,14 @@ const Fields = ({
   const router = useRouter();
 
   return (
-    <div className="w-full h-[95px] ">
+    <div className="w-full h-[95px] xs:h-[85px] ">
       <div className="text-light-dark px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
           {required && <span className="star_red">*</span>}
         </div>
 
-        <Link href={"/forgotpassword"} className="text-light-blue font-medium text-[14px] ">
+        <Link href={"/forgot-password"} className="text-light-blue font-medium text-[14px] ">
           {password}
         </Link>
       </div>

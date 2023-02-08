@@ -61,7 +61,7 @@ const Index = () => {
   const increment = () => {
     if (count < totalPage) {
       count < totalPage && setCount(count + 1);
-      router.push(`/jobappliedyou?page=${count + 1} `, undefined, {
+      router.push(`/applied-jobs?page=${count + 1} `, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -74,7 +74,7 @@ const Index = () => {
   const decrement = () => {
     if (count > 1) {
       count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/jobappliedyou?page=${count - 1}`, undefined, {
+      router.push(`/applied-jobs?page=${count - 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -86,7 +86,7 @@ const Index = () => {
   };
   const onNumClick = (e: number) => {
     setCount(e);
-    router.push(`/jobappliedyou?page=${e} `, undefined, {
+    router.push(`/applied-jobs?page=${e} `, undefined, {
       shallow: true,
     });
     window.scroll({
@@ -98,10 +98,10 @@ const Index = () => {
 
   return (
     <>
-      <Seo title="JobAppliedYou" />{" "}
+      <Seo title="Jobs applied by you" />{" "}
       <div className="bg-dark-blue w-full h-[18vh] text-white ">
         <div className=" md:px-44  xs:px-20 px-32 py-0 ">
-        <Link href="/jobforyou">
+        <Link href="/jobs-for-you">
           <div className="flex  text-center items-center pt-4 xs:pt-6 text-xs opacity-80  ">
             
               <Image
@@ -181,7 +181,7 @@ const Index = () => {
                 </h2>
                 <button
                   className="w-40 h-[46px]  font-medium  bg-light-blue border border-solid border-light-blue text-[16px] rounded  flex items-center justify-center mt-10 cursor-pointer text-white"
-                  onClick={() => router.push("/jobforyou")}
+                  onClick={() => router.push("/jobs-for-you")}
                 >
                   See all jobs
                 </button>
@@ -190,7 +190,7 @@ const Index = () => {
           </>
         )}
       </div>
-      {myCanData?.length > 0 && totalPage > 1 && (
+      {!loader && myCanData?.length > 0 && totalPage > 1 && (
         <div className="h-auto  ">
           <div className="flex flex-wrap justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[110rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8 ">
             <Image
