@@ -11,7 +11,7 @@ function Navbar() {
   const isHidden = useMemo(() => {
     return ["/login", "/sign-up"].includes(router.asPath) || isLoggedIN;
   }, [router, isLoggedIN]);
-  
+
   const JustSubmit = () => setClick(!click);
   const LogoutClear = () => {
     setClick(false);
@@ -21,9 +21,12 @@ function Navbar() {
     const user = JSON.parse(localStorage.getItem("user") || "{}") as Tuser;
     if (
       !user.token &&
-      ["/post-job", "/jobs-posted-by-you", "/jobs-for-you", "/applied-jobs"].includes(
-        router.asPath
-      )
+      [
+        "/post-job",
+        "/jobs-posted-by-you",
+        "/jobs-for-you",
+        "/applied-jobs",
+      ].includes(router.asPath)
     ) {
       router.push("/login");
     }
@@ -33,7 +36,15 @@ function Navbar() {
       <div className="px-0.5">
         <nav className={`bg-dark-blue py-4 px-4 md:px-20 mainWrapper`}>
           <div className="flex justify-between items-center w-full  ">
-            <Link href={!isLoggedIN?"/":user?.userRole === 0 ?'/jobs-posted-by-you':'/jobs-for-you'}>
+            <Link
+              href={
+                !isLoggedIN
+                  ? "/"
+                  : user?.userRole === 0
+                  ? "/jobs-posted-by-you"
+                  : "/jobs-for-you"
+              }
+            >
               <div className="text-white text-[1.6rem] font-[500] cursor-pointer  ">
                 <Image
                   src="/iconsimgs/MyJobs.png"
@@ -43,7 +54,7 @@ function Navbar() {
                 />
               </div>{" "}
             </Link>
-            {isHidden!==undefined && !isHidden && (
+            {isHidden !== undefined && !isHidden && (
               <Link href="/login">
                 <button
                   type="button"
@@ -74,23 +85,26 @@ function Navbar() {
                 </h1>
               </Link>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
-                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[5px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
+                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[2px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
                   {user?.userRole === 0 ? "R" : "C"}
                 </div>
                 <Image
                   src="/iconsimgs/caretdown.svg"
                   alt="arrowdown"
-                  className=" relative text-[#FFFFFF] -mt-[9px] "
+                  className=" relative text-[#FFFFFF] md:-mt-[9px] xs:-mt-[-2px] "
                   width={13}
                   height={8}
                 />
 
                 {click && (
-                  <div
-                    className=" w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-light-dark rounded cursor-pointer absolute z-50 "
-                    onClick={() => LogoutClear()}
-                  >
-                    Logout
+                  <div className="absolute">
+                     <div
+                   className="relative w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-light-dark rounded cursor-pointer  z-50 "
+                   onClick={() => LogoutClear()}
+                 >
+                  <div className="absolute right-4 top-0 mt-[-8px] ml-[18px] h-0 w-0 border border-l-[6px] border-r-[6px] border-b-8 border-t-0 border-l-transparent border-r-transparent border-b-white text-white"></div>
+                   Logout
+                 </div>
                   </div>
                 )}
               </div>{" "}

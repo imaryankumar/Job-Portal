@@ -268,65 +268,7 @@ const Index = () => {
         )}
       </div>
 
-      {myData?.length > 0 && totalPage > 1 && (
-        <div className="bg-white-blue w-full h-auto border  ">
-          <div className="flex justify-center text-center items-center gap-[10px] pt-[245rem] md:pt-[62rem] lg:pt-[60rem] xl:pt-[62rem] 2xl:pt-[62rem] pb-8   ">
-            <Image
-              src="/iconsimgs/Prev.svg"
-              alt="LeftButton"
-              onClick={() => decrement()}
-              width={30}
-              height={30}
-              className={count==1?'cursor-no-drop' :""}
-            />
-            {(count + 2 >= totalPage
-              ? pageDefiner(totalPage)
-              : [count, count + 1, count + 2]
-            )?.map((i, key) => {
-              return (
-                <span
-                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal "
-                  onClick={(e) => onNumClick(e)}
-                  style={
-                    count === i
-                      ? {
-                          color: "black",
-                          backgroundColor: "#43AFFF33",
-                          cursor: "pointer",
-                        }
-                      : { backgroundColor: "white", cursor: "pointer" }
-                  }
-                  key={key}
-                >
-                  {i}
-                </span>
-              );
-            })}
-            {count + 2 >= totalPage ? (
-              ""
-            ) : (
-              <>
-                ...
-                <div
-                  className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] "
-                  onClick={() => onNumClick(totalPage)}
-                >
-                  {totalPage}
-                </div>
-              </>
-            )}
-
-            <Image
-              src="/iconsimgs/Nex.svg"
-              alt="RightButton"
-              onClick={() => increment()}
-              width={30}
-              height={30}
-              className={count==totalPage?'cursor-no-drop' :""}
-            />
-          </div>
-        </div>
-      )}
+    
       {isOpen && (
         <>
           <div
@@ -334,7 +276,7 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[731px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-0 py-3 text-[19px] text-light-dark font-medium ">
@@ -348,7 +290,7 @@ const Index = () => {
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
-              Total {jobData ? jobData.length : 0} applications
+              {jobData?.length >0?"Total":""} {jobData ? jobData.length : 0} applications
               </h3>
               <div className="bg-[#557da526] flex justify-start  flex-wrap overflow-auto h-full p-2 gap-4 ">
                 {loader ? (

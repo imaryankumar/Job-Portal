@@ -150,7 +150,7 @@ const Index = () => {
       <Seo title="Login" description="This is Login page " />
 
       <div className="bg-dark-blue w-full h-[38vh] 2xl:h-[15vh] text-white flex items-center justify-center absolute ">
-        <div className="bg-white box-shadows rounded-2xl relative mt-[19rem]  2xl:mt-[20rem] flex flex-col items-center justify-center py-6 px-5">
+        <div className="bg-white box-shadows rounded-2xl relative mt-[15rem] md:mt-[19rem]  2xl:mt-[20rem] flex flex-col items-center justify-center py-6 px-5">
           <div className={`mainWrapper`}>
             <div>
               <div className="py-0 px-0">

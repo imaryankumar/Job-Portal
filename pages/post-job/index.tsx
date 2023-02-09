@@ -135,7 +135,7 @@ const Index = () => {
       <div className="bg-dark-blue w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
         <Link href={"/jobs-posted-by-you"}>
-          <div className="flex md:py-4 md:px-48 xs:px-20 px-32 py-6 ">
+          <div className="flex pl-[2rem] md:pl-[12rem] pt-[1rem] ">
             
               <Image
                 src="/iconsimgs/homemd.svg"
@@ -147,7 +147,7 @@ const Index = () => {
             
             
             <span className="text-[12px] font-medium cursor-pointer ">
-              Home &gt; <Link href={"jobpost"}>Post a Job</Link> 
+              Home &gt; <Link href={"post-job"}>Post a Job</Link> 
             </span>
             
           </div>
@@ -155,16 +155,16 @@ const Index = () => {
         </div>
         <div className="mainWrapper">
           <div className="flex items-center justify-center md:pt-12 pt-4 ">
-            <div className="md:w-[557px] w-[470px] xs:w-[310px] h-[506px] xs:h-[460px] bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center  ">
+            <div className=" bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center mx-4  ">
               <div>
                 <div >
-                  <h1 className="text-light-dark text-[22px] font-medium tracking-normal  ">
+                  <h1 className="text-light-dark text-[22px] font-medium tracking-normal px-8 pt-4 ">
                     Post a Job{" "}
                   </h1>
                 </div>
 
                 <form
-                  className=" md:w-[500px] w-[430px] xs:w-[290px] "
+                  className="px-6 py-4 "
                   onSubmit={(e) => JustonClick(e)}
                 >
                   <Fields

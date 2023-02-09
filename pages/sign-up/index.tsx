@@ -210,7 +210,7 @@ const Index = () => {
       <Seo title="Signup" />
       <div className="bg-dark-blue w-full xs:h-[60vh] h-[40vh] 2xl:h-[15vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="md:w-[557px] xs:w-[310px] w-[490px] h-auto bg-white box-shadows rounded-[20px]  mt-[29rem] 2xl:mt-[30rem] flex flex-col items-center text-light-dark pb-4  ">
+          <div className="md:w-[557px] xs:w-[310px] w-[400px] h-auto bg-white box-shadows rounded-[20px]  xs:mt-[25rem] mt-[38rem]  md:mt-[30rem] 2xl:mt-[30rem] flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4 ">
               <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3 px-0">
                 Signup
@@ -221,7 +221,7 @@ const Index = () => {
               <div className="flex">
                 <button
                   type="button"
-                  className={`w-40 h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                  className={`w-[136px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
                     btn && "BtnTrue"
                   }`}
                   onClick={() => mybtn1()}
@@ -236,7 +236,7 @@ const Index = () => {
                 </button>
                 <button
                   type="button"
-                  className={`w-40 h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
+                  className={`w-[136px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
                     btn2 && "BtnTrue"
                   }`}
                   onClick={() => mybtn2()}

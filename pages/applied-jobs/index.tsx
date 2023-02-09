@@ -100,9 +100,9 @@ const Index = () => {
     <>
       <Seo title="Jobs applied by you" />{" "}
       <div className="bg-dark-blue w-full h-[18vh] text-white ">
-        <div className=" md:px-44  xs:px-20 px-32 py-0 ">
+        <div className=" px-40 xs:px-20">
         <Link href="/jobs-for-you">
-          <div className="flex  text-center items-center pt-4 xs:pt-6 text-xs opacity-80  ">
+          <div className="flex  text-center items-center pt-5  text-xs opacity-80  ">
             
               <Image
                 src="/iconsimgs/homemd.svg"
@@ -117,50 +117,130 @@ const Index = () => {
             </p>
           </div>
           </Link>
-          <div className="mt-4  text-[22px] font-medium xs:text-base ">
+          <div className="mt-4 mb-4 text-[22px] font-medium xs:text-base ">
             <h1>Jobs applied by you</h1>
           </div>
         </div>
         {myCanData?.length > 0 ? (
-          <div className=" mt-8">
-            <div className="flex flex-wrap items-center justify-center   px-8 py-0">
+          <div className="relative" >
+            <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8  ">
               {myCanData
                 ?.slice(pagination.start, pagination.end)
                 .map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[260px] h-[162px] bg-white shadow rounded p-4 mr-4 mb-4 relative capitalize "
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow "
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px] tracking-normal text-light-dark  line-clamps`}
+                        className={`text-[17px] text-light-dark tracking-normal line-clamps `}
                         key={key}
+                        title={item.title}
+                        data-toggle="tooltip"
                       >
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
+                        className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
+                        title={item.description}
+                        data-toggle="tooltip"
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="flex items-center text-center absolute justify-center bottom-4 ">
-                        <div className="flex">
-                          <Image
+                      <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
+                     <div className="col-span-1 mr-2">
+                     <Image
                             src="/iconsimgs/location.svg"
                             alt="Pinicons"
-                            width={10}
-                            height={15}
+                            width={15}
+                            height={10}
+                            className=" object-contain "
                           />
-                          <h3
-                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps`}
-                          >
-                            {item.location}
-                          </h3>
-                        </div>
+                     </div>
+                          <div className="col-span-8">
+                          <p className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
+                           title={item.location}
+                           data-toggle="tooltip"
+                          >{item.location}</p>
+                          </div>
                       </div>
                     </div>
                   );
                 })}
+            </div>
+            <div className="absloute" >
+            {myCanData?.length > 0 && totalPage > 1 && (
+        <div>
+          <div className="flex flex-wrap justify-center  items-center gap-[2%] mainWrapper  cursor-pointer py-8   ">
+            <Image
+              src="/iconsimgs/Prev.svg"
+              alt="Lefticon"
+              onClick={() => decrement()}
+              width={30}
+              height={30}
+              className={count==1?'cursor-no-drop' :""}
+            />
+           
+            {count > 1 ? (
+              <>
+                <div
+                  className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
+                  onClick={() => onNumClick(1)}
+                >
+                  1
+                </div>
+               <span className="text-black" >...</span>
+              </>
+            ) : (
+              ""
+            )}
+            {(count + 2 >= totalPage
+              ? [totalPage - 2, totalPage - 1, totalPage]
+              : [count, count + 1, count + 2]
+            )?.map((i, k) => {
+              return (
+                <span
+                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
+                  onClick={() => onNumClick(i)}
+                  style={
+                    count === i
+                      ? {
+                          color: "black",
+                          backgroundColor: "#43AFFF33",
+                          cursor: "pointer",
+                        }
+                      : { backgroundColor: "white", cursor: "pointer" }
+                  }
+                  key={k}
+                >
+                  {i}
+                </span>
+              );
+            })}
+            {count + 2 >= totalPage ? (
+              ""
+            ) : (
+              <>
+                  <span className="text-black" >...</span>
+                <div
+                  className="h-8 w-8 rounded bg-white text-center text-[19px] text-black font-[400]"
+                  onClick={() => onNumClick(totalPage)}
+                >
+                  {totalPage}
+                </div>
+              </>
+            )}
+            <Image
+              src="/iconsimgs/Nex.svg"
+              alt="Righticon"
+              onClick={() => increment()}
+              width={30}
+              height={30}
+              className={count==totalPage?'cursor-no-drop' :""}
+            />
+          </div>
+        </div>
+      )}
             </div>
           </div>
         ) : (
@@ -190,78 +270,7 @@ const Index = () => {
           </>
         )}
       </div>
-      {!loader && myCanData?.length > 0 && totalPage > 1 && (
-        <div className="h-auto  ">
-          <div className="flex flex-wrap justify-center text-center items-center gap-[1%] xs:pt-[222rem] md:pt-[110rem] lg:pt-[80rem] xl:pt-[55rem] cursor-pointer pb-8 ">
-            <Image
-              src="/iconsimgs/Prev.svg"
-              alt="Lefticon"
-              onClick={() => decrement()}
-              width={30}
-              height={30}
-              className={count==1?'cursor-no-drop' :""}
-            />
-            {/* <span className={style.postjobyou_span}>{count}</span> */}
-            {count > 1 ? (
-              <>
-                <div
-                  className="h-8 w-8 rounded bg-white text-center text-[19px] font-[400] "
-                  onClick={() => onNumClick(1)}
-                >
-                  1
-                </div>
-                ...
-              </>
-            ) : (
-              ""
-            )}
-            {(count + 2 >= totalPage
-              ? [totalPage - 2, totalPage - 1, totalPage]
-              : [count, count + 1, count + 2]
-            )?.map((i, k) => {
-              return (
-                <span
-                  className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
-                  onClick={() => onNumClick(i)}
-                  style={
-                    count === i
-                      ? {
-                          color: "black",
-                          backgroundColor: "#43AFFF33",
-                          cursor: "pointer",
-                        }
-                      : { backgroundColor: "white", cursor: "pointer" }
-                  }
-                  key={k}
-                >
-                  {i}
-                </span>
-              );
-            })}
-            {count + 2 >= totalPage ? (
-              ""
-            ) : (
-              <>
-                ...
-                <div
-                  className="h-8 w-8 rounded bg-white text-center text-[19px] font-[400]"
-                  onClick={() => onNumClick(totalPage)}
-                >
-                  {totalPage}
-                </div>
-              </>
-            )}
-            <Image
-              src="/iconsimgs/Nex.svg"
-              alt="Righticon"
-              onClick={() => increment()}
-              width={30}
-              height={30}
-              className={count==totalPage?'cursor-no-drop' :""}
-            />
-          </div>
-        </div>
-      )}
+     
     </>
   );
 };

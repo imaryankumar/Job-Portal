@@ -182,72 +182,70 @@ const Index = () => {
             </div>
           </div>
           <div>
-            <div className="flex flex-wrap items-center justify-center w-full px-40 xs:px-8 ">
               {loader ? (
                 <Loader />
               ) : (
-                myCanData?.map((item: cardTypes, key) => {
-                  return (
-                    <div
-                      className="w-[260px] h-[162px] bg-white rounded p-4  mb-4 relative capitalize shadow  "
-                      key={key}
-                    >
+              <div className="relative" >
+                 <div  className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8" >
+                {
+                   myCanData?.map((item: cardTypes, key) => {
+                    return (
                       <div
-                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps   `}
+                        className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
                         key={key}
-                        title={item.title}
-                        data-toggle="tooltip"
                       >
-                        <h1>{item.title}</h1>
-                      </div>
-                      <div
-                        className={`w-[229px] text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp `}
-                        title={item.description}
-                        data-toggle="tooltip"
-                      >
-                        <p>{item.description}</p>
-                      </div>
-                      <div className="flex items-center text-center  absolute bottom-4 justify-center ">
-                        <div className="flex mr-4">
-                          <div className="relative w-4 h-4 mr-1">
-                            <Image
-                              src="/iconsimgs/location.svg"
-                              alt="Pinicons"
-                              fill
-                              className="absolute top-0 object-contain"
-                            />
+                        <div
+                          className={`text-[17px] text-light-dark tracking-normal line-clamps   `}
+                          key={key}
+                          title={item.title}
+                          data-toggle="tooltip"
+                        >
+                          <h1>{item.title}</h1>
+                        </div>
+                        <div
+                          className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp `}
+                          title={item.description}
+                          data-toggle="tooltip"
+                        >
+                          <p>{item.description}</p>
+                        </div>
+                        <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
+                     <div className="col-span-1 mr-2">
+                     <Image
+                            src="/iconsimgs/location.svg"
+                            alt="Pinicons"
+                            width={15}
+                            height={10}
+                            className=" object-contain "
+                          />
+                     </div>
+                          <div className="col-span-8">
+                          <p className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
+                           title={item.location}
+                           data-toggle="tooltip"
+                          >{item.location}</p>
                           </div>
-                          <h3
-                            className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps cursor-pointer `}
-                            title={item.location}
-                            data-toggle="tooltip"
-                          >
-                            {item.location}
-                          </h3>
-                        </div>
-                        <div>
-                          {loader ? (
-                            <Loader />
-                          ) : (
-                            <button
-                              className="w-[60px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
-                              onClick={() => clickMe(item.id)}
-                            >
-                              Apply
-                            </button>
-                          )}
-                        </div>
+                          <div>
+                            {loader ? (
+                              <Loader />
+                            ) : (
+                              <button
+                                className="w-[60px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                                onClick={() => clickMe(item.id)}
+                              >
+                                Apply
+                              </button>
+                            )}
+                          </div>
                       </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white-blue ">
-        <div className="flex justify-center text-center items-center gap-[1%] mt-[55rem] cursor-pointer pb-8  ">
+                       
+                      </div>
+                    );
+                  })
+                }
+               </div>
+               <div className="absloute" >
+               <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4   ">
           <Image
             src="/iconsimgs/Prev.svg"
             alt="Lefticon"
@@ -259,12 +257,12 @@ const Index = () => {
           {count > 1 ? (
             <>
               <div
-                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] "
+                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
                 onClick={() => onNumClick(1)}
               >
                 1
               </div>
-              ...
+             <span className="text-black">...</span>
             </>
           ) : (
             ""
@@ -275,7 +273,7 @@ const Index = () => {
           )?.map((i, k) => {
             return (
               <span
-                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400]"
+                className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
                 onClick={() => onNumClick(i)}
                 style={
                   count === i
@@ -296,9 +294,9 @@ const Index = () => {
             ""
           ) : (
             <>
-              ...
+             <span className="text-black">...</span>
               <div
-                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400]"
+                className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
                 onClick={() => onNumClick(totalPage)}
               >
                 {totalPage}
@@ -317,6 +315,15 @@ const Index = () => {
           />
             {}
         </div>
+               </div>
+              </div>
+              )}
+            
+          </div>
+        </div>
+      </div>
+      <div className="bg-white-blue ">
+       
       </div>
     </>
   );
