@@ -111,9 +111,9 @@ const AppliedJobPage = (props: Props) => {
             </div>
           </div>
           {myCanData?.length > 0 ? (
-            <div className="relative min-h-screen" >
+            <div className="relative " >
               <Pagination data={myCanData} pagination={pagination}>
-              <div className="absolute -bottom-80 right-0 left-0" >
+              <div className="absolute -bottom-28 right-0 left-0" >
               {myCanData?.length > 0 && totalPage > 1 && (
           <div>
             <div className="flex flex-wrap  justify-center  items-center gap-[2%] mainWrapper cursor-pointer py-8   ">

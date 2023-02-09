@@ -208,35 +208,37 @@ const Index = () => {
                     >
                       <p>{item.description}</p>
                     </div>
-                    <div
-                      className={`flex items-center  flex-wrap absolute bottom-4 justify-between w-[88%]`}
-                    >
-                      <div className="flex justify-between ">
-                        <div className="relative w-4 h-4 mr-1 items-center ">
-                          <Image
-                            src="/iconsimgs/location.svg"
-                            alt="Pinicon"
-                            fill
-                            className="absolute top-0 object-contain"
-                          />
-                        </div>
-                        <h3
-                          className={`w-[64px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps  `}
-                          title={item.location}
-                          data-toggle="tooltip"
-                        >
-                          {item.location}
-                        </h3>
-                      </div>
-                      <div>
-                        <button
-                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded   text-light-dark capitalize text-[12px] p-2`}
-                          onClick={() => postClick(item.id)}
-                        >
-                          View applications
-                        </button>
-                      </div>
-                    </div>
+                    <div className="absolute left-4 bottom-5 grid grid-cols-9  ">
+
+<div className="grid grid-cols-9 content-center col-span-4">
+<div className="col-span-1">
+<Image
+    src="/iconsimgs/location.svg"
+    alt="Pinicons"
+    width={15}
+    height={10}
+    className=" object-contain "
+  />
+</div>
+  <div className="col-span-7 ml-2">
+  <p className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
+   title={item.location}
+   data-toggle="tooltip"
+  >{item.location}</p>
+  </div>
+
+</div>
+<div className="col-span-2">
+   
+      <button
+        className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+        onClick={() => postClick(item.id)}
+      >
+       View applications
+      </button>
+    
+  </div>
+</div>
                   </div>
                 );
               })}
@@ -356,7 +358,7 @@ const Index = () => {
               {jobData?.length >0?"Total":""}  {jobData ? jobData.length : 0} applications
               </h3>
               <div className="h-full bg-[#557da526]" >
-              <div className=" flex justify-start  flex-wrap overflow-auto p-2 gap-4  ">
+            <div className={`flex justify-start  flex-wrap overflow-auto p-2 gap-4`}>
                 {loader ? (
                   <Loader />
                 ) : jobData ? (
@@ -402,19 +404,15 @@ const Index = () => {
                     );
                   })
                 ) : (
-                  <div className="text-[20px] opacity-80  ">
-                  <div className="border border-red-500 w-full h-full " >
-                   <Image
-                      src="/iconsimgs/curriculum.svg"
-                      alt=""
-                      className="mb-4 opacity-50 "
-                      width={85}
-                      height={106}
-                    />
+                <div  className="flex flex-col items-center justify-center w-full mt-[11rem] " >
+                     <Image
+                     src="/iconsimgs/curriculum.svg"
+                     alt="curriculum"
+                     className="mb-4 opacity-50 "
+                     width={85}
+                     height={106}
+                   />
                    <h3>No applications available!</h3>
-                   </div>
-                   
-             
                 </div>
                 )}
               </div>

@@ -7,7 +7,7 @@ const Section = () => {
       <div className="mainWrapper">
         <div className="text-lg pt-40 md:pt-20">
           <div>
-            <div className="text-[22px] md:text-left  text-center md:px-[170px]">
+            <div className="text-[22px] text-left px-[30px] md:px-[170px]">
               <h2 className="text-light-dark font-medium ">Why Us</h2>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 py-8 sm:px-36">
@@ -30,11 +30,11 @@ const Section = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-[22px] mb-6 md:text-left  text-center md:px-[170px] text-light-dark font-medium ">
+          <h2 className="text-[22px] mb-6 text-left px-[25px]  md:px-[170px] text-light-dark font-medium ">
             Companies Who Trust Us
           </h2>
           
-          <div className="flex  flex-wrap items-center justify-center w-full px-[110px] gap-[10%]">
+          <div className="flex  flex-wrap items-center justify-center w-full px-[10px] md:px-[110px] gap-[10%]">
             <div className="flex items-center text-3xl mb-12 font-sans">
               <Image
                 src="/iconsimgs/solaytic@2x.png"

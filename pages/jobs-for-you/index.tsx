@@ -185,7 +185,7 @@ const Index = () => {
               {loader ? (
                 <Loader />
               ) : (
-              <div className="relative " >
+              <div className="absloute" >
                  <div  className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8" >
                 {
                    myCanData?.map((item: cardTypes, key) => {

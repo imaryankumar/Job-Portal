@@ -7,7 +7,7 @@ interface cardTypes {
 }
 const Cards = ({ name, para, paraspam }: cardTypes) => {
   return (
-    <div className="bg-white p-4 shadow-md rounded-md flex flex-col flex-wrap m-6">
+    <div className="bg-white p-4 shadow-md rounded-md flex flex-col flex-wrap m-4 md:m-6">
       <h2 className="text-light-blue pb-4 font-medium text-2xl ">
         {name}
         <br />
