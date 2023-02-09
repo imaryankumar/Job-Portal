@@ -185,7 +185,7 @@ const Index = () => {
               {loader ? (
                 <Loader />
               ) : (
-              <div className="relative" >
+              <div className="relative " >
                  <div  className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8" >
                 {
                    myCanData?.map((item: cardTypes, key) => {
@@ -209,8 +209,10 @@ const Index = () => {
                         >
                           <p>{item.description}</p>
                         </div>
-                        <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
-                     <div className="col-span-1 mr-2">
+                        <div className="absolute left-4 bottom-5 grid grid-cols-6">
+
+                        <div className="grid grid-cols-12 content-center col-span-4">
+                     <div className="col-span-1">
                      <Image
                             src="/iconsimgs/location.svg"
                             alt="Pinicons"
@@ -219,25 +221,27 @@ const Index = () => {
                             className=" object-contain "
                           />
                      </div>
-                          <div className="col-span-8">
+                          <div className="col-span-8 ml-2">
                           <p className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
                            title={item.location}
                            data-toggle="tooltip"
                           >{item.location}</p>
                           </div>
-                          <div>
+                       
+                      </div>
+                      <div className="col-span-2">
                             {loader ? (
                               <Loader />
                             ) : (
                               <button
-                                className="w-[60px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                                className="px-4 py-2 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                                 onClick={() => clickMe(item.id)}
                               >
                                 Apply
                               </button>
                             )}
                           </div>
-                      </div>
+                        </div>
                        
                       </div>
                     );

@@ -184,7 +184,8 @@ const Index = () => {
           <Loader />
         ) : myData?.length > 0 ? (
           <div>
-            <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8  ">
+            <div className="relative" >
+            <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
@@ -208,10 +209,10 @@ const Index = () => {
                       <p>{item.description}</p>
                     </div>
                     <div
-                      className={`flex items-center flex-wrap absolute bottom-4 justify-between w-[88%]`}
+                      className={`flex items-center  flex-wrap absolute bottom-4 justify-between w-[88%]`}
                     >
-                      <div className="flex justify-between">
-                        <div className="relative w-4 h-4 mr-1">
+                      <div className="flex justify-between ">
+                        <div className="relative w-4 h-4 mr-1 items-center ">
                           <Image
                             src="/iconsimgs/location.svg"
                             alt="Pinicon"
@@ -220,7 +221,7 @@ const Index = () => {
                           />
                         </div>
                         <h3
-                          className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps  `}
+                          className={`w-[64px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps  `}
                           title={item.location}
                           data-toggle="tooltip"
                         >
@@ -239,6 +240,68 @@ const Index = () => {
                   </div>
                 );
               })}
+            </div>
+            <div className="relative" >
+            {myData?.length > 0 && totalPage > 1 && (
+        <div className="bg-white-blue w-full h-auto  ">
+          <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
+            <Image
+              src="/iconsimgs/Prev.svg"
+              alt="LeftButton"
+              onClick={() => decrement()}
+              width={30}
+              height={30}
+              className={count==1?'cursor-no-drop' :""}
+            />
+            {(count + 2 >= totalPage
+              ? pageDefiner(totalPage)
+              : [count, count + 1, count + 2]
+            )?.map((i, key) => {
+              return (
+                <span
+                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                  onClick={(e) => onNumClick(e)}
+                  style={
+                    count === i
+                      ? {
+                          color: "black",
+                          backgroundColor: "#43AFFF33",
+                          cursor: "pointer",
+                        }
+                      : { backgroundColor: "white", cursor: "pointer" }
+                  }
+                  key={key}
+                >
+                  {i}
+                </span>
+              );
+            })}
+            {count + 2 >= totalPage ? (
+              ""
+            ) : (
+              <>
+                ...
+                <div
+                  className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                  onClick={() => onNumClick(totalPage)}
+                >
+                  {totalPage}
+                </div>
+              </>
+            )}
+
+            <Image
+              src="/iconsimgs/Nex.svg"
+              alt="RightButton"
+              onClick={() => increment()}
+              width={30}
+              height={30}
+              className={count==totalPage?'cursor-no-drop' :""}
+            />
+          </div>
+        </div>
+      )}
+            </div>
             </div>
           </div>
         ) : (
@@ -268,7 +331,7 @@ const Index = () => {
         )}
       </div>
 
-    
+      
       {isOpen && (
         <>
           <div
@@ -290,9 +353,10 @@ const Index = () => {
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
-              {jobData?.length >0?"Total":""} {jobData ? jobData.length : 0} applications
+              {jobData?.length >0?"Total":""}  {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="bg-[#557da526] flex justify-start  flex-wrap overflow-auto h-full p-2 gap-4 ">
+              <div className="h-full bg-[#557da526]" >
+              <div className=" flex justify-start  flex-wrap overflow-auto p-2 gap-4  ">
                 {loader ? (
                   <Loader />
                 ) : jobData ? (
@@ -338,21 +402,22 @@ const Index = () => {
                     );
                   })
                 ) : (
-                  <div className="flex flex-col justify-center items-center text-[20px] opacity-80  w-full h-full ">
-                    <div>
-                     <Image
-                        src="/iconsimgs/curriculum.svg"
-                        alt=""
-                        className="mb-4 opacity-50 "
-                        width={85}
-                        height={106}
-                      />
-                     
-                     </div>
-                     <h3>No applications available!</h3>
-               
-                  </div>
+                  <div className="text-[20px] opacity-80  ">
+                  <div className="border border-red-500 w-full h-full " >
+                   <Image
+                      src="/iconsimgs/curriculum.svg"
+                      alt=""
+                      className="mb-4 opacity-50 "
+                      width={85}
+                      height={106}
+                    />
+                   <h3>No applications available!</h3>
+                   </div>
+                   
+             
+                </div>
                 )}
+              </div>
               </div>
             </div>
           </div>
