@@ -100,7 +100,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-4xl mb-12 font-sans">
               <Image
                 src="/iconsimgs/velocity-9@2x.png"
                 alt="Velocity"

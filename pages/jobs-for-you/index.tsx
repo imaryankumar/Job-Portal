@@ -164,15 +164,16 @@ const Index = () => {
         <div className="mainWrapper">
           <div className="px-40 xs:px-20">
             <div className="flex text-center items-center  pt-3   ">
-              <Link href="/jobforyou">
+              <Link href="/jobs-for-you">
                 <Image
                   src="/iconsimgs/homemd.svg"
                   alt="Homeicon"
                   width={10}
                   height={9}
+                  className="mr-1"
                 />
               </Link>
-              <Link href="/jobforyou">
+              <Link href="/jobs-for-you">
                 <span className="pl-1 text-[12px] font-medium ">Home</span>
               </Link>
             </div>
@@ -192,7 +193,7 @@ const Index = () => {
                       key={key}
                     >
                       <div
-                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps cursor-pointer  `}
+                        className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal line-clamps   `}
                         key={key}
                         title={item.title}
                         data-toggle="tooltip"
@@ -200,15 +201,15 @@ const Index = () => {
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={`w-[229px] text-[14px] tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp cursor-pointer `}
+                        className={`w-[229px] text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp `}
                         title={item.description}
                         data-toggle="tooltip"
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="flex items-center text-center  absolute bottom-4 justify-between ">
+                      <div className="flex items-center text-center  absolute bottom-4 justify-center ">
                         <div className="flex mr-4">
-                          <div className="relative w-4 h-4 mr-2">
+                          <div className="relative w-4 h-4 mr-1">
                             <Image
                               src="/iconsimgs/location.svg"
                               alt="Pinicons"

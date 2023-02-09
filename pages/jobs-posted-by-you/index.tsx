@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
@@ -147,7 +148,7 @@ const Index = () => {
         setLoader(false);
       })
       .catch((e) => {
-        // toast.error(e);
+        toast.error(e);
         toast.error("Error Found");
         setLoader(false);
       });
@@ -156,26 +157,25 @@ const Index = () => {
   return (
     <>
       <Seo title="Jobs posted by you" />
-      <div className="bg-dark-blue w-full h-[18vh] text-white">
+      <div className="bg-dark-blue w-full h-[18vh] text-white relative">
         <div className="mainWrapper">
-          <div className="px-[10rem] py-5 xs:px-[5rem]">
-            <div className="flex text-center items-center  ">
+          <div className="px-[70px] xs:px-10 2xl:px-[160px] xl:px-[160px] md:px-[160px] ">
+            <div className="flex text-center items-center pt-3">
               <Link href={"/jobs-posted-by-you"}>
                 <Image
                   src="/iconsimgs/homemd.svg"
                   alt=""
                   width={10}
                   height={9}
-                  className="mr-1"
                 />
               </Link>
               <Link href={"/jobs-posted-by-you"}>
                 {" "}
-                <span className="text-[12px] font-medium ">Home</span>
+                <span className="pl-1 text-[12px] font-medium  ">Home</span>
               </Link>
             </div>
-            <div className="mt-2">
-              <h1 className="text-[22px] font-medium ">Jobs posted by you</h1>
+            <div className="mt-4 mb-4 text-[22px] font-medium">
+              <h1>Jobs posted by you</h1>
             </div>
           </div>
         </div>
@@ -183,29 +183,34 @@ const Index = () => {
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div className="" >
-            <div className="flex flex-wrap items-center gap-[2%] mainWrapper px-[10rem] xs:px-[4rem] ">
+          <div>
+            <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8  ">
               {myData?.map((item: cardTypes, key) => {
                 return (
                   <div
-                    className="w-[260px] h-[162px] bg-white rounded mb-4 px-4 py-4   relative capitalize shadow "
+                    className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
                     key={key}
                   >
                     <div
-                      className={`w-full h-[20px] text-[17px]  text-light-dark tracking-normal overflow-hidden`}
+                      className={`text-[17px] text-light-dark tracking-normal line-clamps  `}
                       key={key}
+                      title={item.title}
+                      data-toggle="tooltip"
                     >
                       <h1>{item.title}</h1>
                     </div>
                     <div
-                      className={`"w-[229px] mx-0 my-2 opacity-80 text-light-dark tracking-normal overflow-hidden  `}
+                      className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp`}
+                      
+                      title={item.description}
+                      data-toggle="tooltip"
                     >
                       <p>{item.description}</p>
                     </div>
                     <div
-                      className={`flex items-center text-center  absolute bottom-4 justify-center overflow-hidden`}
+                      className={`flex items-center flex-wrap absolute bottom-4 justify-between w-[88%]`}
                     >
-                      <div className="flex mr-2">
+                      <div className="flex justify-between">
                         <div className="relative w-4 h-4 mr-1">
                           <Image
                             src="/iconsimgs/location.svg"
@@ -215,14 +220,16 @@ const Index = () => {
                           />
                         </div>
                         <h3
-                          className={`w-[64px] h-[16px] line-clamps text-[14px] tracking-normal text-light-dark opacity-80`}
+                          className={`w-[64px] h-[16px] text-[14px] tracking-normal text-light-dark opacity-80 line-clamps  `}
+                          title={item.location}
+                          data-toggle="tooltip"
                         >
                           {item.location}
                         </h3>
                       </div>
                       <div>
                         <button
-                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px] p-2 `}
+                          className={`w-[125px] h-[32px] bg-[#43afff33] rounded   text-light-dark capitalize text-[12px] p-2`}
                           onClick={() => postClick(item.id)}
                         >
                           View applications
@@ -263,14 +270,14 @@ const Index = () => {
 
       {myData?.length > 0 && totalPage > 1 && (
         <div className="bg-white-blue w-full h-auto border  ">
-          <div className="flex justify-center text-center items-center gap-[10px] pt-[223rem] md:pt-[115rem] lg:pt-[80rem] xl:pt-[55rem] 2xl:pt-[30rem] pb-8   ">
+          <div className="flex justify-center text-center items-center gap-[10px] pt-[245rem] md:pt-[62rem] lg:pt-[60rem] xl:pt-[62rem] 2xl:pt-[62rem] pb-8   ">
             <Image
               src="/iconsimgs/Prev.svg"
               alt="LeftButton"
               onClick={() => decrement()}
               width={30}
               height={30}
-              className={count == 1 ? "cursor-no-drop" : ""}
+              className={count==1?'cursor-no-drop' :""}
             />
             {(count + 2 >= totalPage
               ? pageDefiner(totalPage)
@@ -315,7 +322,7 @@ const Index = () => {
               onClick={() => increment()}
               width={30}
               height={30}
-              className={count == totalPage ? "cursor-no-drop" : ""}
+              className={count==totalPage?'cursor-no-drop' :""}
             />
           </div>
         </div>
@@ -327,7 +334,7 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[694px] h-[750px] md:h-[700px] m-auto relative rounded-[20px] flex flex-col px-4 py-4 "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[580px] md:h-[731] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-0 py-3 text-[19px] text-light-dark font-medium ">
@@ -336,19 +343,14 @@ const Index = () => {
                   onClick={() => setIsOpen(false)}
                   className="cursor-pointer"
                 >
-                  <Image
-                    src="/iconsimgs/metrocross.svg"
-                    alt="metrocross"
-                    width={15}
-                    height={15}
-                  />
+                  <Image src="/iconsimgs/metrocross.svg" alt="metrocross" width={15} height={15} />
                 </button>
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
-                Total {jobData ? jobData.length : 0} applications
+              Total {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="bg-[#D3D3D3] flex   flex-wrap overflow-auto h-full p-2 gap-4 ">
+              <div className="bg-[#557da526] flex justify-start  flex-wrap overflow-auto h-full p-2 gap-4 ">
                 {loader ? (
                   <Loader />
                 ) : jobData ? (
@@ -394,17 +396,19 @@ const Index = () => {
                     );
                   })
                 ) : (
-                  <div className="w-auto h-auto ">
-                    <div className="md:h-[454px] md:w-[610px] h-[330px] w-[270px] text-[20px] opacity-80 flex flex-col justify-center items-center">
-                      <Image
+                  <div className="flex flex-col justify-center items-center text-[20px] opacity-80  w-full h-full ">
+                    <div>
+                     <Image
                         src="/iconsimgs/curriculum.svg"
                         alt=""
-                        className="mb-4 w-[100px] h-[106px] opacity-50 "
+                        className="mb-4 opacity-50 "
                         width={85}
                         height={106}
                       />
-                      <h3>No applications available!</h3>
-                    </div>
+                     
+                     </div>
+                     <h3>No applications available!</h3>
+               
                   </div>
                 )}
               </div>
@@ -417,3 +421,6 @@ const Index = () => {
 };
 
 export default Index;
+
+
+

@@ -12,7 +12,6 @@ function Navbar() {
     return ["/login", "/sign-up"].includes(router.asPath) || isLoggedIN;
   }, [router, isLoggedIN]);
   
-  console.log("🚀 ~ file: Navbar.tsx:12 ~ isHidden ~ isHidden", isHidden,isLoggedIN)
   const JustSubmit = () => setClick(!click);
   const LogoutClear = () => {
     setClick(false);
@@ -70,7 +69,7 @@ function Navbar() {
                     : undefined
                 }
               >
-                <h1 className="md:mb-[20px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
+                <h1 className="md:mb-[22px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
                   {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                 </h1>
               </Link>
@@ -81,7 +80,7 @@ function Navbar() {
                 <Image
                   src="/iconsimgs/caretdown.svg"
                   alt="arrowdown"
-                  className=" relative text-[#FFFFFF]"
+                  className=" relative text-[#FFFFFF] -mt-[9px] "
                   width={13}
                   height={8}
                 />

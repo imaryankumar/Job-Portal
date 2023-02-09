@@ -176,6 +176,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setTitle(value);
                       validateTitle(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateTitle(title);
@@ -196,6 +197,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setDescription(value);
                       validateDesc(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateDesc(description);
@@ -217,6 +219,7 @@ const Index = () => {
                     onchange={(value: string) => {
                       setLocation(value);
                       validateLoc(value);
+                      setISLoading(false);
                     }}
                     onBlur={() => {
                       validateLoc(location);

@@ -82,6 +82,13 @@ const Index = () => {
                 required
                 onBlur={() => {}}
               />
+                 {error ? (
+                  <p className="text-[#FF0000] text-right text-xs">
+                    Password do not Match.
+                  </p>
+                ) : (
+                  ""
+                )}
               <Fields
                 type="password"
                 content="Confirm new password"
