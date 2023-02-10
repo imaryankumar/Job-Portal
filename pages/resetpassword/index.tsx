@@ -9,11 +9,50 @@ import Loader from "../../components/Loader/Loader";
 const Index = () => {
   const [newPass, setNewPass] = useState("");
   const [conPass, setConPass] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<{
+    newPass?: string;
+    conPass?: string;
+   
+  }>();
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
   const { token } = router.query;
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  function validatePassword(password: string) {
+    if (!password) {
+      setErrorState("newPass", "Password is required");
+      return true;
+    } else {
+      if (password.length < 6) {
+        setErrorState("newPass", "Password should be min 6 characters");
+        return true;
+      } else {
+        setErrorState("newPass", false);
+        return false;
+      }
+    }
+  }
+
+  function validateConfirmPassword(password: string, conpassword: string) {
+    if(conpassword.length ===0 ){
+      setErrorState("conPass", "Confirm Password is required");
+      return true;
+    }else if ( password !== conpassword) {      
+      setErrorState("confirmPassword", "Passwords do not match");
+      return true;
+    } else {
+      setErrorState("confirmPassword", false);
+      return false;
+    }
+   
+  }
   const onResetPassword = () => {
     if (newPass && newPass === conPass) {
       setConPass("");
@@ -49,11 +88,29 @@ const Index = () => {
           setISLoading(true);
         });
     } else {
-      setError(true);
+      
       toast.error("Invalid Password");
       setISLoading(true);
       setLoader(false);
     }
+  };
+  const validateForm = async () => {
+  
+    let passwordError = false;
+    let confirmPasswordError = false;
+    
+
+
+    passwordError = validatePassword(newPass);
+    confirmPasswordError = validateConfirmPassword(newPass, conPass);
+   
+
+    return (
+   
+      passwordError ||
+      confirmPasswordError 
+     
+    );
   };
 
   return (
@@ -78,15 +135,17 @@ const Index = () => {
                   setNewPass (value); 
                   setISLoading(false);
                 }}
-                error={error}
+                error={error?.newPass ? true : false}
                 required
-                onBlur={() => {}}
+                onBlur={() => {
+                  validatePassword(newPass);
+                }}
               >
-                {error &&
-                  <p className="text-[#FF0000] text-right text-xs">
-                    Password do not Match.
-                  </p>
-                }
+                {error?.newPass && (
+                        <p className="text-[#FF0000] text-right text-xs">
+                          {error?.newPass}
+                        </p>
+                      )}
               </Fields>
               <Fields
                 type="password"
@@ -97,15 +156,17 @@ const Index = () => {
                   setConPass (value); 
                   setISLoading(false);
                 }}
-                error={error}
+             
                 required
-                onBlur={() => {}}
+                onBlur={() => {
+                  validateConfirmPassword(newPass, conPass);
+                }}
               >
-                {error &&
+                   {error?.conPass&& (
                   <p className="text-[#FF0000] text-right text-xs">
-                    Password do not Match.
+                    {error?.conPass}
                   </p>
-                }
+                )}
               </Fields>
               <div className="flex items-center justify-center">
                 <button

@@ -76,7 +76,7 @@ function Navbar() {
                 className={
                   router.asPath.includes("/post-job") ||
                   router.asPath.includes("/applied-jobs")
-                    ? "md:border-b-4 border-b-2 border-solid border-light-blue "
+                    ? "md:border-b-4 border-b-2 border-solid border-[#43AFFF] "
                     : undefined
                 }
               >
@@ -99,7 +99,7 @@ function Navbar() {
                 {click && (
                   <div className="absolute">
                      <div
-                   className="relative w-[112px] h-[47px] bg-white flex justify-center items-center mt-[7rem] ml-[-1.6rem] text-[14px] text-light-dark rounded cursor-pointer  z-50 "
+                   className="relative w-[112px] h-[47px] bg-white flex justify-center items-center mt-[6.5rem] ml-[-1.6rem] text-[14px] text-light-dark rounded cursor-pointer  z-50 "
                    onClick={() => LogoutClear()}
                  >
                   <div className="absolute right-4 top-0 mt-[-8px] ml-[18px] h-0 w-0 border border-l-[6px] border-r-[6px] border-b-8 border-t-0 border-l-transparent border-r-transparent border-b-white text-white"></div>
@@ -114,7 +114,7 @@ function Navbar() {
           )}
         </div>
       </div>
-      <div className=" border-b-2 mx-4 md:mx-20  border-white-blue opacity-20 " />
+      <div className=" border-b-[1px] xl:min-w[1300px] mx-4 md:mx-20  border-white-blue opacity-20 " />
     </div>
   );
 }

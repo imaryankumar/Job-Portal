@@ -27,7 +27,7 @@ const Description = ({
       </h1>
       <textarea
         placeholder={placeholder}
-        className={`text-black w-full h-24 outline-light-blue bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 pt-3  ${
+        className={`text-black w-full h-24 outline-light-blue bg-[#e8e8e833] border border-solid border-gray-500 rounded pl-4 pt-3 opacity-40  ${
           error ? `border border-solid border-[#FF0000]` : ""
         }`}
         value={value}

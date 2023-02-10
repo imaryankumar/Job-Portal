@@ -37,6 +37,10 @@ const Index = () => {
       setErrorState("name", "Name is required");
       return true;
     }
+    else if (name.length>100) {
+      setErrorState("name", "Maximum character limit 100 ");
+      return true;
+    }
     let re = /^[a-zA-Z]+$/;
     if (!re.test(name)) {
       setErrorState("name", "Enter valid name");

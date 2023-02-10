@@ -248,8 +248,8 @@ const Index = () => {
                   })
                 }
                </div>
-               <div className="absloute" >
-               <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4   ">
+               <div className="absolute left-0 right-0 " >
+               <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4  ">
           <Image
             src="/iconsimgs/Prev.svg"
             alt="Lefticon"

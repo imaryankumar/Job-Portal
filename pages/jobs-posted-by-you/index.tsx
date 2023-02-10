@@ -55,7 +55,11 @@ const pageNum=router.asPath?.split('=')[1]
   const pageDefiner = (num: any) => {
     if (num > 2) {
       return [num - 2, num - 1, num];
-    } else {
+    }else if(num==1){
+      return [num];
+    }
+    
+    else {
       return [num - 1, num];
     }
   };
@@ -242,7 +246,7 @@ const pageNum=router.asPath?.split('=')[1]
                 })}
               </div>
               <div className="relative">
-                {myData?.length > 0 && totalPage > 1 && (
+                {myData?.length > 0 && (
                   <div className="bg-white-blue w-full h-auto  ">
                     <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
                       <Image
@@ -420,7 +424,7 @@ const pageNum=router.asPath?.split('=')[1]
                         width={85}
                         height={106}
                       />
-                      <h3>No applications available!</h3>
+                      <h3 className="text-[#303F60] opacity-80 " >No applications available!</h3>
                     </div>
                   )}
                 </div>

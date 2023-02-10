@@ -47,7 +47,12 @@ const PostJob = (props: Props) => {
       if (!description) {
         setErrorState("description", "Description is required");
         return true;
-      } else {
+      }
+      else if(description.length>1200){
+        setErrorState("description", "Maximum character limit 1200");
+        return true;
+      }
+      else {
         setErrorState("description", false);
         return false;
       }
@@ -56,7 +61,11 @@ const PostJob = (props: Props) => {
       if (!location) {
         setErrorState("location", "Location is required");
         return true;
-      } else {
+      }else if(description.length>250){
+        setErrorState("location", "Maximum character limit 250");
+        return true;
+      }
+       else {
         setErrorState("location", false);
         return false;
       }

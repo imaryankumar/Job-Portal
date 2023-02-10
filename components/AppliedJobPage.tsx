@@ -16,8 +16,9 @@ const AppliedJobPage = (props: Props) => {
     const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
     const [myCanData, setCanMyData] = useState<jobData[]>([]);
     const [loader, setLoader] = useState(false);
-  
+  //  const pageNum=router.asPath?.split('=')[1]
     useEffect(() => {
+      // const page =  pageNum ? +pageNum : 1;
       const value = showPerPage * count;
       setPagination({ start: value - showPerPage, end: value });
     }, [count, showPerPage]);
@@ -44,6 +45,13 @@ const AppliedJobPage = (props: Props) => {
         });
     }, []);
   
+    const pageDefiner = (num: any) => {
+      if (num > 2) {
+        return [num - 2, num - 1, num];
+      } else {
+        return [num - 1, num];
+      }
+    };
     const totalJobs = myCanData?.length;
     const totalPage = Math.ceil(totalJobs / showPerPage);
   
@@ -115,76 +123,78 @@ const AppliedJobPage = (props: Props) => {
               <Pagination data={myCanData} pagination={pagination}>
               <div className="absolute -bottom-28 right-0 left-0" >
               {myCanData?.length > 0 && totalPage > 1 && (
-          <div>
-            <div className="flex flex-wrap  justify-center  items-center gap-[2%] mainWrapper cursor-pointer py-8   ">
-              <Image
-                src="/iconsimgs/Prev.svg"
-                alt="Lefticon"
-                onClick={() => decrement()}
-                width={30}
-                height={30}
-                className={count==1?'cursor-no-drop' :""}
-              />
-             
-              {count > 1 ? (
-                <>
-                  <div
-                    className="h-8 w-8 rounded  text-black text-center text-[19px] font-[400] "
-                    onClick={() => onNumClick(1)}
-                  >
-                    1
-                  </div>
-                 {/* <span className="text-black" >...</span> */}
-                </>
-              ) : (
-                ""
-              )}
-              {(count + 2 >= totalPage
-                ? [totalPage - 2, totalPage - 1, totalPage]
-                : [count, count + 1, count + 2]
-              )?.map((i, k) => {
-                return (
-                  <span
-                    className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
-                    onClick={() => onNumClick(i)}
-                    style={
-                      count === i
-                        ? {
-                            color: "black",
-                            backgroundColor: "#43AFFF33",
-                            cursor: "pointer",
-                          }
-                        : { backgroundColor: "white", cursor: "pointer" }
-                    }
-                    key={k}
-                  >
-                    {i}
-                  </span>
-                );
-              })}
-              {count + 2 >= totalPage ? (
-                ""
-              ) : (
-                <>
-                    {/* <span className="text-black" >...</span> */}
-                  <div
-                    className="h-8 w-8 rounded bg-white text-center text-[19px] text-black font-[400]"
-                    onClick={() => onNumClick(totalPage)}
-                  >
-                    {totalPage}
-                  </div>
-                </>
-              )}
-              <Image
-                src="/iconsimgs/Nex.svg"
-                alt="Righticon"
-                onClick={() => increment()}
-                width={30}
-                height={30}
-                className={count==totalPage?'cursor-no-drop' :""}
-              />
-            </div>
+           <div className="absolute left-0 right-0 " >
+           <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4  ">
+      <Image
+        src="/iconsimgs/Prev.svg"
+        alt="Lefticon"
+        onClick={() => decrement()}
+        width={30}
+        height={30}
+        className={count==1?'cursor-no-drop' :""}
+      />
+      {count > 1 ? (
+        <>
+          <div
+            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+            onClick={() => onNumClick(1)}
+          >
+            1
           </div>
+         <span className="text-black">...</span>
+        </>
+      ) : (
+        ""
+      )}
+      {(count + 2 >= totalPage
+        ? pageDefiner(totalPage)
+        : [count, count + 1, count + 2]
+      )?.map((i, k) => {
+        return (
+          <span
+            className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
+            onClick={() => onNumClick(i)}
+            style={
+              count === i
+                ? {
+                    color: "black",
+                    backgroundColor: "#43AFFF33",
+                    cursor: "pointer",
+                  }
+                : { backgroundColor: "white", cursor: "pointer" }
+            }
+            key={k}
+          >
+            {i}
+          </span>
+        );
+      })}
+      {count + 2 >= totalPage ? (
+        ""
+      ) : (
+        <>
+         <span className="text-black">...</span>
+          <div
+            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+            onClick={() => onNumClick(totalPage)}
+          >
+            {totalPage}
+          </div>
+        </>
+      )}
+
+      <Image
+        src="/iconsimgs/Nex.svg"
+        alt="Righticon"
+        onClick={() => increment()}
+        width={30}
+        height={30}
+        className={count==totalPage?'cursor-no-drop' :""}
+       
+      />
+        {}
+    </div>
+           </div>
         )}
               </div>
                 </Pagination>           
