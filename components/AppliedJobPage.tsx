@@ -1,15 +1,28 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { toast } from "react-toastify";
-import Seo from "./nexthead/Seo";
 import Link from "next/link";
-import Loader from "./Loader/Loader";
-import Pagination from "./Pagin";
-import { jobData } from "../utils/types";
-type Props = {};
+import { useEffect, useState } from "react";
 
-const AppliedJobPage = (props: Props) => {
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+import { toast } from "react-toastify";
+import { start } from "repl";
+import Seo from "./nexthead/Seo";
+import Loader from "./Loader/Loader";
+interface cardTypes {
+  location?: string;
+  title?: string;
+  description?: string;
+  id?: string;
+  updatedAt?: any;
+}
+interface jobData {
+  email: string;
+  name: string;
+  skills: string;
+  id: string;
+}
+
+const Index = () => {
   const router = useRouter();
   const [count, setCount] = useState(1);
   const [showPerPage] = useState(20);
@@ -17,16 +30,12 @@ const AppliedJobPage = (props: Props) => {
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
   const [loader, setLoader] = useState(false);
 
-  const pageNum = router.asPath?.split("=")[1];
   useEffect(() => {
-    const page = pageNum ? +pageNum : 1;
-    if (!isNaN(page) && page > 0) {
-      setCount(page);
-      reloadData(page);
-    }
-  }, [router, pageNum]);
+    const value = showPerPage * count;
+    setPagination({ start: value - showPerPage, end: value });
+  }, [count, showPerPage]);
 
-  const reloadData = (page: number) => {
+  useEffect(() => {
     setLoader(true);
     fetch(`https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied?`, {
       method: "GET",
@@ -46,15 +55,8 @@ const AppliedJobPage = (props: Props) => {
         toast.error("Error Found");
         setLoader(false);
       });
-  };
+  }, []);
 
-  const pageDefiner = (num: any) => {
-    if (num > 2) {
-      return [num - 2, num - 1, num];
-    } else {
-      return [num - 1, num];
-    }
-  };
   const totalJobs = myCanData?.length;
   const totalPage = Math.ceil(totalJobs / showPerPage);
 
@@ -100,9 +102,9 @@ const AppliedJobPage = (props: Props) => {
     <>
       <Seo title="Jobs applied by you" />{" "}
       <div className="bg-dark-blue w-full h-[18vh] text-white ">
-        <div className=" px-40 xs:px-5 mainWrapper ">
+        <div className=" px-40 xs:px-20">
           <Link href="/jobs-for-you">
-            <div className="flex  text-center items-center pt-5  text-xs opacity-80   ">
+            <div className="flex  text-center items-center pt-5  text-xs opacity-80  ">
               <Image
                 src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
@@ -112,7 +114,7 @@ const AppliedJobPage = (props: Props) => {
 
               <p className="ml-1 text-[12px] font-medium ">
                 {" "}
-                Home &gt;<Link href={"/applied-jobs"}>Applied Jobs</Link>
+                Home &gt;<Link href={"/jobappliedyou"}>Applied Jobs</Link>
               </p>
             </div>
           </Link>
@@ -121,87 +123,136 @@ const AppliedJobPage = (props: Props) => {
           </div>
         </div>
         {myCanData?.length > 0 ? (
-          <div className="relative ">
-            <Pagination data={myCanData} pagination={pagination}>
-              <div className="absolute -bottom-28 right-0 left-0  ">
-                {myCanData?.length > 0 && totalPage > 1 && (
-                  <div className="absolute left-0 right-0 ">
-                    <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4  ">
-                      <Image
-                        src="/iconsimgs/Prev.svg"
-                        alt="Lefticon"
-                        onClick={() => decrement()}
-                        width={30}
-                        height={30}
-                        className={count == 1 ? "cursor-no-drop" : ""}
-                      />
-                      {count > 1 ? (
-                        <>
-                          <div
-                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(1)}
-                          >
-                            1
+          <div className="relative">
+            <div className="min-h-[80vh] pb-20 ">
+              <div className="flex md:mx-40 2xl:mx-96 justify-center md:justify-start gap-4 flex-wrap ">
+                {myCanData
+                  ?.slice(pagination.start, pagination.end)
+                  .map((item: cardTypes, key) => {
+                    return (
+                      <div
+                        className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow "
+                        key={key}
+                      >
+                        <div
+                          className={`text-[17px] text-light-dark tracking-normal line-clamps `}
+                          key={key}
+                          title={item.title}
+                          data-toggle="tooltip"
+                        >
+                          <h1>{item.title}</h1>
+                        </div>
+                        <div
+                          className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
+                          title={item.description}
+                          data-toggle="tooltip"
+                        >
+                          <p>{item.description}</p>
+                        </div>
+                        <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
+                          <div className="col-span-1 mr-2">
+                            <Image
+                              src="/iconsimgs/location.svg"
+                              alt="Pinicons"
+                              width={15}
+                              height={10}
+                              className=" object-contain "
+                            />
                           </div>
-                          <span className="text-black">...</span>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                      {(count + 2 >= totalPage
-                        ? pageDefiner(totalPage)
-                        : [count, count + 1, count + 2]
-                      )?.map((i, k) => {
-                        return (
-                          <span
-                            className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(i)}
-                            style={
-                              count === i
-                                ? {
-                                    color: "black",
-                                    backgroundColor: "#43AFFF33",
-                                    cursor: "pointer",
-                                  }
-                                : {
-                                    backgroundColor: "white",
-                                    cursor: "pointer",
-                                  }
-                            }
-                            key={k}
-                          >
-                            {i}
-                          </span>
-                        );
-                      })}
-                      {count + 2 >= totalPage ? (
-                        ""
-                      ) : (
-                        <>
-                          <span className="text-black">...</span>
-                          <div
-                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(totalPage)}
-                          >
-                            {totalPage}
+                          <div className="col-span-8">
+                            <p
+                              className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
+                              title={item.location}
+                              data-toggle="tooltip"
+                            >
+                              {item.location}
+                            </p>
                           </div>
-                        </>
-                      )}
-
-                      <Image
-                        src="/iconsimgs/Nex.svg"
-                        alt="Righticon"
-                        onClick={() => increment()}
-                        width={30}
-                        height={30}
-                        className={count == totalPage ? "cursor-no-drop" : ""}
-                      />
-                      {}
-                    </div>
-                  </div>
-                )}
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
-            </Pagination>
+              <div className="absolute bottom-0 left-0 right-0 ">
+                <div className=" ">
+                  {myCanData?.length > 0 && totalPage > 1 && (
+                    <div>
+                      <div className="flex flex-wrap justify-center  items-center gap-3 mainWrapper  cursor-pointer py-8   ">
+                        <Image
+                          src="/iconsimgs/Prev.svg"
+                          alt="Lefticon"
+                          onClick={() => decrement()}
+                          width={30}
+                          height={30}
+                          className={count == 1 ? "cursor-no-drop" : ""}
+                        />
+
+                        {count > 1 ? (
+                          <>
+                            <div
+                              className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
+                              onClick={() => onNumClick(1)}
+                            >
+                              1
+                            </div>
+                            <span className="text-black">...</span>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                        {(count + 2 >= totalPage
+                          ? [totalPage - 2, totalPage - 1, totalPage]
+                          : [count, count + 1, count + 2]
+                        )?.map((i, k) => {
+                          return (
+                            <span
+                              className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
+                              onClick={() => onNumClick(i)}
+                              style={
+                                count === i
+                                  ? {
+                                      color: "black",
+                                      backgroundColor: "#43AFFF33",
+                                      cursor: "pointer",
+                                    }
+                                  : {
+                                      backgroundColor: "white",
+                                      cursor: "pointer",
+                                    }
+                              }
+                              key={k}
+                            >
+                              {i}
+                            </span>
+                          );
+                        })}
+                        {count + 2 >= totalPage ? (
+                          ""
+                        ) : (
+                          <>
+                            <span className="text-black">...</span>
+                            <div
+                              className="h-8 w-8 rounded bg-white text-center text-[19px] text-black font-[400]"
+                              onClick={() => onNumClick(totalPage)}
+                            >
+                              {totalPage}
+                            </div>
+                          </>
+                        )}
+                        <Image
+                          src="/iconsimgs/Nex.svg"
+                          alt="Righticon"
+                          onClick={() => increment()}
+                          width={30}
+                          height={30}
+                          className={count == totalPage ? "cursor-no-drop" : ""}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <>
@@ -234,4 +285,4 @@ const AppliedJobPage = (props: Props) => {
   );
 };
 
-export default AppliedJobPage;
+export default Index;
