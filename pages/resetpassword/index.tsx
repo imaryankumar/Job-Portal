@@ -12,13 +12,11 @@ const Index = () => {
   const [error, setError] = useState<{
     password?: string;
     confirmPassword?: string;
-   
   }>();
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
   const { token } = router.query;
-
 
   function validatePassword(password: string) {
     if (!password) {
@@ -36,20 +34,18 @@ const Index = () => {
   }
 
   function validateConfirmPassword(password: string, conpassword: string) {
-    if(conpassword.length ===0 ){
+    if (conpassword.length === 0) {
       setErrorState("confirmPassword", "Password is required");
       return true;
-    }else if ( password !== conpassword) {      
+    } else if (password !== conpassword) {
       setErrorState("confirmPassword", "Passwords do not match");
       return true;
     } else {
       setErrorState("confirmPassword", false);
       return false;
     }
-   
   }
   const onResetPassword = () => {
-   
     if (newPass && newPass === conPass) {
       setConPass("");
       setNewPass("");
@@ -73,9 +69,8 @@ const Index = () => {
         })
         .then((data) => {
           toast.success("Password updated successfully");
-        
-            router.push("/login");
-         
+
+          router.push("/login");
         })
         .catch((e) => {
           toast.error(e);
@@ -83,14 +78,11 @@ const Index = () => {
         })
         .finally(() => {
           setISLoading(true);
-         
         });
     } else {
-      
       toast.error("Invalid Password");
       setISLoading(true);
       setLoader(false);
-      
     }
   };
   const setErrorState = (key: string, value: any) => {
@@ -99,8 +91,6 @@ const Index = () => {
       [key]: value,
     }));
   };
-
-
 
   return (
     <>
@@ -120,9 +110,9 @@ const Index = () => {
                 content="New password"
                 placeholder="Enter your password"
                 value={newPass}
-                onchange={(value:string)=>{
-                  setNewPass (value);
-                  validatePassword(value); 
+                onchange={(value: string) => {
+                  setNewPass(value);
+                  validatePassword(value);
                   setISLoading(false);
                 }}
                 error={error?.password || error?.confirmPassword ? true : false}
@@ -132,10 +122,10 @@ const Index = () => {
                 }}
               >
                 {error?.password && (
-                        <p className="text-[#FF0000] text-right text-xs">
-                          {error?.password}
-                        </p>
-                      )}
+                  <p className="text-[#FF0000] text-right text-xs">
+                    {error?.password}
+                  </p>
+                )}
               </Fields>
               <Fields
                 type="password"
@@ -143,18 +133,17 @@ const Index = () => {
                 placeholder="Enter your password"
                 error={error?.confirmPassword ? true : false}
                 value={conPass}
-                onchange={(value:string)=>{
-                  setConPass (value); 
+                onchange={(value: string) => {
+                  setConPass(value);
                   setISLoading(false);
                   validateConfirmPassword(newPass, value);
                 }}
-             
                 required
                 onBlur={() => {
                   validateConfirmPassword(newPass, conPass);
                 }}
               >
-                   {error?.confirmPassword && (
+                {error?.confirmPassword && (
                   <p className="text-[#FF0000] text-right text-xs">
                     {error?.confirmPassword}
                   </p>
@@ -168,8 +157,12 @@ const Index = () => {
                   type="submit"
                   style={
                     isLoading
-                      ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
-                      : { backgroundColor: "#43AFFF" ,color:"white" }
+                      ? {
+                          backgroundColor: "#43AFFF",
+                          color: "white",
+                          cursor: "no-drop",
+                        }
+                      : { backgroundColor: "#43AFFF", color: "white" }
                   }
                 >
                   {loader ? <Loader /> : "Reset"}

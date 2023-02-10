@@ -36,8 +36,7 @@ const Index = () => {
     if (!name.trim()) {
       setErrorState("name", "Name is required");
       return true;
-    }
-    else if (name.length>100) {
+    } else if (name.length > 100) {
       setErrorState("name", "Maximum character limit 100 ");
       return true;
     }
@@ -80,17 +79,16 @@ const Index = () => {
   }
 
   function validateConfirmPassword(password: string, conpassword: string) {
-    if(conpassword.length ===0 ){
+    if (conpassword.length === 0) {
       setErrorState("confirmPassword", "Confirm Password is required");
       return true;
-    }else if ( password !== conpassword) {      
+    } else if (password !== conpassword) {
       setErrorState("confirmPassword", "Passwords do not match");
       return true;
     } else {
       setErrorState("confirmPassword", false);
       return false;
     }
-   
   }
   function validateSkill(skill: string) {
     if (Number(role) === 1 && !skill.trim()) {
@@ -137,13 +135,11 @@ const Index = () => {
     setRole(0);
     setBtn(true);
     setBtn2(false);
-  
   }
   function mybtn2() {
     setRole(1);
     setBtn2(true);
     setBtn(false);
-  
   }
 
   const Justclick = async (e: any) => {
@@ -184,7 +180,7 @@ const Index = () => {
             setError({});
             if (finalRes?.message) {
               toast.error(finalRes.message);
-               setISLoading(true);
+              setISLoading(true);
             } else {
               const errors = finalRes?.errors;
               errors.forEach((item: any) => {
@@ -255,9 +251,7 @@ const Index = () => {
                 </button>
               </div>
               <div className="my-4  ">
-                <form
-                  onSubmit={(e) => Justclick(e)}
-                >
+                <form onSubmit={(e) => Justclick(e)}>
                   <Fields
                     type="text"
                     content="Full Name"
@@ -272,7 +266,6 @@ const Index = () => {
                     onBlur={() => {
                       validateName(name);
                     }}
-                  
                     required
                   >
                     {error?.name && (
@@ -382,12 +375,15 @@ const Index = () => {
                       type="submit"
                       style={
                         isLoading
-                          ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
-                          : { backgroundColor: "#43AFFF" ,color:"white" }
+                          ? {
+                              backgroundColor: "#43AFFF",
+                              color: "white",
+                              cursor: "no-drop",
+                            }
+                          : { backgroundColor: "#43AFFF", color: "white" }
                       }
                     >
                       {loader ? <Loader /> : " Signup"}
-                      
                     </button>
                   </div>
                 </form>

@@ -11,7 +11,6 @@ interface dataType {
   code: number;
   errors?: any;
 }
-
 const Index = () => {
   const router = useRouter();
   const myData = useContext(authcontext);
@@ -23,7 +22,13 @@ const Index = () => {
   }>();
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
-  // const [data, setData] = useState<dataType | undefined>(undefined);
+  const [data, setData] = useState<dataType | undefined>(undefined);
+
+  // const formFields=[mail, pass];
+  // const mydata=formFields.some(value=>value.length!==0)
+  // if(mydata===true){
+
+  // }
 
   const validateEmail = (email: string) => {
     let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -105,16 +110,13 @@ const Index = () => {
           setISLoading(false);
           if (finalRes.success) {
             setISLoading(true);
-            toast.success("You have successfully logged in");
-            // setData(finalRes);
+            toast.success("You have successfully logged in 1243");
+            setData(finalRes);
             // console.log({finalRes});
             myData.setLoggin(finalRes.data);
 
-            if (finalRes.data.userRole === 0) {
-              router.push("/jobs-posted-by-you?page=1");
-            } else if (finalRes.data.userRole === 1) {
-              router.push("/jobs-for-you?page=1");
-            }
+            //router.push("/jobs-for-you?page=1");
+            // router.push("/login");
           } else {
             setISLoading(true);
             setError({});
