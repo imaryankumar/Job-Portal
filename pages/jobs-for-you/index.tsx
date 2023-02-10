@@ -165,7 +165,7 @@ const Index = () => {
 
       <div className="bg-dark-blue w-full h-[18vh] text-white relative ">
         <div className="mainWrapper">
-          <div className="px-40 xs:px-20">
+          <div className="px-40 xs:px-5">
             <div className="flex text-center items-center  pt-3   ">
               <Link href="/jobs-for-you">
                 <Image
@@ -198,7 +198,7 @@ const Index = () => {
                         key={key}
                       >
                         <div
-                          className={`text-[17px] text-light-dark tracking-normal line-clamps   `}
+                          className={`text-[17px] text-light-dark tracking-normal line-clamps break-word  `}
                           key={key}
                           title={item.title}
                           data-toggle="tooltip"

@@ -216,7 +216,7 @@ const Index = () => {
         <div className="mainWrapper">
           <div className="md:w-[557px] xs:w-[310px] w-[400px] h-auto bg-white box-shadows rounded-[20px] mt-[25rem] md:mt-[38rem]  flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4  ">
-              <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3 px-0  ">
+              <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3  ">
                 Signup
               </h1>
               <h2 className="pb-2 text-[14px]">

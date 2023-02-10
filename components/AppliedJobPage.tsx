@@ -97,7 +97,7 @@ const AppliedJobPage = (props: Props) => {
       <>
         <Seo title="Jobs applied by you" />{" "}
         <div className="bg-dark-blue w-full h-[18vh] text-white ">
-          <div className=" px-40 xs:px-20 mainWrapper ">
+          <div className=" px-40 xs:px-5 mainWrapper ">
           <Link href="/jobs-for-you">
             <div className="flex  text-center items-center pt-5  text-xs opacity-80   ">
               
@@ -121,7 +121,7 @@ const AppliedJobPage = (props: Props) => {
           {myCanData?.length > 0 ? (
             <div className="relative " >
               <Pagination data={myCanData} pagination={pagination}>
-              <div className="absolute -bottom-28 right-0 left-0" >
+              <div className="absolute -bottom-28 right-0 left-0  " >
               {myCanData?.length > 0 && totalPage > 1 && (
            <div className="absolute left-0 right-0 " >
            <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4  ">

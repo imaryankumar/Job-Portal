@@ -145,7 +145,7 @@ const PostJob = (props: Props) => {
 <div className="bg-dark-blue w-full h-[40vh] text-white relative ">
   <div className="mainWrapper">
   <Link href={"/jobs-posted-by-you"}>
-    <div className="flex pl-[2rem] md:pl-[12rem] pt-[1rem] ">
+    <div className="flex pl-[1rem] md:pl-[12rem] pt-[1rem] ">
       
         <Image
           src="/iconsimgs/homemd.svg"

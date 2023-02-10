@@ -13,15 +13,15 @@ const Header = () => {
 
       <div className="bg-dark-blue">
         <div className="mainWrapper">
-          <header className=" md:ml-44 pt-16 pb-40 md:py-24 relative text-white flex flex-col justify-center items-center  md:block  ">
-            <div className="flex md:block text-3xl sm:text-5xl md:text-6xl">
+          <header className=" md:ml-44 pt-16 pb-40 md:py-24 relative text-white flex flex-col justify-center pl-6  md:block  ">
+            <div className=" text-3xl sm:text-5xl md:text-6xl">
               <h1 className=" ">Welcome to</h1>
-              <h2 className="ml-2 md:ml-0">
+              <h2 className="ml-0 md:ml-0">
                 My<span className="text-light-blue">Jobs</span>
               </h2>
             </div>
             <button
-              className="border text-[16px] font-medium  w-40 h-12 border-solid border-light-blue p-2 md:py-2.5 md:px-7 mt-9 md:mt-10 bg-light-blue md:text-base outline-none rounded-lg cursor-pointer"
+              className="border text-[16px] font-medium  w-40 h-12 border-solid border-light-blue p-2 md:py-2.5 md:px-7 mt-5 md:mt-10 bg-light-blue md:text-base outline-none rounded-lg cursor-pointer"
               onClick={() =>
                 router.push(
                   `${
@@ -36,7 +36,7 @@ const Header = () => {
             >
               Get Started
             </button>
-            <div className="absolute -bottom-32 md:right-0 xl:right-20  ">
+            <div className="absolute -bottom-32 right-0 xs:left-0 md:right-0 xl:right-20  ">
               <div className="relative w-full md:w-[400px] lg:w-[550px] xl:w-[700px]  aspect-video">
                 <Image
                   src="/iconsimgs/mainimg.webp"

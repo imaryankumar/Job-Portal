@@ -162,7 +162,7 @@ const pageNum=router.asPath?.split('=')[1]
       <Seo title="Jobs posted by you" />
       <div className="bg-dark-blue w-full h-[18vh] text-white relative">
         <div className="mainWrapper">
-          <div className="px-[70px] xs:px-10 2xl:px-[160px] xl:px-[160px] md:px-[160px] ">
+          <div className="px-[70px] xs:px-5 2xl:px-[160px] xl:px-[160px] md:px-[160px] ">
             <div className="flex text-center items-center pt-3">
               <Link href={"/jobs-posted-by-you"}>
                 <Image
@@ -192,7 +192,7 @@ const pageNum=router.asPath?.split('=')[1]
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow  "
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow   "
                       key={key}
                     >
                       <div
@@ -204,7 +204,7 @@ const pageNum=router.asPath?.split('=')[1]
                         <h1>{item.title}</h1>
                       </div>
                       <div
-                        className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp`}
+                        className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 leading-4 mx-0 line-clamp break-words`}
                         title={item.description}
                         data-toggle="tooltip"
                       >

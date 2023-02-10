@@ -7,10 +7,10 @@ const Section = () => {
       <div className="mainWrapper">
         <div className="text-lg pt-40 md:pt-20">
           <div>
-            <div className="text-[22px] text-left px-[30px] md:px-[170px]">
+            <div className="text-[22px] text-left px-[18px] md:px-[170px]">
               <h2 className="text-light-dark font-medium ">Why Us</h2>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 py-8 sm:px-36">
+            <div className="grid grid-cols-1 lg:grid-cols-3 py-3 md:py-8 sm:px-36  ">
               <Cards
                 name="Get More"
                 para="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aspernatur tempore vel eaque, a cupiditate?"
@@ -30,12 +30,12 @@ const Section = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-[22px] mb-6 text-left px-[25px]  md:px-[170px] text-light-dark font-medium ">
+          <h2 className="text-[22px] mb-6 text-left px-[18px]  md:px-[170px] text-light-dark font-medium  my-4">
             Companies Who Trust Us
           </h2>
           
-          <div className="flex  flex-wrap items-center justify-center w-full px-[10px] md:px-[110px] gap-[10%]">
-            <div className="flex items-center text-3xl mb-12 font-sans">
+          <div className="flex  flex-wrap items-center justify-between md:justify-center w-full px-7 md:px-[110px]  md:gap-[10%] mb-10">
+            <div className="flex items-center text-3xl  mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/solaytic@2x.png"
                 alt="solaytic"
@@ -43,7 +43,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/kanba@2x.png"
                 alt="kanaba"
@@ -51,7 +51,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/lighting@2x.png"
                 alt="lightimg"
@@ -59,7 +59,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/ztos@2x.png"
                 alt="ztos"
@@ -67,7 +67,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/kanba@2x.png"
                 alt="kanba"
@@ -76,7 +76,7 @@ const Section = () => {
               />
             </div>
 
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/goldline@2x.png"
                 alt="goldline"
@@ -84,7 +84,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/ideaa@2x.png"
                 alt="ideaa"
@@ -92,7 +92,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-3xl mb-12 font-sans">
+            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/liva@2x.png"
                 alt="Live"
@@ -100,7 +100,7 @@ const Section = () => {
                 height={40}
               />
             </div>
-            <div className="flex items-center text-4xl mb-12 font-sans">
+            <div className="flex items-center text-4xl mb-3 md:mb-12 font-sans">
               <Image
                 src="/iconsimgs/velocity-9@2x.png"
                 alt="Velocity"

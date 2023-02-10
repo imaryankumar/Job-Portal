@@ -10,31 +10,26 @@ const Index = () => {
   const [newPass, setNewPass] = useState("");
   const [conPass, setConPass] = useState("");
   const [error, setError] = useState<{
-    newPass?: string;
-    conPass?: string;
+    password?: string;
+    confirmPassword?: string;
    
   }>();
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
   const { token } = router.query;
-  const setErrorState = (key: string, value: any) => {
-    setError((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
+
 
   function validatePassword(password: string) {
     if (!password) {
-      setErrorState("newPass", "Password is required");
+      setErrorState("password", "Password is required");
       return true;
     } else {
       if (password.length < 6) {
-        setErrorState("newPass", "Password should be min 6 characters");
+        setErrorState("password", "Password should be min 6 characters");
         return true;
       } else {
-        setErrorState("newPass", false);
+        setErrorState("password", false);
         return false;
       }
     }
@@ -42,7 +37,7 @@ const Index = () => {
 
   function validateConfirmPassword(password: string, conpassword: string) {
     if(conpassword.length ===0 ){
-      setErrorState("conPass", "Confirm Password is required");
+      setErrorState("confirmPassword", "Password is required");
       return true;
     }else if ( password !== conpassword) {      
       setErrorState("confirmPassword", "Passwords do not match");
@@ -54,6 +49,7 @@ const Index = () => {
    
   }
   const onResetPassword = () => {
+   
     if (newPass && newPass === conPass) {
       setConPass("");
       setNewPass("");
@@ -77,41 +73,34 @@ const Index = () => {
         })
         .then((data) => {
           toast.success("Password updated successfully");
-          setTimeout(() => {
+        
             router.push("/login");
-          }, 1000);
+         
         })
         .catch((e) => {
           toast.error(e);
+          setISLoading(true);
         })
         .finally(() => {
           setISLoading(true);
+         
         });
     } else {
       
       toast.error("Invalid Password");
       setISLoading(true);
       setLoader(false);
+      
     }
   };
-  const validateForm = async () => {
-  
-    let passwordError = false;
-    let confirmPasswordError = false;
-    
-
-
-    passwordError = validatePassword(newPass);
-    confirmPasswordError = validateConfirmPassword(newPass, conPass);
-   
-
-    return (
-   
-      passwordError ||
-      confirmPasswordError 
-     
-    );
+  const setErrorState = (key: string, value: any) => {
+    setError((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
+
+
 
   return (
     <>
@@ -132,18 +121,19 @@ const Index = () => {
                 placeholder="Enter your password"
                 value={newPass}
                 onchange={(value:string)=>{
-                  setNewPass (value); 
+                  setNewPass (value);
+                  validatePassword(value); 
                   setISLoading(false);
                 }}
-                error={error?.newPass ? true : false}
+                error={error?.password || error?.confirmPassword ? true : false}
                 required
                 onBlur={() => {
                   validatePassword(newPass);
                 }}
               >
-                {error?.newPass && (
+                {error?.password && (
                         <p className="text-[#FF0000] text-right text-xs">
-                          {error?.newPass}
+                          {error?.password}
                         </p>
                       )}
               </Fields>
@@ -151,10 +141,12 @@ const Index = () => {
                 type="password"
                 content="Confirm new password"
                 placeholder="Enter your password"
+                error={error?.confirmPassword ? true : false}
                 value={conPass}
                 onchange={(value:string)=>{
                   setConPass (value); 
                   setISLoading(false);
+                  validateConfirmPassword(newPass, value);
                 }}
              
                 required
@@ -162,9 +154,9 @@ const Index = () => {
                   validateConfirmPassword(newPass, conPass);
                 }}
               >
-                   {error?.conPass&& (
+                   {error?.confirmPassword && (
                   <p className="text-[#FF0000] text-right text-xs">
-                    {error?.conPass}
+                    {error?.confirmPassword}
                   </p>
                 )}
               </Fields>
