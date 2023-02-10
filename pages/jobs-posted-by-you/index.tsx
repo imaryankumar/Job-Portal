@@ -184,7 +184,7 @@ const pageNum=router.asPath?.split('=')[1]
           <Loader />
         ) : myData?.length > 0 ? (
           <div>
-            <div className="relative">
+            <div className="relative xxx">
               <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
