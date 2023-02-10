@@ -8,7 +8,7 @@ const defaultMeta = {
   url: process.env.NEXT_PUBLIC_WEB_URL,
   image: "https://aryan-jp.squareboat.info/iconsimgs/mainimg.webp",
   type: "website",
-  robots: " noindex, nofollows",
+  robots: " noindex, nofollow",
 };
 type SeoProps = {
   title?: string;
