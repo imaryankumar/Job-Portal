@@ -21,12 +21,12 @@ const Pagination = ({ data, pagination, children }: any) => {
                 <h1>{item.title}</h1>
               </div>
               <div
-                className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
+                className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 break-words  line-clamp`}
                 title={item.description}
                 data-toggle="tooltip"
               >
                 <p>{item.description}</p>
-              </div>
+              </div> 
               <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
                 <div className="col-span-1 mr-2">
                   <Image

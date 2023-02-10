@@ -206,7 +206,7 @@ const Index = () => {
                           <h1>{item.title}</h1>
                         </div>
                         <div
-                          className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp `}
+                          className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0  break-words line-clamp `}
                           title={item.description}
                           data-toggle="tooltip"
                         >
