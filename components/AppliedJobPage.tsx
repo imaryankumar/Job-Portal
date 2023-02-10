@@ -16,14 +16,18 @@ const AppliedJobPage = (props: Props) => {
     const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
     const [myCanData, setCanMyData] = useState<jobData[]>([]);
     const [loader, setLoader] = useState(false);
-  //  const pageNum=router.asPath?.split('=')[1]
+   
+
+    const pageNum=router.asPath?.split('=')[1]
     useEffect(() => {
-      // const page =  pageNum ? +pageNum : 1;
-      const value = showPerPage * count;
-      setPagination({ start: value - showPerPage, end: value });
-    }, [count, showPerPage]);
+      const page =  pageNum ? +pageNum : 1;
+      if (!isNaN(page) && page > 0) {
+        setCount(page);
+        reloadData(page);
+      }
+    }, [router,pageNum]);
   
-    useEffect(() => {
+    const reloadData = (page: number) => {
       setLoader(true);
       fetch(`https://jobs-api.squareboat.info/api/v1/candidates/jobs/applied?`, {
         method: "GET",
@@ -43,7 +47,7 @@ const AppliedJobPage = (props: Props) => {
           toast.error("Error Found");
           setLoader(false);
         });
-    }, []);
+      };
   
     const pageDefiner = (num: any) => {
       if (num > 2) {

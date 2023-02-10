@@ -8,7 +8,7 @@ const defaultMeta = {
   url: process.env.NEXT_PUBLIC_WEB_URL,
   image: "https://aryan-jp.squareboat.info/iconsimgs/mainimg.webp",
   type: "website",
-  robots: "follow, index",
+  robots: " noindex, nofollows",
 };
 type SeoProps = {
   title?: string;
@@ -25,6 +25,7 @@ export default function Seo(props: SeoProps) {
     <Head>
       <title>{meta.title}</title>
       <meta name="robots" content={meta.robots} />
+      <meta name="googlebot" content={meta.robots} />
       <meta content={meta.description} name="description" />
       <meta property="og:url" content={`${meta.url}${router.asPath}`} />
       <link rel="canonical" href={`${meta.url}${router.asPath}`} />
