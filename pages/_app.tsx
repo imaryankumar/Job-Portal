@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
       
       <Component {...pageProps} /> 
-      <ToastContainer className='toast-contt'/>
+      <ToastContainer className='toast-contt xl:!mr-30  2xl:!mr-[17rem] ' />
     </ContextAPI>
   );
 }

@@ -214,7 +214,7 @@ const Index = () => {
       <Seo title="Signup" />
       <div className="bg-dark-blue w-full xs:h-[60vh] h-[40vh] 2xl:h-[15vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="md:w-[557px] xs:w-[310px] w-[400px] h-auto bg-white box-shadows rounded-[20px]  xs:mt-[25rem] mt-[38rem]  md:mt-[30rem] 2xl:mt-[30rem] flex flex-col items-center text-light-dark pb-4  ">
+          <div className="md:w-[557px] xs:w-[310px] w-[400px] h-auto bg-white box-shadows rounded-[20px] mt-[25rem] md:mt-[38rem]  flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4  ">
               <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3 px-0  ">
                 Signup

@@ -58,8 +58,7 @@ const pageNum=router.asPath?.split('=')[1]
     }else if(num==1){
       return [num];
     }
-    
-    else {
+     else {
       return [num - 1, num];
     }
   };
@@ -187,13 +186,13 @@ const pageNum=router.asPath?.split('=')[1]
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div>
-            <div className="relative">
-              <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
+       
+            <div className="">
+              <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8 ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow  "
                       key={key}
                     >
                       <div
@@ -245,9 +244,9 @@ const pageNum=router.asPath?.split('=')[1]
                   );
                 })}
               </div>
-              <div className="relative">
-                {myData?.length > 0 && (
-                  <div className="bg-white-blue w-full h-auto  ">
+           
+                {myData?.length > 0  && (
+                  <div className="bg-white-blue w-full  ">
                     <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
                       <Image
                         src="/iconsimgs/Prev.svg"
@@ -308,9 +307,9 @@ const pageNum=router.asPath?.split('=')[1]
                     </div>
                   </div>
                 )}
-              </div>
+              
             </div>
-          </div>
+          
         ) : (
           <>
             <Seo title="Posted Job" />
@@ -424,7 +423,7 @@ const pageNum=router.asPath?.split('=')[1]
                         width={85}
                         height={106}
                       />
-                      <h3 className="text-[#303F60] opacity-80 " >No applications available!</h3>
+                      <h3>No applications available!</h3>
                     </div>
                   )}
                 </div>

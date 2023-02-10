@@ -83,7 +83,10 @@ const Index = () => {
   const pageDefiner = (num: any) => {
     if (num > 2) {
       return [num - 2, num - 1, num];
-    } else {
+    }else if(num==1){
+      return [num];
+    }
+     else {
       return [num - 1, num];
     }
   };
