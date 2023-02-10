@@ -34,14 +34,14 @@ const Index = () => {
   const [myData, setMyData] = useState([]);
   const [loader, setLoader] = useState(true);
 
-const pageNum=router.asPath?.split('=')[1]
+  const pageNum = router.asPath?.split("=")[1];
   useEffect(() => {
     const page = pageNum ? +pageNum : 1;
     if (!isNaN(page) && page > 0) {
       setCount(page);
       reloadData(page);
     }
-  }, [router,pageNum]);
+  }, [router, pageNum]);
 
   let myArray = useMemo(() => {
     if (!isNaN(totalPage)) {
@@ -55,10 +55,9 @@ const pageNum=router.asPath?.split('=')[1]
   const pageDefiner = (num: any) => {
     if (num > 2) {
       return [num - 2, num - 1, num];
-    }else if(num==1){
+    } else if (num == 1) {
       return [num];
-    }
-     else {
+    } else {
       return [num - 1, num];
     }
   };
@@ -81,7 +80,7 @@ const pageNum=router.asPath?.split('=')[1]
         res.json().then((resp) => {
           setMyData(resp.data?.data);
           setLoader(false);
-         
+
           setTotalPage(
             Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
           );
@@ -186,13 +185,13 @@ const pageNum=router.asPath?.split('=')[1]
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-       
-            <div className="">
-              <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8 ">
+          <div className="relative">
+            <div className="min-h-[80vh] pb-20">
+              <div className="flex md:mx-40 2xl:mx-96 justify-center md:justify-start gap-4 flex-wrap ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow   "
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
                       key={key}
                     >
                       <div
@@ -210,9 +209,9 @@ const pageNum=router.asPath?.split('=')[1]
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="absolute left-4 bottom-5 grid grid-cols-9  ">
-                        <div className="grid grid-cols-9 content-center col-span-4">
-                          <div className="col-span-1">
+                      <div className="absolute left-4 bottom-5  flex justify-between items-center w-[88%] gap-2">
+                        <div className="flex justify-start items-center content-center ">
+                          <div className="">
                             <Image
                               src="/iconsimgs/location.svg"
                               alt="Pinicons"
@@ -221,7 +220,7 @@ const pageNum=router.asPath?.split('=')[1]
                               className=" object-contain "
                             />
                           </div>
-                          <div className="col-span-7 ml-2">
+                          <div className=" ml-2">
                             <p
                               className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
                               title={item.location}
@@ -231,7 +230,7 @@ const pageNum=router.asPath?.split('=')[1]
                             </p>
                           </div>
                         </div>
-                        <div className="col-span-2">
+                        <div className="">
                           <button
                             className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                             onClick={() => postClick(item.id)}
@@ -244,72 +243,77 @@ const pageNum=router.asPath?.split('=')[1]
                   );
                 })}
               </div>
-           
-                {myData?.length > 0  && (
-                  <div className="bg-white-blue w-full  ">
-                    <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
-                      <Image
-                        src="/iconsimgs/Prev.svg"
-                        alt="LeftButton"
-                        onClick={() => decrement()}
-                        width={30}
-                        height={30}
-                        className={count == 1 ? "cursor-no-drop" : "cursor-pointer"}
-                      />
-                      {(count + 2 >= totalPage
-                        ? pageDefiner(totalPage)
-                        : [count, count + 1, count + 2]
-                      )?.map((i, key) => {
-                        return (
-                          <span
-                            className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
-                            onClick={(e) => onNumClick(e)}
-                            style={
-                              count === i
-                                ? {
-                                    color: "black",
-                                    backgroundColor: "#43AFFF33",
-                                    cursor: "pointer",
-                                  }
-                                : {
-                                    backgroundColor: "white",
-                                    cursor: "pointer",
-                                  }
-                            }
-                            key={key}
-                          >
-                            {i}
-                          </span>
-                        );
-                      })}
-                      {count + 2 >= totalPage ? (
-                        ""
-                      ) : (
-                        <>
-                          ...
-                          <div
-                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(totalPage)}
-                          >
-                            {totalPage}
-                          </div>
-                        </>
-                      )}
-
-                      <Image
-                        src="/iconsimgs/Nex.svg"
-                        alt="RightButton"
-                        onClick={() => increment()}
-                        width={30}
-                        height={30}
-                        className={count == totalPage ? "cursor-no-drop" : "cursor-pointer"}
-                      />
-                    </div>
-                  </div>
-                )}
-              
             </div>
-          
+
+            <div className="absolute bottom-0 right-0 left-0">
+              {myData?.length > 0 && (
+                <div className="bg-white-blue md:mx-40 2xl:mx-96">
+                  <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
+                    <Image
+                      src="/iconsimgs/Prev.svg"
+                      alt="LeftButton"
+                      onClick={() => decrement()}
+                      width={30}
+                      height={30}
+                      className={
+                        count == 1 ? "cursor-no-drop" : "cursor-pointer"
+                      }
+                    />
+                    {(count + 2 >= totalPage
+                      ? pageDefiner(totalPage)
+                      : [count, count + 1, count + 2]
+                    )?.map((i, key) => {
+                      return (
+                        <span
+                          className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                          onClick={(e) => onNumClick(e)}
+                          style={
+                            count === i
+                              ? {
+                                  color: "black",
+                                  backgroundColor: "#43AFFF33",
+                                  cursor: "pointer",
+                                }
+                              : {
+                                  backgroundColor: "white",
+                                  cursor: "pointer",
+                                }
+                          }
+                          key={key}
+                        >
+                          {i}
+                        </span>
+                      );
+                    })}
+                    {count + 2 >= totalPage ? (
+                      ""
+                    ) : (
+                      <>
+                        ...
+                        <div
+                          className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                          onClick={() => onNumClick(totalPage)}
+                        >
+                          {totalPage}
+                        </div>
+                      </>
+                    )}
+
+                    <Image
+                      src="/iconsimgs/Nex.svg"
+                      alt="RightButton"
+                      onClick={() => increment()}
+                      width={30}
+                      height={30}
+                      className={
+                        count == totalPage ? "cursor-no-drop" : "cursor-pointer"
+                      }
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         ) : (
           <>
             <Seo title="Posted Job" />

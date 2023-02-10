@@ -26,7 +26,7 @@ const Pagination = ({ data, pagination, children }: any) => {
                 data-toggle="tooltip"
               >
                 <p>{item.description}</p>
-              </div> 
+              </div>
               <div className=" absolute left-4 bottom-5 grid grid-cols-10 content-center">
                 <div className="col-span-1 mr-2">
                   <Image
@@ -50,7 +50,7 @@ const Pagination = ({ data, pagination, children }: any) => {
             </div>
           );
         })}
-        {children}
+      {children}
     </div>
   );
 };
