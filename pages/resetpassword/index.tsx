@@ -40,7 +40,7 @@ const Index = () => {
           toast.success("Password updated successfully");
           setTimeout(() => {
             router.push("/login");
-          }, 2000);
+          }, 1000);
         })
         .catch((e) => {
           toast.error(e);

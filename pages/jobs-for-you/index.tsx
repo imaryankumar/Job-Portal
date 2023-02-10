@@ -29,9 +29,9 @@ const Index = () => {
   const [loader, setLoader] = useState(false);
 
   const { user } = useContext(authcontext);
-
+  const pageNum=router.asPath?.split('=')[1]
   useEffect(() => {
-    const page = router.query?.page ? Number(router.query.page) : 1;
+    const page =  pageNum ? +pageNum : 1;
     if (!isNaN(page) && page > 0) {
       setCount(page);
       reloadData(page);

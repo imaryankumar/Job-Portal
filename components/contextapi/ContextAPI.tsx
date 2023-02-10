@@ -37,9 +37,11 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
   const router = useRouter();
   const handleLoggedIn = useCallback((data: Tuser) => {
     //set
+    // console.log({data});
     setUser(data);
     localStorage.setItem("user", JSON.stringify(data));
     setIsLogged(true);
+    // console.log('userRole ===>', data?.userRole )
     if (data?.userRole !== undefined) {
       if (
         data?.userRole === 0 &&

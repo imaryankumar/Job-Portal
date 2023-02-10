@@ -113,7 +113,7 @@ const Index = () => {
             setISLoading(true);
             toast.success("You have successfully logged in");
             setData(finalRes);
-
+          // console.log({finalRes});
             myData.setLoggin(finalRes.data);
           } else {
             setISLoading(true);

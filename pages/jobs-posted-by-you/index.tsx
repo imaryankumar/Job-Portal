@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
@@ -35,8 +34,9 @@ const Index = () => {
   const [myData, setMyData] = useState([]);
   const [loader, setLoader] = useState(true);
 
+const pageNum=router.asPath?.split('=')[1]
   useEffect(() => {
-    const page = router.query?.page ? Number(router.query.page) : 1;
+    const page = pageNum ? +pageNum : 1;
     if (!isNaN(page) && page > 0) {
       setCount(page);
       reloadData(page);
@@ -78,7 +78,7 @@ const Index = () => {
         res.json().then((resp) => {
           setMyData(resp.data?.data);
           setLoader(false);
-
+         
           setTotalPage(
             Math.ceil(resp?.data?.metadata?.count / resp?.data?.metadata?.limit)
           );
@@ -184,126 +184,127 @@ const Index = () => {
           <Loader />
         ) : myData?.length > 0 ? (
           <div>
-            <div className="relative" >
-            <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
-              {myData?.map((item: cardTypes, key) => {
-                return (
-                  <div
-                    className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
-                    key={key}
-                  >
+            <div className="relative">
+              <div className="flex flex-wrap items-center gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
+                {myData?.map((item: cardTypes, key) => {
+                  return (
                     <div
-                      className={`text-[17px] text-light-dark tracking-normal line-clamps  `}
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
                       key={key}
-                      title={item.title}
-                      data-toggle="tooltip"
                     >
-                      <h1>{item.title}</h1>
+                      <div
+                        className={`text-[17px] text-light-dark tracking-normal line-clamps  `}
+                        key={key}
+                        title={item.title}
+                        data-toggle="tooltip"
+                      >
+                        <h1>{item.title}</h1>
+                      </div>
+                      <div
+                        className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp`}
+                        title={item.description}
+                        data-toggle="tooltip"
+                      >
+                        <p>{item.description}</p>
+                      </div>
+                      <div className="absolute left-4 bottom-5 grid grid-cols-9  ">
+                        <div className="grid grid-cols-9 content-center col-span-4">
+                          <div className="col-span-1">
+                            <Image
+                              src="/iconsimgs/location.svg"
+                              alt="Pinicons"
+                              width={15}
+                              height={10}
+                              className=" object-contain "
+                            />
+                          </div>
+                          <div className="col-span-7 ml-2">
+                            <p
+                              className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
+                              title={item.location}
+                              data-toggle="tooltip"
+                            >
+                              {item.location}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-span-2">
+                          <button
+                            className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                            onClick={() => postClick(item.id)}
+                          >
+                            View applications
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                    <div
-                      className={` text-[14px]  tracking-normal text-light-dark opacity-80 my-2 mx-0 line-clamp`}
-                      
-                      title={item.description}
-                      data-toggle="tooltip"
-                    >
-                      <p>{item.description}</p>
+                  );
+                })}
+              </div>
+              <div className="relative">
+                {myData?.length > 0 && totalPage > 1 && (
+                  <div className="bg-white-blue w-full h-auto  ">
+                    <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
+                      <Image
+                        src="/iconsimgs/Prev.svg"
+                        alt="LeftButton"
+                        onClick={() => decrement()}
+                        width={30}
+                        height={30}
+                        className={count == 1 ? "cursor-no-drop" : "cursor-pointer"}
+                      />
+                      {(count + 2 >= totalPage
+                        ? pageDefiner(totalPage)
+                        : [count, count + 1, count + 2]
+                      )?.map((i, key) => {
+                        return (
+                          <span
+                            className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                            onClick={(e) => onNumClick(e)}
+                            style={
+                              count === i
+                                ? {
+                                    color: "black",
+                                    backgroundColor: "#43AFFF33",
+                                    cursor: "pointer",
+                                  }
+                                : {
+                                    backgroundColor: "white",
+                                    cursor: "pointer",
+                                  }
+                            }
+                            key={key}
+                          >
+                            {i}
+                          </span>
+                        );
+                      })}
+                      {count + 2 >= totalPage ? (
+                        ""
+                      ) : (
+                        <>
+                          ...
+                          <div
+                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                            onClick={() => onNumClick(totalPage)}
+                          >
+                            {totalPage}
+                          </div>
+                        </>
+                      )}
+
+                      <Image
+                        src="/iconsimgs/Nex.svg"
+                        alt="RightButton"
+                        onClick={() => increment()}
+                        width={30}
+                        height={30}
+                        className={count == totalPage ? "cursor-no-drop" : "cursor-pointer"}
+                      />
                     </div>
-                    <div className="absolute left-4 bottom-5 grid grid-cols-9  ">
-
-<div className="grid grid-cols-9 content-center col-span-4">
-<div className="col-span-1">
-<Image
-    src="/iconsimgs/location.svg"
-    alt="Pinicons"
-    width={15}
-    height={10}
-    className=" object-contain "
-  />
-</div>
-  <div className="col-span-7 ml-2">
-  <p className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
-   title={item.location}
-   data-toggle="tooltip"
-  >{item.location}</p>
-  </div>
-
-</div>
-<div className="col-span-2">
-   
-      <button
-        className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
-        onClick={() => postClick(item.id)}
-      >
-       View applications
-      </button>
-    
-  </div>
-</div>
                   </div>
-                );
-              })}
-            </div>
-            <div className="relative" >
-            {myData?.length > 0 && totalPage > 1 && (
-        <div className="bg-white-blue w-full h-auto  ">
-          <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
-            <Image
-              src="/iconsimgs/Prev.svg"
-              alt="LeftButton"
-              onClick={() => decrement()}
-              width={30}
-              height={30}
-              className={count==1?'cursor-no-drop' :""}
-            />
-            {(count + 2 >= totalPage
-              ? pageDefiner(totalPage)
-              : [count, count + 1, count + 2]
-            )?.map((i, key) => {
-              return (
-                <span
-                  className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
-                  onClick={(e) => onNumClick(e)}
-                  style={
-                    count === i
-                      ? {
-                          color: "black",
-                          backgroundColor: "#43AFFF33",
-                          cursor: "pointer",
-                        }
-                      : { backgroundColor: "white", cursor: "pointer" }
-                  }
-                  key={key}
-                >
-                  {i}
-                </span>
-              );
-            })}
-            {count + 2 >= totalPage ? (
-              ""
-            ) : (
-              <>
-                ...
-                <div
-                  className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
-                  onClick={() => onNumClick(totalPage)}
-                >
-                  {totalPage}
-                </div>
-              </>
-            )}
-
-            <Image
-              src="/iconsimgs/Nex.svg"
-              alt="RightButton"
-              onClick={() => increment()}
-              width={30}
-              height={30}
-              className={count==totalPage?'cursor-no-drop' :""}
-            />
-          </div>
-        </div>
-      )}
-            </div>
+                )}
+              </div>
             </div>
           </div>
         ) : (
@@ -333,7 +334,6 @@ const Index = () => {
         )}
       </div>
 
-      
       {isOpen && (
         <>
           <div
@@ -350,72 +350,80 @@ const Index = () => {
                   onClick={() => setIsOpen(false)}
                   className="cursor-pointer"
                 >
-                  <Image src="/iconsimgs/metrocross.svg" alt="metrocross" width={15} height={15} />
+                  <Image
+                    src="/iconsimgs/metrocross.svg"
+                    alt="metrocross"
+                    width={15}
+                    height={15}
+                  />
                 </button>
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
-              {jobData?.length >0?"Total":""}  {jobData ? jobData.length : 0} applications
+                {jobData?.length > 0 ? "Total" : ""}{" "}
+                {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="h-full bg-[#557da526]" >
-            <div className={`flex justify-start  flex-wrap overflow-auto p-2 gap-4`}>
-                {loader ? (
-                  <Loader />
-                ) : jobData ? (
-                  jobData?.map((items: cardTypes, k) => {
-                    return (
-                      <div key={k} className="">
-                        <div
-                          key={k}
-                          className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-4 py-4  flex-wrap "
-                        >
-                          <div className="w-[274px] h-[131px] capitalize  ">
-                            <div className="flex items-center  ">
-                              <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text- text-[20px] flex justify-center items-center mr-4  ">
-                                {items.name?.slice(0, 1)}
-                              </span>
-                              <div>
-                                <h2
-                                  className={`text-light-dark text-[15px] font-medium  line-clamps`}
-                                >
-                                  {items.name}
+              <div className="h-full bg-[#557da526]">
+                <div
+                  className={`flex justify-start  flex-wrap overflow-auto p-2 gap-4`}
+                >
+                  {loader ? (
+                    <Loader />
+                  ) : jobData ? (
+                    jobData?.map((items: cardTypes, k) => {
+                      return (
+                        <div key={k} className="">
+                          <div
+                            key={k}
+                            className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-4 py-4  flex-wrap "
+                          >
+                            <div className="w-[274px] h-[131px] capitalize  ">
+                              <div className="flex items-center  ">
+                                <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text- text-[20px] flex justify-center items-center mr-4  ">
+                                  {items.name?.slice(0, 1)}
+                                </span>
+                                <div>
+                                  <h2
+                                    className={`text-light-dark text-[15px] font-medium  line-clamps`}
+                                  >
+                                    {items.name}
+                                  </h2>
+                                  <h3
+                                    className={`text-light-dark  text-[10px] line-clamps`}
+                                  >
+                                    {items.email}
+                                  </h3>
+                                </div>
+                              </div>
+
+                              <div className="pt-8">
+                                <h2 className="text-dark-blue  text-[13px] font-medium  ">
+                                  Skills
                                 </h2>
                                 <h3
-                                  className={`text-light-dark  text-[10px] line-clamps`}
+                                  className={`text-light-dark  text-[15px] line-clamps`}
                                 >
-                                  {items.email}
+                                  {items.skills}
                                 </h3>
                               </div>
                             </div>
-
-                            <div className="pt-8">
-                              <h2 className="text-dark-blue  text-[13px] font-medium  ">
-                                Skills
-                              </h2>
-                              <h3
-                                className={`text-light-dark  text-[15px] line-clamps`}
-                              >
-                                {items.skills}
-                              </h3>
-                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                <div  className="flex flex-col items-center justify-center w-full mt-[11rem] " >
-                     <Image
-                     src="/iconsimgs/curriculum.svg"
-                     alt="curriculum"
-                     className="mb-4 opacity-50 "
-                     width={85}
-                     height={106}
-                   />
-                   <h3>No applications available!</h3>
+                      );
+                    })
+                  ) : (
+                    <div className="flex flex-col items-center justify-center w-full mt-[11rem] ">
+                      <Image
+                        src="/iconsimgs/curriculum.svg"
+                        alt="curriculum"
+                        className="mb-4 opacity-50 "
+                        width={85}
+                        height={106}
+                      />
+                      <h3>No applications available!</h3>
+                    </div>
+                  )}
                 </div>
-                )}
-              </div>
               </div>
             </div>
           </div>
@@ -426,6 +434,3 @@ const Index = () => {
 };
 
 export default Index;
-
-
-
