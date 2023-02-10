@@ -41,7 +41,7 @@ const pageNum=router.asPath?.split('=')[1]
       setCount(page);
       reloadData(page);
     }
-  }, [router]);
+  }, [router,pageNum]);
 
   let myArray = useMemo(() => {
     if (!isNaN(totalPage)) {

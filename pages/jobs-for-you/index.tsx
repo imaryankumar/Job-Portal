@@ -36,7 +36,7 @@ const Index = () => {
       setCount(page);
       reloadData(page);
     }
-  }, [router]);
+  }, [router,pageNum]);
 
   let myArray = useMemo(() => {
     if (!isNaN(totalPage)) {

@@ -76,7 +76,7 @@ const Index = () => {
      
       }
     });
-  }, []);
+  }, [mail,pass]);
 
   const validateForm = async () => {
     let emailError = false;
