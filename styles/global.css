@@ -100,7 +100,12 @@ input::placeholder{
   color: #303F60;
 }
 
-
-textarea:focus, input:focus {
+input:focus {
+  color: #303F60;
+}
+textarea::placeholder{
+  color: #303F60;
+}
+textarea:focus {
   color: #303F60;
 }

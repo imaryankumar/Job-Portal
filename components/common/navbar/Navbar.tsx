@@ -72,19 +72,31 @@ function Navbar() {
         <div>
           {isLoggedIN ? (
             <div className="mt-[-3rem] xs:mt-[-3.4rem] text-white  pr-4 md:pr-20 flex items-end justify-end gap-[3%] cursor-pointer   ">
-              <Link
-                href={`${user?.userRole === 0 ? "/post-job" : "/applied-jobs"}`}
-                className={
-                  router.asPath.includes("/post-job") ||
-                  router.asPath.includes("/applied-jobs")
-                    ? "md:border-b-4 border-b-2 border-solid border-[#43AFFF] "
-                    : undefined
-                }
-              >
-                <h1 className="md:mb-[22px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
-                  {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
-                </h1>
-              </Link>
+              <div className="">
+                <Link
+                  href={`${
+                    user?.userRole === 0 ? "/post-job" : "/applied-jobs"
+                  }`}
+                  // className={
+                  //   router.asPath.includes("/post-job") ||
+                  //   router.asPath.includes("/applied-jobs")
+                  //     ? "md:border-b-4 border-b-2  border-solid border-[#43AFFF] "
+                  //     : undefined
+                  // }
+                >
+                  <h1 className="md:mb-[22px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
+                    {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
+                  </h1>
+                  <div
+                    className={
+                      router.asPath.includes("/post-job") ||
+                      router.asPath.includes("/applied-jobs")
+                        ? "md:border-b-4 w-[50px]  mx-auto border-b-2  border-solid border-[#43AFFF] "
+                        : undefined
+                    }
+                  ></div>
+                </Link>
+              </div>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
                 <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[2px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
                   {user?.userRole === 0 ? "R" : "C"}
