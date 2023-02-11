@@ -220,7 +220,7 @@ const Index = () => {
                               className=" object-contain "
                             />
                           </div>
-                          <div className=" ml-2">
+                          <div className=" ml-2 w-20 ">
                             <p
                               className={`text-[14px] tracking-normal break-all text-light-dark opacity-80 line-clamps`}
                               title={item.location}
