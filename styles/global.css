@@ -96,6 +96,7 @@
   margin-top: 3.5rem !important;
   margin-right: 3.5rem;
 }
+input,
 input::placeholder{
   color: #303F60;
 }
@@ -103,6 +104,8 @@ input::placeholder{
 input:focus {
   color: #303F60;
 }
+
+textarea,
 textarea::placeholder{
   color: #303F60;
 }
