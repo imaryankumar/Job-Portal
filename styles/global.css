@@ -99,11 +99,11 @@
 input,
 input::placeholder{
   color: #303f60;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 
 input{
-  color: #303F60;
+  color: #000;
 }
 
 input:focus {
@@ -111,12 +111,12 @@ input:focus {
 }
 
 textarea{
-  color: #303f60;
+  color: #000;
 }
 
 textarea::placeholder{
   color: #303F60;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 textarea:focus {
   color: #303F60;

@@ -102,7 +102,7 @@ const Index = () => {
     <>
       <Seo title="Jobs applied by you" />{" "}
       <div className="bg-dark-blue w-full h-[18vh] text-white">
-        <div className=" md:px-40 2xl:px-44 xs:px-20  mainWrapper ">
+        <div className=" md:px-40 2xl:px-44 xs:px-4  mainWrapper ">
           <div className="flex  text-center items-center pt-5  text-xs opacity-80  ">
             <Link href="/jobs-for-you">
               <Image
@@ -177,7 +177,7 @@ const Index = () => {
               </div>
               <div className="absolute bottom-0 left-0 right-0 ">
                 <div className=" ">
-                  {myCanData?.length > 0 && totalPage > 1 && (
+                  {myCanData?.length > 0 && (
                     <div>
                       <div className="flex flex-wrap justify-center  items-center gap-3 mainWrapper  cursor-pointer py-8   ">
                         <Image
