@@ -148,7 +148,7 @@ const Index = () => {
         })
         .then((showres) => {
           if (showres.success === true) {
-            toast.success("Applied Successfull");
+            toast.success("You have applied successfully!");
             reloadData(count);
           }
         })

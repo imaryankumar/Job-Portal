@@ -35,7 +35,7 @@ const Description = ({
         rows={2.5}
         onBlur={(e) => onBlur()}
         cols={55}
-        maxLength={1201}
+        maxLength={1200}
       />
     </div>
   );

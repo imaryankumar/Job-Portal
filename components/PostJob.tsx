@@ -8,6 +8,7 @@ import Seo from "./nexthead/Seo";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import Loader from "./Loader/Loader";
+import { Console } from "console";
 type Props = {};
 interface dataType {
   success?: boolean;
@@ -38,7 +39,7 @@ const PostJob = (props: Props) => {
     if (!title) {
       setErrorState("title", "Title is required");
       return true;
-    } else if (title.length > 120) {
+    } else if (title.length === 120) {
       setErrorState("title", "Maximum character limit 120");
       return true;
     } else {
@@ -50,7 +51,7 @@ const PostJob = (props: Props) => {
     if (!description) {
       setErrorState("description", "Description is required");
       return true;
-    } else if (description.length > 1200) {
+    } else if (description.length === 1200) {
       setErrorState("description", "Maximum character limit 1200");
       return true;
     } else {
@@ -62,7 +63,7 @@ const PostJob = (props: Props) => {
     if (!location) {
       setErrorState("location", "Location is required");
       return true;
-    } else if (location.length > 120) {
+    } else if (location.length === 120) {
       setErrorState("location", "Maximum character limit 120");
       return true;
     } else {
@@ -105,13 +106,15 @@ const PostJob = (props: Props) => {
           return res.json();
         })
         .then((finalRes) => {
+          setISLoading(false);
           if (finalRes.success) {
-            setData(finalRes);
+            //  setData(finalRes);
             setISLoading(true);
             router.push("/jobs-posted-by-you");
           } else {
             setISLoading(true);
             setError({});
+
             if (finalRes?.message) {
               toast.error(finalRes.message);
             } else {

@@ -58,7 +58,7 @@ const Fields = ({
         onChange={(e) => onchange(e.target.value)}
         onBlur={(e) => onBlur()}
         pattern={pattern}
-        maxLength={121}
+        maxLength={120}
       />
       {children}
     </div>
