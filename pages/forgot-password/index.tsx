@@ -125,14 +125,17 @@ const Index = () => {
                 <button
                   className="md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff]"
                   disabled={isLoading}
-                  
                   style={
                     isLoading
-                      ? { backgroundColor: "#43AFFF", color: "white",cursor:"no-drop" }
-                      : { backgroundColor: "#43AFFF" ,color:"white" }
+                      ? {
+                          backgroundColor: "#43AFFF",
+                          color: "white",
+                          cursor: "no-drop",
+                        }
+                      : { backgroundColor: "#43AFFF", color: "white" }
                   }
                 >
-                    {loader ? <Loader /> : "Submit "}
+                  {loader ? <Loader /> : "Submit "}
                 </button>
               </div>
             </form>
