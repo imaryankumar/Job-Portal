@@ -38,7 +38,10 @@ const Fields = ({
           {required && <span className="star_red">*</span>}
         </div>
 
-        <Link href={"/forgot-password"} className="text-light-blue font-medium text-[14px] ">
+        <Link
+          href={"/forgot-password"}
+          className="text-light-blue font-medium text-[14px] "
+        >
           {password}
         </Link>
       </div>
@@ -55,8 +58,7 @@ const Fields = ({
         onChange={(e) => onchange(e.target.value)}
         onBlur={(e) => onBlur()}
         pattern={pattern}
-        maxLength={100}
-        
+        maxLength={121}
       />
       {children}
     </div>

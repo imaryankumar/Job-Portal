@@ -199,7 +199,7 @@ const Index = () => {
                           key={key}
                         >
                           <div
-                            className={`text-[17px] text-light-dark tracking-normal line-clamps break-word  `}
+                            className={`text-[17px] text-light-dark tracking-normal line-clamps break-words  `}
                             key={key}
                             title={item.title}
                             data-toggle="tooltip"

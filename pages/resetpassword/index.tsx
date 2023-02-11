@@ -45,44 +45,55 @@ const Index = () => {
       return false;
     }
   }
-  const onResetPassword = () => {
-    if (newPass && newPass === conPass) {
-      setConPass("");
-      setNewPass("");
 
-      setISLoading(true);
-      setLoader(true);
-      fetch("https://jobs-api.squareboat.info/api/v1/auth/resetpassword", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password: newPass,
-          confirmPassword: conPass,
-          token: token,
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          toast.success("Password updated successfully");
+  const validateForm = async () => {
+    let passwordError = false;
+    let confirmPasswordError = false;
+    passwordError = validatePassword(newPass);
+    confirmPasswordError = validateConfirmPassword(newPass, conPass);
+    return passwordError || confirmPasswordError;
+  };
 
-          router.push("/login");
+  const onResetPassword = async () => {
+    if (!(await validateForm())) {
+      if (newPass && newPass === conPass) {
+        setConPass("");
+        setNewPass("");
+
+        setISLoading(true);
+        setLoader(true);
+        fetch("https://jobs-api.squareboat.info/api/v1/auth/resetpassword", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password: newPass,
+            confirmPassword: conPass,
+            token: token,
+          }),
         })
-        .catch((e) => {
-          toast.error(e);
-          setISLoading(true);
-        })
-        .finally(() => {
-          setISLoading(true);
-        });
-    } else {
-      toast.error("Invalid Password");
-      setISLoading(true);
-      setLoader(false);
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            toast.success("Password updated successfully");
+
+            router.push("/login");
+          })
+          .catch((e) => {
+            toast.error(e);
+            setISLoading(true);
+          })
+          .finally(() => {
+            setISLoading(true);
+          });
+      } else {
+        toast.error("Invalid Password");
+        setISLoading(true);
+        setLoader(false);
+      }
     }
   };
   const setErrorState = (key: string, value: any) => {
