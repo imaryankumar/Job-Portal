@@ -191,7 +191,7 @@ const Index = () => {
             ) : (
               <div className="relative">
                 <div className="min-h-[80vh] pb-20 ">
-                  <div className="flex md:mx-40 2xl:mx-96 justify-center md:justify-start gap-4 flex-wrap ">
+                  <div className="flex md:mx-40  justify-center md:justify-start gap-4 flex-wrap ">
                     {myCanData?.map((item: cardTypes, key) => {
                       return (
                         <div

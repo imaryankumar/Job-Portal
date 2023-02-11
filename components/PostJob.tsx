@@ -147,21 +147,25 @@ const PostJob = (props: Props) => {
 
       <div className="bg-dark-blue w-full h-[40vh] text-white relative ">
         <div className="mainWrapper">
-          <Link href={"/jobs-posted-by-you"}>
-            <div className="flex pl-[1rem] md:pl-[12rem] pt-[1rem] ">
+          <div className="flex pl-[1rem] md:pl-[12rem] pt-[1rem] ">
+            <Link
+              href="/jobs-posted-by-you"
+              className="text-[12px] font-medium cursor-pointer"
+            >
               <Image
                 src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
-                className="mr-2"
+                className="inline pb-1"
               />
+              <span className="mx-1">Home &gt;</span>
+            </Link>
 
-              <span className="text-[12px] font-medium cursor-pointer ">
-                Home &gt; <Link href={"post-job"}>Post a Job</Link>
-              </span>
-            </div>
-          </Link>
+            <span className="text-[12px] font-medium cursor-pointer ">
+              <Link href={"post-job"}>Post a Job</Link>
+            </span>
+          </div>
         </div>
         <div className="mainWrapper">
           <div className="flex items-center justify-center md:pt-12 pt-4 ">

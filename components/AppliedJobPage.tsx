@@ -101,23 +101,25 @@ const Index = () => {
   return (
     <>
       <Seo title="Jobs applied by you" />{" "}
-      <div className="bg-dark-blue w-full h-[18vh] text-white ">
-        <div className=" px-40 xs:px-20">
-          <Link href="/jobs-for-you">
-            <div className="flex  text-center items-center pt-5  text-xs opacity-80  ">
+      <div className="bg-dark-blue w-full h-[18vh] text-white">
+        <div className=" md:px-40 2xl:px-44 xs:px-20  mainWrapper ">
+          <div className="flex  text-center items-center pt-5  text-xs opacity-80  ">
+            <Link href="/jobs-for-you">
               <Image
                 src="/iconsimgs/homemd.svg"
                 alt="Homeicon"
                 width={10}
                 height={9}
+                className="inline pb-1"
               />
+              <span className="ml-1">Home &gt;</span>
+            </Link>
 
-              <p className="ml-1 text-[12px] font-medium ">
-                {" "}
-                Home &gt;<Link href={"/jobappliedyou"}>Applied Jobs</Link>
-              </p>
-            </div>
-          </Link>
+            <p className="ml-1 text-[12px] font-medium ">
+              {" "}
+              <Link href={"/applied-jobs"}>Applied Jobs</Link>
+            </p>
+          </div>
           <div className="mt-4 mb-4 text-[22px] font-medium xs:text-base ">
             <h1>Jobs applied by you</h1>
           </div>
