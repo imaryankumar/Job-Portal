@@ -47,7 +47,18 @@ const Index = () => {
     })
       .then((res) => {
         res.json().then((resp) => {
-          setCanMyData(resp.data);
+          function compare(a: any, b: any) {
+            if (a.updatedAt < b.updatedAt) {
+              return -1;
+            }
+            if (a.updatedAt > b.updatedAt) {
+              return 1;
+            }
+            return 0;
+          }
+          let d = resp.data.sort(compare);
+
+          setCanMyData(d);
           setLoader(false);
         });
       })
@@ -124,6 +135,7 @@ const Index = () => {
             <h1>Jobs applied by you</h1>
           </div>
         </div>
+
         {myCanData?.length > 0 ? (
           <div className="relative">
             <div className="min-h-[80vh] pb-20 ">
@@ -189,7 +201,31 @@ const Index = () => {
                           className={count == 1 ? "cursor-no-drop" : ""}
                         />
 
-                        {count > 1 ? (
+                        {Array.from(Array(totalPage).keys()).map((a, idx) => {
+                          return (
+                            <div
+                              className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
+                              key={idx}
+                              onClick={() => onNumClick(idx + 1)}
+                              style={
+                                count === idx + 1
+                                  ? {
+                                      color: "black",
+                                      backgroundColor: "#43AFFF33",
+                                      cursor: "pointer",
+                                    }
+                                  : {
+                                      backgroundColor: "white",
+                                      cursor: "pointer",
+                                    }
+                              }
+                            >
+                              {a + 1}
+                            </div>
+                          );
+                        })}
+
+                        {/* {count > 1 ? (
                           <>
                             <div
                               className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
@@ -240,7 +276,7 @@ const Index = () => {
                               {totalPage}
                             </div>
                           </>
-                        )}
+                        )} */}
                         <Image
                           src="/iconsimgs/Nex.svg"
                           alt="Righticon"
