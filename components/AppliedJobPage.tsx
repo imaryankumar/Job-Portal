@@ -24,7 +24,8 @@ interface jobData {
 
 const Index = () => {
   const router = useRouter();
-  const [count, setCount] = useState(1);
+  const pageNum = router.asPath?.split("=")[1];
+  const [count, setCount] = useState(+pageNum || 1);
   const [showPerPage] = useState(20);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
   const [myCanData, setCanMyData] = useState<jobData[]>([]);
@@ -201,7 +202,9 @@ const Index = () => {
                           className={count == 1 ? "cursor-no-drop" : ""}
                         />
 
-                        {Array.from(Array(totalPage).keys()).map((a, idx) => {
+                        {Array.from(
+                          Array(totalPage > 5 ? 5 : totalPage).keys()
+                        ).map((a, idx) => {
                           return (
                             <div
                               className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
@@ -224,7 +227,19 @@ const Index = () => {
                             </div>
                           );
                         })}
-
+                        {count + 2 >= totalPage ? (
+                          ""
+                        ) : (
+                          <>
+                            <span className="text-black">...</span>
+                            {/* <div
+                              className="h-8 w-8 rounded bg-white text-center text-[19px] text-black font-[400]"
+                              onClick={() => onNumClick(totalPage)}
+                            >
+                              {totalPage}
+                            </div> */}
+                          </>
+                        )}
                         {/* {count > 1 ? (
                           <>
                             <div
