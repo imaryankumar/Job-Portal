@@ -57,7 +57,7 @@ const Index = () => {
             }
             return 0;
           }
-          let d = resp.data.sort(compare);
+          let d = resp.data?.sort(compare);
 
           setCanMyData(d);
           setLoader(false);
