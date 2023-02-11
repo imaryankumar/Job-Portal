@@ -143,7 +143,7 @@ const Index = () => {
                           <h1>{item.title}</h1>
                         </div>
                         <div
-                          className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamps`}
+                          className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamp`}
                           title={item.description}
                           data-toggle="tooltip"
                         >
