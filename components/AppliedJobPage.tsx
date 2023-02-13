@@ -109,7 +109,15 @@ const Index = () => {
       behavior: "smooth",
     });
   };
-  console.log("MYData", totalPage);
+  const pageDefiner = (num: any) => {
+    if (num > 2) {
+      return [num - 2, num - 1, num];
+    } else if (num == 2) {
+      return [num - 1, num];
+    } else {
+      return [num];
+    }
+  };
 
   return (
     <>
@@ -203,7 +211,7 @@ const Index = () => {
                           className={count == 1 ? "cursor-no-drop" : ""}
                         />
 
-                        {count > 1 ? (
+                        {count > 1 && totalPage > 2 ? (
                           <>
                             <div
                               className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
@@ -217,7 +225,7 @@ const Index = () => {
                           ""
                         )}
                         {(count + 2 >= totalPage
-                          ? [totalPage - 2, totalPage - 1, totalPage]
+                          ? pageDefiner(totalPage)
                           : [count, count + 1, count + 2]
                         )?.map((i, k) => {
                           return (
