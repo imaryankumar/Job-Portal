@@ -1,10 +1,11 @@
 import Fields from "../../components/common/fields/Fields";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
 import Loader from "../../components/Loader/Loader";
+import Router from "next/router";
 import { useRouter } from "next/router";
 interface dataType {
   success?: boolean;
@@ -17,13 +18,41 @@ const Index = () => {
   const myData = useContext(authcontext);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
+  const [redirect, setRedirect] = useState(true);
   const [error, setError] = useState<{
     password?: string;
     email?: string;
   }>();
+  const values = { mail, pass };
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   // const [data, setData] = useState<dataType | undefined>(undefined);
+  const unSavedChanges = useCallback(() => {
+    if (values.mail.length > 0 || values.pass.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [values]);
+
+  useEffect(() => {
+    if (unSavedChanges()) {
+      const routeChangeStart = (e: any) => {
+        if (redirect) {
+          const ok = confirm("Are you sure you want to exit?");
+          if (!ok) {
+            Router.events.emit("routeChangeError");
+            window.history.pushState(null, "/login", "/login");
+            throw "Abort route change.";
+          }
+        }
+      };
+      Router.events.on("routeChangeStart", routeChangeStart);
+      return () => {
+        Router.events.off("routeChangeStart", routeChangeStart);
+      };
+    }
+  }, [unSavedChanges, Router, redirect]);
 
   const validateEmail = (email: string) => {
     let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;

@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
+import { useEffect, useCallback } from "react";
 
 // import { getEnvironmentData } from "worker_threads";
 const Index = () => {
@@ -18,6 +19,7 @@ const Index = () => {
   const [btn2, setBtn2] = useState(false);
   const [skill, setSkill] = useState("");
   const [loader, setLoader] = useState(false);
+  const [redirect, setRedirect] = useState(true);
   const [error, setError] = useState<{
     name?: string;
     password?: string;
@@ -31,6 +33,40 @@ const Index = () => {
     code: number;
     errors?: any[];
   }
+  const values = { name, mail, password, conpassword, skill };
+
+  const unSavedChanges = useCallback(() => {
+    if (
+      values.mail.length > 0 ||
+      values.name.length > 0 ||
+      values.password.length > 0 ||
+      values.conpassword.length > 0 ||
+      values.skill.length > 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [values]);
+
+  useEffect(() => {
+    if (unSavedChanges()) {
+      const routeChangeStart = (e: any) => {
+        if (redirect) {
+          const ok = confirm("Are you sure you want to exit?");
+          if (!ok) {
+            Router.events.emit("routeChangeError");
+            window.history.pushState(null, "sign-up", "/sign-up");
+            throw "Abort route change.";
+          }
+        }
+      };
+      Router.events.on("routeChangeStart", routeChangeStart);
+      return () => {
+        Router.events.off("routeChangeStart", routeChangeStart);
+      };
+    }
+  }, [unSavedChanges, Router, redirect]);
 
   function validateName(name: string) {
     if (!name.trim()) {

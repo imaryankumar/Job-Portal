@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Fields from "./common/fields/Fields";
@@ -7,8 +7,8 @@ import Description from "./description/Description";
 import Seo from "./nexthead/Seo";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import Router from "next/router";
 import Loader from "./Loader/Loader";
-import { Console } from "console";
 type Props = {};
 interface dataType {
   success?: boolean;
@@ -20,6 +20,7 @@ const PostJob = (props: Props) => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [redirect, setRedirect] = useState(true);
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState<dataType | undefined>(undefined);
   const [error, setError] = useState<{
@@ -27,6 +28,39 @@ const PostJob = (props: Props) => {
     description?: string;
     location?: string;
   }>();
+  const values = { title, location, description };
+
+  const unSavedChanges = useCallback(() => {
+    if (
+      values.title.length > 0 ||
+      values.description.length > 0 ||
+      values.location.length > 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [values]);
+
+  useEffect(() => {
+    if (unSavedChanges()) {
+      const routeChangeStart = (e: any) => {
+        if (redirect) {
+          const ok = confirm("Are you sure you want to exit?");
+          if (!ok) {
+            Router.events.emit("routeChangeError");
+            window.history.pushState(null, "post-job", "/post-job");
+            throw "Abort route change.";
+          }
+        }
+      };
+      Router.events.on("routeChangeStart", routeChangeStart);
+      return () => {
+        Router.events.off("routeChangeStart", routeChangeStart);
+      };
+    }
+  }, [unSavedChanges, Router, redirect]);
+
   const router = useRouter();
   const [isLoading, setISLoading] = useState(false);
   const setErrorState = (key: string, value: any) => {
