@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
 import Loader from "../../components/Loader/Loader";
-import Router from "next/router";
 import { useRouter } from "next/router";
+import Router from "next/router";
 interface dataType {
   success?: boolean;
   code: number;
@@ -23,10 +23,11 @@ const Index = () => {
     password?: string;
     email?: string;
   }>();
+
   const values = { mail, pass };
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
-  // const [data, setData] = useState<dataType | undefined>(undefined);
+
   const unSavedChanges = useCallback(() => {
     if (values.mail.length > 0 || values.pass.length > 0) {
       return true;
@@ -42,7 +43,7 @@ const Index = () => {
           const ok = confirm("Are you sure you want to exit?");
           if (!ok) {
             Router.events.emit("routeChangeError");
-            window.history.pushState(null, "/login", "/login");
+            window.history.pushState(null, "login", "/login");
             throw "Abort route change.";
           }
         }
@@ -119,6 +120,7 @@ const Index = () => {
       };
       setISLoading(true);
       setLoader(true);
+      setRedirect(false);
       fetch("https://jobs-api.squareboat.info/api/v1/auth/login", {
         method: "POST",
         headers: {

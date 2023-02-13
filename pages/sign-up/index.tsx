@@ -196,6 +196,7 @@ const Index = () => {
       };
       setISLoading(true);
       setLoader(true);
+      setRedirect(false);
       fetch("https://jobs-api.squareboat.info/api/v1/auth/register", {
         method: "POST",
         headers: {

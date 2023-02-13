@@ -126,6 +126,7 @@ const PostJob = (props: Props) => {
       };
       setISLoading(true);
       setLoader(true);
+      setRedirect(false);
       fetch("https://jobs-api.squareboat.info/api/v1/jobs/", {
         method: "POST",
         headers: {
@@ -141,8 +142,10 @@ const PostJob = (props: Props) => {
         })
         .then((finalRes) => {
           setISLoading(false);
+
           if (finalRes.success) {
             //  setData(finalRes);
+
             setISLoading(true);
             router.push("/jobs-posted-by-you");
           } else {
