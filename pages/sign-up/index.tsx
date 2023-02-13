@@ -94,10 +94,15 @@ const Index = () => {
     if (Number(role) === 1 && !skill.trim()) {
       setErrorState("skills", "Skills is required");
       return true;
-    } else {
-      setErrorState("skills", false);
-      return false;
     }
+    let rest = /^([a-z0-9\s]+,)*([a-z0-9\s]+){1}$/i;
+    if (!rest.test(skill) && Number(role) === 1) {
+      setErrorState("skills", "Enter comma seprated skills");
+      return true;
+    }
+
+    setErrorState("skills", false);
+    return false;
   }
 
   const setErrorState = (key: string, value: any) => {
