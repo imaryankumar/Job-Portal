@@ -211,7 +211,7 @@ const Index = () => {
                           className={count == 1 ? "cursor-no-drop" : ""}
                         />
 
-                        {count > 1 && totalPage > 2 ? (
+                        {count > 1 && totalPage > 3 ? (
                           <>
                             <div
                               className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
