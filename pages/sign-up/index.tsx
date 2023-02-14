@@ -7,6 +7,8 @@ import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import { useEffect, useCallback } from "react";
+import { MdPeopleAlt } from "react-icons/md";
+import { FaUserTie } from "react-icons/fa";
 
 // import { getEnvironmentData } from "worker_threads";
 const Index = () => {
@@ -252,7 +254,7 @@ const Index = () => {
       <Seo title="Signup" />
       <div className="bg-dark-blue w-full xs:h-[60vh] h-[40vh] 2xl:h-[15vh] text-white flex items-center justify-center">
         <div className="mainWrapper">
-          <div className="md:w-[557px] xs:w-[310px] w-[400px] h-auto bg-white box-shadows rounded-[20px] mt-[25rem] md:mt-[38rem]  flex flex-col items-center text-light-dark pb-4  ">
+          <div className="md:w-[557px] xs:w-[335px] w-[400px] h-auto bg-white box-shadows rounded-[20px] mt-[25rem] md:mt-[38rem]  flex flex-col items-center text-light-dark pb-4  ">
             <div className="w-full  md:px-10 px-4  ">
               <h1 className="text-[22px] font-medium text-light-dark py-6 xs:py-3  ">
                 Signup
@@ -268,12 +270,7 @@ const Index = () => {
                   }`}
                   onClick={() => mybtn1()}
                 >
-                  <Image
-                    src="/iconsimgs/Recruiter.png"
-                    alt="Recruiter"
-                    width={25}
-                    height={25}
-                  />
+                  <FaUserTie fontSize={25} />
                   Recruiter
                 </button>
                 <button
@@ -283,12 +280,7 @@ const Index = () => {
                   }`}
                   onClick={() => mybtn2()}
                 >
-                  <Image
-                    src="/iconsimgs/candidate.png"
-                    alt="Candidate"
-                    width={25}
-                    height={25}
-                  />
+                  <MdPeopleAlt fontSize={25} />
                   Candidate
                 </button>
               </div>

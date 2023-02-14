@@ -36,6 +36,7 @@
 .mytexts {
   @apply text-3xl sm:text-5xl md:text-7xl lg:text-[min(4.2vw,80px)];
 }
+
 .box-shadows {
   box-shadow: 0px 30px 36px #557da526;
 }
@@ -97,27 +98,17 @@
   margin-right: 3.5rem;
 }
 input,
-input::placeholder{
+input::placeholder,textarea,
+textarea::placeholder{
   color: #303f60;
   opacity: 0.8;
 }
 
-input{
+input,textarea{
   color: #000;
 }
 
-input:focus {
+input:focus,textarea:focus {
   color: #303F60;
 }
 
-textarea{
-  color: #000;
-}
-
-textarea::placeholder{
-  color: #303F60;
-  opacity: 0.8;
-}
-textarea:focus {
-  color: #303F60;
-}

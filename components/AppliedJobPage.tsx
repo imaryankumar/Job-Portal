@@ -214,7 +214,7 @@ const Index = () => {
                         {count > 1 && totalPage > 3 ? (
                           <>
                             <div
-                              className="h-8 w-8 rounded bg-white text-black text-center text-[19px] font-[400] "
+                              className="py-1 px-2 rounded bg-white text-black text-center text-[19px] font-[400] "
                               onClick={() => onNumClick(1)}
                             >
                               1
@@ -230,7 +230,7 @@ const Index = () => {
                         )?.map((i, k) => {
                           return (
                             <span
-                              className="h-8 w-8 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
+                              className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
                               onClick={() => onNumClick(i)}
                               style={
                                 count === i
@@ -256,7 +256,7 @@ const Index = () => {
                           <>
                             <span className="text-black">...</span>
                             <div
-                              className="h-8 w-8 rounded bg-white text-center text-[19px] text-black font-[400]"
+                              className="py-1 px-2 rounded bg-white text-center text-[19px] text-black font-[400]"
                               onClick={() => onNumClick(totalPage)}
                             >
                               {totalPage}

@@ -73,7 +73,7 @@ const ContextAPI: FC<PropsWithChildren<Props>> = ({ children }) => {
     localStorage.removeItem("user");
     setIsLogged(false);
     router.push("/");
-    toast.info("Logout Successfull");
+    toast.info("You have successfully logged out.");
   };
 
   return (

@@ -161,12 +161,12 @@ const Index = () => {
       <Seo title="Jobs posted by you" />
       <div className="bg-dark-blue w-full h-[18vh] text-white relative">
         <div className="mainWrapper">
-          <div className="px-[70px] xs:px-5 2xl:px-[160px] xl:px-[160px] md:px-[160px] ">
+          <div className=" px-40 xs:px-5">
             <div className="flex text-center items-center pt-3">
               <Link href={"/jobs-posted-by-you"}>
                 <Image
                   src="/iconsimgs/homemd.svg"
-                  alt=""
+                  alt="Homeicon"
                   width={10}
                   height={9}
                 />
@@ -185,9 +185,9 @@ const Index = () => {
         {loader ? (
           <Loader />
         ) : myData?.length > 0 ? (
-          <div className="relative">
+          <div className="relative ">
             <div className="min-h-[80vh] pb-20">
-              <div className="flex md:mx-40 2xl:mx-96 justify-center md:justify-start gap-4 flex-wrap ">
+              <div className="flex md:mx-40  2xl:m-auto justify-center md:justify-start gap-4  flex-wrap mainWrapper  ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
@@ -209,7 +209,7 @@ const Index = () => {
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="absolute left-4 bottom-5  flex justify-between items-center w-[88%] gap-2">
+                      <div className="absolute left-4 bottom-5 flex justify-between items-center w-[88%] gap-2  ">
                         <div className="flex justify-start items-center content-center ">
                           <div className="">
                             <Image
@@ -230,9 +230,9 @@ const Index = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="">
+                        <div className=" ">
                           <button
-                            className="w-[125px] h-[32px] bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                            className="w-[125px] h-[32px]  bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                             onClick={() => postClick(item.id)}
                           >
                             View applications
@@ -265,7 +265,7 @@ const Index = () => {
                     )?.map((i, key) => {
                       return (
                         <span
-                          className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                          className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
                           onClick={(e) => onNumClick(e)}
                           style={
                             count === i
@@ -291,7 +291,7 @@ const Index = () => {
                       <>
                         ...
                         <div
-                          className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                          className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                           onClick={() => onNumClick(totalPage)}
                         >
                           {totalPage}
@@ -371,51 +371,53 @@ const Index = () => {
                 {jobData ? jobData.length : 0} applications
               </h3>
               <div className="h-full bg-[#557da526] overflow-y-scroll ">
-                <div className={`flex justify-start  flex-wrap  p-2 gap-4`}>
+                <div className={``}>
                   {loader ? (
                     <Loader />
                   ) : jobData ? (
-                    jobData?.map((items: cardTypes, k) => {
-                      return (
-                        <div key={k} className="">
-                          <div
-                            key={k}
-                            className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-4 py-4  flex-wrap "
-                          >
-                            <div className="w-[274px] h-[131px] capitalize  ">
-                              <div className="flex items-center  ">
-                                <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text- text-[20px] flex justify-center items-center mr-4  ">
-                                  {items.name?.slice(0, 1)}
-                                </span>
-                                <div>
-                                  <h2
-                                    className={`text-light-dark text-[15px] font-medium  line-clamps`}
-                                  >
-                                    {items.name}
+                    <div className="flex justify-start  flex-wrap  p-2 gap-4">
+                      {jobData?.map((items: cardTypes, k) => {
+                        return (
+                          <div key={k} className="">
+                            <div
+                              key={k}
+                              className=" md:w-[295px] w-[250px]  md:h-[159px] flex items-center justify-center bg-white border border-solid border-[#303f6080] rounded  px-4 py-4  flex-wrap "
+                            >
+                              <div className="w-[274px] h-[131px] capitalize  ">
+                                <div className="flex items-center  ">
+                                  <span className="w-[35px] h-[35px] rounded-[25px]  bg-[#d9efff] text- text-[20px] flex justify-center items-center mr-4  ">
+                                    {items.name?.slice(0, 1)}
+                                  </span>
+                                  <div>
+                                    <h2
+                                      className={`text-light-dark text-[15px] font-medium  line-clamps`}
+                                    >
+                                      {items.name}
+                                    </h2>
+                                    <h3
+                                      className={`text-light-dark  text-[10px] line-clamps`}
+                                    >
+                                      {items.email}
+                                    </h3>
+                                  </div>
+                                </div>
+
+                                <div className="pt-8">
+                                  <h2 className="text-dark-blue  text-[13px] font-medium  ">
+                                    Skills
                                   </h2>
                                   <h3
-                                    className={`text-light-dark  text-[10px] line-clamps`}
+                                    className={`text-light-dark  text-[15px] line-clamps`}
                                   >
-                                    {items.email}
+                                    {items.skills}
                                   </h3>
                                 </div>
                               </div>
-
-                              <div className="pt-8">
-                                <h2 className="text-dark-blue  text-[13px] font-medium  ">
-                                  Skills
-                                </h2>
-                                <h3
-                                  className={`text-light-dark  text-[15px] line-clamps`}
-                                >
-                                  {items.skills}
-                                </h3>
-                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })
+                        );
+                      })}
+                    </div>
                   ) : (
                     <div className="flex flex-col items-center justify-center w-full mt-[11rem] ">
                       <Image

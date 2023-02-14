@@ -136,7 +136,7 @@ const Index = () => {
           setISLoading(false);
           if (finalRes.success) {
             setISLoading(true);
-            toast.success("You have successfully logged in");
+            toast.success("You have logged in successfully.");
             // setData(finalRes);
             // console.log({finalRes});
             myData.setLoggin(finalRes.data);
@@ -183,14 +183,14 @@ const Index = () => {
         <div className="bg-white box-shadows rounded-2xl relative mt-[15rem] md:mt-[19rem]  2xl:mt-[20rem] flex flex-col items-center justify-center py-6 px-5">
           <div className={`mainWrapper`}>
             <div>
-              <div className="py-0 px-0">
+              <div>
                 <h1 className="text-light-dark text-2xl tracking-normal font-medium ">
                   Login{" "}
                 </h1>
               </div>
               <form
                 onSubmit={(e) => justsubmit(e)}
-                className=" w-[370px] xs:w-[260px]  md:w-[557px]"
+                className=" w-[370px] xs:w-[290px]  md:w-[557px]"
               >
                 <Fields
                   type="email"

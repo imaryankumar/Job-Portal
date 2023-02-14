@@ -59,7 +59,7 @@ function Navbar() {
               <Link href="/login">
                 <button
                   type="button"
-                  className={`text-center text-[16px] font-medium  md:w-40 md:h-12 text-xs md:text-base text-white cursor-pointer border border-solid border-light-blue p-2 md:p-3 rounded bg-[#43afff33] ${
+                  className={`text-center text-[12px] font-medium text-xs md:w-40 md:h-12  md:text-base text-white cursor-pointer border border-solid border-light-blue p-2 md:p-3 rounded bg-[#43afff33] ${
                     isHidden ? "d-none" : ""
                   }`}
                 >
@@ -84,7 +84,7 @@ function Navbar() {
                   //     : undefined
                   // }
                 >
-                  <h1 className="md:mb-[22px] mb-[12px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
+                  <h1 className="md:mb-[22px] mb-[8px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
                     {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}
                   </h1>
                   <div
@@ -98,7 +98,7 @@ function Navbar() {
                 </Link>
               </div>
               <div className="flex items-center gap-3  " onClick={JustSubmit}>
-                <div className="text-center md:w-12 md:h-12 w-11 h-11 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[2px] text-[16px] mb-[10px]  md:pt-[10px] pt-[10px] cursor-pointer  ">
+                <div className="text-center md:w-12 md:h-12 w-9 h-9 bg-[#D9EFFF] rounded-[25px]  text-light-dark md:text-[18px] xs:my-[2px] text-[16px] mb-[10px]  md:pt-[10px] pt-[5px] cursor-pointer  ">
                   {user?.userRole === 0 ? "R" : "C"}
                 </div>
                 <Image

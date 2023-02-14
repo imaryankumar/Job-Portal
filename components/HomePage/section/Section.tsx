@@ -1,6 +1,20 @@
 import React from "react";
 import Cards from "./cards/Cards";
 import Image from "next/image";
+import SectionImg from "../SectionImg";
+
+const ImageArray = [
+  { id: 1, src: "/iconsimgs/solaytic@2x.png", alt: "solaytic icon" },
+  { id: 2, src: "/iconsimgs/kanba@2x.png", alt: "kanaba icon" },
+  { id: 3, src: "/iconsimgs/lighting@2x.png", alt: "lighting icon" },
+  { id: 4, src: "/iconsimgs/ztos@2x.png", alt: "ztos icon" },
+  { id: 5, src: "/iconsimgs/kanba@2x.png", alt: "kanba icon" },
+  { id: 6, src: "/iconsimgs/goldline@2x.png", alt: "goldline icon" },
+  { id: 7, src: "/iconsimgs/ideaa@2x.png", alt: "ideaa icon" },
+  { id: 8, src: "/iconsimgs/liva@2x.png", alt: "liva icon" },
+  { id: 9, src: "/iconsimgs/velocity-9@2x.png", alt: "velocity icon" },
+];
+
 const Section = () => {
   return (
     <div className="bg-white-blue w-full ">
@@ -33,81 +47,11 @@ const Section = () => {
           <h2 className="text-[22px] mb-6 text-left px-[18px]  md:px-[170px] text-light-dark font-medium  my-4">
             Companies Who Trust Us
           </h2>
-          
-          <div className="flex  flex-wrap items-center justify-between md:justify-center w-full px-7 md:px-[110px]  md:gap-[10%] mb-10">
-            <div className="flex items-center text-3xl  mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/solaytic@2x.png"
-                alt="solaytic"
-                width={125}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/kanba@2x.png"
-                alt="kanaba"
-                width={144}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/lighting@2x.png"
-                alt="lightimg"
-                width={124}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/ztos@2x.png"
-                alt="ztos"
-                width={100}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/kanba@2x.png"
-                alt="kanba"
-                width={144}
-                height={40}
-              />
-            </div>
-
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/goldline@2x.png"
-                alt="goldline"
-                width={172}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/ideaa@2x.png"
-                alt="ideaa"
-                width={118}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-3xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/liva@2x.png"
-                alt="Live"
-                width={100}
-                height={40}
-              />
-            </div>
-            <div className="flex items-center text-4xl mb-3 md:mb-12 font-sans">
-              <Image
-                src="/iconsimgs/velocity-9@2x.png"
-                alt="Velocity"
-                width={156}
-                height={40}
-              />
-            </div>
+          <div className="flex  flex-wrap  md:justify-center items-center w-[90%] md:w-[80%] gap-x-2 md:gap-x-20 md:gap-y-10 mx-auto justify-between mb-16">
+            {ImageArray.length > 0 &&
+              ImageArray.map((d) => {
+                return <SectionImg src={d.src} alt={d.alt} key={d.id} />;
+              })}
           </div>
         </div>
       </div>

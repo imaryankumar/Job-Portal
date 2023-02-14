@@ -148,7 +148,7 @@ const Index = () => {
         })
         .then((showres) => {
           if (showres.success === true) {
-            toast.success("You have applied successfully!");
+            toast.success("You have applied successfully.");
             reloadData(count);
           }
         })
@@ -264,7 +264,7 @@ const Index = () => {
                       {count > 1 && totalPage > 2 ? (
                         <>
                           <div
-                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                            className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(1)}
                           >
                             1
@@ -280,7 +280,7 @@ const Index = () => {
                       )?.map((i, k) => {
                         return (
                           <span
-                            className="w-8 h-8 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
+                            className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(i)}
                             style={
                               count === i
@@ -306,7 +306,7 @@ const Index = () => {
                         <>
                           <span className="text-black">...</span>
                           <div
-                            className="w-8 h-8 rounded bg-white text-center text-[19px] font-[400] text-black "
+                            className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(totalPage)}
                           >
                             {totalPage}

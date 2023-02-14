@@ -209,12 +209,12 @@ const PostJob = (props: Props) => {
             <div className=" bg-white box-shadows rounded-[20px] flex flex-col items-center justify-center mx-4  ">
               <div>
                 <div>
-                  <h1 className="text-light-dark text-[22px] font-medium tracking-normal px-8 pt-4 ">
+                  <h1 className="text-light-dark text-[22px] font-medium tracking-normal px-6 pt-5 ">
                     Post a Job{" "}
                   </h1>
                 </div>
 
-                <form className="px-6 py-4 " onSubmit={(e) => JustonClick(e)}>
+                <form className="px-6 py-2 " onSubmit={(e) => JustonClick(e)}>
                   <Fields
                     type="text"
                     error={error?.title ? true : false}
