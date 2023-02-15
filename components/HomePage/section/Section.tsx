@@ -7,7 +7,7 @@ const ImageArray = [
   { id: 1, src: "/iconsimgs/solaytic@2x.png", alt: "solaytic icon" },
   { id: 2, src: "/iconsimgs/kanba@2x.png", alt: "kanaba icon" },
   { id: 3, src: "/iconsimgs/lighting@2x.png", alt: "lighting icon" },
-  { id: 4, src: "/iconsimgs/ztos@2x.png", alt: "ztos icon" },
+  { id: 4, src: "/iconsimgs/ztos@2x copy.png", alt: "ztos icon" },
   { id: 5, src: "/iconsimgs/kanba@2x.png", alt: "kanba icon" },
   { id: 6, src: "/iconsimgs/goldline@2x.png", alt: "goldline icon" },
   { id: 7, src: "/iconsimgs/ideaa@2x.png", alt: "ideaa icon" },
