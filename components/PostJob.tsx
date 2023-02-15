@@ -70,7 +70,7 @@ const PostJob = (props: Props) => {
     }));
   };
   function validateTitle(title: string) {
-    if (!title) {
+    if (!title || title.trim().length === 0) {
       setErrorState("title", "Title is required");
       return true;
     } else if (title.length === 100) {
@@ -81,8 +81,9 @@ const PostJob = (props: Props) => {
       return false;
     }
   }
+
   function validateDesc(description: string) {
-    if (!description) {
+    if (!description || description.trim().length === 0) {
       setErrorState("description", "Description is required");
       return true;
     } else if (description.length === 1200) {
@@ -94,7 +95,7 @@ const PostJob = (props: Props) => {
     }
   }
   function validateLoc(location: string) {
-    if (!location) {
+    if (!location || location.trim().length === 0) {
       setErrorState("location", "Location is required");
       return true;
     } else if (location.length === 100) {

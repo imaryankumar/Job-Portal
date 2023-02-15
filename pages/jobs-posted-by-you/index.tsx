@@ -348,10 +348,10 @@ const Index = () => {
             onClick={() => setIsOpen(false)}
           >
             <div
-              className="bg-[#fff] md:w-[694px] w-[310px] h-[90%] m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8   "
+              className="bg-[#fff] md:w-[694px] w-[310px] h-[90%] mt-16 m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8    "
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-0 py-3 text-[19px] text-light-dark font-medium ">
+              <div className="flex items-center justify-between py-3 text-[19px] text-light-dark font-medium ">
                 <h2>Applicants for this job</h2>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -370,8 +370,8 @@ const Index = () => {
                 {jobData?.length > 0 ? "Total" : ""}{" "}
                 {jobData ? jobData.length : 0} applications
               </h3>
-              <div className="h-full bg-[#557da526] overflow-y-scroll ">
-                <div className={``}>
+              <div className="h-full  bg-[#557da526] overflow-y-scroll ">
+                <div className={` `}>
                   {loader ? (
                     <Loader />
                   ) : jobData ? (
