@@ -210,7 +210,7 @@ const Index = () => {
                         <p>{item.description}</p>
                       </div>
                       <div className="absolute left-4 bottom-5 flex justify-between items-center w-[88%] gap-2 lg:block  xl:flex  ">
-                        <div className="flex justify-start items-center content-center pb-1 ">
+                        <div className="flex justify-start items-center content-center  md:pb-0 lg:pb-3 xl:pb-0 ">
                           <div className="">
                             <Image
                               src="/iconsimgs/location.svg"
@@ -265,7 +265,7 @@ const Index = () => {
                     )?.map((i, key) => {
                       return (
                         <span
-                          className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                          className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
                           onClick={(e) => onNumClick(e)}
                           style={
                             count === i
@@ -291,7 +291,7 @@ const Index = () => {
                       <>
                         ...
                         <div
-                          className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
+                          className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                           onClick={() => onNumClick(totalPage)}
                         >
                           {totalPage}

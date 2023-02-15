@@ -234,12 +234,12 @@ const Index = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="col-span-2">
+                            <div className="">
                               {loader ? (
                                 <Loader />
                               ) : (
                                 <button
-                                  className="px-4 py-2 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                                  className="px-3 py-2 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                                   onClick={() => clickMe(item.id)}
                                 >
                                   Apply
@@ -264,7 +264,7 @@ const Index = () => {
                       {count > 1 && totalPage > 2 ? (
                         <>
                           <div
-                            className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
+                            className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(1)}
                           >
                             1
@@ -280,7 +280,7 @@ const Index = () => {
                       )?.map((i, k) => {
                         return (
                           <span
-                            className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
+                            className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(i)}
                             style={
                               count === i
@@ -306,7 +306,7 @@ const Index = () => {
                         <>
                           <span className="text-black">...</span>
                           <div
-                            className="py-1 px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
+                            className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
                             onClick={() => onNumClick(totalPage)}
                           >
                             {totalPage}

@@ -159,7 +159,7 @@ const Index = () => {
                         key={key}
                       >
                         <div
-                          className={`text-[17px] text-light-dark tracking-normal line-clamps `}
+                          className={`text-[17px] text-light-dark tracking-normal line-clamps break-words `}
                           key={key}
                           title={item.title}
                           data-toggle="tooltip"
@@ -167,7 +167,7 @@ const Index = () => {
                           <h1>{item.title}</h1>
                         </div>
                         <div
-                          className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 line-clamp`}
+                          className={` text-[14px] tracking-normal text-light-dark opacity-80 mx-0 my-2 break-words line-clamp`}
                           title={item.description}
                           data-toggle="tooltip"
                         >
@@ -214,7 +214,7 @@ const Index = () => {
                         {count > 1 && totalPage > 3 ? (
                           <>
                             <div
-                              className="py-1 px-2 rounded bg-white text-black text-center text-[19px] font-[400] "
+                              className="py-[1px] px-2 rounded bg-white text-black text-center text-[19px] font-[400] "
                               onClick={() => onNumClick(1)}
                             >
                               1
@@ -230,7 +230,7 @@ const Index = () => {
                         )?.map((i, k) => {
                           return (
                             <span
-                              className="py-1 px-2 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
+                              className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
                               onClick={() => onNumClick(i)}
                               style={
                                 count === i
@@ -256,7 +256,7 @@ const Index = () => {
                           <>
                             <span className="text-black">...</span>
                             <div
-                              className="py-1 px-2 rounded bg-white text-center text-[19px] text-black font-[400]"
+                              className="py-[1px] px-2 rounded bg-white text-center text-[19px] text-black font-[400]"
                               onClick={() => onNumClick(totalPage)}
                             >
                               {totalPage}
