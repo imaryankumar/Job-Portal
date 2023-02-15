@@ -191,11 +191,11 @@ const Index = () => {
             ) : (
               <div className="relative">
                 <div className="min-h-[80vh] pb-20 ">
-                  <div className="flex md:mx-40  justify-center md:justify-start gap-4 flex-wrap ">
+                  <div className="flex md:mx-40  justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-2 flex-wrap ">
                     {myCanData?.map((item: cardTypes, key) => {
                       return (
                         <div
-                          className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow"
+                          className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow "
                           key={key}
                         >
                           <div
@@ -221,7 +221,7 @@ const Index = () => {
                                   alt="Pinicons"
                                   width={15}
                                   height={10}
-                                  className=" object-contain "
+                                  className="object-contain "
                                 />
                               </div>
                               <div className="col-span-8 ml-2">

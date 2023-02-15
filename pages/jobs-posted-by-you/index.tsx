@@ -187,11 +187,11 @@ const Index = () => {
         ) : myData?.length > 0 ? (
           <div className="relative ">
             <div className="min-h-[80vh] pb-20">
-              <div className="flex md:mx-40  2xl:m-auto justify-center md:justify-start gap-4  flex-wrap mainWrapper  ">
+              <div className="flex md:mx-40  2xl:mx-[43rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-2 flex-wrap mainWrapper  ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] xl:w-[23%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
                       key={key}
                     >
                       <div
@@ -209,8 +209,8 @@ const Index = () => {
                       >
                         <p>{item.description}</p>
                       </div>
-                      <div className="absolute left-4 bottom-5 flex justify-between items-center w-[88%] gap-2  ">
-                        <div className="flex justify-start items-center content-center ">
+                      <div className="absolute left-4 bottom-5 flex justify-between items-center w-[88%] gap-2 lg:block  xl:flex  ">
+                        <div className="flex justify-start items-center content-center pb-1 ">
                           <div className="">
                             <Image
                               src="/iconsimgs/location.svg"
@@ -232,7 +232,7 @@ const Index = () => {
                         </div>
                         <div className=" ">
                           <button
-                            className="w-[125px] h-[32px]  bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
+                            className=" py-2 px-1 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
                             onClick={() => postClick(item.id)}
                           >
                             View applications
