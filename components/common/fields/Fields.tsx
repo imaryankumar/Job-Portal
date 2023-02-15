@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
 interface cardTypes {
   content?: string;
@@ -37,13 +37,16 @@ const Fields = ({
           {content}
           {required && <span className="star_red">*</span>}
         </div>
-
-        <Link
-          href={"/forgot-password"}
-          className="text-light-blue font-medium text-[14px] "
-        >
-          {password}
-        </Link>
+        {router.pathname.includes("login") ? (
+          <Link
+            href={"/forgot-password"}
+            className="text-light-blue font-medium text-[14px] "
+          >
+            {password}
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
       <input
         autoComplete={`${

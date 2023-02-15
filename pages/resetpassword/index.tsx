@@ -57,9 +57,6 @@ const Index = () => {
   const onResetPassword = async () => {
     if (!(await validateForm())) {
       if (newPass && newPass === conPass) {
-        setConPass("");
-        setNewPass("");
-
         setISLoading(true);
         setLoader(true);
         fetch("https://jobs-api.squareboat.info/api/v1/auth/resetpassword", {

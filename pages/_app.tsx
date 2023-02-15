@@ -24,9 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
         {!isHidd && <Navbar />}
         {/* <hr className="w-[91%] mx-auto " /> */}
       </div>
-      
-      <Component {...pageProps} /> 
-      <ToastContainer className='toast-contt xl:!mr-30  2xl:!mr-[17rem] ' />
+
+      <Component {...pageProps} />
+      <ToastContainer className="toast-contt xl:!mr-30  2xl:!mr-[17rem] text-[15px] " />
     </ContextAPI>
   );
 }

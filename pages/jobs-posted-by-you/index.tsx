@@ -408,6 +408,8 @@ const Index = () => {
                                   </h2>
                                   <h3
                                     className={`text-light-dark  text-[15px] line-clamps`}
+                                    title={items.skills}
+                                    data-toggle="tooltip"
                                   >
                                     {items.skills}
                                   </h3>
