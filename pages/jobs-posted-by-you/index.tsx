@@ -187,7 +187,7 @@ const Index = () => {
         ) : myData?.length > 0 ? (
           <div className="relative ">
             <div className="min-h-[80vh] pb-20  ">
-              <div className="flex md:mx-40  2xl:mx-[43rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap mainWrapper  ">
+              <div className="flex md:mx-40  2xl:mx-[23rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap mainWrapper  ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
