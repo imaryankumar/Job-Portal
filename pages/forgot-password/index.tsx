@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Fields from "../../components/common/fields/Fields";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
@@ -43,7 +43,7 @@ const Index = () => {
 
     return emailError;
   };
-  const onReset = async (e?: any) => {
+  const forgotpassHandler = async (e?: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
       setISLoading(true);
@@ -95,13 +95,12 @@ const Index = () => {
             </p>
           </div>
           <div className=" w-[380px] xs:w-[285px] md:w-[500px]">
-            <form onSubmit={(e) => onReset(e)}>
+            <form onSubmit={(e) => forgotpassHandler(e)}>
               <Fields
                 type="email"
                 content="Email address"
                 placeholder="Enter your email"
                 value={mail}
-                // onchange={setMail}
                 onchange={(value: string) => {
                   setMail(value);
                   validateMail(value);
@@ -112,6 +111,7 @@ const Index = () => {
                 }}
                 pattern={"^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,4}$"}
                 error={error?.email ? true : false}
+                required
               >
                 {error ? (
                   <p className="text-[#FF0000] text-right text-xs  ">

@@ -5,20 +5,18 @@ import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import Router from "next/router";
 import Seo from "../../components/nexthead/Seo";
-import Image from "next/image";
 import { useEffect, useCallback } from "react";
 import { MdPeopleAlt } from "react-icons/md";
 import { FaUserTie } from "react-icons/fa";
 
-// import { getEnvironmentData } from "worker_threads";
 const Index = () => {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
   const [role, setRole] = useState(0);
-  const [btn, setBtn] = useState(true);
-  const [btn2, setBtn2] = useState(false);
+  const [recbtn, setRecbtn] = useState(true);
+  const [candbtn, setCandbtn] = useState(false);
   const [skill, setSkill] = useState("");
   const [loader, setLoader] = useState(false);
   const [redirect, setRedirect] = useState(true);
@@ -172,20 +170,18 @@ const Index = () => {
   };
   const [data, setData] = useState<dataType | undefined>(undefined);
 
-  //  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-  function mybtn1() {
+  function RecrBtn() {
     setRole(0);
-    setBtn(true);
-    setBtn2(false);
+    setRecbtn(true);
+    setCandbtn(false);
   }
-  function mybtn2() {
+  function CandiBtn() {
     setRole(1);
-    setBtn2(true);
-    setBtn(false);
+    setCandbtn(true);
+    setRecbtn(false);
   }
 
-  const Justclick = async (e: any) => {
+  const signupHandle = async (e: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
       const body = {
@@ -260,15 +256,15 @@ const Index = () => {
                 Signup
               </h1>
               <h2 className="pb-2 text-[14px]">
-                I’m a<span className="star_red">*</span>
+                I’m a<span className="Required_field">*</span>
               </h2>
               <div className="flex">
                 <button
                   type="button"
                   className={`w-[136px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
-                    btn && "BtnTrue"
+                    recbtn && "BtnTrue"
                   }`}
-                  onClick={() => mybtn1()}
+                  onClick={() => RecrBtn()}
                 >
                   <FaUserTie fontSize={25} />
                   Recruiter
@@ -276,16 +272,16 @@ const Index = () => {
                 <button
                   type="button"
                   className={`w-[136px] h-[46px] bg-[#e8e8e833] text-black border border-solid border-[#c6c6c6] rounded cursor-pointer text-[14px] flex items-center justify-evenly mr-6 ${
-                    btn2 && "BtnTrue"
+                    candbtn && "BtnTrue"
                   }`}
-                  onClick={() => mybtn2()}
+                  onClick={() => CandiBtn()}
                 >
                   <MdPeopleAlt fontSize={25} />
                   Candidate
                 </button>
               </div>
               <div className="my-4  ">
-                <form onSubmit={(e) => Justclick(e)}>
+                <form onSubmit={(e) => signupHandle(e)}>
                   <Fields
                     type="text"
                     content="Full Name"

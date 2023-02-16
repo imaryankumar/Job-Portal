@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import { useRouter } from "next/router";
-
 import { toast } from "react-toastify";
-import { start } from "repl";
 import Seo from "./nexthead/Seo";
 import Loader from "./Loader/Loader";
 interface cardTypes {
@@ -15,7 +12,7 @@ interface cardTypes {
   id?: string;
   updatedAt?: any;
 }
-interface jobData {
+interface jobApply {
   email: string;
   name: string;
   skills: string;
@@ -25,16 +22,16 @@ interface jobData {
 const Index = () => {
   const router = useRouter();
   const pageNum = router.asPath?.split("=")[1];
-  const [count, setCount] = useState(+pageNum || 1);
+  const [pageCount, setpageCount] = useState(+pageNum || 1);
   const [showPerPage] = useState(20);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
-  const [myCanData, setCanMyData] = useState<jobData[]>([]);
+  const [appliedjob, setAppliedjob] = useState<jobApply[]>([]);
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    const value = showPerPage * count;
+    const value = showPerPage * pageCount;
     setPagination({ start: value - showPerPage, end: value });
-  }, [count, showPerPage]);
+  }, [pageCount, showPerPage]);
 
   useEffect(() => {
     setLoader(true);
@@ -59,7 +56,7 @@ const Index = () => {
           }
           let d = resp.data?.sort(compare);
 
-          setCanMyData(d);
+          setAppliedjob(d);
           setLoader(false);
         });
       })
@@ -69,13 +66,13 @@ const Index = () => {
       });
   }, []);
 
-  const totalJobs = myCanData?.length;
+  const totalJobs = appliedjob?.length;
   const totalPage = Math.ceil(totalJobs / showPerPage);
 
-  const increment = () => {
-    if (count < totalPage) {
-      count < totalPage && setCount(count + 1);
-      router.push(`/applied-jobs?page=${count + 1} `, undefined, {
+  const paginationInc = () => {
+    if (pageCount < totalPage) {
+      pageCount < totalPage && setpageCount(pageCount + 1);
+      router.push(`/applied-jobs?page=${pageCount + 1} `, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -85,10 +82,10 @@ const Index = () => {
       });
     }
   };
-  const decrement = () => {
-    if (count > 1) {
-      count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/applied-jobs?page=${count - 1}`, undefined, {
+  const paginationDec = () => {
+    if (pageCount > 1) {
+      pageCount == 1 ? setpageCount(1) : setpageCount(pageCount - 1);
+      router.push(`/applied-jobs?page=${pageCount - 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -98,8 +95,8 @@ const Index = () => {
       });
     }
   };
-  const onNumClick = (e: number) => {
-    setCount(e);
+  const paginationbtnClick = (e: number) => {
+    setpageCount(e);
     router.push(`/applied-jobs?page=${e} `, undefined, {
       shallow: true,
     });
@@ -146,11 +143,11 @@ const Index = () => {
           </div>
         </div>
 
-        {myCanData?.length > 0 ? (
+        {appliedjob?.length > 0 ? (
           <div className="relative">
             <div className="min-h-[80vh] pb-20 ">
               <div className="flex md:mx-40  justify-center 2xl:mx-[24rem] md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap ">
-                {myCanData
+                {appliedjob
                   ?.slice(pagination.start, pagination.end)
                   .map((item: cardTypes, key) => {
                     return (
@@ -199,23 +196,32 @@ const Index = () => {
               </div>
               <div className="absolute bottom-0 left-0 right-0 ">
                 <div className=" ">
-                  {myCanData?.length > 0 && (
+                  {appliedjob?.length > 0 && (
                     <div>
-                      <div className="flex flex-wrap justify-center  items-center gap-3 mainWrapper  cursor-pointer py-8   ">
-                        <Image
-                          src="/iconsimgs/Prev.svg"
-                          alt="Lefticon"
-                          onClick={() => decrement()}
-                          width={30}
-                          height={30}
-                          className={count == 1 ? "cursor-no-drop" : ""}
-                        />
-
-                        {count > 1 && totalPage > 3 ? (
+                      <div className="flex flex-wrap justify-center  items-center gap-3 mainWrapper  cursor-pointer py-4  ">
+                        <div
+                          className={`cursor-pointer rounded-md border px-3 py-2 text-gray-500 ${
+                            pageCount == 1 && `cursor-no-drop text-gray-400`
+                          } `}
+                          onClick={() => paginationDec()}
+                        >
+                          <div className="w-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 256 512"
+                            >
+                              <path
+                                d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        {pageCount > 1 && totalPage > 3 ? (
                           <>
                             <div
                               className="py-[1px] px-2 rounded bg-white text-black text-center text-[19px] font-[400] "
-                              onClick={() => onNumClick(1)}
+                              onClick={() => paginationbtnClick(1)}
                             >
                               1
                             </div>
@@ -224,16 +230,16 @@ const Index = () => {
                         ) : (
                           ""
                         )}
-                        {(count + 2 >= totalPage
+                        {(pageCount + 2 >= totalPage
                           ? pageDefiner(totalPage)
-                          : [count, count + 1, count + 2]
+                          : [pageCount, pageCount + 1, pageCount + 2]
                         )?.map((i, k) => {
                           return (
                             <span
                               className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
-                              onClick={() => onNumClick(i)}
+                              onClick={() => paginationbtnClick(i)}
                               style={
-                                count === i
+                                pageCount === i
                                   ? {
                                       color: "black",
                                       backgroundColor: "#43AFFF33",
@@ -250,27 +256,39 @@ const Index = () => {
                             </span>
                           );
                         })}
-                        {count + 2 >= totalPage ? (
+                        {pageCount + 2 >= totalPage ? (
                           ""
                         ) : (
                           <>
                             <span className="text-black">...</span>
                             <div
                               className="py-[1px] px-2 rounded bg-white text-center text-[19px] text-black font-[400]"
-                              onClick={() => onNumClick(totalPage)}
+                              onClick={() => paginationbtnClick(totalPage)}
                             >
                               {totalPage}
                             </div>
                           </>
                         )}
-                        <Image
-                          src="/iconsimgs/Nex.svg"
-                          alt="Righticon"
-                          onClick={() => increment()}
-                          width={30}
-                          height={30}
-                          className={count == totalPage ? "cursor-no-drop" : ""}
-                        />
+
+                        <div
+                          className={`cursor-pointer rounded-md border  px-3 py-2 text-gray-500 ${
+                            pageCount == totalPage &&
+                            `cursor-no-drop text-gray-400 `
+                          }`}
+                          onClick={() => paginationInc()}
+                        >
+                          <div className="w-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 256 512"
+                            >
+                              <path
+                                d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}

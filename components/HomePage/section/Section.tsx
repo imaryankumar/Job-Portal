@@ -1,6 +1,5 @@
 import React from "react";
 import Cards from "./cards/Cards";
-import Image from "next/image";
 import SectionImg from "../SectionImg";
 import ImageArray from "../section/ImageArray.json";
 

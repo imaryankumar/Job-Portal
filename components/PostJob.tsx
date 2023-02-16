@@ -10,11 +10,6 @@ import { toast } from "react-toastify";
 import Router from "next/router";
 import Loader from "./Loader/Loader";
 type Props = {};
-interface dataType {
-  success?: boolean;
-  code: number;
-  errors?: any[];
-}
 
 const PostJob = (props: Props) => {
   const [title, setTitle] = useState("");
@@ -22,7 +17,6 @@ const PostJob = (props: Props) => {
   const [description, setDescription] = useState("");
   const [redirect, setRedirect] = useState(true);
   const [loader, setLoader] = useState(false);
-  const [data, setData] = useState<dataType | undefined>(undefined);
   const [error, setError] = useState<{
     title?: string;
     description?: string;
@@ -117,7 +111,7 @@ const PostJob = (props: Props) => {
 
     return titleError || descError || locationError;
   };
-  const JustonClick = async (e: any) => {
+  const postJobHandler = async (e: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
       const body = {
@@ -145,8 +139,6 @@ const PostJob = (props: Props) => {
           setISLoading(false);
 
           if (finalRes.success) {
-            //  setData(finalRes);
-
             setISLoading(true);
             router.push("/jobs-posted-by-you");
           } else {
@@ -215,7 +207,10 @@ const PostJob = (props: Props) => {
                   </h1>
                 </div>
 
-                <form className="px-6 py-2 " onSubmit={(e) => JustonClick(e)}>
+                <form
+                  className="px-6 py-2 "
+                  onSubmit={(e) => postJobHandler(e)}
+                >
                   <Fields
                     type="text"
                     error={error?.title ? true : false}

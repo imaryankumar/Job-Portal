@@ -2,8 +2,6 @@ import Image from "next/image";
 import { cardTypes } from "../../utils/types";
 
 const Pagination = ({ data, pagination, children }: any) => {
-  // const d = data?.slice(pagination.start, pagination.end);
-  // console.log({ d });
   return (
     <div className="z-0 flex flex-wrap gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
       {data

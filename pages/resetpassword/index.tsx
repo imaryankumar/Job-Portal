@@ -54,7 +54,8 @@ const Index = () => {
     return passwordError || confirmPasswordError;
   };
 
-  const onResetPassword = async () => {
+  const resetpasswordHandler = async (e: any) => {
+    e.preventDefault();
     if (!(await validateForm())) {
       if (newPass && newPass === conPass) {
         setISLoading(true);
@@ -113,69 +114,73 @@ const Index = () => {
               <h3 className="text-[14px] text-light-dark pb-4">
                 Enter your new password below.
               </h3>
-              <Fields
-                type="password"
-                content="New password"
-                placeholder="Enter your password"
-                value={newPass}
-                onchange={(value: string) => {
-                  setNewPass(value);
-                  validatePassword(value);
-                  setISLoading(false);
-                }}
-                error={error?.password || error?.confirmPassword ? true : false}
-                required
-                onBlur={() => {
-                  validatePassword(newPass);
-                }}
-              >
-                {error?.password && (
-                  <p className="text-[#FF0000] text-right text-xs">
-                    {error?.password}
-                  </p>
-                )}
-              </Fields>
-              <Fields
-                type="password"
-                content="Confirm new password"
-                placeholder="Enter your password"
-                error={error?.confirmPassword ? true : false}
-                value={conPass}
-                onchange={(value: string) => {
-                  setConPass(value);
-                  setISLoading(false);
-                  validateConfirmPassword(newPass, value);
-                }}
-                required
-                onBlur={() => {
-                  validateConfirmPassword(newPass, conPass);
-                }}
-              >
-                {error?.confirmPassword && (
-                  <p className="text-[#FF0000] text-right text-xs">
-                    {error?.confirmPassword}
-                  </p>
-                )}
-              </Fields>
-              <div className="flex items-center justify-center">
-                <button
-                  className="w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff]"
-                  onClick={onResetPassword}
-                  disabled={isLoading}
-                  type="submit"
-                  style={
-                    isLoading
-                      ? {
-                          backgroundColor: "#43AFFF",
-                          color: "white",
-                          cursor: "no-drop",
-                        }
-                      : { backgroundColor: "#43AFFF", color: "white" }
+
+              <form onSubmit={(e) => resetpasswordHandler(e)}>
+                <Fields
+                  type="password"
+                  content="New password"
+                  placeholder="Enter your password"
+                  value={newPass}
+                  onchange={(value: string) => {
+                    setNewPass(value);
+                    validatePassword(value);
+                    setISLoading(false);
+                  }}
+                  error={
+                    error?.password || error?.confirmPassword ? true : false
                   }
+                  required
+                  onBlur={() => {
+                    validatePassword(newPass);
+                  }}
                 >
-                  {loader ? <Loader /> : "Reset"}
-                </button>
-              </div>
+                  {error?.password && (
+                    <p className="text-[#FF0000] text-right text-xs">
+                      {error?.password}
+                    </p>
+                  )}
+                </Fields>
+                <Fields
+                  type="password"
+                  content="Confirm new password"
+                  placeholder="Enter your password"
+                  error={error?.confirmPassword ? true : false}
+                  value={conPass}
+                  onchange={(value: string) => {
+                    setConPass(value);
+                    setISLoading(false);
+                    validateConfirmPassword(newPass, value);
+                  }}
+                  required
+                  onBlur={() => {
+                    validateConfirmPassword(newPass, conPass);
+                  }}
+                >
+                  {error?.confirmPassword && (
+                    <p className="text-[#FF0000] text-right text-xs">
+                      {error?.confirmPassword}
+                    </p>
+                  )}
+                </Fields>
+                <div className="flex items-center justify-center">
+                  <button
+                    className="w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff]"
+                    disabled={isLoading}
+                    type="submit"
+                    style={
+                      isLoading
+                        ? {
+                            backgroundColor: "#43AFFF",
+                            color: "white",
+                            cursor: "no-drop",
+                          }
+                        : { backgroundColor: "#43AFFF", color: "white" }
+                    }
+                  >
+                    {loader ? <Loader /> : "Reset"}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

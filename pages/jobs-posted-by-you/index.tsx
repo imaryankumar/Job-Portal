@@ -2,8 +2,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import { toast } from "react-toastify";
-
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import Loader from "../../components/Loader/Loader";
@@ -26,20 +25,20 @@ interface jobData {
 }
 const Index = () => {
   const router = useRouter();
-  const [count, setCount] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
-  const [jobData, setJobData] = useState<jobData[]>([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [modalopen, setModalopen] = useState(false);
+  const [candapplyJob, setCandapplyJob] = useState<jobData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
-  const [myData, setMyData] = useState([]);
+  const [postjobData, setPostjobData] = useState([]);
   const [loader, setLoader] = useState(true);
 
   const pageNum = router.asPath?.split("=")[1];
   useEffect(() => {
     const page = pageNum ? +pageNum : 1;
     if (!isNaN(page) && page > 0) {
-      setCount(page);
-      reloadData(page);
+      setPageCount(page);
+      jobpostHandler(page);
     }
   }, [router, pageNum]);
 
@@ -62,7 +61,7 @@ const Index = () => {
     }
   };
 
-  const reloadData = (page: number) => {
+  const jobpostHandler = (page: number) => {
     setLoader(true);
     fetch(
       `https://jobs-api.squareboat.info/api/v1/recruiters/jobs?page=${page}`,
@@ -78,7 +77,7 @@ const Index = () => {
     )
       .then((res) => {
         res.json().then((resp) => {
-          setMyData(resp.data?.data);
+          setPostjobData(resp.data?.data);
           setLoader(false);
 
           setTotalPage(
@@ -91,11 +90,10 @@ const Index = () => {
       });
   };
 
-  //  const totalJobs = myData?.length;
-  const increment = () => {
-    if (count < totalPage) {
-      count < totalPage && setCount(count + 1);
-      router.push(`/jobs-posted-by-you?page=${count + 1}`, undefined, {
+  const paginationInc = () => {
+    if (pageCount < totalPage) {
+      pageCount < totalPage && setPageCount(pageCount + 1);
+      router.push(`/jobs-posted-by-you?page=${pageCount + 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -105,10 +103,10 @@ const Index = () => {
       });
     }
   };
-  const decrement = () => {
-    if (count > 1) {
-      count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/jobs-posted-by-you?page=${count - 1}`, undefined, {
+  const paginationDec = () => {
+    if (pageCount > 1) {
+      pageCount == 1 ? setPageCount(1) : setPageCount(pageCount - 1);
+      router.push(`/jobs-posted-by-you?page=${pageCount - 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -118,10 +116,10 @@ const Index = () => {
       });
     }
   };
-  const onNumClick = (e: any) => {
+  const paginationbtnClick = (e: any) => {
     const numValue = +e.target.innerText;
 
-    setCount(numValue);
+    setPageCount(numValue);
     router.push(`/jobs-posted-by-you?page=${numValue} `, undefined, {
       shallow: true,
     });
@@ -131,8 +129,8 @@ const Index = () => {
       behavior: "smooth",
     });
   };
-  const postClick = (job_id: string | undefined) => {
-    isOpen === false ? setIsOpen(true) : setIsOpen(false);
+  const postjobHandler = (job_id: string | undefined) => {
+    modalopen === false ? setModalopen(true) : setModalopen(false);
     setLoader(true);
 
     fetch(
@@ -146,7 +144,7 @@ const Index = () => {
         return res.json();
       })
       .then((data) => {
-        setJobData(data?.data);
+        setCandapplyJob(data?.data);
         setLoader(false);
       })
       .catch((e) => {
@@ -184,11 +182,11 @@ const Index = () => {
 
         {loader ? (
           <Loader />
-        ) : myData?.length > 0 ? (
+        ) : postjobData?.length > 0 ? (
           <div className="relative ">
             <div className="min-h-[80vh] pb-20  ">
               <div className="flex md:mx-40  2xl:mx-[23rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap mainWrapper  ">
-                {myData?.map((item: cardTypes, key) => {
+                {postjobData?.map((item: cardTypes, key) => {
                   return (
                     <div
                       className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] xl:w-[24%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
@@ -233,7 +231,7 @@ const Index = () => {
                         <div className=" ">
                           <button
                             className=" py-2 px-1 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
-                            onClick={() => postClick(item.id)}
+                            onClick={() => postjobHandler(item.id)}
                           >
                             View applications
                           </button>
@@ -246,29 +244,37 @@ const Index = () => {
             </div>
 
             <div className="absolute bottom-0 right-0 left-0">
-              {myData?.length > 0 && (
+              {postjobData?.length > 0 && (
                 <div className="bg-white-blue md:mx-40 2xl:mx-96">
                   <div className="flex justify-center text-center items-center gap-[10px]  py-4   ">
-                    <Image
-                      src="/iconsimgs/Prev.svg"
-                      alt="LeftButton"
-                      onClick={() => decrement()}
-                      width={30}
-                      height={30}
-                      className={
-                        count == 1 ? "cursor-no-drop" : "cursor-pointer"
-                      }
-                    />
-                    {(count + 2 >= totalPage
+                    <div
+                      className={`cursor-pointer rounded-md border px-3 py-2 text-gray-500 ${
+                        pageCount == 1 && `cursor-no-drop text-gray-400`
+                      } `}
+                      onClick={() => paginationDec()}
+                    >
+                      <div className="w-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 256 512"
+                        >
+                          <path
+                            d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    {(pageCount + 2 >= totalPage
                       ? pageDefiner(totalPage)
-                      : [count, count + 1, count + 2]
+                      : [pageCount, pageCount + 1, pageCount + 2]
                     )?.map((i, key) => {
                       return (
                         <span
                           className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
-                          onClick={(e) => onNumClick(e)}
+                          onClick={(e) => paginationbtnClick(e)}
                           style={
-                            count === i
+                            pageCount === i
                               ? {
                                   color: "black",
                                   backgroundColor: "#43AFFF33",
@@ -285,30 +291,38 @@ const Index = () => {
                         </span>
                       );
                     })}
-                    {count + 2 >= totalPage ? (
+                    {pageCount + 2 >= totalPage ? (
                       ""
                     ) : (
                       <>
                         ...
                         <div
                           className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
-                          onClick={() => onNumClick(totalPage)}
+                          onClick={() => paginationbtnClick(totalPage)}
                         >
                           {totalPage}
                         </div>
                       </>
                     )}
-
-                    <Image
-                      src="/iconsimgs/Nex.svg"
-                      alt="RightButton"
-                      onClick={() => increment()}
-                      width={30}
-                      height={30}
-                      className={
-                        count == totalPage ? "cursor-no-drop" : "cursor-pointer"
-                      }
-                    />
+                    <div
+                      className={`cursor-pointer rounded-md border  px-3 py-2 text-gray-500 ${
+                        pageCount == totalPage &&
+                        `cursor-no-drop text-gray-400 `
+                      }`}
+                      onClick={() => paginationInc()}
+                    >
+                      <div className="w-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 256 512"
+                        >
+                          <path
+                            d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -341,11 +355,11 @@ const Index = () => {
         )}
       </div>
 
-      {isOpen && (
+      {modalopen && (
         <>
           <div
             className="h-screen w-screen fixed bg top-0 flex justify-center items-center "
-            onClick={() => setIsOpen(false)}
+            onClick={() => setModalopen(false)}
           >
             <div
               className="bg-[#fff] md:w-[694px] w-[310px] h-[90%] mt-12 m-auto relative rounded-[20px] flex flex-col xs:py-8 xs:px-4  py-6 px-8    "
@@ -354,7 +368,7 @@ const Index = () => {
               <div className="flex items-center justify-between py-3 text-[19px] text-light-dark font-medium ">
                 <h2>Applicants for this job</h2>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setModalopen(false)}
                   className="cursor-pointer"
                 >
                   <Image
@@ -367,16 +381,16 @@ const Index = () => {
               </div>
               <hr />
               <h3 className="text-light-dark text-[15px]  py-2 ">
-                {jobData?.length > 0 ? "Total" : ""}{" "}
-                {jobData ? jobData.length : 0} applications
+                {candapplyJob?.length > 0 ? "Total" : ""}{" "}
+                {candapplyJob ? candapplyJob.length : 0} applications
               </h3>
               <div className="h-full  bg-[#557da526] overflow-y-scroll ">
                 <div className={` `}>
                   {loader ? (
                     <Loader />
-                  ) : jobData ? (
+                  ) : candapplyJob ? (
                     <div className="flex justify-start  flex-wrap  p-2 gap-4">
-                      {jobData?.map((items: cardTypes, k) => {
+                      {candapplyJob?.map((items: cardTypes, k) => {
                         return (
                           <div key={k} className="">
                             <div

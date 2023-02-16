@@ -15,7 +15,7 @@ interface dataType {
 
 const Index = () => {
   const router = useRouter();
-  const myData = useContext(authcontext);
+  const contextData = useContext(authcontext);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [redirect, setRedirect] = useState(true);
@@ -111,7 +111,7 @@ const Index = () => {
 
     return emailError || passwordError;
   };
-  const justsubmit = async (e: any) => {
+  const loginHandler = async (e: any) => {
     e.preventDefault();
     if (!(await validateForm())) {
       const body = {
@@ -137,9 +137,7 @@ const Index = () => {
           if (finalRes.success) {
             setISLoading(true);
             toast.success("You have logged in successfully.");
-            // setData(finalRes);
-            // console.log({finalRes});
-            myData.setLoggin(finalRes.data);
+            contextData.setLoggin(finalRes.data);
 
             if (finalRes.data.userRole === 0) {
               router.push("/jobs-posted-by-you?page=1");
@@ -172,7 +170,6 @@ const Index = () => {
           setLoader(false);
         });
     }
-    // const finalRes = await allData.json();
   };
 
   return (
@@ -189,7 +186,7 @@ const Index = () => {
                 </h1>
               </div>
               <form
-                onSubmit={(e) => justsubmit(e)}
+                onSubmit={(e) => loginHandler(e)}
                 className=" w-[370px] xs:w-[290px]  md:w-[557px]"
               >
                 <Fields

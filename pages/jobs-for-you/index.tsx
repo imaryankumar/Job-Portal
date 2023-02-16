@@ -14,7 +14,7 @@ interface cardTypes {
   id: string;
   updatedAt?: any;
 }
-interface jobData {
+interface applyData {
   email: string;
   name: string;
   skills: string;
@@ -22,19 +22,17 @@ interface jobData {
 }
 const Index = () => {
   const router = useRouter();
-  const [count, setCount] = useState(1);
-
-  const [myCanData, setCanMyData] = useState<jobData[]>([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [candiapplyJob, setCandiapplyJob] = useState<applyData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const [loader, setLoader] = useState(false);
-
   const { user } = useContext(authcontext);
   const pageNum = router.asPath?.split("=")[1];
   useEffect(() => {
     const page = pageNum ? +pageNum : 1;
     if (!isNaN(page) && page > 0) {
-      setCount(page);
-      reloadData(page);
+      setPageCount(page);
+      jobapplyHandler(page);
     }
   }, [router, pageNum]);
 
@@ -47,7 +45,7 @@ const Index = () => {
     return [];
   }, [totalPage]);
 
-  const reloadData = (page: number) => {
+  const jobapplyHandler = (page: number) => {
     setLoader(true);
 
     fetch(
@@ -64,7 +62,7 @@ const Index = () => {
     )
       .then((res) => {
         res.json().then((resp) => {
-          setCanMyData(resp.data);
+          setCandiapplyJob(resp.data);
           setLoader(false);
 
           setTotalPage(
@@ -89,10 +87,10 @@ const Index = () => {
       return [num - 1, num];
     }
   };
-  const increment = () => {
-    if (count < totalPage) {
-      count < totalPage && setCount(count + 1);
-      router.push(`/jobs-for-you?page=${count + 1} `, undefined, {
+  const paginationInc = () => {
+    if (pageCount < totalPage) {
+      pageCount < totalPage && setPageCount(pageCount + 1);
+      router.push(`/jobs-for-you?page=${pageCount + 1} `, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -102,10 +100,10 @@ const Index = () => {
       });
     }
   };
-  const decrement = () => {
-    if (count > 1) {
-      count == 1 ? setCount(1) : setCount(count - 1);
-      router.push(`/jobs-for-you?page=${count - 1}`, undefined, {
+  const paginationDec = () => {
+    if (pageCount > 1) {
+      pageCount == 1 ? setPageCount(1) : setPageCount(pageCount - 1);
+      router.push(`/jobs-for-you?page=${pageCount - 1}`, undefined, {
         shallow: true,
       });
       window.scroll({
@@ -116,8 +114,8 @@ const Index = () => {
     }
   };
 
-  const onNumClick = (e: number) => {
-    setCount(e);
+  const paginationbtnClick = (e: number) => {
+    setPageCount(e);
     router.push(`/jobs-for-you?page=${e} `, undefined, {
       shallow: true,
     });
@@ -127,7 +125,7 @@ const Index = () => {
       behavior: "smooth",
     });
   };
-  const clickMe = (id: string) => {
+  const appliedJobHandler = (id: string) => {
     const getData = () => {
       const body = {
         jobId: id,
@@ -149,7 +147,7 @@ const Index = () => {
         .then((showres) => {
           if (showres.success === true) {
             toast.success("You have applied successfully.");
-            reloadData(count);
+            jobapplyHandler(pageCount);
           }
         })
         .catch((e) => {
@@ -192,7 +190,7 @@ const Index = () => {
               <div className="relative">
                 <div className="min-h-[80vh] pb-20 ">
                   <div className="flex md:mx-40  justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap ">
-                    {myCanData?.map((item: cardTypes, key) => {
+                    {candiapplyJob?.map((item: cardTypes, key) => {
                       return (
                         <div
                           className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[24%] h-[180px] bg-white rounded px-4 py-4 relative capitalize shadow "
@@ -240,7 +238,7 @@ const Index = () => {
                               ) : (
                                 <button
                                   className="px-3 py-2 bg-[#43afff33] rounded  cursor-pointer text-light-dark capitalize text-[12px]  "
-                                  onClick={() => clickMe(item.id)}
+                                  onClick={() => appliedJobHandler(item.id)}
                                 >
                                   Apply
                                 </button>
@@ -253,19 +251,29 @@ const Index = () => {
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 ">
                     <div className="flex justify-center text-center items-center gap-[1%]  cursor-pointer py-4  ">
-                      <Image
-                        src="/iconsimgs/Prev.svg"
-                        alt="Lefticon"
-                        onClick={() => decrement()}
-                        width={30}
-                        height={30}
-                        className={count == 1 ? "cursor-no-drop" : ""}
-                      />
-                      {count > 1 && totalPage > 2 ? (
+                      <div
+                        className={`cursor-pointer rounded-md border px-3 py-2 text-gray-500 ${
+                          pageCount == 1 && `cursor-no-drop text-gray-400`
+                        } `}
+                        onClick={() => paginationDec()}
+                      >
+                        <div className="w-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 512"
+                          >
+                            <path
+                              d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      {pageCount > 1 && totalPage > 2 ? (
                         <>
                           <div
                             className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(1)}
+                            onClick={() => paginationbtnClick(1)}
                           >
                             1
                           </div>
@@ -274,16 +282,16 @@ const Index = () => {
                       ) : (
                         ""
                       )}
-                      {(count + 2 >= totalPage
+                      {(pageCount + 2 >= totalPage
                         ? pageDefiner(totalPage)
-                        : [count, count + 1, count + 2]
+                        : [pageCount, pageCount + 1, pageCount + 2]
                       )?.map((i, k) => {
                         return (
                           <span
                             className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(i)}
+                            onClick={() => paginationbtnClick(i)}
                             style={
-                              count === i
+                              pageCount === i
                                 ? {
                                     color: "black",
                                     backgroundColor: "#43AFFF33",
@@ -300,28 +308,39 @@ const Index = () => {
                           </span>
                         );
                       })}
-                      {count + 2 >= totalPage ? (
+                      {pageCount + 2 >= totalPage ? (
                         ""
                       ) : (
                         <>
                           <span className="text-black">...</span>
                           <div
                             className="py-[1px] px-2 rounded bg-white text-center text-[19px] font-[400] text-black "
-                            onClick={() => onNumClick(totalPage)}
+                            onClick={() => paginationbtnClick(totalPage)}
                           >
                             {totalPage}
                           </div>
                         </>
                       )}
 
-                      <Image
-                        src="/iconsimgs/Nex.svg"
-                        alt="Righticon"
-                        onClick={() => increment()}
-                        width={30}
-                        height={30}
-                        className={count == totalPage ? "cursor-no-drop" : ""}
-                      />
+                      <div
+                        className={`cursor-pointer rounded-md border px-3 py-2 text-gray-500 ${
+                          pageCount == totalPage &&
+                          `cursor-no-drop text-gray-400 `
+                        }`}
+                        onClick={() => paginationInc()}
+                      >
+                        <div className="w-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 512"
+                          >
+                            <path
+                              d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </div>
+                      </div>
                       {}
                     </div>
                   </div>

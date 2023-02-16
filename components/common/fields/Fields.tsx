@@ -35,7 +35,7 @@ const Fields = ({
       <div className="text-[#303F60] px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
-          {required && <span className="star_red">*</span>}
+          {required && <span className="Required_field">*</span>}
         </div>
         {router.pathname.includes("login") ? (
           <Link
