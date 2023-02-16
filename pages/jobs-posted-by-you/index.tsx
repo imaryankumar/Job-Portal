@@ -186,12 +186,12 @@ const Index = () => {
           <Loader />
         ) : myData?.length > 0 ? (
           <div className="relative ">
-            <div className="min-h-[80vh] pb-20">
+            <div className="min-h-[80vh] pb-20  ">
               <div className="flex md:mx-40  2xl:mx-[43rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap mainWrapper  ">
                 {myData?.map((item: cardTypes, key) => {
                   return (
                     <div
-                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] xl:w-[23%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
+                      className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] xl:w-[24%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
                       key={key}
                     >
                       <div

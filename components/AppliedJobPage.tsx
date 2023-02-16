@@ -155,7 +155,7 @@ const Index = () => {
                   .map((item: cardTypes, key) => {
                     return (
                       <div
-                        className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[23%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow "
+                        className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[24%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow "
                         key={key}
                       >
                         <div

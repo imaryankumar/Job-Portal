@@ -71,7 +71,7 @@ function Navbar() {
         </nav>
         <div>
           {isLoggedIN ? (
-            <div className="mt-[-3rem] xs:mt-[-3.4rem] text-white  pr-4 md:pr-20 flex items-end justify-end gap-[3%] cursor-pointer   ">
+            <div className="mt-[-3rem] xs:mt-[-3.4rem] text-white  pr-4 md:pr-20 flex items-end justify-end gap-[2%] cursor-pointer   ">
               <div className="">
                 <Link
                   href={`${
