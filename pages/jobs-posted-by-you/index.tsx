@@ -421,7 +421,7 @@ const Index = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center w-full mt-[11rem] ">
+                    <div className="flex flex-col items-center justify-center w-full mt-[38%] ">
                       <Image
                         src="/iconsimgs/curriculum.svg"
                         alt="curriculum"

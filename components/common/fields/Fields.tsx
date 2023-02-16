@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 interface cardTypes {
   content?: string;
@@ -8,9 +8,9 @@ interface cardTypes {
   password?: string;
   type: string;
   value?: string;
-  onchange?: any;
+  onchange: any;
   onBlur?: any;
-  pattern?: any;
+  pattern?: string;
   error?: boolean;
   required?: boolean;
   children?: any;
@@ -58,7 +58,9 @@ const Fields = ({
           error ? "border border-solid border-[#FF0000]" : ""
         }`}
         value={value}
-        onChange={(e) => onchange(e.target.value)}
+        onChange={(e: React.FormEvent<HTMLInputElement>) =>
+          onchange((e.target as HTMLInputElement).value)
+        }
         onBlur={(e) => onBlur()}
         pattern={pattern}
         maxLength={100}
