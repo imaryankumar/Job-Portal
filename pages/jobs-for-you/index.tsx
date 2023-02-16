@@ -213,7 +213,7 @@ const Index = () => {
                           >
                             <p>{item.description}</p>
                           </div>
-                          <div className="absolute left-4 bottom-5 grid grid-cols-6">
+                          <div className="absolute left-4 bottom-5 grid grid-cols-5 pr-6 ">
                             <div className="grid grid-cols-12 content-center col-span-4">
                               <div className="col-span-1">
                                 <Image
