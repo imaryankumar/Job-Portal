@@ -1,14 +1,5 @@
 import React, { Children } from "react";
-interface cardTypes {
-  content?: string;
-  placeholder?: string;
-  type: string;
-  value?: string;
-  onchange?: any;
-  onBlur?: any;
-  error?: boolean;
-  required?: boolean;
-}
+import { DescCardTypes } from "../../utils/types";
 const Description = ({
   content,
   placeholder,
@@ -18,7 +9,7 @@ const Description = ({
   onBlur,
   error,
   required,
-}: cardTypes) => {
+}: DescCardTypes) => {
   return (
     <div className="w-full h-30 mb-[6px]">
       <h1 className="text-[14px] tracking-normal text-light-dark px-0 py-2 items-center justify-between ">

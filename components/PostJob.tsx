@@ -278,18 +278,13 @@ const PostJob = (props: Props) => {
                   </Fields>
                   <div className="flex items-center justify-center pb-[20px] ">
                     <button
-                      className="w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white "
+                      className={`w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white ${
+                        isLoading
+                          ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
+                          : "bg-[#43AFFF] text-white "
+                      }`}
                       disabled={isLoading}
                       type="submit"
-                      style={
-                        isLoading
-                          ? {
-                              backgroundColor: "#43AFFF",
-                              color: "white",
-                              cursor: "no-drop",
-                            }
-                          : { backgroundColor: "#43AFFF", color: "white" }
-                      }
                     >
                       {loader ? <Loader /> : "Post"}
                     </button>

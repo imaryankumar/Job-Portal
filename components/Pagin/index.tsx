@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { cardTypes } from "../../utils/types";
+import { CardTypes } from "../../utils/types";
 
 const Pagination = ({ data, pagination, children }: any) => {
   return (
     <div className="z-0 flex flex-wrap gap-[2%] mainWrapper justify-center md:justify-start md:px-40 xs:px-1 px-8   ">
       {data
         ?.slice(pagination.start, pagination.end)
-        .map((item: cardTypes, key: number) => {
+        .map((item: CardTypes, key: number) => {
           return (
             <div
               className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] h-[180px] bg-white rounded mb-4 px-4 py-4 relative capitalize shadow "

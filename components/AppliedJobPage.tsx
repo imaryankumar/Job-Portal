@@ -5,19 +5,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Seo from "./nexthead/Seo";
 import Loader from "./Loader/Loader";
-interface cardTypes {
-  location?: string;
-  title?: string;
-  description?: string;
-  id?: string;
-  updatedAt?: any;
-}
-interface jobApply {
-  email: string;
-  name: string;
-  skills: string;
-  id: string;
-}
+import { CardTypes, JobApply } from "../utils/types";
 
 const Index = () => {
   const router = useRouter();
@@ -25,7 +13,7 @@ const Index = () => {
   const [pageCount, setpageCount] = useState(+pageNum || 1);
   const [showPerPage] = useState(20);
   const [pagination, setPagination] = useState({ start: 0, end: showPerPage });
-  const [appliedjob, setAppliedjob] = useState<jobApply[]>([]);
+  const [appliedjob, setAppliedjob] = useState<JobApply[]>([]);
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
@@ -149,7 +137,7 @@ const Index = () => {
               <div className="flex md:mx-40  justify-center 2xl:mx-[24rem] md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap ">
                 {appliedjob
                   ?.slice(pagination.start, pagination.end)
-                  .map((item: cardTypes, key) => {
+                  .map((item: CardTypes, key) => {
                     return (
                       <div
                         className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[24%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow "
@@ -236,20 +224,12 @@ const Index = () => {
                         )?.map((i, k) => {
                           return (
                             <span
-                              className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] text-black font-[400]"
-                              onClick={() => paginationbtnClick(i)}
-                              style={
+                              className={`py-[1px] px-2 rounded cursor-pointer  text-center text-[19px] text-black font-[400] ${
                                 pageCount === i
-                                  ? {
-                                      color: "black",
-                                      backgroundColor: "#43AFFF33",
-                                      cursor: "pointer",
-                                    }
-                                  : {
-                                      backgroundColor: "white",
-                                      cursor: "pointer",
-                                    }
-                              }
+                                  ? " bg-[#43AFFF33] "
+                                  : " bg-white"
+                              } `}
+                              onClick={() => paginationbtnClick(i)}
                               key={k}
                             >
                               {i}

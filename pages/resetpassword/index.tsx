@@ -164,18 +164,13 @@ const Index = () => {
                 </Fields>
                 <div className="flex items-center justify-center">
                   <button
-                    className="w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff]"
+                    className={`w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff] ${
+                      isLoading
+                        ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
+                        : "bg-[#43AFFF] text-white "
+                    } `}
                     disabled={isLoading}
                     type="submit"
-                    style={
-                      isLoading
-                        ? {
-                            backgroundColor: "#43AFFF",
-                            color: "white",
-                            cursor: "no-drop",
-                          }
-                        : { backgroundColor: "#43AFFF", color: "white" }
-                    }
                   >
                     {loader ? <Loader /> : "Reset"}
                   </button>

@@ -6,28 +6,13 @@ import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import Loader from "../../components/Loader/Loader";
+import { CardType, JobApply } from "../../utils/types";
 
-interface cardTypes {
-  location?: string;
-  title?: string;
-  description?: string;
-  id?: string;
-  updatedAt?: any;
-  email?: any;
-  name?: string;
-  skills?: string;
-}
-interface jobData {
-  email: string;
-  name: string;
-  skills: string;
-  id: string;
-}
 const Index = () => {
   const router = useRouter();
   const [pageCount, setPageCount] = useState(1);
   const [modalopen, setModalopen] = useState(false);
-  const [candapplyJob, setCandapplyJob] = useState<jobData[]>([]);
+  const [candapplyJob, setCandapplyJob] = useState<JobApply[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const { user } = useContext(authcontext);
   const [postjobData, setPostjobData] = useState([]);
@@ -186,7 +171,7 @@ const Index = () => {
           <div className="relative ">
             <div className="min-h-[80vh] pb-20  ">
               <div className="flex md:mx-40  2xl:mx-[23rem] justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap mainWrapper  ">
-                {postjobData?.map((item: cardTypes, key) => {
+                {postjobData?.map((item: CardType, key) => {
                   return (
                     <div
                       className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[23%] xl:w-[24%] h-[180px] bg-white rounded  px-4 py-4 relative capitalize shadow   "
@@ -271,20 +256,10 @@ const Index = () => {
                     )?.map((i, key) => {
                       return (
                         <span
-                          className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-normal text-black "
+                          className={` py-[1px] px-2 rounded cursor-pointer text-center text-[19px] font-normal text-black ${
+                            pageCount === i ? " bg-[#43AFFF33] " : " bg-white"
+                          }`}
                           onClick={(e) => paginationbtnClick(e)}
-                          style={
-                            pageCount === i
-                              ? {
-                                  color: "black",
-                                  backgroundColor: "#43AFFF33",
-                                  cursor: "pointer",
-                                }
-                              : {
-                                  backgroundColor: "white",
-                                  cursor: "pointer",
-                                }
-                          }
                           key={key}
                         >
                           {i}
@@ -390,7 +365,7 @@ const Index = () => {
                     <Loader />
                   ) : candapplyJob ? (
                     <div className="flex justify-start  flex-wrap  p-2 gap-4">
-                      {candapplyJob?.map((items: cardTypes, k) => {
+                      {candapplyJob?.map((items: CardType, k) => {
                         return (
                           <div key={k} className="">
                             <div

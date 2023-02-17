@@ -241,18 +241,13 @@ const Index = () => {
                 </Fields>
                 <div className="flex items-center justify-center  ">
                   <button
-                    className="w-40 h-[46px] bg-light-blue border border-solid border-light-blue text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 xs:mt-6 cursor-pointer text-white"
+                    className={`w-40 h-[46px] bg-light-blue border border-solid border-light-blue text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 xs:mt-6 cursor-pointer text-white ${
+                      isLoading
+                        ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
+                        : "bg-[#43AFFF] text-white "
+                    } `}
                     disabled={isLoading}
                     type="submit"
-                    style={
-                      isLoading
-                        ? {
-                            backgroundColor: "#43AFFF",
-                            color: "white",
-                            cursor: "no-drop",
-                          }
-                        : { backgroundColor: "#43AFFF", color: "white" }
-                    }
                   >
                     {loader ? <Loader /> : "Login"}
                   </button>

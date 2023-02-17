@@ -1,20 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FieldCardTypes } from "../../../utils/types";
 
-interface cardTypes {
-  content?: string;
-  placeholder?: string;
-  password?: string;
-  type: string;
-  value?: string;
-  onchange: any;
-  onBlur?: any;
-  pattern?: string;
-  error?: boolean;
-  required?: boolean;
-  children?: any;
-}
 const Fields = ({
   content,
   placeholder,
@@ -27,7 +15,7 @@ const Fields = ({
   error,
   required,
   children,
-}: cardTypes) => {
+}: FieldCardTypes) => {
   const router = useRouter();
 
   return (

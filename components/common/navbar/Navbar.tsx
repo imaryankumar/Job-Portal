@@ -77,12 +77,6 @@ function Navbar() {
                   href={`${
                     user?.userRole === 0 ? "/post-job" : "/applied-jobs"
                   }`}
-                  // className={
-                  //   router.asPath.includes("/post-job") ||
-                  //   router.asPath.includes("/applied-jobs")
-                  //     ? "md:border-b-4 border-b-2  border-solid border-[#43AFFF] "
-                  //     : undefined
-                  // }
                 >
                   <h1 className="md:mb-[22px] mb-[8px]  h-6 md:text-base text-[14px]  tracking-normal text-white opacity-80 xs:pl-2  ">
                     {user?.userRole === 0 ? "Post a Job" : "Applied Jobs"}

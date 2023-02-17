@@ -1,32 +1,52 @@
-export interface cardTypes {
+export interface CardTypes {
+  location?: string;
+  title?: string;
+  description?: string;
+  id: string;
+  updatedAt?: any;
+}
+export interface ApplyData {
+  email: string;
+  name: string;
+  skills: string;
+  id: string;
+}
+export interface JobApply {
+  email: string;
+  name: string;
+  skills: string;
+  id: string;
+}
+export interface CardType {
   location?: string;
   title?: string;
   description?: string;
   id?: string;
   updatedAt?: any;
+  email?: any;
+  name?: string;
+  skills?: string;
 }
-
-export interface jobData {
-  email: string;
-  name: string;
-  skills: string;
-  id: string;
+export interface FieldCardTypes {
+  content?: string;
+  placeholder?: string;
+  password?: string;
+  type: string;
+  value?: string;
+  onchange: any;
+  onBlur?: any;
+  pattern?: string;
+  error?: boolean;
+  required?: boolean;
+  children?: any;
 }
-
-export type Tuser = {
-  email: string;
-  name: string;
-  skills: string;
-  userRole: 0 | 1;
-  createdAt: string;
-  updatedAt: string;
-  id: string;
-  token: string;
-};
-
-export type TuserContext = {
-  isLoggedIN?: boolean;
-  user?: Tuser;
-  setLoggin: (data: Tuser) => void;
-  setLogout: () => void;
-};
+export interface DescCardTypes {
+  content?: string;
+  placeholder?: string;
+  type: string;
+  value?: string;
+  onchange?: any;
+  onBlur?: any;
+  error?: boolean;
+  required?: boolean;
+}

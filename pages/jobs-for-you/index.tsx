@@ -6,24 +6,11 @@ import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
 import Image from "next/image";
 import Loader from "../../components/Loader/Loader";
-
-interface cardTypes {
-  location?: string;
-  title?: string;
-  description?: string;
-  id: string;
-  updatedAt?: any;
-}
-interface applyData {
-  email: string;
-  name: string;
-  skills: string;
-  id: string;
-}
+import { CardTypes, ApplyData } from "../../utils/types";
 const Index = () => {
   const router = useRouter();
   const [pageCount, setPageCount] = useState(1);
-  const [candiapplyJob, setCandiapplyJob] = useState<applyData[]>([]);
+  const [candiapplyJob, setCandiapplyJob] = useState<ApplyData[]>([]);
   const [totalPage, setTotalPage] = useState(0);
   const [loader, setLoader] = useState(false);
   const { user } = useContext(authcontext);
@@ -190,7 +177,7 @@ const Index = () => {
               <div className="relative">
                 <div className="min-h-[80vh] pb-20 ">
                   <div className="flex md:mx-40  justify-center md:justify-start gap-4 md:gap-x-2 lg:gap-x-3 flex-wrap ">
-                    {candiapplyJob?.map((item: cardTypes, key) => {
+                    {candiapplyJob?.map((item: CardTypes, key) => {
                       return (
                         <div
                           className="w-[80%] sm:w-[32%] md:w-[49%] lg:w-[32%] xl:w-[24%] h-[180px] bg-white rounded px-4 py-4 relative capitalize shadow "
@@ -288,20 +275,10 @@ const Index = () => {
                       )?.map((i, k) => {
                         return (
                           <span
-                            className="py-[1px] px-2 rounded bg-[#43afff33] text-center text-[19px] font-[400] text-black "
+                            className={`py-[1px] px-2 rounded  cursor-pointer text-center text-[19px] font-[400] text-black ${
+                              pageCount === i ? " bg-[#43AFFF33] " : " bg-white"
+                            }`}
                             onClick={() => paginationbtnClick(i)}
-                            style={
-                              pageCount === i
-                                ? {
-                                    color: "black",
-                                    backgroundColor: "#43AFFF33",
-                                    cursor: "pointer",
-                                  }
-                                : {
-                                    backgroundColor: "white",
-                                    cursor: "pointer",
-                                  }
-                            }
                             key={k}
                           >
                             {i}
