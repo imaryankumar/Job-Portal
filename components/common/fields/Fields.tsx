@@ -20,7 +20,7 @@ const Fields = ({
 
   return (
     <div className="w-full h-[95px] xs:h-[85px] ">
-      <div className="text-[#303F60] px-0 py-2 text-[14px] flex items-center justify-between ">
+      <div className="text-light-dark px-0 py-2 text-[14px] flex items-center justify-between ">
         <div className="">
           {content}
           {required && <span className="Required_field">*</span>}
@@ -42,8 +42,8 @@ const Fields = ({
         }`}
         type={type}
         placeholder={placeholder}
-        className={` w-full h-[40px] xs:h-[38px] md:h-[46px] outline-[#43AFFF] bg-[#E8E8E833] border border-solid border-[#C6C6C6] rounded pl-4  ${
-          error ? "border border-solid border-[#FF0000]" : ""
+        className={` w-full h-[40px] xs:h-[38px] md:h-[46px] outline-light-blue bg-[#E8E8E833] border border-solid border-[#C6C6C6] rounded pl-4  ${
+          error ? "border border-solid border-dark-red" : ""
         }`}
         value={value}
         onChange={(e: React.FormEvent<HTMLInputElement>) =>

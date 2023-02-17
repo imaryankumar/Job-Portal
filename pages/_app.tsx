@@ -20,10 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ContextAPI>
-      <div className="bg-dark-blue">
-        {!isHidd && <Navbar />}
-        {/* <hr className="w-[91%] mx-auto " /> */}
-      </div>
+      <div className="bg-dark-blue">{!isHidd && <Navbar />}</div>
 
       <Component {...pageProps} />
       <ToastContainer className="toast-contt xl:!mr-30  2xl:!mr-[17rem] text-[15px] " />

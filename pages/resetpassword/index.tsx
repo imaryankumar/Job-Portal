@@ -135,7 +135,7 @@ const Index = () => {
                   }}
                 >
                   {error?.password && (
-                    <p className="text-[#FF0000] text-right text-xs">
+                    <p className="text-dark-red text-right text-xs">
                       {error?.password}
                     </p>
                   )}
@@ -157,7 +157,7 @@ const Index = () => {
                   }}
                 >
                   {error?.confirmPassword && (
-                    <p className="text-[#FF0000] text-right text-xs">
+                    <p className="text-dark-red text-right text-xs">
                       {error?.confirmPassword}
                     </p>
                   )}
@@ -166,8 +166,8 @@ const Index = () => {
                   <button
                     className={`w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff] ${
                       isLoading
-                        ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
-                        : "bg-[#43AFFF] text-white "
+                        ? "  bg-light-blue   text-white  cursor-no-drop  "
+                        : "bg-light-blue text-white "
                     } `}
                     disabled={isLoading}
                     type="submit"

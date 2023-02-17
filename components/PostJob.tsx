@@ -228,7 +228,7 @@ const PostJob = (props: Props) => {
                     required
                   >
                     {error && (
-                      <p className="text-[#FF0000] text-right  text-xs opacity-[80%] ">
+                      <p className="text-dark-red text-right  text-xs opacity-[80%] ">
                         {error.title}
                       </p>
                     )}
@@ -250,7 +250,7 @@ const PostJob = (props: Props) => {
                     required
                   />
                   {error && (
-                    <p className="text-[#FF0000] text-right mt-[-5px] h-2 text-xs opacity-[80%]">
+                    <p className="text-dark-red text-right mt-[-5px] h-2 text-xs opacity-[80%]">
                       {error.description}
                     </p>
                   )}
@@ -271,7 +271,7 @@ const PostJob = (props: Props) => {
                     required
                   >
                     {error && (
-                      <p className="text-[#FF0000] text-right  text-xs opacity-[80%]">
+                      <p className="text-dark-red text-right  text-xs opacity-[80%]">
                         {error.location}
                       </p>
                     )}
@@ -280,8 +280,8 @@ const PostJob = (props: Props) => {
                     <button
                       className={`w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white ${
                         isLoading
-                          ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
-                          : "bg-[#43AFFF] text-white "
+                          ? "  bg-light-blue   text-white  cursor-no-drop  "
+                          : "bg-light-blue text-white "
                       }`}
                       disabled={isLoading}
                       type="submit"

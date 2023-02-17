@@ -85,7 +85,7 @@ function Navbar() {
                     className={
                       router.asPath.includes("/post-job") ||
                       router.asPath.includes("/applied-jobs")
-                        ? "md:border-b-4 w-[50px]  mx-auto border-b-2  border-solid border-[#43AFFF] "
+                        ? "md:border-b-4 w-[50px]  mx-auto border-b-2  border-solid border-light-blue "
                         : undefined
                     }
                   ></div>

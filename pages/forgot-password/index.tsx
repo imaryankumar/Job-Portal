@@ -114,7 +114,7 @@ const Index = () => {
                 required
               >
                 {error ? (
-                  <p className="text-[#FF0000] text-right text-xs  ">
+                  <p className="text-dark-red text-right text-xs  ">
                     {error.email}
                   </p>
                 ) : (
@@ -125,8 +125,8 @@ const Index = () => {
                 <button
                   className={`md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff] ${
                     isLoading
-                      ? "  bg-[#43AFFF]   text-white  cursor-no-drop  "
-                      : "bg-[#43AFFF] text-white "
+                      ? "  bg-light-blue   text-white  cursor-no-drop  "
+                      : "bg-light-blue text-white "
                   }`}
                   disabled={isLoading}
                 >
