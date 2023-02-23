@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import { useRouter } from "next/router";
 import Seo from "../../components/nexthead/Seo";
+import Buttons from "../../components/common/Button/Buttons";
 
 const Index = () => {
   const router = useRouter();
@@ -121,8 +122,8 @@ const Index = () => {
                   ""
                 )}
               </Fields>
-              <div className="flex items-center justify-center">
-                <button
+              <div className="flex items-center justify-center mt-5 ">
+                {/* <button
                   className={`md:w-40 w-32 h-[40px] text-[16px] font-medium  md:h-[46px] bg-light-blue border border-solid border-light-blue rounded  flex items-center justify-center mt-5 xs:mt-4 md:mt-8 cursor-pointer text-[#fff] ${
                     isLoading
                       ? "  bg-light-blue   text-white  cursor-no-drop  "
@@ -131,7 +132,13 @@ const Index = () => {
                   disabled={isLoading}
                 >
                   {loader ? <Loader /> : "Submit "}
-                </button>
+                </button> */}
+                <Buttons
+                  isLoading={isLoading}
+                  loader={loader}
+                  type={"submit"}
+                  name={"Submit"}
+                />
               </div>
             </form>
           </div>

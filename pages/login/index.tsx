@@ -1,12 +1,13 @@
 import Fields from "../../components/common/fields/Fields";
 import Link from "next/link";
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 import { authcontext } from "../../components/contextapi/ContextAPI";
 import Seo from "../../components/nexthead/Seo";
 import Loader from "../../components/Loader/Loader";
 import { useRouter } from "next/router";
 import Router from "next/router";
+import Buttons from "../../components/common/Button/Buttons";
 interface dataType {
   success?: boolean;
   code: number;
@@ -24,7 +25,12 @@ const Index = () => {
     email?: string;
   }>();
 
-  const values = { mail, pass };
+  const values = useMemo(() => {
+    return {
+      mail,
+      pass,
+    };
+  }, [mail, pass]);
   const [isLoading, setISLoading] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -53,7 +59,7 @@ const Index = () => {
         Router.events.off("routeChangeStart", routeChangeStart);
       };
     }
-  }, [unSavedChanges, Router, redirect]);
+  }, [unSavedChanges, redirect]);
 
   const validateEmail = (email: string) => {
     let re = /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -239,8 +245,8 @@ const Index = () => {
                     <p className="h-2"></p>
                   )}
                 </Fields>
-                <div className="flex items-center justify-center  ">
-                  <button
+                <div className="flex items-center justify-center mt-5 ">
+                  {/* <button
                     className={`w-40 h-[46px] bg-light-blue border border-solid border-light-blue text-[16px] font-medium  rounded-md  flex items-center justify-center mt-8 xs:mt-6 cursor-pointer text-white ${
                       isLoading
                         ? "  bg-light-blue   text-white  cursor-no-drop  "
@@ -250,7 +256,13 @@ const Index = () => {
                     type="submit"
                   >
                     {loader ? <Loader /> : "Login"}
-                  </button>
+                  </button> */}
+                  <Buttons
+                    isLoading={isLoading}
+                    type={"submit"}
+                    name={"Login"}
+                    loader={loader}
+                  />
                 </div>
               </form>
 

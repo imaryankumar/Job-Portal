@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import Router from "next/router";
 import Loader from "./Loader/Loader";
+import Buttons from "./common/Button/Buttons";
 type Props = {};
 
 const PostJob = (props: Props) => {
@@ -22,7 +23,13 @@ const PostJob = (props: Props) => {
     description?: string;
     location?: string;
   }>();
-  const values = { title, location, description };
+  const values = useMemo(() => {
+    return {
+      title,
+      location,
+      description,
+    };
+  }, [title, location, description]);
 
   const unSavedChanges = useCallback(() => {
     if (
@@ -53,7 +60,7 @@ const PostJob = (props: Props) => {
         Router.events.off("routeChangeStart", routeChangeStart);
       };
     }
-  }, [unSavedChanges, Router, redirect]);
+  }, [unSavedChanges, redirect]);
 
   const router = useRouter();
   const [isLoading, setISLoading] = useState(false);
@@ -276,9 +283,9 @@ const PostJob = (props: Props) => {
                       </p>
                     )}
                   </Fields>
-                  <div className="flex items-center justify-center pb-[20px] ">
-                    <button
-                      className={`w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-4 cursor-pointer text-white ${
+                  <div className="flex items-center justify-center pb-[20px] mt-4 ">
+                    {/* <button
+                      className={`w-40 h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center cursor-pointer text-white ${
                         isLoading
                           ? "  bg-light-blue   text-white  cursor-no-drop  "
                           : "bg-light-blue text-white "
@@ -287,7 +294,13 @@ const PostJob = (props: Props) => {
                       type="submit"
                     >
                       {loader ? <Loader /> : "Post"}
-                    </button>
+                    </button> */}
+                    <Buttons
+                      isLoading={isLoading}
+                      loader={loader}
+                      type={"submit"}
+                      name={"Post"}
+                    />
                   </div>
                 </form>
               </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Fields from "../../components/common/fields/Fields";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import Router from "next/router";
@@ -8,6 +8,7 @@ import Seo from "../../components/nexthead/Seo";
 import { useEffect, useCallback } from "react";
 import { MdPeopleAlt } from "react-icons/md";
 import { FaUserTie } from "react-icons/fa";
+import Buttons from "../../components/common/Button/Buttons";
 
 const Index = () => {
   const [name, setName] = useState("");
@@ -33,7 +34,16 @@ const Index = () => {
     code: number;
     errors?: any[];
   }
-  const values = { name, mail, password, conpassword, skill };
+
+  const values = useMemo(() => {
+    return {
+      name,
+      mail,
+      password,
+      conpassword,
+      skill,
+    };
+  }, [name, mail, password, conpassword, skill]);
 
   const unSavedChanges = useCallback(() => {
     if (
@@ -66,7 +76,7 @@ const Index = () => {
         Router.events.off("routeChangeStart", routeChangeStart);
       };
     }
-  }, [unSavedChanges, Router, redirect]);
+  }, [unSavedChanges, redirect]);
 
   function validateName(name: string) {
     if (!name.trim()) {
@@ -398,8 +408,8 @@ const Index = () => {
                       </p>
                     )}
                   </Fields>
-                  <div className="flex items-center justify-center">
-                    <button
+                  <div className="flex items-center justify-center mt-6">
+                    {/* <button
                       className={`w-40  h-[46px]  bg-light-blue border border-solid border-light-blue rounded  text-[16px] font-medium flex items-center justify-center mt-8 cursor-pointer text-[#fff] ${
                         isLoading
                           ? "  bg-light-blue   text-white  cursor-no-drop  "
@@ -409,7 +419,13 @@ const Index = () => {
                       type="submit"
                     >
                       {loader ? <Loader /> : " Signup"}
-                    </button>
+                    </button> */}
+                    <Buttons
+                      isLoading={isLoading}
+                      loader={loader}
+                      type={"submit"}
+                      name={"Signup"}
+                    />
                   </div>
                 </form>
                 <div className="text-light-dark text-center text-base mt-9 cursor-pointer">

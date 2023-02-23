@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 import Seo from "../../components/nexthead/Seo";
 import Loader from "../../components/Loader/Loader";
+import Buttons from "../../components/common/Button/Buttons";
 
 const Index = () => {
   const [newPass, setNewPass] = useState("");
@@ -162,8 +163,8 @@ const Index = () => {
                     </p>
                   )}
                 </Fields>
-                <div className="flex items-center justify-center">
-                  <button
+                <div className="flex items-center justify-center mt-6">
+                  {/* <button
                     className={`w-40 h-[46px] bg-light-blue border text-[16px] font-medium  border-light-blue rounded-md  flex items-center justify-center mt-6 cursor-pointer text-[#fff] ${
                       isLoading
                         ? "  bg-light-blue   text-white  cursor-no-drop  "
@@ -173,7 +174,13 @@ const Index = () => {
                     type="submit"
                   >
                     {loader ? <Loader /> : "Reset"}
-                  </button>
+                  </button> */}
+                  <Buttons
+                    isLoading={isLoading}
+                    type={"submit"}
+                    name={"Reset"}
+                    loader={loader}
+                  />
                 </div>
               </form>
             </div>
